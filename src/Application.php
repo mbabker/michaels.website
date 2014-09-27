@@ -8,15 +8,16 @@
 
 namespace BabDev\Website;
 
+use BabDev\Website\Controller\DefaultController;
+use BabDev\Website\Model\DefaultModel;
+use BabDev\Website\View\DefaultHtmlView;
+
 use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Router\Router;
 
-use BabDev\Website\Controller\DefaultController;
-use BabDev\Website\Model\DefaultModel;
-use BabDev\Website\View\DefaultHtmlView;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 /**
  * Web application class
  *
@@ -25,6 +26,35 @@ use BabDev\Website\View\DefaultHtmlView;
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
 	use ContainerAwareTrait;
+
+	/**
+	 * The session object.
+	 *
+	 * @var    Session
+	 * @since  1.0
+	 * @note   This has been created to avoid a conflict with the $session member var from the parent class.
+	 */
+	private $newSession = null;
+
+	/**
+	 * The User object.
+	 *
+	 * @var    User
+	 * @since  1.0
+	 */
+	private $user;
+
+	/**
+	 * Clear the system message queue.
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	public function clearMessageQueue()
+	{
+		$this->getSession()->getFlashBag()->clear();
+	}
 
 	/**
 	 * Method to run the application routines
@@ -56,6 +86,146 @@ final class Application extends AbstractWebApplication implements ContainerAware
 			$this->setErrorHeader($exception);
 			$this->setErrorOutput($exception);
 		}
+	}
+
+	/**
+	 * Enqueue a system message.
+	 *
+	 * @param   string  $msg   The message to enqueue.
+	 * @param   string  $type  The message type. Default is message.
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 */
+	public function enqueueMessage($msg, $type = 'message')
+	{
+		$this->getSession()->getFlashBag()->add($type, $msg);
+
+		return $this;
+	}
+
+	/**
+	 * Get the system message queue.
+	 *
+	 * @return  array  The system message queue.
+	 *
+	 * @since   1.0
+	 */
+	public function getMessageQueue()
+	{
+		return $this->getSession()->getFlashBag()->peekAll();
+	}
+
+	/**
+	 * Get a session object.
+	 *
+	 * @return  Session
+	 *
+	 * @since   1.0
+	 */
+	public function getSession()
+	{
+		if (is_null($this->newSession))
+		{
+			$this->newSession = new Session;
+
+			$this->newSession->start();
+
+			$registry = $this->newSession->get('registry');
+
+			if (is_null($registry))
+			{
+				$this->newSession->set('registry', new Registry('session'));
+			}
+		}
+
+		return $this->newSession;
+	}
+
+	/**
+	 * Get a user object.
+	 *
+	 * @param   integer  $id  The user id or the current user.
+	 *
+	 * @return  User
+	 *
+	 * @since   1.0
+	 */
+	public function getUser($id = 0)
+	{
+		if ($id)
+		{
+			return new User($this->getContainer()->get('db'), $id);
+		}
+
+		if (is_null($this->user))
+		{
+			if ($this->user = $this->getSession()->get('babdev_user'))
+			{
+				$this->user->setDatabase($this->getContainer()->get('db'));
+			}
+			else
+			{
+				$this->user = new User($this->getContainer()->get('db'));
+			}
+		}
+
+		return $this->user;
+	}
+
+	/**
+	 * Gets a user state.
+	 *
+	 * @param   string  $key      The path of the state.
+	 * @param   mixed   $default  Optional default value, returned if the internal value is null.
+	 *
+	 * @return  mixed  The user state or null.
+	 *
+	 * @since   1.0
+	 */
+	public function getUserState($key, $default = null)
+	{
+		/* @type Registry $registry */
+		$registry = $this->getSession()->get('registry');
+
+		if (!is_null($registry))
+		{
+			return $registry->get($key, $default);
+		}
+
+		return $default;
+	}
+
+	/**
+	 * Gets the value of a user state variable.
+	 *
+	 * @param   string  $key      The key of the user state variable.
+	 * @param   string  $request  The name of the variable passed in a request.
+	 * @param   mixed   $default  The default value for the variable if not found. Optional.
+	 * @param   string  $type     Filter for the variable, for valid values see \Joomla\Filter\InputFilter::clean(). Optional.
+	 *
+	 * @return  mixed  The request user state.
+	 *
+	 * @see     \Joomla\Filter\InputFilter::clean()
+	 * @since   1.0
+	 */
+	public function getUserStateFromRequest($key, $request, $default = null, $type = 'none')
+	{
+		$cur_state = $this->getUserState($key, $default);
+		$new_state = $this->input->get($request, null, $type);
+
+		// Save the new value only if it was set in this request.
+		if ($new_state !== null)
+		{
+			$this->setUserState($key, $new_state);
+		}
+		else
+		{
+			$new_state = $cur_state;
+		}
+
+		return $new_state;
 	}
 
 	/**
@@ -146,5 +316,75 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		}
 
 		$this->setBody($body);
+	}
+
+	/**
+	 * Set the system message queue for a given type.
+	 *
+	 * @param   string  $type     The type of message to set
+	 * @param   mixed   $message  Either a single message or an array of messages
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	public function setMessageQueue($type, $message = '')
+	{
+		$this->getSession()->getFlashBag()->set($type, $message);
+	}
+
+	/**
+	 * Login or logout a user.
+	 *
+	 * @param   User|null  $user  The User object or null to set a guest user.
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 * @throws  \UnexpectedValueException
+	 */
+	public function setUser(User $user = null)
+	{
+		// Logout
+		if (is_null($user))
+		{
+			$this->user = new User($this->getContainer()->get('db'));
+		}
+		// Login
+		elseif ($user instanceof User)
+		{
+			$this->user = $user;
+		}
+		else
+		{
+			throw new \UnexpectedValueException('Wrong parameter when instantiating a new user object.');
+		}
+
+		$this->getSession()->set('babdev_user', $this->user);
+
+		return $this;
+	}
+
+	/**
+	 * Sets the value of a user state variable.
+	 *
+	 * @param   string  $key    The path of the state.
+	 * @param   string  $value  The value of the variable.
+	 *
+	 * @return  mixed  The previous state, if one existed.
+	 *
+	 * @since   1.0
+	 */
+	public function setUserState($key, $value)
+	{
+		/* @type Registry $registry */
+		$registry = $this->getSession()->get('registry');
+
+		if (!is_null($registry))
+		{
+			return $registry->set($key, $value);
+		}
+
+		return null;
 	}
 }

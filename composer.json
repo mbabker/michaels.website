@@ -24,6 +24,7 @@
 		"joomla/router"          : "~1.1",
 		"joomla/view"            : "~1.1",
 		"babdev/renderer"        : "1.x@dev",
+		"symfony/http-foundation": "~2.5",
 		"twig/twig"              : "1.*"
 	},
 	"autoload"   : {
