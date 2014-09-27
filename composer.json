@@ -18,6 +18,7 @@
 		"joomla/database"        : "~1.1",
 		"joomla/date"            : "~1.1",
 		"joomla/di"              : "~1.2",
+		"joomla/filter"          : "~1.1",
 		"joomla/model"           : "~1.1",
 		"joomla/registry"        : "~1.2",
 		"joomla/router"          : "~1.1",
