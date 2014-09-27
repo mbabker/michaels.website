@@ -28,7 +28,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	 * @var    string
 	 * @since  1.0
 	 */
-	protected $defaultView = 'landing';
+	protected $defaultView = 'home';
 
 	/**
 	 * Execute the controller
