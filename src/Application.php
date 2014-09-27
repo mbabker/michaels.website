@@ -8,13 +8,14 @@
 
 namespace BabDev\Website;
 
-use BabDev\Website\Authentication;
+use BabDev\Website\Authentication\AuthenticationException;
 use BabDev\Website\Authentication\DatabaseStrategy;
 use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Model\DefaultModel;
 use BabDev\Website\View\DefaultHtmlView;
 
 use Joomla\Application\AbstractWebApplication;
+use Joomla\Authentication\Authentication;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Router\Router;
@@ -258,9 +259,10 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	/**
 	 * Logs the user into the application
 	 *
-	 * @return  void
+	 * @return  void  Redirects the application
 	 *
 	 * @since   1.0
+	 * @throws  AuthenticationException
 	 */
 	public function login()
 	{
@@ -268,12 +270,30 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		$authentication = new Authentication;
 
 		// Add our authentication strategy
-		$authentication->addStrategy('database', new DatabaseStrategy($this->input));
+		$strategy = new DatabaseStrategy($this->input, $this->getContainer()->get('db'));
+		$authentication->addStrategy('database', $strategy);
 
 		// Authenticate the user
 		$authentication->authenticate(array('database'));
 
-		$results = $authentication->getResults();
+		switch ($strategy->getResult())
+		{
+			case Authentication::NO_CREDENTIALS :
+				throw new AuthenticationException('A username and/or password were not provided.');
+
+			case Authentication::NO_SUCH_USER :
+				throw new AuthenticationException('The username provided does not exist.');
+
+			case Authentication::INVALID_CREDENTIALS :
+				throw new AuthenticationException('The username and/or password is incorrect.');
+
+			case Authentication::SUCCESS :
+				$user = $this->getUser();
+				$user->loadByUsername($this->input->{$this->input->getMethod()}->get('username', false, 'username'));
+
+				// Set the authenticated user in the session and redirect to the manager
+				$this->setUser($user)->redirect($this->get('uri.host') . '/manager');
+		}
 	}
 
 	/**

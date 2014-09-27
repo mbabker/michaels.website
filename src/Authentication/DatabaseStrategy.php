@@ -78,29 +78,25 @@ class DatabaseStrategy implements AuthenticationStrategyInterface
 			return false;
 		}
 
-		if (isset($this->credentialStore[$username]))
-		{
-			$hash = $this->credentialStore[$username];
-		}
-		else
+		if (!isset($this->credentialStore[$username]))
 		{
 			$this->status = Authentication::NO_SUCH_USER;
 
 			return false;
 		}
 
-		if (\password_verify($password, $hash))
-		{
-			$this->status = Authentication::SUCCESS;
+		$hash = $this->credentialStore[$username];
 
-			return $username;
-		}
-		else
+		if (!password_verify($password, $hash))
 		{
 			$this->status = Authentication::INVALID_CREDENTIALS;
 
 			return false;
 		}
+
+		$this->status = Authentication::SUCCESS;
+
+		return $username;
 	}
 
 	/**

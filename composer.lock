@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "659902a1a498f80603bc01ffef4ce61b",
+    "hash": "d9a22e70136f8b6a4f77d5a8483f02c1",
     "packages": [
         {
             "name": "babdev/renderer",
@@ -62,6 +62,45 @@
             "time": "2014-09-10 14:07:41"
         },
         {
+            "name": "ircmaxell/password-compat",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "1fc1521b5e9794ea77e4eca30717be9635f1d4f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/1fc1521b5e9794ea77e4eca30717be9635f1d4f4",
+                "reference": "1fc1521b5e9794ea77e4eca30717be9635f1d4f4",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@ircmaxell.com",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "hashing",
+                "password"
+            ],
+            "time": "2013-04-30 19:58:08"
+        },
+        {
             "name": "joomla/application",
             "version": "1.2.1",
             "source": {
@@ -106,6 +145,48 @@
                 "joomla"
             ],
             "time": "2014-05-20 14:35:14"
+        },
+        {
+            "name": "joomla/authentication",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joomla-framework/authentication.git",
+                "reference": "fead52cdeca47bcff21259e2942d1991cb027a29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joomla-framework/authentication/zipball/fead52cdeca47bcff21259e2942d1991cb027a29",
+                "reference": "fead52cdeca47bcff21259e2942d1991cb027a29",
+                "shasum": ""
+            },
+            "require": {
+                "ircmaxell/password-compat": "~1.0",
+                "joomla/input": "~1.0",
+                "php": ">=5.3.10"
+            },
+            "require-dev": {
+                "joomla/test": "~1.0"
+            },
+            "type": "joomla-package",
+            "autoload": {
+                "psr-4": {
+                    "Joomla\\Authentication\\": "src/",
+                    "Joomla\\Authentication\\Tests\\": "Tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Joomla Authentication Package",
+            "homepage": "https://github.com/joomla-framework/authentication",
+            "keywords": [
+                "Authentication",
+                "framework",
+                "joomla"
+            ],
+            "time": "2014-02-16 03:36:04"
         },
         {
             "name": "joomla/compat",

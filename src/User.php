@@ -8,11 +8,10 @@
 
 namespace BabDev\Website;
 
+use BabDev\Website\Database\UsersTable;
+
 use Joomla\Database\DatabaseDriver;
 use Joomla\Registry\Registry;
-
-use JTracker\Authentication\Database\UsersTable;
-use JTracker\Authentication\Exception\AuthenticationException;
 
 /**
  * Application user object
@@ -102,10 +101,7 @@ class User implements \Serializable
 	 */
 	public function loadByUsername($username)
 	{
-		$db = $this->database;
-
-		$table = new UsersTable($db);
-
+		$table = new UsersTable($this->database);
 		$table->loadByUsername($username);
 
 		$this->id = $table->id;
