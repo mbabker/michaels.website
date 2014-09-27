@@ -1,0 +1,33 @@
+{
+	"name"       : "babdev/michaels-website",
+	"description": "Source code for http://michaels.website",
+	"license"    : "GPL-2.0+",
+	"type"       : "project",
+	"authors"    : [
+		{
+			"name"    : "Michael Babker",
+			"email"   : "michael.babker@gmail.com",
+			"homepage": "http://www.babdev.com",
+			"role"    : "Developer"
+		}
+	],
+	"require"    : {
+		"php"                    : ">=5.4",
+		"joomla/application"     : "~1.2",
+		"joomla/controller"      : "~1.1",
+		"joomla/database"        : "~1.1",
+		"joomla/date"            : "~1.1",
+		"joomla/di"              : "~1.2",
+		"joomla/model"           : "~1.1",
+		"joomla/registry"        : "~1.2",
+		"joomla/router"          : "~1.1",
+		"joomla/view"            : "~1.1",
+		"babdev/renderer"        : "1.x@dev",
+		"twig/twig"              : "1.*"
+	},
+	"autoload"   : {
+		"psr-4": {
+			"BabDev\\Website\\": "src/"
+		}
+	}
+}

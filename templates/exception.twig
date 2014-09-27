@@ -1,0 +1,10 @@
+{% extends "index.twig" %}
+
+{% block title %}{{ exception.code ? exception.code ~ ' - ' : '' }}Error{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger">
+        <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
+        <p>{{ exception.message|stripJRoot }}</p>
+    </div>
+{% endblock %}
