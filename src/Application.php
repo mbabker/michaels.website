@@ -8,6 +8,8 @@
 
 namespace BabDev\Website;
 
+use BabDev\Website\Authentication;
+use BabDev\Website\Authentication\DatabaseStrategy;
 use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Model\DefaultModel;
 use BabDev\Website\View\DefaultHtmlView;
@@ -18,6 +20,7 @@ use Joomla\DI\ContainerAwareTrait;
 use Joomla\Router\Router;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+
 /**
  * Web application class
  *
@@ -71,6 +74,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 			$router = (new Router($this->input))
 				->setControllerPrefix('\\BabDev\\Website')
 				->setDefaultController('\\Controller\\DefaultController')
+				->addMap('/manage', '\\Controller\\LoginController')
 				->addMap('/:view', '\\Controller\\DefaultController')
 				->addMap('/blog/:alias', '\\Controller\\BlogController');
 
@@ -252,6 +256,27 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	}
 
 	/**
+	 * Logs the user into the application
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	public function login()
+	{
+		// Get the Authentication object
+		$authentication = new Authentication;
+
+		// Add our authentication strategy
+		$authentication->addStrategy('database', new DatabaseStrategy($this->input));
+
+		// Authenticate the user
+		$authentication->authenticate(array('database'));
+
+		$results = $authentication->getResults();
+	}
+
+	/**
 	 * Set the HTTP Response Header for error conditions
 	 *
 	 * @param   \Exception  $exception  The Exception object
@@ -341,25 +366,10 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 * @return  $this
 	 *
 	 * @since   1.0
-	 * @throws  \UnexpectedValueException
 	 */
 	public function setUser(User $user = null)
 	{
-		// Logout
-		if (is_null($user))
-		{
-			$this->user = new User($this->getContainer()->get('db'));
-		}
-		// Login
-		elseif ($user instanceof User)
-		{
-			$this->user = $user;
-		}
-		else
-		{
-			throw new \UnexpectedValueException('Wrong parameter when instantiating a new user object.');
-		}
-
+		$this->user = is_null($user) ? new User : $user;
 		$this->getSession()->set('babdev_user', $this->user);
 
 		return $this;

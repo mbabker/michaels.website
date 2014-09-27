@@ -8,9 +8,11 @@
 
 namespace BabDev\Website\Controller;
 
+use Joomla\Application\AbstractApplication;
 use Joomla\Controller\AbstractController;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
+use Joomla\Input\Input;
 use Joomla\Registry\Registry;
 
 /**
@@ -23,12 +25,36 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	use ContainerAwareTrait;
 
 	/**
+	 * The application object.
+	 *
+	 * @var    \BabDev\Website\Application
+	 * @since  1.0
+	 * @note   Redeclared from parent object for proper typehinting
+	 */
+	private $app;
+
+	/**
 	 * The default view for the application
 	 *
 	 * @var    string
 	 * @since  1.0
 	 */
 	protected $defaultView = 'home';
+
+	/**
+	 * Instantiate the controller.
+	 *
+	 * @param   Input                $input  The input object.
+	 * @param   AbstractApplication  $app    The application object.
+	 *
+	 * @since   1.0
+	 */
+	public function __construct(Input $input = null, AbstractApplication $app = null)
+	{
+		parent::__construct($input, $app);
+
+		$this->initializeController();
+	}
 
 	/**
 	 * Execute the controller
@@ -56,6 +82,37 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		{
 			throw new \RuntimeException(sprintf('Error: ' . $e->getMessage()), $e->getCode());
 		}
+	}
+
+	/**
+	 * Get the application object.
+	 *
+	 * @return  \BabDev\Website\Application  The application object.
+	 *
+	 * @since   1.0
+	 * @throws  \UnexpectedValueException if the application has not been set.
+	 * @note    Redeclared from parent object for proper typehinting
+	 */
+	public function getApplication()
+	{
+		if ($this->app)
+		{
+			return $this->app;
+		}
+
+		throw new \UnexpectedValueException('Application not set in ' . __CLASS__);
+	}
+
+	/**
+	 * Method to initialize the controller object, called after the parent constructor has been processed
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	protected function initializeController()
+	{
+		$this->defaultView = strtolower(str_replace([__NAMESPACE__ . '\\', 'Controller'], '', get_called_class()));
 	}
 
 	/**
@@ -188,5 +245,22 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		}
 
 		return $object;
+	}
+
+	/**
+	 * Set the application object.
+	 *
+	 * @param   AbstractApplication  $app  The application object.
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 * @note    Redeclared from parent object for proper typehinting
+	 */
+	public function setApplication(AbstractApplication $app)
+	{
+		$this->app = $app;
+
+		return $this;
 	}
 }
