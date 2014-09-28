@@ -18,7 +18,7 @@ use Joomla\Registry\Registry;
 /**
  * Default controller class for the application
  *
- * @method         \BabDev\Website\Application  getApplication()  getApplication()  Get the application object.
+ * @method         \BabDev\Website\Application  getApplication()  Get the application object.
  * @property-read  \BabDev\Website\Application  $app  Application object
  *
  * @since          1.0
