@@ -124,8 +124,7 @@ class User implements \Serializable
 		$table = new UsersTable($this->database);
 		$table->loadByUsername($username);
 
-		$this->id = $table->id;
-		$this->params->loadString($table->params);
+		$this->mergeData($table);
 
 		return $this;
 	}
@@ -151,6 +150,22 @@ class User implements \Serializable
 			throw new \RuntimeException('Unable to load the user with ID: ' . $identifier);
 		}
 
+		$this->mergeData($table);
+
+		return $this;
+	}
+
+	/**
+	 * Merges the data from the table object into this object
+	 *
+	 * @param   UsersTable  $table  Table object to merge from
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	protected function mergeData(UsersTable $table)
+	{
 		// Assuming all is well at this point let's bind the data
 		foreach ($table->getFields() as $key => $value)
 		{
@@ -161,8 +176,6 @@ class User implements \Serializable
 		}
 
 		$this->params->loadString($table->params);
-
-		return $this;
 	}
 
 	/**

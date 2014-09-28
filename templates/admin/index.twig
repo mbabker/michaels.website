@@ -36,14 +36,12 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="glyphicon glyphicon-user"></i>
-                                    <span>Jane Doe <i class="caret"></i></span>
+                                    <span>{{ currentUser.name }} <i class="caret"></i></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="user-header bg-light-blue">
-                                        <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
-                                        <p>
-                                            Jane Doe
-                                        </p>
+                                        <img src="{{ gravatar(currentUser.email, 90) }}" class="img-circle" alt="{{ currentUser.name }}'s Gravatar" />
+                                        <p>{{ currentUser.name }}</p>
                                     </li>
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -64,10 +62,10 @@
                     <section class="sidebar">
                         <div class="user-panel">
                             <div class="pull-left image">
-                                <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+                                <img src="{{ gravatar(currentUser.email, 45) }}" class="img-circle" alt="{{ currentUser.name }}'s Gravatar" />
                             </div>
                             <div class="pull-left info">
-                                <p>Hello, Jane</p>
+                                <p>Hello, {{ currentUser.name }}</p>
                             </div>
                         </div>
                         <ul class="sidebar-menu">

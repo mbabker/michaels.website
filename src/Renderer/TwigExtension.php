@@ -60,7 +60,8 @@ class TwigExtension extends \Twig_Extension
 	{
 		return [
 			'uri'               => $this->app->get('uri'),
-		    'userAuthenticated' => $this->app->getUser()->isAuthenticated()
+		    'userAuthenticated' => $this->app->getUser()->isAuthenticated(),
+		    'currentUser'       => $this->app->getUser()
 		];
 	}
 
@@ -75,7 +76,8 @@ class TwigExtension extends \Twig_Extension
 	{
 		$functions = [
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
-			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot'])
+			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
+		    new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -104,11 +106,26 @@ class TwigExtension extends \Twig_Extension
 	}
 
 	/**
+	 * Get the specified user's gravatar
+	 *
+	 * @param   string   $email  E-mail address to lookup
+	 * @param   integer  $size   Size in pixels of the image
+	 *
+	 * @return  string
+	 *
+	 * @since   1.0
+	 */
+	public static function getGravatar($email, $size = 50)
+	{
+		return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
+	}
+
+	/**
 	 * Replaces the application root path defined by the constant "JPATH_ROOT" with the string "APP_ROOT"
 	 *
 	 * @param   string  $string  The string to process
 	 *
-	 * @return  mixed
+	 * @return  string
 	 *
 	 * @since   1.0
 	 */
