@@ -9,6 +9,13 @@
         <div class="header">Sign In</div>
         <form action="{{ uri.base.path }}manage" method="post">
             <div class="body bg-gray">
+                {% for type, flashMessages in messages %}
+                    {% for flashMessage in flashMessages %}
+                        <div class="alert alert-{{ type }}">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
                 <div class="form-group">
                     <input type="text" name="username" class="form-control" placeholder="Username"/>
                 </div>

@@ -58,11 +58,16 @@ class TwigExtension extends \Twig_Extension
 	 */
 	public function getGlobals()
 	{
-		return [
+		$twigGlobals = [
 			'uri'               => $this->app->get('uri'),
 			'userAuthenticated' => $this->app->getUser()->isAuthenticated(),
-			'currentUser'       => $this->app->getUser()
+			'currentUser'       => $this->app->getUser(),
+			'messages'          => $this->app->getMessageQueue()
 		];
+
+		$this->app->clearMessageQueue();
+
+		return $twigGlobals;
 	}
 
 	/**

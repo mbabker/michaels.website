@@ -127,7 +127,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 *
 	 * @since   1.0
 	 */
-	public function enqueueMessage($msg, $type = 'message')
+	public function enqueueMessage($msg, $type = 'info')
 	{
 		$this->getSession()->getFlashBag()->add($type, $msg);
 

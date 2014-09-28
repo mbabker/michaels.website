@@ -16,6 +16,14 @@ namespace BabDev\Website\Controller;
 class AdminController extends DefaultController
 {
 	/**
+	 * The default view for the application
+	 *
+	 * @var    string
+	 * @since  1.0
+	 */
+	protected $defaultView = 'dashboard';
+
+	/**
 	 * Method to initialize the controller object, called after the parent constructor has been processed
 	 *
 	 * @return  void
@@ -24,9 +32,14 @@ class AdminController extends DefaultController
 	 */
 	protected function initializeController()
 	{
-		$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
-		$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
-		$this->defaultView = ($defaultView == 'admin') ? 'dashboard' : $defaultView;
+		// Redirect unauthenticated users out
+		if (!$this->getApplication()->getUser()->isAuthenticated() && $this->getApplication()->get('uri.route') != 'manage')
+		{
+			$this->getApplication()->enqueueMessage('Must login first!');
+			$this->getApplication()->redirect($this->getApplication()->get('uri.host') . '/manage');
+		}
+
+		parent::initializeController();
 	}
 
 	/**

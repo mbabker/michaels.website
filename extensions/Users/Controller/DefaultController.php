@@ -18,14 +18,10 @@ use BabDev\Website\Controller\AdminController;
 class DefaultController extends AdminController
 {
 	/**
-	 * Method to initialize the controller object, called after the parent constructor has been processed
+	 * The default view for the application
 	 *
-	 * @return  void
-	 *
-	 * @since   1.0
+	 * @var    string
+	 * @since  1.0
 	 */
-	protected function initializeController()
-	{
-		$this->defaultView = 'lists';
-	}
+	protected $defaultView = 'lists';
 }

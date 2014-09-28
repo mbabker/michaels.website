@@ -80,8 +80,6 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		}
 
 		$this->isAdmin = ($this instanceof AdminController);
-
-		$this->initializeController();
 	}
 
 	/**
@@ -96,6 +94,8 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	 */
 	public function execute()
 	{
+		$this->initializeController();
+
 		try
 		{
 			// Initialize the view object
@@ -123,7 +123,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	{
 		$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
 		$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
-		$this->defaultView = ($defaultView == 'default') ? 'home' : $defaultView;
+		$this->defaultView = ($defaultView == 'default') ? $this->defaultView : $defaultView;
 	}
 
 	/**

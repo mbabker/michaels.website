@@ -89,6 +89,13 @@
                 </aside>
                 <aside class="right-side">
                     <section class="content-header">
+                        {% for type, flashMessages in messages %}
+                            {% for flashMessage in flashMessages %}
+                                <div class="alert alert-{{ type }}">
+                                    {{ flashMessage }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                         <h1>{% block contentHeaderText %}{% endblock %}</h1>
                         <ol class="breadcrumb">
                             <li><a href="{{ uri.base.path }}manager"><i class="fa fa-dashboard"></i> Home</a></li>
