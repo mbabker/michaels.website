@@ -8,14 +8,14 @@
 
 namespace Extensions\Users\Controller;
 
-use BabDev\Website\Controller\DefaultController;
+use BabDev\Website\Controller\DefaultController as BaseController;
 
 /**
  * Logout controller
  *
  * @since   1.0
  */
-class LogoutController extends DefaultController
+class LogoutController extends BaseController
 {
 	/**
 	 * Execute the controller

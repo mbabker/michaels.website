@@ -60,8 +60,8 @@ class TwigExtension extends \Twig_Extension
 	{
 		return [
 			'uri'               => $this->app->get('uri'),
-		    'userAuthenticated' => $this->app->getUser()->isAuthenticated(),
-		    'currentUser'       => $this->app->getUser()
+			'userAuthenticated' => $this->app->getUser()->isAuthenticated(),
+			'currentUser'       => $this->app->getUser()
 		];
 	}
 
@@ -77,7 +77,7 @@ class TwigExtension extends \Twig_Extension
 		$functions = [
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
-		    new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar'])
+			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))

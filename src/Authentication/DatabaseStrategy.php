@@ -60,7 +60,7 @@ class DatabaseStrategy implements AuthenticationStrategyInterface
 	/**
 	 * Attempt to authenticate the username and password pair.
 	 *
-	 * @return  void
+	 * @return  string|boolean  A string containing a username if authentication is successful, false otherwise.
 	 *
 	 * @since   1.0
 	 */

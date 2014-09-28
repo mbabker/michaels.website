@@ -329,9 +329,7 @@ abstract class AbstractModel extends AbstractDatabaseModel
 			throw new \RuntimeException(sprintf('Table class %s not found or is not an instance of AbstractTable.', $class));
 		}
 
-		$this->table = new $class($this->getDb());
-
-		return $this->table;
+		return new $class($this->getDb());
 	}
 
 	/**

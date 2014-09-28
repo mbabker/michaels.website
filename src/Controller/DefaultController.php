@@ -18,20 +18,14 @@ use Joomla\Registry\Registry;
 /**
  * Default controller class for the application
  *
- * @since  1.0
+ * @method         \BabDev\Website\Application  getApplication()  getApplication()  Get the application object.
+ * @property-read  \BabDev\Website\Application  $app  Application object
+ *
+ * @since          1.0
  */
 class DefaultController extends AbstractController implements ContainerAwareInterface
 {
 	use ContainerAwareTrait;
-
-	/**
-	 * The application object.
-	 *
-	 * @var    \BabDev\Website\Application
-	 * @since  1.0
-	 * @note   Redeclared from parent object for proper typehinting
-	 */
-	private $app;
 
 	/**
 	 * The default view for the application
@@ -116,25 +110,6 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		{
 			throw new \RuntimeException(sprintf('Error: ' . $e->getMessage()), $e->getCode());
 		}
-	}
-
-	/**
-	 * Get the application object.
-	 *
-	 * @return  \BabDev\Website\Application  The application object.
-	 *
-	 * @since   1.0
-	 * @throws  \UnexpectedValueException if the application has not been set.
-	 * @note    Redeclared from parent object for proper typehinting
-	 */
-	public function getApplication()
-	{
-		if ($this->app)
-		{
-			return $this->app;
-		}
-
-		throw new \UnexpectedValueException('Application not set in ' . __CLASS__);
 	}
 
 	/**
@@ -293,22 +268,5 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		}
 
 		return $object;
-	}
-
-	/**
-	 * Set the application object.
-	 *
-	 * @param   AbstractApplication  $app  The application object.
-	 *
-	 * @return  $this
-	 *
-	 * @since   1.0
-	 * @note    Redeclared from parent object for proper typehinting
-	 */
-	public function setApplication(AbstractApplication $app)
-	{
-		$this->app = $app;
-
-		return $this;
 	}
 }

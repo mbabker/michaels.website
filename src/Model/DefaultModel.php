@@ -26,7 +26,7 @@ class DefaultModel extends AbstractModel
 	 */
 	protected function getListQueryObject()
 	{
-		$db = $this->getDbo();
+		$db = $this->getDb();
 		$query = $db->getQuery(true);
 
 		return $query;
