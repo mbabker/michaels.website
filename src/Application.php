@@ -18,6 +18,7 @@ use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
+use Joomla\Registry\Registry;
 use Joomla\Router\Router;
 
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -76,6 +77,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				->setControllerPrefix('\\BabDev\\Website')
 				->setDefaultController('\\Controller\\DefaultController')
 				->addMap('/manage', '\\Controller\\LoginController')
+				->addMap('/logout', '\\Controller\\LogoutController')
 				->addMap('/:view', '\\Controller\\DefaultController')
 				->addMap('/blog/:alias', '\\Controller\\BlogController');
 
@@ -88,8 +90,9 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		}
 		catch (\Exception $exception)
 		{
+			$admin = isset($controller) ? is_subclass_of($controller, '\\BabDev\\Website\\Controller\\AdminController') : false;
 			$this->setErrorHeader($exception);
-			$this->setErrorOutput($exception);
+			$this->setErrorOutput($exception, $admin);
 		}
 	}
 
@@ -326,12 +329,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 * Set the body for error conditions
 	 *
 	 * @param   \Exception  $exception  The Exception object
+	 * @param   boolean     $admin      Flag if the route was to an admin view
 	 *
 	 * @return  void
 	 *
 	 * @since   1.0
 	 */
-	private function setErrorOutput(\Exception $exception)
+	private function setErrorOutput(\Exception $exception, $admin)
 	{
 		switch (strtolower($this->input->getWord('format', 'html')))
 		{
@@ -349,11 +353,19 @@ final class Application extends AbstractWebApplication implements ContainerAware
 			case 'html' :
 			default :
 				// Need the default controller in order to fetch the renderer
-				$controller = (new DefaultController($this->input, $this))->setContainer($this->getContainer());
+				$controller = (new DefaultController($this->input, $this))->setContainer($this->getContainer())->setApplication($this);
 
 				// Build a default view object and render with the exception layout
 				$controller->initializeRenderer();
 				$view = new DefaultHtmlView(new DefaultModel($this->getContainer()->get('db')), $this->getContainer()->get('renderer'));
+
+				if ($admin)
+				{
+					if (is_dir(JPATH_TEMPLATES . '/admin'))
+					{
+						$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
+					}
+				}
 
 				$body = $view->setLayout('exception')->setData(['exception' => $exception])->render();
 

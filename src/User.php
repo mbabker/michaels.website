@@ -91,6 +91,18 @@ class User implements \Serializable
 	}
 
 	/**
+	 * Check if the user is authenticated
+	 *
+	 * @return  boolean
+	 *
+	 * @since   1.0
+	 */
+	public function isAuthenticated()
+	{
+		return $this->id > 0;
+	}
+
+	/**
 	 * Load a user by username
 	 *
 	 * @param   string  $username  The username of the user to load

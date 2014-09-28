@@ -239,7 +239,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 				// Add the current view path to the loader's lookup if it exists
 				if (is_dir(JPATH_TEMPLATES . '/' . strtolower($view)))
 				{
-					$object->getRenderer()->getLoader()->addPath(JPATH_TEMPLATES . '/' . strtolower($view));
+					$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($view));
 				}
 
 				break;

@@ -1,0 +1,112 @@
+{% set firstPart = uri.route|split("?")|first|split("/")|first %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"{% block htmlClass %}{% endblock %}>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Manage Michael's Website{% endblock %}</title>
+        {% block headJavaScript %}
+            <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        {% endblock %}
+        {% block headCSS %}
+            <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+            <link href="{{ uri.base.path }}assets/css/AdminLTE.css" rel="stylesheet" type="text/css">
+        {% endblock %}
+    </head>
+    <body class="{% block bodyClass %}skin-blue{% endblock %}">
+        {% block primaryContentContainer %}
+            <header class="header">
+                <a href="{{ uri.base.path }}manager" class="logo">
+                    Michael's Website
+                </a>
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <span>Jane Doe <i class="caret"></i></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header bg-light-blue">
+                                        <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+                                        <p>
+                                            Jane Doe
+                                        </p>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="{{ uri.base.path }}logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <div class="wrapper row-offcanvas row-offcanvas-left">
+                <aside class="left-side sidebar-offcanvas">
+                    <section class="sidebar">
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+                            </div>
+                            <div class="pull-left info">
+                                <p>Hello, Jane</p>
+                            </div>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li>
+                                <a href="{{ uri.base.path }}manager">
+                                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ uri.base.path }}manager/articles">
+                                    <i class="fa fa-book"></i> <span>Article Manager</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ uri.base.path }}manager/users">
+                                    <i class="fa fa-users"></i> <span>User Manager</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+                <aside class="right-side">
+                    <section class="content-header">
+                        <h1>{% block contentHeaderText %}{% endblock %}</h1>
+                        <ol class="breadcrumb">
+                            <li><a href="{{ uri.base.path }}manager"><i class="fa fa-dashboard"></i> Home</a></li>
+                            {% block breadcrumb %}{% endblock %}
+                        </ol>
+                    </section>
+                    <section class="content">
+                        {% block content %}{% endblock %}
+                    </section>
+                </aside>
+            </div>
+        {% endblock %}
+        {% block bodyJavaScript %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <script src="{{ uri.base.path }}assets/js/AdminLTE.js"></script>
+        {% endblock %}
+    </body>
+</html>

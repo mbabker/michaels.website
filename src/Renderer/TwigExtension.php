@@ -8,7 +8,7 @@
 
 namespace BabDev\Website\Renderer;
 
-use Joomla\Application\AbstractApplication;
+use BabDev\Website\Application;
 
 /**
  * Twig extension class
@@ -20,7 +20,7 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Application object
 	 *
-	 * @var    AbstractApplication
+	 * @var    Application
 	 * @since  1.0
 	 */
 	private $app;
@@ -28,11 +28,11 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Constructor
 	 *
-	 * @param   AbstractApplication  $container  The application object
+	 * @param   Application  $container  The application object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(AbstractApplication $app)
+	public function __construct(Application $app)
 	{
 		$this->app = $app;
 	}
@@ -59,7 +59,8 @@ class TwigExtension extends \Twig_Extension
 	public function getGlobals()
 	{
 		return [
-			'uri' => $this->app->get('uri')
+			'uri'               => $this->app->get('uri'),
+		    'userAuthenticated' => $this->app->getUser()->isAuthenticated()
 		];
 	}
 

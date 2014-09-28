@@ -1,0 +1,45 @@
+{% extends "admin/index.twig" %}
+
+{% block htmlClass %}{% if not userAuthenticated %} class="bg-black"{% endif %}{% endblock %}
+
+{% block bodyClass %}{% if userAuthenticated %}skin-blue{% else %}bg-black{% endif %}{% endblock %}
+
+{% block title %}{{ exception.code ? exception.code ~ ' - ' : '' }}Error{% endblock %}
+
+{% if not userAuthenticated %}
+    {% block primaryContentContainer %}
+        <div class="form-box" id="login-box">
+            <div class="header">Sign In</div>
+            <form action="{{ uri.base.path }}manage" method="post">
+                <div class="body bg-gray">
+                    <div class="alert alert-danger">
+                        <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
+                        <p>{{ exception.message|stripJRoot }}</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="Username"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password"/>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="btn bg-olive btn-block">Sign me in</button>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+{% else %}
+    {% block contentHeaderText %}{{ exception.code ? : "0" }} - {{ exception|get_class }}{% endblock %}
+    {% block breadcrumb %}<li class="active">{{ exception.code ? exception.code ~ ' - ' : '' }}Error</li>{% endblock %}
+    {% block content %}
+        <div class="error-page">
+            {% if exception.code %}<h2 class="headline text-info">{{ exception.code }}</h2>{% endif %}
+            <div class="error-content">
+                <h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
+                <p>Error Message: {{ exception.message|stripJRoot }}</p>
+                <p>Try <a href="{{ uri.base.path }}manager">returning to the dashboard.</a></p>
+            </div>
+        </div>
+    {% endblock %}
+{% endif %}

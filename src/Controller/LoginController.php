@@ -13,7 +13,7 @@ namespace BabDev\Website\Controller;
  *
  * @since   1.0
  */
-class LoginController extends DefaultController
+class LoginController extends AdminController
 {
 	/**
 	 * Execute the controller
@@ -24,6 +24,12 @@ class LoginController extends DefaultController
 	 */
 	public function execute()
 	{
+		// If logged in, move on to the manager
+		if ($this->getApplication()->getUser()->isAuthenticated())
+		{
+			$this->getApplication()->redirect($this->getApplication()->get('uri.host') . '/manager');
+		}
+
 		$method = $this->getInput()->getMethod();
 
 		$username = $this->getInput()->$method->get('username', false, 'username');
