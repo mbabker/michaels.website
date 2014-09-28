@@ -148,16 +148,16 @@
         },
         {
             "name": "joomla/authentication",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/authentication.git",
-                "reference": "fead52cdeca47bcff21259e2942d1991cb027a29"
+                "reference": "24afaee42fb60c5affe2443762b56832267274e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/authentication/zipball/fead52cdeca47bcff21259e2942d1991cb027a29",
-                "reference": "fead52cdeca47bcff21259e2942d1991cb027a29",
+                "url": "https://api.github.com/repos/joomla-framework/authentication/zipball/24afaee42fb60c5affe2443762b56832267274e8",
+                "reference": "24afaee42fb60c5affe2443762b56832267274e8",
                 "shasum": ""
             },
             "require": {
@@ -166,9 +166,16 @@
                 "php": ">=5.3.10"
             },
             "require-dev": {
-                "joomla/test": "~1.0"
+                "joomla/test": "~1.0",
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "1.*"
             },
             "type": "joomla-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Joomla\\Authentication\\": "src/",
@@ -186,7 +193,7 @@
                 "framework",
                 "joomla"
             ],
-            "time": "2014-02-16 03:36:04"
+            "time": "2014-09-28 18:45:42"
         },
         {
             "name": "joomla/compat",
@@ -943,17 +950,17 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.5.4",
+            "version": "v2.5.5",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "cec87359655f901a11de336576851d3957449947"
+                "reference": "650e115af152d7a5e857d01c2cdb9a22809de9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/cec87359655f901a11de336576851d3957449947",
-                "reference": "cec87359655f901a11de336576851d3957449947",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/650e115af152d7a5e857d01c2cdb9a22809de9b4",
+                "reference": "650e115af152d7a5e857d01c2cdb9a22809de9b4",
                 "shasum": ""
             },
             "require": {
@@ -992,7 +999,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-03 09:00:14"
+            "time": "2014-09-25 09:52:29"
         },
         {
             "name": "twig/twig",
