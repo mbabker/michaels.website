@@ -1,0 +1,4 @@
+{
+	"blog": "\\Articles\\Controller\\BlogController",
+	"blog/:alias": "\\Articles\\Controller\\ArticleController"
+}

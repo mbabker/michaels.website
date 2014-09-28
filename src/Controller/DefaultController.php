@@ -42,6 +42,22 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	protected $defaultView = 'home';
 
 	/**
+	 * The extension being executed
+	 *
+	 * @var    string
+	 * @since  1.0
+	 */
+	protected $extension;
+
+	/**
+	 * Flag if the application is in the administrator section
+	 *
+	 * @var    boolean
+	 * @since  1.0
+	 */
+	protected $isAdmin;
+
+	/**
 	 * Instantiate the controller.
 	 *
 	 * @param   Input                $input  The input object.
@@ -52,6 +68,24 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	public function __construct(Input $input = null, AbstractApplication $app = null)
 	{
 		parent::__construct($input, $app);
+
+		// Detect the extension name
+		if (empty($this->extension))
+		{
+			// Get the fully qualified class name for the current object
+			$fqcn = (get_class($this));
+
+			// Strip the base namespace off
+			$className = str_replace('Extensions\\', '', $fqcn);
+
+			// Explode the remaining name into an array
+			$classArray = explode('\\', $className);
+
+			// Set the app as the first object in this array
+			$this->extension = $classArray[0];
+		}
+
+		$this->isAdmin = ($this instanceof AdminController);
 
 		$this->initializeController();
 	}
@@ -112,7 +146,8 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	 */
 	protected function initializeController()
 	{
-		$defaultView = strtolower(str_replace([__NAMESPACE__ . '\\', 'Controller'], '', get_called_class()));
+		$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
+		$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
 		$this->defaultView = ($defaultView == 'default') ? 'home' : $defaultView;
 	}
 
@@ -126,17 +161,23 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	 */
 	protected function initializeModel()
 	{
-		$model = '\\BabDev\\Website\\Model\\' . ucfirst($this->getInput()->getWord('view', $this->defaultView)) . 'Model';
+		$model = '\\Extensions\\' . $this->extension . '\\Model\\' . ucfirst($this->getInput()->getWord('view', $this->defaultView)) . 'Model';
 
-		// If a model doesn't exist for our view, revert to the default model
+		// If a model doesn't exist for the view, check for a default model in the extension
 		if (!class_exists($model))
 		{
-			$model = '\\BabDev\\Website\\Model\\DefaultModel';
+			$model = '\\Extensions\\' . $this->extension . '\\Model\\DefaultModel';
 
-			// If there still isn't a class, panic.
+			// If an extension default doesn't exist, revert to the application default
 			if (!class_exists($model))
 			{
-				throw new \RuntimeException(sprintf('No model found for view %s', $vName), 500);
+				$model = '\\BabDev\\Website\\Model\\DefaultModel';
+
+				// If there still isn't a class, panic.
+				if (!class_exists($model))
+				{
+					throw new \RuntimeException(sprintf('No model found for view %s', $vName), 500);
+				}
 			}
 		}
 
@@ -202,17 +243,23 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		$view   = ucfirst($this->getInput()->getWord('view', $this->defaultView));
 		$format = ucfirst($this->getInput()->getWord('format', 'html'));
 
-		$class = '\\BabDev\\Website\\View\\' . $view . '\\' . $view . $format . 'View';
+		$class = '\\Extensions' . $this->extension . '\\View\\' . $view . '\\' . $view . $format . 'View';
 
-		// Ensure the class exists, fall back to default otherwise
+		// Ensure the class exists, fall back to the extension's default view otherwise
 		if (!class_exists($class))
 		{
-			$class = '\\BabDev\\Website\\View\\Default' . $format . 'View';
+			$class = '\\Extensions' . $this->extension . '\\View\\Default' . $format . 'View';
 
-			// If we still have nothing, abort mission
+			// If an extension default view doesn't exist, fall back to the default application view
 			if (!class_exists($class))
 			{
-				throw new \RuntimeException(sprintf('A view class was not found for the %s view in the %s format.', $view, $format));
+				$class = '\\BabDev\\Website\\View\\Default' . $format . 'View';
+
+				// If we still have nothing, abort mission
+				if (!class_exists($class))
+				{
+					throw new \RuntimeException(sprintf('A view class was not found for the %s view in the %s format.', $view, $format));
+				}
 			}
 		}
 
@@ -236,10 +283,10 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 				// We need to set the layout too
 				$object->setLayout(strtolower($view) . '.' . strtolower($this->getInput()->getWord('layout', 'index')));
 
-				// Add the current view path to the loader's lookup if it exists
-				if (is_dir(JPATH_TEMPLATES . '/' . strtolower($view)))
+				// Add the extension's view path if it exists
+				if (is_dir(JPATH_TEMPLATES . '/' . strtolower($this->extension)))
 				{
-					$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($view));
+					$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($this->extension));
 				}
 
 				break;

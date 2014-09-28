@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d9a22e70136f8b6a4f77d5a8483f02c1",
+    "hash": "7349820eb8d8a4dd4e115df0421d5cfd",
     "packages": [
         {
             "name": "babdev/renderer",

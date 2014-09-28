@@ -30,7 +30,8 @@
 	},
 	"autoload"   : {
 		"psr-4": {
-			"BabDev\\Website\\": "src/"
+			"BabDev\\Website\\": "src/",
+			"Extensions\\": "extensions/"
 		}
 	}
 }

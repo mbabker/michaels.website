@@ -1,0 +1,4 @@
+{
+	"manage": "\\Users\\Controller\\LoginController",
+	"logout": "\\Users\\Controller\\LogoutController"
+}

@@ -24,7 +24,8 @@ class AdminController extends DefaultController
 	 */
 	protected function initializeController()
 	{
-		$defaultView = strtolower(str_replace([__NAMESPACE__ . '\\', 'Controller'], '', get_called_class()));
+		$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
+		$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
 		$this->defaultView = ($defaultView == 'admin') ? 'dashboard' : $defaultView;
 	}
 
@@ -48,11 +49,10 @@ class AdminController extends DefaultController
 				$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
 			}
 
-			$template = ucfirst($this->getInput()->getWord('view', $this->defaultView));
-
-			if (is_dir(JPATH_TEMPLATES . '/admin/' . $template))
+			// Add the extension's view path if it exists
+			if (is_dir(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension)))
 			{
-				$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . $template);
+				$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension));
 			}
 		}
 

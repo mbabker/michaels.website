@@ -75,14 +75,32 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		{
 			// Instantiate the router
 			$router = (new Router($this->input))
-				->setControllerPrefix('\\BabDev\\Website')
-				->setDefaultController('\\Controller\\DefaultController')
-				->addMap('/manage', '\\Controller\\LoginController')
-				->addMap('/logout', '\\Controller\\LogoutController')
-				->addMap('/manager', '\\Controller\\AdminController')
-				->addMap('/manager/:view', '\\Controller\\AdminController')
-				->addMap('/:view', '\\Controller\\DefaultController')
-				->addMap('/blog/:alias', '\\Controller\\BlogController');
+				->setControllerPrefix('\\Extensions')
+				->setDefaultController('\\Articles\\Controller\\BlogController');
+
+			// Search for extension specific routes
+			/* @type \DirectoryIterator $fileInfo */
+			foreach (new \DirectoryIterator(JPATH_ROOT . '/extensions') as $fileInfo)
+			{
+				if ($fileInfo->isDot())
+				{
+					continue;
+				}
+
+				$path = realpath(JPATH_ROOT . '/extensions/' . $fileInfo->getFilename() . '/routes.json');
+
+				if ($path)
+				{
+					$maps = json_decode(file_get_contents($path));
+
+					if (!$maps)
+					{
+						throw new \RuntimeException('Invalid router file - ' . $path, 500);
+					}
+
+					$router->addMaps($maps);
+				}
+			}
 
 			// Fetch the controller
 			/* @type  \Joomla\Controller\AbstractController  $controller */
@@ -93,7 +111,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		}
 		catch (\Exception $exception)
 		{
-			$admin = isset($controller) ? ($controller instanceof AdminController) : false;
+			$admin = isset($controller) ? ($controller instanceof AdminController) : (strpos($this->get('uri.route'), 'manager') !== false) ? true : false;
 			$this->setErrorHeader($exception);
 			$this->setErrorOutput($exception, $admin);
 		}
