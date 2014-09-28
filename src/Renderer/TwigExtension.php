@@ -68,7 +68,7 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Returns a list of functions to add to the existing list
 	 *
-	 * @return  Twig_SimpleFunction[]  An array of functions
+	 * @return  \Twig_SimpleFunction[]  An array of functions
 	 *
 	 * @since   1.0
 	 */
@@ -91,7 +91,7 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Returns a list of filters to add to the existing list
 	 *
-	 * @return  Twig_SimpleFilter[]  An array of filters
+	 * @return  \Twig_SimpleFilter[]  An array of filters
 	 *
 	 * @since   1.0
 	 */
