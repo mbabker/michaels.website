@@ -16,6 +16,7 @@ use Joomla\Database\DatabaseDriver;
  * @property   integer  $id        Primary key
  * @property   string   $name      The user's name
  * @property   string   $username  The user's username
+ * @property   string   $password  The user's password
  * @property   string   $email     The user's e-mail
  * @property   string   $params    Parameters
  *

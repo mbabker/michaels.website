@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `#__users` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT 'The user\'s name',
   `username` varchar(150) NOT NULL DEFAULT '' COMMENT 'The user\'s username',
+	`password` varchar(64) NOT NULL COMMENT 'The user\'s password',
   `email` varchar(100) NOT NULL DEFAULT '' COMMENT 'The user\'s e-mail',
   `params` text NOT NULL COMMENT 'Parameters',
   PRIMARY KEY (`id`),

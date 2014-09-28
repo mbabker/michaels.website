@@ -8,13 +8,6 @@
 
 namespace BabDev\Website\Controller;
 
-use Joomla\Application\AbstractApplication;
-use Joomla\Controller\AbstractController;
-use Joomla\DI\ContainerAwareInterface;
-use Joomla\DI\ContainerAwareTrait;
-use Joomla\Input\Input;
-use Joomla\Registry\Registry;
-
 /**
  * Base administrator controller class for the application
  *
@@ -22,6 +15,19 @@ use Joomla\Registry\Registry;
  */
 class AdminController extends DefaultController
 {
+	/**
+	 * Method to initialize the controller object, called after the parent constructor has been processed
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	protected function initializeController()
+	{
+		$defaultView = strtolower(str_replace([__NAMESPACE__ . '\\', 'Controller'], '', get_called_class()));
+		$this->defaultView = ($defaultView == 'admin') ? 'dashboard' : $defaultView;
+	}
+
 	/**
 	 * Method to initialize the view object
 	 *

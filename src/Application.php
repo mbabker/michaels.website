@@ -10,6 +10,7 @@ namespace BabDev\Website;
 
 use BabDev\Website\Authentication\AuthenticationException;
 use BabDev\Website\Authentication\DatabaseStrategy;
+use BabDev\Website\Controller\AdminController;
 use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Model\DefaultModel;
 use BabDev\Website\View\DefaultHtmlView;
@@ -78,6 +79,8 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				->setDefaultController('\\Controller\\DefaultController')
 				->addMap('/manage', '\\Controller\\LoginController')
 				->addMap('/logout', '\\Controller\\LogoutController')
+				->addMap('/manager', '\\Controller\\AdminController')
+				->addMap('/manager/:view', '\\Controller\\AdminController')
 				->addMap('/:view', '\\Controller\\DefaultController')
 				->addMap('/blog/:alias', '\\Controller\\BlogController');
 
@@ -90,7 +93,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		}
 		catch (\Exception $exception)
 		{
-			$admin = isset($controller) ? is_subclass_of($controller, '\\BabDev\\Website\\Controller\\AdminController') : false;
+			$admin = isset($controller) ? ($controller instanceof AdminController) : false;
 			$this->setErrorHeader($exception);
 			$this->setErrorOutput($exception, $admin);
 		}
@@ -401,7 +404,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 */
 	public function setUser(User $user = null)
 	{
-		$this->user = is_null($user) ? new User : $user;
+		$this->user = is_null($user) ? new User($this->getContainer()->get('db')) : $user;
 		$this->getSession()->set('babdev_user', $this->user);
 
 		return $this;

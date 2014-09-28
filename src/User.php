@@ -37,6 +37,14 @@ class User implements \Serializable
 	public $username = '';
 
 	/**
+	 * User's hashed password
+	 *
+	 * @var    string
+	 * @since  1.0
+	 */
+	public $password = '';
+
+	/**
 	 * User's name
 	 *
 	 * @var    string
