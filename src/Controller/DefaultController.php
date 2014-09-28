@@ -81,7 +81,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 			// Explode the remaining name into an array
 			$classArray = explode('\\', $className);
 
-			// Set the app as the first object in this array
+			// Set the extension as the first object in this array
 			$this->extension = $classArray[0];
 		}
 
@@ -243,12 +243,12 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		$view   = ucfirst($this->getInput()->getWord('view', $this->defaultView));
 		$format = ucfirst($this->getInput()->getWord('format', 'html'));
 
-		$class = '\\Extensions' . $this->extension . '\\View\\' . $view . '\\' . $view . $format . 'View';
+		$class = '\\Extensions\\' . $this->extension . '\\View\\' . $view . '\\' . $view . $format . 'View';
 
 		// Ensure the class exists, fall back to the extension's default view otherwise
 		if (!class_exists($class))
 		{
-			$class = '\\Extensions' . $this->extension . '\\View\\Default' . $format . 'View';
+			$class = '\\Extensions\\' . $this->extension . '\\View\\Default' . $format . 'View';
 
 			// If an extension default view doesn't exist, fall back to the default application view
 			if (!class_exists($class))

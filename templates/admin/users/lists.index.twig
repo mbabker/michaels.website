@@ -1,0 +1,37 @@
+{% extends "index.twig" %}
+
+{% block title %}Manage Michael's Website Users{% endblock %}
+
+{% block contentHeaderText %}User Manager{% endblock %}
+
+{% block breadcrumb %}<li class="active"><i class="fa fa-users"></i> User Manager</li>{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Registered Users</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 10px">ID</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>E-mail Address</th>
+                        </tr>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

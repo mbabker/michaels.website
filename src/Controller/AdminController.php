@@ -52,7 +52,7 @@ class AdminController extends DefaultController
 			// Add the extension's view path if it exists
 			if (is_dir(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension)))
 			{
-				$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension));
+				$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension));
 			}
 		}
 
