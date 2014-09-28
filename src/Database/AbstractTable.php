@@ -64,7 +64,7 @@ class AbstractTable implements \IteratorAggregate
 	 * In most cases this will be overridden by child classes to explicitly set the table and key fields for a particular database table.
 	 *
 	 * @param   string                  $table  Name of the table to model.
-	 * @param   array|\stdClass\string  $keys   Name of the primary key field in the table or array of field names that compose the primary key.
+	 * @param   array|\stdClass|string  $keys   Name of the primary key field in the table or array of field names that compose the primary key.
 	 * @param   DatabaseDriver          $db     DatabaseDriver object.
 	 *
 	 * @since   1.0
@@ -220,7 +220,7 @@ class AbstractTable implements \IteratorAggregate
 	/**
 	 * Method to load a row from the database by primary key and bind the fields to the AbstractTable instance properties.
 	 *
-	 * @param   array|\stdClass\string  $keys   An optional primary key value to load the row by, or an array of fields to match.  If not set the
+	 * @param   array|\stdClass|string  $keys   An optional primary key value to load the row by, or an array of fields to match.  If not set the
 	 *                                          instance property value is used.
 	 * @param   boolean                 $reset  True to reset the default values before loading the new row.
 	 *
