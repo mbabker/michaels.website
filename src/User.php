@@ -132,7 +132,7 @@ class User implements \Serializable
 	/**
 	 * Load a user by ID
 	 *
-	 * @param   mixed  $identifier  The user id of the user to load.
+	 * @param   integer  $identifier  The user id of the user to load.
 	 *
 	 * @return  $this
 	 *

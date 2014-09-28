@@ -70,13 +70,13 @@ class UsersTable extends AbstractTable
 	 *
 	 * @since   1.0
 	 */
-	public function loadByUserName($userName)
+	public function loadByUserName($username)
 	{
 		$check = $this->db->setQuery(
 			$this->db->getQuery(true)
 				->select('*')
 				->from($this->getTableName())
-				->where('username = ' . $this->db->quote($userName))
+				->where('username = ' . $this->db->quote($username))
 		)->loadObject();
 
 		return ($check) ? $this->bind($check) : $this;

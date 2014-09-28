@@ -59,14 +59,13 @@ class AbstractTable implements \IteratorAggregate
 	protected $db;
 
 	/**
-	 * Object constructor to set table and key fields.  In most cases this will
-	 * be overridden by child classes to explicitly set the table and key fields
-	 * for a particular database table.
+	 * Object constructor to set table and key fields.
 	 *
-	 * @param   string          $table  Name of the table to model.
-	 * @param   mixed           $keys   Name of the primary key field in the table or array of field names that
-	 *                                  compose the primary key.
-	 * @param   DatabaseDriver  $db     DatabaseDriver object.
+	 * In most cases this will be overridden by child classes to explicitly set the table and key fields for a particular database table.
+	 *
+	 * @param   string                  $table  Name of the table to model.
+	 * @param   array|\stdClass\string  $keys   Name of the primary key field in the table or array of field names that compose the primary key.
+	 * @param   DatabaseDriver          $db     DatabaseDriver object.
 	 *
 	 * @since   1.0
 	 */
@@ -152,8 +151,8 @@ class AbstractTable implements \IteratorAggregate
 	 * based on the filter.  The ordering filter is an instance property name.  The rows that will be reordered are those whose value matches
 	 * the AbstractTable instance for the property specified.
 	 *
-	 * @param   mixed         $src     An associative array or object to bind to the AbstractTable instance.
-	 * @param   array|string  $ignore  An optional array or space separated list of properties to ignore while binding.
+	 * @param   array|\stdClass  $src     An associative array or object to bind to the AbstractTable instance.
+	 * @param   array|string     $ignore  An optional array or space separated list of properties to ignore while binding.
 	 *
 	 * @return  $this
 	 *
@@ -177,8 +176,8 @@ class AbstractTable implements \IteratorAggregate
 	 *
 	 * This method only binds properties that are publicly accessible and optionally takes an array of properties to ignore when binding.
 	 *
-	 * @param   mixed         $src     An associative array or object to bind to the AbstractTable instance.
-	 * @param   array|string  $ignore  An optional array or space separated list of properties to ignore while binding.
+	 * @param   array|\stdClass  $src     An associative array or object to bind to the AbstractTable instance.
+	 * @param   array|string     $ignore  An optional array or space separated list of properties to ignore while binding.
 	 *
 	 * @return  $this
 	 *
@@ -221,9 +220,9 @@ class AbstractTable implements \IteratorAggregate
 	/**
 	 * Method to load a row from the database by primary key and bind the fields to the AbstractTable instance properties.
 	 *
-	 * @param   mixed    $keys   An optional primary key value to load the row by, or an array of fields to match.  If not
-	 *                           set the instance property value is used.
-	 * @param   boolean  $reset  True to reset the default values before loading the new row.
+	 * @param   array|\stdClass\string  $keys   An optional primary key value to load the row by, or an array of fields to match.  If not set the
+	 *                                          instance property value is used.
+	 * @param   boolean                 $reset  True to reset the default values before loading the new row.
 	 *
 	 * @return  $this
 	 *
@@ -309,7 +308,7 @@ class AbstractTable implements \IteratorAggregate
 	/**
 	 * Method to delete a row from the database table by primary key value.
 	 *
-	 * @param   mixed  $pKey  An optional primary key value to delete.  If not set the instance property value is used.
+	 * @param   string|null  $pKey  An optional primary key value to delete.  If not set the instance property value is used.
 	 *
 	 * @return  $this
 	 *
@@ -445,8 +444,8 @@ class AbstractTable implements \IteratorAggregate
 	/**
 	 * Method to append the primary keys for this table to a query.
 	 *
-	 * @param   DatabaseQuery  $query  A query object to append.
-	 * @param   mixed          $pk     Optional primary key parameter.
+	 * @param   DatabaseQuery      $query  A query object to append.
+	 * @param   string|array|null  $pk     Optional primary key parameter.
 	 *
 	 * @return  $this
 	 *
@@ -484,7 +483,7 @@ class AbstractTable implements \IteratorAggregate
 	 *
 	 * @param   boolean  $multiple  True to return all primary keys (as an array) or false to return just the first one (as a string).
 	 *
-	 * @return  mixed  Array of primary key field names or string containing the first primary key field.
+	 * @return  array|string  Array of primary key field names or string containing the first primary key field.
 	 *
 	 * @since   1.0
 	 */
@@ -509,7 +508,7 @@ class AbstractTable implements \IteratorAggregate
 	/**
 	 * Get the columns from database table.
 	 *
-	 * @return  mixed  An array of the field names, or false if an error occurs.
+	 * @return  array  An array of the field names.
 	 *
 	 * @since   1.0
 	 * @throws  \UnexpectedValueException

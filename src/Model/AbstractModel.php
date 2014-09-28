@@ -138,9 +138,9 @@ abstract class AbstractModel extends AbstractDatabaseModel
 	/**
 	 * Gets an array of objects from the results of database query.
 	 *
-	 * @param   DatabaseQuery|string  $query       The query.
-	 * @param   integer               $limitstart  Offset.
-	 * @param   integer               $limit       The number of records.
+	 * @param   DatabaseQuery  $query       The query.
+	 * @param   integer        $limitstart  Offset.
+	 * @param   integer        $limit       The number of records.
 	 *
 	 * @return  array  An array of results.
 	 *

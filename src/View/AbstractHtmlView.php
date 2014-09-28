@@ -12,7 +12,6 @@ use BabDev\Renderer\RendererInterface;
 
 use Joomla\Model\ModelInterface;
 use Joomla\View\AbstractView;
-use Joomla\View\Renderer\Twig;
 
 /**
  * Abstract HTML view class for the application
