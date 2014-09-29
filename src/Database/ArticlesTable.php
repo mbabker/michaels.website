@@ -67,8 +67,6 @@ class ArticlesTable extends AbstractTable
 	 */
 	public function check()
 	{
-		$errors = array();
-
 		if (trim($this->alias) == '')
 		{
 			if (trim($this->title) == '')
