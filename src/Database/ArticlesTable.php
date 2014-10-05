@@ -47,14 +47,7 @@ class ArticlesTable extends AbstractTable
 	 */
 	public function loadByAlias($alias)
 	{
-		$check = $this->db->setQuery(
-			$this->db->getQuery(true)
-				->select('*')
-				->from($this->tableName)
-				->where('alias = ' . $this->db->quote($alias))
-		)->loadObject();
-
-		return ($check) ? $this->bind($check) : $this;
+		return $this->load(['alias' => $alias]);
 	}
 
 	/**

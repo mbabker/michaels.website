@@ -45,20 +45,11 @@ class UsersTable extends AbstractTable
 	 */
 	public function getUserPasswords()
 	{
-		$data = $this->db->setQuery(
+		return $this->db->setQuery(
 			$this->db->getQuery(true)
 				->select('username, password')
 				->from($this->getTableName())
-		)->loadAssocList();
-
-		$users = array();
-
-		foreach ($data as $row)
-		{
-			$users[$row['username']] = $row['password'];
-		}
-
-		return $users;
+		)->loadAssocList('username', 'password');
 	}
 
 	/**
@@ -72,13 +63,6 @@ class UsersTable extends AbstractTable
 	 */
 	public function loadByUserName($username)
 	{
-		$check = $this->db->setQuery(
-			$this->db->getQuery(true)
-				->select('*')
-				->from($this->getTableName())
-				->where('username = ' . $this->db->quote($username))
-		)->loadObject();
-
-		return ($check) ? $this->bind($check) : $this;
+		return $this->load(['username' => $username]);
 	}
 }
