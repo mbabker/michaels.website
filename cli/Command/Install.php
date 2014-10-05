@@ -99,7 +99,14 @@ class Install
 
 			$this->app->out('Could not connect to the database, attempting to create a new database.', false);
 
-			$this->db->setQuery('CREATE DATABASE ' . $this->db->quoteName($this->config->get('database.name')))->execute();
+			$query = 'CREATE DATABASE ' . $this->db->quoteName($this->config->get('database.name'));
+
+			if ($this->db->hasUTFSupport())
+			{
+				$query .= ' CHARACTER SET ' . $this->db->quoteName('utf8');
+			}
+
+			$this->db->setQuery($query)->execute();
 
 			$this->db->select($this->config->get('database.name'));
 
@@ -129,7 +136,10 @@ class Install
 		$this->app->out('Removing existing tables...', false);
 
 		// Foreign key constraint fails fix
-		$this->db->setQuery('SET FOREIGN_KEY_CHECKS=0')->execute();
+		if (in_array($this->db->name, ['mysqli', 'mysql']))
+		{
+			$this->db->setQuery('SET FOREIGN_KEY_CHECKS=0')->execute();
+		}
 
 		foreach ($tables as $table)
 		{
@@ -142,11 +152,22 @@ class Install
 			$this->app->out('.', false);
 		}
 
-		$this->db->setQuery('SET FOREIGN_KEY_CHECKS=1')->execute();
+		if (in_array($this->db->name, ['mysqli', 'mysql']))
+		{
+			$this->db->setQuery('SET FOREIGN_KEY_CHECKS=1')->execute();
+		}
 
 		return $this;
 	}
 
+	/**
+	 * Create the administrator user
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 * @throws  AbortException
+	 */
 	private function createAdmin()
 	{
 		$data = new \stdClass;
@@ -179,7 +200,14 @@ class Install
 	 */
 	private function processSql()
 	{
-		$fName = JPATH_ROOT . '/etc/schema.sql';
+		$dbType = $this->db->name;
+
+		if ($dbType == 'mysqli')
+		{
+			$dbType = 'mysql';
+		}
+
+		$fName = JPATH_ROOT . '/etc/schemas/' . $dbType . '.sql';
 
 		if (!file_exists($fName))
 		{

@@ -39,7 +39,7 @@ class UsersTable extends AbstractTable
 	/**
 	 * Fetches the list of users and their password hashes
 	 *
-	 * @return  array
+	 * @return  array|null
 	 *
 	 * @since   1.0
 	 */

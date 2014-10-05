@@ -15,6 +15,11 @@ use Joomla\Authentication\Authentication;
 use Joomla\Database\DatabaseDriver;
 use Joomla\Input\Input;
 
+/**
+ * Authentication strategy which pulls user data from the database
+ *
+ * @since  1.0
+ */
 class DatabaseStrategy implements AuthenticationStrategyInterface
 {
 	/**
@@ -48,13 +53,22 @@ class DatabaseStrategy implements AuthenticationStrategyInterface
 	 * @param   DatabaseDriver  $database  Database object
 	 *
 	 * @since   1.0
+	 * @throws  AuthenticationException
 	 */
 	public function __construct(Input $input, DatabaseDriver $database)
 	{
 		$this->input = $input;
 
 		$usersTable = new UsersTable($database);
-		$this->credentialStore = $usersTable->getUserPasswords();
+
+		$passwords = $usersTable->getUserPasswords();
+
+		if (is_null($passwords))
+		{
+			throw new AuthenticationException('Unable to retrieve user data.');
+		}
+
+		$this->credentialStore = $passwords;
 	}
 
 	/**
