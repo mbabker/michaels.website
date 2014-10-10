@@ -2,7 +2,7 @@
 /**
  * Application powering http://michaels.website
  *
- * @copyright  Copyright (C) Michael Babker. All rights reserved.
+ * @copyright  Copyright (C) 2014 Michael Babker. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
@@ -26,7 +26,7 @@ try
 {
 	$container = (new Joomla\DI\Container)
 		->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-		->registerServiceProvider(new BabDev\Website\Service\DatabaseProvider);
+		->registerServiceProvider(new \BabDev\Website\Service\EntityManagerProvider);
 
 	// Set error reporting based on config
 	$errorReporting = (int) $container->get('config')->get('errorReporting', 0);

@@ -8,8 +8,6 @@
 
 namespace BabDev\Website\Model;
 
-use Joomla\Database\DatabaseQuery;
-
 /**
  * Default model class for the application
  *
@@ -17,18 +15,4 @@ use Joomla\Database\DatabaseQuery;
  */
 class DefaultModel extends AbstractModel
 {
-	/**
-	 * Method to get a DatabaseQuery object for retrieving the data set from a database.
-	 *
-	 * @return  DatabaseQuery  A DatabaseQuery object to retrieve the data set.
-	 *
-	 * @since   1.0
-	 */
-	protected function getListQueryObject()
-	{
-		$db = $this->getDb();
-		$query = $db->getQuery(true);
-
-		return $query;
-	}
 }

@@ -11,7 +11,7 @@ namespace BabDev\Website\Cli;
 use BabDev\Website\Cli\Command\Install;
 use BabDev\Website\Cli\Command\UpdateServer;
 use BabDev\Website\Service\ConfigurationProvider;
-use BabDev\Website\Service\DatabaseProvider;
+use BabDev\Website\Service\EntityManagerProvider;
 
 use Joomla\Application\AbstractCliApplication;
 use Joomla\DI\Container;
@@ -36,7 +36,7 @@ class Application extends AbstractCliApplication implements ContainerAwareInterf
 	{
 		$container = (new Container)
 			->registerServiceProvider(new ConfigurationProvider)
-			->registerServiceProvider(new DatabaseProvider);
+			->registerServiceProvider(new EntityManagerProvider);
 
 		$this->setContainer($container);
 

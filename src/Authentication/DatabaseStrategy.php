@@ -10,9 +10,10 @@ namespace BabDev\Website\Authentication;
 
 use BabDev\Website\Database\UsersTable;
 
+use Doctrine\ORM\EntityManager;
+
 use Joomla\Authentication\AuthenticationStrategyInterface;
 use Joomla\Authentication\Authentication;
-use Joomla\Database\DatabaseDriver;
 use Joomla\Input\Input;
 
 /**
@@ -23,25 +24,33 @@ use Joomla\Input\Input;
 class DatabaseStrategy implements AuthenticationStrategyInterface
 {
 	/**
-	 * The Input object
-	 *
-	 * @var    Input  $input  The input object from which to retrieve the username and password.
-	 * @since  1.0
-	 */
-	private $input;
-
-	/**
 	 * The credential store.
 	 *
-	 * @var    array  $credentialStore  An array of username/hash pairs.
+	 * @var    array
 	 * @since  1.0
 	 */
 	private $credentialStore;
 
 	/**
+	 * The Input object
+	 *
+	 * @var    Input
+	 * @since  1.0
+	 */
+	private $input;
+
+	/**
+	 * The EntityManager object
+	 *
+	 * @var    EntityManager
+	 * @since  1.0
+	 */
+	private $em;
+
+	/**
 	 * The last authentication status.
 	 *
-	 * @var    integer  $status  The last status result (use constants from Authentication)
+	 * @var    integer
 	 * @since  1.0
 	 */
 	private $status;
@@ -49,21 +58,20 @@ class DatabaseStrategy implements AuthenticationStrategyInterface
 	/**
 	 * Strategy Constructor
 	 *
-	 * @param   Input           $input     The input object from which to retrieve the request credentials.
-	 * @param   DatabaseDriver  $database  Database object
+	 * @param   Input          $input  The input object from which to retrieve the request credentials.
+	 * @param   EntityManager  $em     EntityManager object
 	 *
 	 * @since   1.0
 	 * @throws  AuthenticationException
 	 */
-	public function __construct(Input $input, DatabaseDriver $database)
+	public function __construct(Input $input, EntityManager $em)
 	{
 		$this->input = $input;
+		$this->em    = $em;
 
-		$usersTable = new UsersTable($database);
+		$passwords = $this->getUserPasswords();
 
-		$passwords = $usersTable->getUserPasswords();
-
-		if (is_null($passwords))
+		if (empty($passwords))
 		{
 			throw new AuthenticationException('Unable to retrieve user data.');
 		}
@@ -123,5 +131,30 @@ class DatabaseStrategy implements AuthenticationStrategyInterface
 	public function getResult()
 	{
 		return $this->status;
+	}
+
+	/**
+	 * Fetch the usernames and passwords from the database
+	 *
+	 * @return  array
+	 *
+	 * @since   1.0
+	 */
+	private function getUserPasswords()
+	{
+		$query = $this->em->getConnection()->createQueryBuilder();
+		$query->select('u.username, u.password')
+			->from('users', 'u');
+
+		$results = $query->execute()->fetchAll();
+
+		$return = [];
+
+		foreach ($results as $result)
+		{
+			$return[$result['username']] = $result['password'];
+		}
+
+		return $return;
 	}
 }

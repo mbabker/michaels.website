@@ -8,11 +8,9 @@
 
 namespace BabDev\Website\Model;
 
-use BabDev\Website\Database\AbstractTable;
+use Doctrine\ORM\EntityManager;
 
-use Joomla\Database\DatabaseDriver;
-use Joomla\Database\DatabaseQuery;
-use Joomla\Model\AbstractDatabaseModel;
+use Joomla\Model\AbstractModel as BaseModel;
 use Joomla\Registry\Registry;
 
 /**
@@ -20,7 +18,7 @@ use Joomla\Registry\Registry;
  *
  * @since  1.0
  */
-abstract class AbstractModel extends AbstractDatabaseModel
+abstract class AbstractModel extends BaseModel
 {
 	/**
 	 * Internal memory based cache array of data.
@@ -50,6 +48,14 @@ abstract class AbstractModel extends AbstractDatabaseModel
 	protected $extension = null;
 
 	/**
+	 * The EntityManager object
+	 *
+	 * @var    EntityManager
+	 * @since  1.0
+	 */
+	private $em;
+
+	/**
 	 * The model (base) name
 	 *
 	 * @var    string
@@ -58,24 +64,18 @@ abstract class AbstractModel extends AbstractDatabaseModel
 	protected $name = null;
 
 	/**
-	 * An internal cache for the last query used.
-	 *
-	 * @var    DatabaseQuery
-	 * @since  1.0
-	 */
-	protected $query;
-
-	/**
 	 * Instantiate the model.
 	 *
-	 * @param   DatabaseDriver  $db     The database adapter.
-	 * @param   Registry        $state  The model state.
+	 * @param   EntityManager  $em     The EntityManager object.
+	 * @param   Registry       $state  The model state.
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(DatabaseDriver $db, Registry $state = null)
+	public function __construct(EntityManager $em, Registry $state = null)
 	{
-		parent::__construct($db, $state);
+		$this->em = $em;
+
+		parent::__construct($state);
 
 		// Detect the extension name
 		if (empty($this->extension))
@@ -107,101 +107,16 @@ abstract class AbstractModel extends AbstractDatabaseModel
 	}
 
 	/**
-	 * Method to get an array of data items.
+	 * Retrieve the EntityManager object
 	 *
-	 * @return  mixed  An array of data items on success, false on failure.
+	 * @return  EntityManager
 	 *
 	 * @since   1.0
 	 */
-	public function getItems()
+	public function getEntityManager()
 	{
-		// Get a storage key.
-		$store = $this->getStoreId();
-
-		// Try to load the data from internal storage.
-		if (isset($this->cache[$store]))
-		{
-			return $this->cache[$store];
-		}
-
-		// Load the query for the list
-		$query = $this->getListQuery();
-
-		$items = $this->getList($query, $this->getStart(), $this->getState()->get('list.limit'));
-
-		// Add the items to the internal cache.
-		$this->cache[$store] = $items;
-
-		return $this->cache[$store];
+		return $this->em;
 	}
-
-	/**
-	 * Gets an array of objects from the results of database query.
-	 *
-	 * @param   DatabaseQuery  $query       The query.
-	 * @param   integer        $limitstart  Offset.
-	 * @param   integer        $limit       The number of records.
-	 *
-	 * @return  array  An array of results.
-	 *
-	 * @since   1.0
-	 * @throws  RuntimeException
-	 */
-	protected function getList($query, $limitstart = 0, $limit = 0)
-	{
-		return $this->getDb()->setQuery($query, $limitstart, $limit)->loadObjectList();
-	}
-
-	/**
-	 * Returns a record count for the query.
-	 *
-	 * @param   DatabaseQuery  $query  The query.
-	 *
-	 * @return  integer  Number of rows for query.
-	 *
-	 * @since   1.0
-	 */
-	protected function getListCount(DatabaseQuery $query)
-	{
-		$query = clone $query;
-		$query->clear('select')->clear('order')->clear('limit')->select('COUNT(*)');
-
-		return $this->getDb()->setQuery($query)->loadResult();
-	}
-
-	/**
-	 * Method to get a DatabaseQuery object for retrieving the data set from a database.
-	 *
-	 * @return  DatabaseQuery  A DatabaseQuery object to retrieve the data set.
-	 *
-	 * @since   1.0
-	 */
-	protected function getListQuery()
-	{
-		// Capture the last store id used.
-		static $lastStoreId;
-
-		// Compute the current store id.
-		$currentStoreId = $this->getStoreId();
-
-		// If the last store id is different from the current, refresh the query.
-		if ($lastStoreId != $currentStoreId || empty($this->query))
-		{
-			$lastStoreId = $currentStoreId;
-			$this->query = $this->getListQueryObject();
-		}
-
-		return $this->query;
-	}
-
-	/**
-	 * Method to get a DatabaseQuery object for retrieving the data set from a database.
-	 *
-	 * @return  DatabaseQuery  A DatabaseQuery object to retrieve the data set.
-	 *
-	 * @since   1.0
-	 */
-	abstract protected function getListQueryObject();
 
 	/**
 	 * Method to get the model name
@@ -231,55 +146,6 @@ abstract class AbstractModel extends AbstractDatabaseModel
 	}
 
 	/**
-	 * Method to get a JPagination object for the data set.
-	 *
-	 * @return  \JPagination  A JPagination object for the data set.
-	 *
-	 * @since   1.0
-	 */
-	public function getPagination()
-	{
-		return;
-
-		// Create the pagination object.
-		$limit = (int) $this->getState()->get('list.limit') - (int) $this->getState()->get('list.links');
-
-		return new \JPagination($this->getTotal(), $this->getStart(), $limit);
-	}
-
-	/**
-	 * Method to get the starting number of items for the data set.
-	 *
-	 * @return  integer  The starting number of items available in the data set.
-	 *
-	 * @since   1.0
-	 */
-	public function getStart()
-	{
-		$store = $this->getStoreId('getstart');
-
-		// Try to load the data from internal storage.
-		if (isset($this->cache[$store]))
-		{
-			return $this->cache[$store];
-		}
-
-		$start = (int) $this->getState()->get('list.start');
-		$limit = (int) $this->getState()->get('list.limit');
-		$total = $this->getTotal();
-
-		if ($start > $total - $limit)
-		{
-			$start = max(0, (int) (ceil($total / $limit) - 1) * $limit);
-		}
-
-		// Add the total to the internal cache.
-		$this->cache[$store] = $start;
-
-		return $this->cache[$store];
-	}
-
-	/**
 	 * Method to get a store id based on the model configuration state.
 	 *
 	 * This is necessary because the model is used by the component and different modules that might need different sets of data or different
@@ -300,64 +166,5 @@ abstract class AbstractModel extends AbstractDatabaseModel
 		$id .= ':' . $this->getState()->get('list.direction');
 
 		return md5($this->context . ':' . $id);
-	}
-
-	/**
-	 * Method to get a table object
-	 *
-	 * @param   string  $name    The table name. Optional.
-	 * @param   string  $suffix  The class suffix. Optional.
-	 *
-	 * @return  AbstractTable
-	 *
-	 * @since   1.0
-	 * @throws  \RuntimeException
-	 */
-	public function getTable($name = '', $suffix = 'Table')
-	{
-		if (empty($name))
-		{
-			$name = $this->getName();
-		}
-
-		$namespace = str_replace('Model', 'Table', __NAMESPACE__);
-
-		$class = $namespace . '\\' . ucfirst($name) . $suffix;
-
-		if (!class_exists($class) && !($class instanceof AbstractTable))
-		{
-			throw new \RuntimeException(sprintf('Table class %s not found or is not an instance of AbstractTable.', $class));
-		}
-
-		return new $class($this->getDb());
-	}
-
-	/**
-	 * Method to get the total number of items for the data set.
-	 *
-	 * @return  integer  The total number of items available in the data set.
-	 *
-	 * @since   1.0
-	 */
-	public function getTotal()
-	{
-		// Get a storage key.
-		$store = $this->getStoreId('getTotal');
-
-		// Try to load the data from internal storage.
-		if (isset($this->cache[$store]))
-		{
-			return $this->cache[$store];
-		}
-
-		// Load the total.
-		$query = $this->getListQuery();
-
-		$total = (int) $this->getListCount($query);
-
-		// Add the total to the internal cache.
-		$this->cache[$store] = $total;
-
-		return $this->cache[$store];
 	}
 }

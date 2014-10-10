@@ -16,7 +16,6 @@
 		"joomla/application"     : "~1.2",
 		"joomla/authentication"  : "~1.0",
 		"joomla/controller"      : "~1.1",
-		"joomla/database"        : "~1.1",
 		"joomla/date"            : "~1.1",
 		"joomla/di"              : "~1.2",
 		"joomla/filter"          : "~1.1",
@@ -25,6 +24,7 @@
 		"joomla/router"          : "~1.1",
 		"joomla/view"            : "~1.1",
 		"babdev/renderer"        : "1.x@dev",
+		"doctrine/orm"           : "~2.4",
 		"symfony/http-foundation": "~2.5",
 		"twig/twig"              : "1.*"
 	},

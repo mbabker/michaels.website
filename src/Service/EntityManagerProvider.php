@@ -8,16 +8,18 @@
 
 namespace BabDev\Website\Service;
 
-use Joomla\Database\DatabaseDriver;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
+
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
 /**
- * Database service provider
+ * EntityManager service provider
  *
  * @since  1.0
  */
-class DatabaseProvider implements ServiceProviderInterface
+class EntityManagerProvider implements ServiceProviderInterface
 {
 	/**
 	 * Registers the service provider with a DI container.
@@ -30,28 +32,35 @@ class DatabaseProvider implements ServiceProviderInterface
 	 */
 	public function register(Container $container)
 	{
-		$container->set('Joomla\\Database\\DatabaseDriver',
+		$container->set('Doctrine\\ORM\\EntityManager',
 			function (Container $container)
 			{
 				$config = $container->get('config');
 
-				$options = array(
+				// Lookup path for entities
+				$paths = [JPATH_ROOT . '/src/Entity'];
+
+				// Flag if we're in dev mode, base this on the database.debug option
+				$devMode = $config->get('database.debug');
+
+				// Set the DBAL Connection configuration
+				$connection = [
 					'driver'   => $config->get('database.driver'),
 					'host'     => $config->get('database.host'),
 					'user'     => $config->get('database.user'),
 					'password' => $config->get('database.password'),
-					'database' => $config->get('database.name'),
-					'prefix'   => $config->get('database.prefix')
-				);
+					'dbname'   => $config->get('database.name')
+				];
 
-				$db = DatabaseDriver::getInstance($options);
-				$db->setDebug($config->get('database.debug', false));
+				// Setup the configuration
+				$emConfig = Setup::createAnnotationMetadataConfiguration($paths, $devMode);
 
-				return $db;
+				// Create the EntityManager
+				return EntityManager::create($connection, $emConfig);
 			}, true, true
 		);
 
-		// Alias the database
-		$container->alias('db', 'Joomla\\Database\\DatabaseDriver');
+		// Alias the EntityManager
+		$container->alias('em', 'Doctrine\\ORM\\EntityManager');
 	}
 }
