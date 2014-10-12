@@ -8,6 +8,7 @@
 
 namespace Extensions\Users\Model;
 
+use BabDev\Website\Factory;
 use BabDev\Website\Model\AbstractModel;
 
 /**
@@ -17,4 +18,18 @@ use BabDev\Website\Model\AbstractModel;
  */
 class ListsModel extends AbstractModel
 {
+	/**
+	 * Retrieve a list of users
+	 *
+	 * @return  \Doctrine\ORM\Tools\Pagination\Paginator
+	 *
+	 * @since   1.0
+	 */
+	public function getUsers()
+	{
+		/** @var \BabDev\Website\Entity\UserRepository $repo */
+		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+
+		return $repo->getEntities();
+	}
 }

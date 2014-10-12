@@ -38,7 +38,7 @@ class ListsHtmlView extends AbstractHtmlView
 	public function render()
 	{
 		$this->setData([
-			'users' => $this->model->getItems()
+			'users' => $this->model->getUsers()
 		]);
 
 		return parent::render();
