@@ -8,10 +8,10 @@
 
 namespace BabDev\Website\Service;
 
+use BabDev\Website\Application;
 use BabDev\Renderer\TwigRenderer;
 use BabDev\Website\Renderer\TwigExtension;
 
-use Joomla\Application\AbstractApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
@@ -25,7 +25,7 @@ class TwigRendererProvider implements ServiceProviderInterface
 	/**
 	 * Application object
 	 *
-	 * @var    AbstractApplication
+	 * @var    Application
 	 * @since  1.0
 	 */
 	private $app;
@@ -33,11 +33,11 @@ class TwigRendererProvider implements ServiceProviderInterface
 	/**
 	 * Constructor.
 	 *
-	 * @param   AbstractApplication  $app  Application object
+	 * @param   Application  $app  Application object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(AbstractApplication $app)
+	public function __construct(Application $app)
 	{
 		$this->app = $app;
 	}
