@@ -69,6 +69,16 @@ class User
 	private $email;
 
 	/**
+	 * Time the user last logged in
+	 *
+	 * @var    \DateTime
+	 * @since  1.0
+	 *
+	 * @\Doctrine\ORM\Mapping\Column(type="datetime", name="last_login", nullable=true)
+	 */
+	private $lastLogin;
+
+	/**
 	 * Retrieve the entity ID
 	 *
 	 * @return  integer
@@ -126,6 +136,18 @@ class User
 	public function getEmail()
 	{
 		return $this->email;
+	}
+
+	/**
+	 * Retrieve the user's last login time
+	 *
+	 * @return  \DateTime
+	 *
+	 * @since   1.0
+	 */
+	public function getLastLogin()
+	{
+		return $this->lastLogin;
 	}
 
 	/**
@@ -188,6 +210,22 @@ class User
 	public function setEmail($email)
 	{
 		$this->email = $email;
+
+		return $this;
+	}
+
+	/**
+	 * Set the user's last login time
+	 *
+	 * @param   \DateTime  $date  The login time
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 */
+	public function setLastLogin(\DateTime $date = null)
+	{
+		$this->lastLogin = !is_null($date) ? $date : new \DateTime();
 
 		return $this;
 	}
