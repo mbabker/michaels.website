@@ -64,7 +64,7 @@ class UserRepository extends BaseRepository
 		}
 
 		$q = $this
-			->createQueryBuilder('u')
+			->createQueryBuilder($this->getTableAlias())
 			->where('u.username = :identifier OR u.email = :identifier')
 			->setParameter("identifier", $identifier)
 			->getQuery();

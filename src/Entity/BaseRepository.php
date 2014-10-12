@@ -347,8 +347,8 @@ class BaseRepository extends EntityRepository
 	/**
 	 * Processes advanced search filters for the WHERE clause
 	 *
-	 * @param   QueryBuilder  $qb      The QueryBuilder object to append the clauses to
-	 * @param   array         $filter  Filter to process
+	 * @param   QueryBuilder  $qb       The QueryBuilder object to append the clauses to
+	 * @param   array         $filters  Filter to process
 	 *
 	 * @return  array
 	 *

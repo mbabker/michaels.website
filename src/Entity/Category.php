@@ -9,12 +9,14 @@
 namespace BabDev\Website\Entity;
 
 /**
- * Article Entity
+ * Category Entity
  *
- * @\Doctrine\ORM\Mapping\Table(name="articles")
- * @\Doctrine\ORM\Mapping\Entity
+ * @since  1.0
+ *
+ * @\Doctrine\ORM\Mapping\Table(name="categories")
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="Mautic\CategoryBundle\Entity\CategoryRepository")
  */
-class Articles extends BaseEntity
+class Category extends BaseEntity
 {
 	/**
 	 * Primary Key
@@ -49,25 +51,26 @@ class Articles extends BaseEntity
 	private $alias;
 
 	/**
-	 * Text
+	 * Extension to which the category is "owned" by
 	 *
 	 * @var    string
 	 * @since  1.0
 	 *
-	 * @\Doctrine\ORM\Mapping\Column(name="text", type="text", nullable=false)
+	 * @\Doctrine\ORM\Mapping\Column(name="extension", type="string", length=50, nullable=false)
 	 */
-	private $text;
+	private $extension;
 
 	/**
-	 * Object's category
+	 * Magic method called when an object is cloned
 	 *
-	 * @var    Category
-	 * @since  1.0
+	 * @return  void
 	 *
-	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Category")
-	 * @\Doctrine\ORM\Mapping\JoinColumn(name="category", referencedColumnName="id", nullable=true)
+	 * @since   1.0
 	 */
-	private $category;
+	public function __clone()
+	{
+		$this->id = null;
+	}
 
 	/**
 	 * Retrieve the object ID
@@ -106,27 +109,15 @@ class Articles extends BaseEntity
 	}
 
 	/**
-	 * Retrieve the object text
+	 * Retrieve the object's extension
 	 *
 	 * @return  string
 	 *
 	 * @since   1.0
 	 */
-	public function getText()
+	public function getExtension()
 	{
-		return $this->text;
-	}
-
-	/**
-	 * Retrieve the object category
-	 *
-	 * @return  Category
-	 *
-	 * @since   1.0
-	 */
-	public function getCategory()
-	{
-		return $this->category;
+		return $this->extension;
 	}
 
 	/**
@@ -162,33 +153,17 @@ class Articles extends BaseEntity
 	}
 
 	/**
-	 * Set the object's text
+	 * Set the object's extension
 	 *
-	 * @param   string  $text  Text
-	 *
-	 * @return  $this
-	 *
-	 * @since   1.0
-	 */
-	public function setText($text)
-	{
-		$this->text = $text;
-
-		return $this;
-	}
-
-	/**
-	 * Set the object's category
-	 *
-	 * @param   Category  $category  Category to assign the object to
+	 * @param   string  $extension  "Owning" extension
 	 *
 	 * @return  $this
 	 *
 	 * @since   1.0
 	 */
-	public function setCategory(Category $category = null)
+	public function setExtension($extension)
 	{
-		$this->category = $category;
+		$this->extension = $extension;
 
 		return $this;
 	}

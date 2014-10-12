@@ -12,7 +12,7 @@ namespace BabDev\Website\Entity;
  * User Entity
  *
  * @\Doctrine\ORM\Mapping\Table(name="users")
- * @\Doctrine\ORM\Mapping\Entity
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="BabDev\Website\Entity\UserRepository")
  */
 class User
 {
@@ -24,7 +24,7 @@ class User
 	 *
 	 * @\Doctrine\ORM\Mapping\Column(name="id", type="integer", nullable=false)
 	 * @\Doctrine\ORM\Mapping\Id
-	 * @\Doctrine\ORM\Mapping\GeneratedValue(strategy="IDENTITY")
+	 * @\Doctrine\ORM\Mapping\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
 
@@ -237,7 +237,7 @@ class User
 	 */
 	public function setLastLogin(\DateTime $date = null)
 	{
-		$this->lastLogin = !is_null($date) ? $date : new \DateTime();
+		$this->lastLogin = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
 
 		return $this;
 	}
