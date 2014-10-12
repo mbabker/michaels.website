@@ -10,7 +10,7 @@ namespace BabDev\Website\Cli\Command;
 
 use BabDev\Website\Cli\Application;
 use BabDev\Website\Cli\Exception\AbortException;
-use BabDev\Website\Entity\Users;
+use BabDev\Website\Entity\User;
 
 /**
  * Class to install the application.
@@ -70,7 +70,7 @@ class Install
 	 */
 	private function createAdmin()
 	{
-		$user = (new Users)
+		$user = (new User)
 			->setName('Administrator')
 			->setUsername('admin')
 			->setPassword(password_hash('admin', PASSWORD_BCRYPT))

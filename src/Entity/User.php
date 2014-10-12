@@ -14,7 +14,7 @@ namespace BabDev\Website\Entity;
  * @\Doctrine\ORM\Mapping\Table(name="users")
  * @\Doctrine\ORM\Mapping\Entity
  */
-class Users
+class User
 {
 	/**
 	 * Primary Key

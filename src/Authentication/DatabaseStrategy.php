@@ -8,8 +8,6 @@
 
 namespace BabDev\Website\Authentication;
 
-use BabDev\Website\Database\UsersTable;
-
 use Doctrine\ORM\EntityManager;
 
 use Joomla\Authentication\AuthenticationStrategyInterface;

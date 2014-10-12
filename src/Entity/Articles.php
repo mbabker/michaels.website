@@ -71,10 +71,10 @@ class Articles
 	/**
 	 * User ID
 	 *
-	 * @var    \Users
+	 * @var    User
 	 * @since  1.0
 	 *
-	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="Users")
+	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="User")
 	 * @\Doctrine\ORM\Mapping\JoinColumn(name="owner", referencedColumnName="id")
 	 */
 	private $owner;
@@ -142,7 +142,7 @@ class Articles
 	/**
 	 * Retrieve the entity's owner
 	 *
-	 * @return  Users
+	 * @return  User
 	 *
 	 * @since   1.0
 	 */
@@ -218,13 +218,13 @@ class Articles
 	/**
 	 * Set the entity's owner
 	 *
-	 * @param   Users  $owner  Owner entity object
+	 * @param   User  $owner  Owner entity object
 	 *
 	 * @return  $this
 	 *
 	 * @since   1.0
 	 */
-	public function setOwner(Users $owner)
+	public function setOwner(User $owner)
 	{
 		$this->owner = $owner;
 
