@@ -33,6 +33,18 @@ class UserRepository extends BaseRepository
 	}
 
 	/**
+	 * Loads a User entity by the given username
+	 *
+	 * @param   string  $username  Username to search by
+	 *
+	 * @return  User|null  User entity if object found, null otherwise
+	 */
+	public function loadByUsername($username)
+	{
+		return $this->findOneBy(['username' => $username]);
+	}
+
+	/**
 	 * Checks to ensure that a username and/or email is unique
 	 *
 	 * @param   array  $params  Params array; must contain either a 'email' or 'username' key

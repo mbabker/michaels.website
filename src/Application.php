@@ -12,13 +12,14 @@ use BabDev\Website\Authentication\AuthenticationException;
 use BabDev\Website\Authentication\DatabaseStrategy;
 use BabDev\Website\Controller\AdminController;
 use BabDev\Website\Controller\DefaultController;
+use BabDev\Website\Entity\User;
 use BabDev\Website\Model\DefaultModel;
 use BabDev\Website\View\DefaultHtmlView;
 
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
+use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareInterface;
-use Joomla\DI\ContainerAwareTrait;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
 
@@ -31,7 +32,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
-	use ContainerAwareTrait;
+	/**
+	 * DI Container
+	 *
+	 * @var    Container
+	 * @since  1.0
+	 */
+	private static $container;
 
 	/**
 	 * The session object.
@@ -135,6 +142,37 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	}
 
 	/**
+	 * Get the DI container
+	 *
+	 * @return  Container
+	 *
+	 * @since   1.0
+	 * @throws  \UnexpectedValueException May be thrown if the container has not been set.
+	 */
+	public function getContainer()
+	{
+		return static::getDIContainer();
+	}
+
+	/**
+	 * Get the DI container
+	 *
+	 * @return  Container
+	 *
+	 * @since   1.0
+	 * @throws  \UnexpectedValueException May be thrown if the container has not been set.
+	 */
+	public static function getDIContainer()
+	{
+		if (static::$container)
+		{
+			return static::$container;
+		}
+
+		throw new \UnexpectedValueException('Container not set in ' . __CLASS__);
+	}
+
+	/**
 	 * Get the system message queue.
 	 *
 	 * @return  array  The system message queue.
@@ -183,21 +221,18 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 */
 	public function getUser($id = 0)
 	{
+		/** @var \BabDev\Website\Entity\UserRepository $repo */
+		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+
 		if ($id)
 		{
-			return new User($this->getContainer()->get('db'), $id);
+			return $repo->getEntity($id);
 		}
 
 		if (is_null($this->user))
 		{
-			if ($this->user = $this->getSession()->get('babdev_user'))
-			{
-				$this->user->setDatabase($this->getContainer()->get('db'));
-			}
-			else
-			{
-				$this->user = new User($this->getContainer()->get('db'));
-			}
+			$sessionUser = $this->getSession()->get('babdev_user');
+			$this->user  = $sessionUser instanceof User ? $sessionUser : new User;
 		}
 
 		return $this->user;
@@ -312,12 +347,32 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				throw new AuthenticationException('The username and/or password is incorrect.');
 
 			case Authentication::SUCCESS :
-				$user = $this->getUser();
-				$user->loadByUsername($this->input->{$this->input->getMethod()}->get('username', false, 'username'));
+				/** @var \BabDev\Website\Entity\UserRepository $repo */
+				$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+				$user = $repo->loadByUsername($this->input->{$this->input->getMethod()}->get('username', false, 'username'));
+
+				// Set the user's last login time
+				$repo->setLastLogin($user);
 
 				// Set the authenticated user in the session and redirect to the manager
 				$this->setUser($user)->redirect($this->get('uri.host') . '/manager');
 		}
+	}
+
+	/**
+	 * Set the DI container.
+	 *
+	 * @param   Container  $container  The DI container.
+	 *
+	 * @return  $this  Method allows chaining
+	 *
+	 * @since   1.0
+	 */
+	public function setContainer(Container $container)
+	{
+		static::$container = $container;
+
+		return $this;
 	}
 
 	/**
@@ -422,7 +477,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 */
 	public function setUser(User $user = null)
 	{
-		$this->user = is_null($user) ? new User($this->getContainer()->get('db')) : $user;
+		$this->user = is_null($user) ? new User : $user;
 		$this->getSession()->set('babdev_user', $this->user);
 
 		return $this;

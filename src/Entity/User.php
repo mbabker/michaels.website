@@ -151,6 +151,18 @@ class User
 	}
 
 	/**
+	 * Check if the user is authenticated
+	 *
+	 * @return  boolean
+	 *
+	 * @since   1.0
+	 */
+	public function isAuthenticated()
+	{
+		return $this->getId() > 0;
+	}
+
+	/**
 	 * Set the entity's name
 	 *
 	 * @param   string  $name  Name
