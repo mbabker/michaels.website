@@ -82,7 +82,8 @@ class TwigExtension extends \Twig_Extension
 		$functions = [
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
-			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar'])
+			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
+		    new \Twig_SimpleFunction('renderDate', [$this, 'renderDate'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -123,6 +124,21 @@ class TwigExtension extends \Twig_Extension
 	public static function getGravatar($email, $size = 50)
 	{
 		return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
+	}
+
+	/**
+	 * Formats a DateTime object for output
+	 *
+	 * @param   \DateTime  $date    The DateTime object to format
+	 * @param   string     $format  The date format to use
+	 *
+	 * @return  string
+	 *
+	 * @since   1.0
+	 */
+	public static function renderDate(\DateTime $date, $format = 'Y-m-d H:i:s')
+	{
+		return $date->format($format);
 	}
 
 	/**

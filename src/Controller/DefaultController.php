@@ -52,6 +52,14 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	protected $isAdmin;
 
 	/**
+	 * Flag if the controller has been initialized
+	 *
+	 * @var    boolean
+	 * @since  1.0
+	 */
+	protected $initialized = false;
+
+	/**
 	 * Instantiate the controller.
 	 *
 	 * @param   Input                $input  The input object.
@@ -121,9 +129,13 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	 */
 	protected function initializeController()
 	{
-		$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
-		$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
-		$this->defaultView = ($defaultView == 'default') ? $this->defaultView : $defaultView;
+		if (!$this->initialized)
+		{
+			$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
+			$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
+			$this->defaultView = ($defaultView == 'default') ? $this->defaultView : $defaultView;
+			$this->initialized = true;
+		}
 	}
 
 	/**

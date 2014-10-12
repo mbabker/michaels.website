@@ -32,14 +32,17 @@ class AdminController extends DefaultController
 	 */
 	protected function initializeController()
 	{
-		// Redirect unauthenticated users out
-		if (!$this->getApplication()->getUser()->isAuthenticated() && $this->getApplication()->get('uri.route') != 'manage')
+		if (!$this->initialized)
 		{
-			$this->getApplication()->enqueueMessage('Must login first!');
-			$this->getApplication()->redirect($this->getApplication()->get('uri.host') . '/manage');
-		}
+			// Redirect unauthenticated users out
+			if (!$this->getApplication()->getUser()->isAuthenticated() && $this->getApplication()->get('uri.route') != 'manage')
+			{
+				$this->getApplication()->enqueueMessage('Must login first!');
+				$this->getApplication()->redirect($this->getApplication()->get('uri.host') . '/manage');
+			}
 
-		parent::initializeController();
+			parent::initializeController();
+		}
 	}
 
 	/**

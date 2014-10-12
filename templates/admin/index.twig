@@ -15,13 +15,13 @@
         {% block headCSS %}
             <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href="{{ uri.base.path }}assets/css/AdminLTE.css" rel="stylesheet" type="text/css">
+            <link href="{{ uri.base.full }}assets/css/AdminLTE.css" rel="stylesheet" type="text/css">
         {% endblock %}
     </head>
     <body class="{% block bodyClass %}skin-blue{% endblock %}">
         {% block primaryContentContainer %}
             <header class="header">
-                <a href="{{ uri.base.path }}manager" class="logo">
+                <a href="{{ uri.base.full }}manager" class="logo">
                     Michael's Website
                 </a>
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -48,7 +48,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{{ uri.base.path }}logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="{{ uri.base.full }}logout" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -70,17 +70,17 @@
                         </div>
                         <ul class="sidebar-menu">
                             <li>
-                                <a href="{{ uri.base.path }}manager">
+                                <a href="{{ uri.base.full }}manager">
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ uri.base.path }}manager/articles">
+                                <a href="{{ uri.base.full }}manager/articles">
                                     <i class="fa fa-book"></i> <span>Article Manager</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ uri.base.path }}manager/users">
+                                <a href="{{ uri.base.full }}manager/users">
                                     <i class="fa fa-users"></i> <span>User Manager</span>
                                 </a>
                             </li>
@@ -89,6 +89,13 @@
                 </aside>
                 <aside class="right-side">
                     <section class="content-header">
+                        <h1>{% block contentHeaderText %}{% endblock %}</h1>
+                        <ol class="breadcrumb">
+                            <li><a href="{{ uri.base.full }}manager"><i class="fa fa-dashboard"></i> Home</a></li>
+                            {% block breadcrumb %}{% endblock %}
+                        </ol>
+                    </section>
+                    <section class="content">
                         {% for type, flashMessages in messages %}
                             {% for flashMessage in flashMessages %}
                                 <div class="alert alert-{{ type }}">
@@ -96,13 +103,6 @@
                                 </div>
                             {% endfor %}
                         {% endfor %}
-                        <h1>{% block contentHeaderText %}{% endblock %}</h1>
-                        <ol class="breadcrumb">
-                            <li><a href="{{ uri.base.path }}manager"><i class="fa fa-dashboard"></i> Home</a></li>
-                            {% block breadcrumb %}{% endblock %}
-                        </ol>
-                    </section>
-                    <section class="content">
                         {% block content %}{% endblock %}
                     </section>
                 </aside>
@@ -111,7 +111,7 @@
         {% block bodyJavaScript %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            <script src="{{ uri.base.path }}assets/js/AdminLTE.js"></script>
+            <script src="{{ uri.base.full }}assets/js/AdminLTE.js"></script>
         {% endblock %}
     </body>
 </html>

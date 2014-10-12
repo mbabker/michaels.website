@@ -7,7 +7,7 @@
 {% block primaryContentContainer %}
     <div class="form-box" id="login-box">
         <div class="header">Sign In</div>
-        <form action="{{ uri.base.path }}manage" method="post">
+        <form action="{{ uri.base.full }}manage" method="post">
             <div class="body bg-gray">
                 {% for type, flashMessages in messages %}
                     {% for flashMessage in flashMessages %}
