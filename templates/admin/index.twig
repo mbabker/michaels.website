@@ -69,17 +69,23 @@
                             </div>
                         </div>
                         <ul class="sidebar-menu">
-                            <li>
+                            <li class="{{ uri.route == "manager" ? "active" : "" }}">
                                 <a href="{{ uri.base.full }}manager">
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ uri.base.full }}manager/articles">
-                                    <i class="fa fa-book"></i> <span>Article Manager</span>
+                            <li class="treeview{{ ((uri.route == "manager/articles") or (uri.route == "manager/articles/categories")) ? " active" : "" }}">
+                                <a href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span>Article Manager</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li class="{{ uri.route == "manager/articles" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles"><i class="fa fa-angle-double-right"></i> Articles</a></li>
+                                    <li class="{{ uri.route == "manager/articles/categories" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles/categories"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+                                </ul>
                             </li>
-                            <li>
+                            <li class="{{ uri.route == "manager/users" ? "active" : "" }}">
                                 <a href="{{ uri.base.full }}manager/users">
                                     <i class="fa fa-users"></i> <span>User Manager</span>
                                 </a>
