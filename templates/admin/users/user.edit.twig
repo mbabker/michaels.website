@@ -4,7 +4,7 @@
 
 {% block contentHeaderText %}User Manager - Edit [{{ user.name }}]{% endblock %}
 
-{% block breadcrumb %}<li><i class="fa fa-users"></i> User Manager</li><li class="active"><i class="fa fa-user"></i> Edit [{{ user.name }}]</li>{% endblock %}
+{% block breadcrumb %}<li>{{ getBreadcrumb('users')|raw }}</li><li class="active">{{ getBreadcrumb('user')|raw }} [{{ user.name }}]</li>{% endblock %}
 
 {% block content %}
     <div class="row">

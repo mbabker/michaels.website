@@ -14,7 +14,7 @@ namespace BabDev\Website\Entity;
  * @since  1.0
  *
  * @\Doctrine\ORM\Mapping\Table(name="categories")
- * @\Doctrine\ORM\Mapping\Entity(repositoryClass="Mautic\CategoryBundle\Entity\CategoryRepository")
+ * @\Doctrine\ORM\Mapping\Entity(repositoryClass="BabDev\Website\Entity\CategoryRepository")
  */
 class Category extends BaseEntity
 {

@@ -4,7 +4,7 @@
 
 {% block contentHeaderText %}User Manager{% endblock %}
 
-{% block breadcrumb %}<li class="active"><i class="fa fa-users"></i> User Manager</li>{% endblock %}
+{% block breadcrumb %}<li class="active">{{ getBreadcrumb('users')|raw }}</li>{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -21,14 +21,20 @@
                             <th>Username</th>
                             <th>E-mail Address</th>
                         </tr>
-                        {% for user in users %}
-                            <tr>
-                                <td>{{ user.id }}</td>
-                                <td><a href="{{ uri.base.full }}manager/users/edit/{{ user.id }}">{{ user.name }}</a></td>
-                                <td>{{ user.username }}</td>
-                                <td>{{ user.email }}</td>
+                        {% if users|length %}
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.id }}</td>
+                                    <td><a href="{{ uri.base.full }}manager/users/edit/{{ user.id }}">{{ user.name }}</a></td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr class="warning">
+                                <td colspan="4">No Users Found</td>
                             </tr>
-                        {% endfor %}
+                        {% endif %}
                     </table>
                 </div>
             </div>

@@ -8,6 +8,7 @@
 
 namespace BabDev\Website\Service;
 
+use Doctrine\Common\Proxy\AbstractProxyFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
@@ -54,6 +55,7 @@ class EntityManagerProvider implements ServiceProviderInterface
 
 				// Setup the configuration
 				$emConfig = Setup::createAnnotationMetadataConfiguration($paths, $devMode);
+				$emConfig->setAutoGenerateProxyClasses(AbstractProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS);
 
 				// Create the EntityManager
 				return EntityManager::create($connection, $emConfig);

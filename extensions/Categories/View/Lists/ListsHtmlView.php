@@ -1,28 +1,28 @@
 <?php
 /**
- * Users extension
+ * Categories extension
  *
  * @copyright  Copyright (C) 2014 Michael Babker. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
-namespace Extensions\Users\View\User;
+namespace Extensions\Categories\View\Lists;
 
 use BabDev\Website\View\AbstractHtmlView;
 
-use Extensions\Users\Model\UserModel;
+use Extensions\Categories\Model\ListsModel;
 
 /**
- * HTML view class for interfacing with a single user
+ * HTML view class for listing an extension's categories
  *
  * @since  1.0
  */
-class UserHtmlView extends AbstractHtmlView
+class ListsHtmlView extends AbstractHtmlView
 {
 	/**
 	 * The model object.
 	 *
-	 * @var    UserModel
+	 * @var    ListsModel
 	 * @since  1.0
 	 */
 	protected $model;
@@ -37,27 +37,11 @@ class UserHtmlView extends AbstractHtmlView
 	 */
 	public function render()
 	{
-		$layout = explode('.', $this->getLayout());
-
-		if (method_exists($this, $layout[1]))
-		{
-			$this->{$layout[1]}();
-		}
+		$this->setData([
+			'categories' => $this->model->getCategories(),
+		    'extension'  => $this->model->getState()->get('category.extension')
+		]);
 
 		return parent::render();
-	}
-
-	/**
-	 * Prepares the view when using the edit layout
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	private function edit()
-	{
-		$this->setData(
-			['user' => $this->model->getUser()]
-		);
 	}
 }

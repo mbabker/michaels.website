@@ -1,28 +1,28 @@
 <?php
 /**
- * Users extension
+ * Category extension
  *
  * @copyright  Copyright (C) 2014 Michael Babker. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
-namespace Extensions\Users\View\User;
+namespace Extensions\Categories\View\Category;
 
 use BabDev\Website\View\AbstractHtmlView;
 
-use Extensions\Users\Model\UserModel;
+use Extensions\Categories\Model\CategoryModel;
 
 /**
- * HTML view class for interfacing with a single user
+ * HTML view class for interfacing with a single category
  *
  * @since  1.0
  */
-class UserHtmlView extends AbstractHtmlView
+class CategoryHtmlView extends AbstractHtmlView
 {
 	/**
 	 * The model object.
 	 *
-	 * @var    UserModel
+	 * @var    CategoryModel
 	 * @since  1.0
 	 */
 	protected $model;
@@ -56,8 +56,9 @@ class UserHtmlView extends AbstractHtmlView
 	 */
 	private function edit()
 	{
-		$this->setData(
-			['user' => $this->model->getUser()]
-		);
+		$this->setData([
+			'category'  => $this->model->getCategory(),
+		    'extension' => $this->model->getState()->get('category.extension')
+		]);
 	}
 }

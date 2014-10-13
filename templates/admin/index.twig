@@ -1,4 +1,4 @@
-{% set firstPart = uri.route|split("?")|first|split("/")|first %}
+{% set routeParts = uri.route|split("/") %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"{% block htmlClass %}{% endblock %}>
@@ -74,18 +74,18 @@
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                 </a>
                             </li>
-                            <li class="treeview{{ ((uri.route == "manager/articles") or (uri.route == "manager/articles/categories")) ? " active" : "" }}">
+                            <li class="treeview{{ routeParts[1] == "articles" ? " active" : "" }}">
                                 <a href="#">
                                     <i class="fa fa-book"></i>
                                     <span>Article Manager</span>
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="{{ uri.route == "manager/articles" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles"><i class="fa fa-angle-double-right"></i> Articles</a></li>
-                                    <li class="{{ uri.route == "manager/articles/categories" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles/categories"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+                                    <li class="{{ ((routeParts[1] == "articles") and (routeParts[2] != "categories")) ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles"><i class="fa fa-angle-double-right"></i> Articles</a></li>
+                                    <li class="{{ routeParts[2] == "categories" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles/categories"><i class="fa fa-angle-double-right"></i> Categories</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ uri.route == "manager/users" ? "active" : "" }}">
+                            <li class="{{ routeParts[1] == "users" ? "active" : "" }}">
                                 <a href="{{ uri.base.full }}manager/users">
                                     <i class="fa fa-users"></i> <span>User Manager</span>
                                 </a>

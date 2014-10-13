@@ -25,6 +25,14 @@ class TwigExtension extends \Twig_Extension
 	 */
 	private $app;
 
+	private $breadcrumbLookup = [
+		'articles'   => '<i class="fa fa-book"></i> Article Manager',
+		'categories' => '<i class="fa fa-list"></i> Category Manager',
+		'category'   => '<i class="fa fa-ellipsis-h"></i> Category',
+	    'users'      => '<i class="fa fa-users"></i> User Manager',
+	    'user'       => '<i class="fa fa-user"></i> User'
+	];
+
 	/**
 	 * Constructor
 	 *
@@ -83,7 +91,8 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
 			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
-		    new \Twig_SimpleFunction('renderDate', [$this, 'renderDate'])
+		    new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
+		    new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -112,6 +121,20 @@ class TwigExtension extends \Twig_Extension
 	}
 
 	/**
+	 * Retrieves the breadcrumb item for a given key
+	 *
+	 * @param   string  $string  The string to process
+	 *
+	 * @return  string
+	 *
+	 * @since   1.0
+	 */
+	public function getBreadcrumb($key)
+	{
+		return $this->breadcrumbLookup[$key];
+	}
+
+	/**
 	 * Get the specified user's gravatar
 	 *
 	 * @param   string   $email  E-mail address to lookup
@@ -121,7 +144,7 @@ class TwigExtension extends \Twig_Extension
 	 *
 	 * @since   1.0
 	 */
-	public static function getGravatar($email, $size = 50)
+	public function getGravatar($email, $size = 50)
 	{
 		return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
 	}
@@ -136,7 +159,7 @@ class TwigExtension extends \Twig_Extension
 	 *
 	 * @since   1.0
 	 */
-	public static function renderDate(\DateTime $date, $format = 'Y-m-d H:i:s')
+	public function renderDate(\DateTime $date, $format = 'Y-m-d H:i:s')
 	{
 		return $date->format($format);
 	}

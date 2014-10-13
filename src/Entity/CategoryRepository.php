@@ -33,7 +33,7 @@ class CategoryRepository extends BaseRepository
 		$q->select('partial c.{id, title, alias}');
 
 		$q->where('c.published = true');
-		$q->andWhere('c.extension = :bundle')
+		$q->andWhere('c.extension = :extension')
 		  ->setParameter('extension', $extension);
 
 		if (!empty($search))

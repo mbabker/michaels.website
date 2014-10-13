@@ -45,7 +45,7 @@ class BaseEntity
 	 * @var    User
 	 * @since  1.0
 	 *
-	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="User")
+	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="User", cascade={"persist"})
 	 * @\Doctrine\ORM\Mapping\JoinColumn(name="created_by", referencedColumnName="id", nullable=true)
 	 */
 	private $createdBy;
@@ -66,7 +66,7 @@ class BaseEntity
 	 * @var    User
 	 * @since  1.0
 	 *
-	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="User")
+	 * @\Doctrine\ORM\Mapping\ManyToOne(targetEntity="User", cascade={"persist"})
 	 * @\Doctrine\ORM\Mapping\JoinColumn(name="modified_by", referencedColumnName="id", nullable=true)
 	 */
 	private $modifiedBy;
@@ -118,7 +118,7 @@ class BaseEntity
 	 *
 	 * @since   1.0
 	 */
-	public function setDateAdded($date)
+	public function setDateAdded($date = null)
 	{
 		$this->dateAdded = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
 
@@ -146,7 +146,7 @@ class BaseEntity
 	 *
 	 * @since   1.0
 	 */
-	public function setDateModified($date)
+	public function setDateModified($date = null)
 	{
 		$this->dateModified = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
 
@@ -224,15 +224,15 @@ class BaseEntity
 	/**
 	 * Set the item's published status
 	 *
-	 * @param   boolean  $isPublished  True if published
+	 * @param   boolean  $published  True if published
 	 *
 	 * @return  $this
 	 *
 	 * @since   1.0
 	 */
-	public function setIsPublished($isPublished)
+	public function setPublished($published)
 	{
-		$this->isPublished = $isPublished;
+		$this->published = $published;
 
 		return $this;
 	}
@@ -244,9 +244,9 @@ class BaseEntity
 	 *
 	 * @since   1.0
 	 */
-	public function getIsPublished()
+	public function getPublished()
 	{
-		return $this->isPublished;
+		return $this->published;
 	}
 
 	/**
