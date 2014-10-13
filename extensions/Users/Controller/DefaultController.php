@@ -155,7 +155,7 @@ class DefaultController extends AdminController
 			$updatedUser = $model->save($this->getInput()->getUint('id'), $filteredData);
 
 			// Set the updated user entity to the session if this is the logged in user
-			if ($this->getApplication()->getUser()->getId() == $this->getInput()->getUint())
+			if ($this->getApplication()->getUser()->getId() == $this->getInput()->getUint('id'))
 			{
 				$this->getApplication()->setUser($updatedUser);
 			}
