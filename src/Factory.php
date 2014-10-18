@@ -101,7 +101,7 @@ class Factory
 				return self::getRepository($args[1]);
 
 			default :
-				return self::$instance->getContainer($key);
+				return self::$instance->getContainer()->get($key);
 		}
 	}
 }
