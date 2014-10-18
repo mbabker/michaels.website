@@ -18,8 +18,8 @@ use BabDev\Website\View\DefaultHtmlView;
 
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
-use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareInterface;
+use Joomla\DI\ContainerAwareTrait;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
 
@@ -32,13 +32,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
  */
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
-	/**
-	 * DI Container
-	 *
-	 * @var    Container
-	 * @since  1.0
-	 */
-	private static $container;
+	use ContainerAwareTrait;
 
 	/**
 	 * The session object.
@@ -67,6 +61,14 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	public function clearMessageQueue()
 	{
 		$this->getSession()->getFlashBag()->clear();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function createFactory()
+	{
+		new Factory($this->getContainer());
 	}
 
 	/**
@@ -142,37 +144,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	}
 
 	/**
-	 * Get the DI container
-	 *
-	 * @return  Container
-	 *
-	 * @since   1.0
-	 * @throws  \UnexpectedValueException May be thrown if the container has not been set.
-	 */
-	public function getContainer()
-	{
-		return static::getDIContainer();
-	}
-
-	/**
-	 * Get the DI container
-	 *
-	 * @return  Container
-	 *
-	 * @since   1.0
-	 * @throws  \UnexpectedValueException May be thrown if the container has not been set.
-	 */
-	public static function getDIContainer()
-	{
-		if (static::$container)
-		{
-			return static::$container;
-		}
-
-		throw new \UnexpectedValueException('Container not set in ' . __CLASS__);
-	}
-
-	/**
 	 * Get the system message queue.
 	 *
 	 * @return  array  The system message queue.
@@ -222,7 +193,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	public function getUser($id = 0)
 	{
 		/** @var \BabDev\Website\Entity\UserRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
 
 		if ($id)
 		{
@@ -348,7 +319,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
 			case Authentication::SUCCESS :
 				/** @var \BabDev\Website\Entity\UserRepository $repo */
-				$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+				$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
 				$user = $repo->loadByUsername($this->input->{$this->input->getMethod()}->get('username', false, 'username'));
 
 				// Set the user's last login time
@@ -357,22 +328,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				// Set the authenticated user in the session and redirect to the manager
 				$this->setUser($user)->redirect($this->get('uri.host') . '/manager');
 		}
-	}
-
-	/**
-	 * Set the DI container.
-	 *
-	 * @param   Container  $container  The DI container.
-	 *
-	 * @return  $this  Method allows chaining
-	 *
-	 * @since   1.0
-	 */
-	public function setContainer(Container $container)
-	{
-		static::$container = $container;
-
-		return $this;
 	}
 
 	/**

@@ -28,7 +28,7 @@ class ListsModel extends AbstractModel
 	public function getUsers()
 	{
 		/** @var \BabDev\Website\Entity\UserRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
 
 		return $repo->getEntities();
 	}

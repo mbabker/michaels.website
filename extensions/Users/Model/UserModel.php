@@ -32,7 +32,7 @@ class UserModel extends AbstractModel
 		$id = is_null($id) ? $this->getState()->get('user.id') : $id;
 
 		/** @var \BabDev\Website\Entity\UserRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
 
 		return $repo->getEntity($id);
 	}
@@ -50,7 +50,7 @@ class UserModel extends AbstractModel
 	public function save($id, array $data)
 	{
 		/** @var \BabDev\Website\Entity\UserRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\User');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
 
 		/** @var \BabDev\Website\Entity\User $user */
 		$user = $repo->getEntity($id);

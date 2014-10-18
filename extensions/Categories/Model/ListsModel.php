@@ -28,7 +28,7 @@ class ListsModel extends AbstractModel
 	public function getCategories()
 	{
 		/** @var \BabDev\Website\Entity\CategoryRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\Category');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
 
 		return $repo->getCategoryList($this->getState()->get('category.extension'));
 	}

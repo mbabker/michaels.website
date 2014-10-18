@@ -42,6 +42,7 @@ catch (\Exception $e)
 }
 
 // Execute the application
-(new BabDev\Website\Application)
-	->setContainer($container)
-	->execute();
+$app = new BabDev\Website\Application;
+$app->setContainer($container);
+$app->createFactory();
+$app->execute();

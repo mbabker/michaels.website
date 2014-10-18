@@ -34,7 +34,7 @@ class CategoryModel extends AbstractModel
 		$id = is_null($id) ? $this->getState()->get('category.id') : $id;
 
 		/** @var \BabDev\Website\Entity\CategoryRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\Category');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
 
 		return $repo->getEntity($id);
 	}
@@ -52,7 +52,7 @@ class CategoryModel extends AbstractModel
 	public function save($id, array $data)
 	{
 		/** @var \BabDev\Website\Entity\CategoryRepository $repo */
-		$repo = Factory::getRepository('\\BabDev\\Website\\Entity\\Category');
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
 
 		/** @var \BabDev\Website\Entity\Category $category */
 		$category = $repo->getEntity($id);

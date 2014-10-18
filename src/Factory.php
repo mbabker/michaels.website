@@ -10,23 +10,54 @@ namespace BabDev\Website;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 
+use Joomla\DI\Container;
+
 /**
  * Application Factory
  *
  * @since  1.0
  */
-abstract class Factory
+class Factory
 {
 	/**
-	 * Fetch the DI container
+	 * DI Container
 	 *
-	 * @return  \Joomla\DI\Container
+	 * @var    Container
+	 * @since  1.0
+	 */
+	private $container;
+
+	/**
+	 * Singleton Factory instance
+	 *
+	 * @var    Factory
+	 * @since  1.0
+	 */
+	private static $instance;
+
+	/**
+	 * Constructor
+	 *
+	 * @param   Container  $container  DI Container
 	 *
 	 * @since   1.0
 	 */
-	private static function getContainer()
+	public function __construct(Container $container)
 	{
-		return Application::getDIContainer();
+		$this->container = $container;
+		self::$instance  = $this;
+	}
+
+	/**
+	 * Fetch the DI container
+	 *
+	 * @return  Container
+	 *
+	 * @since   1.0
+	 */
+	public function getContainer()
+	{
+		return $this->container;
 	}
 
 	/**
@@ -38,7 +69,7 @@ abstract class Factory
 	 *
 	 * @since   1.0
 	 */
-	public static function getRepository($entity)
+	private static function getRepository($entity)
 	{
 		$repo = $entity . 'Repository';
 
@@ -47,6 +78,30 @@ abstract class Factory
 			throw new \InvalidArgumentException('A valid repository class was not found.');
 		}
 
-		return new $repo(self::getContainer()->get('em'), new ClassMetadata($entity));
+		return new $repo(self::$instance->getContainer()->get('em'), new ClassMetadata($entity));
+	}
+
+	/**
+	 * Retrieve objects from the DI container
+	 *
+	 * @param   string  $key  Container lookup key
+	 *
+	 * @return  mixed
+	 *
+	 * @note    Method accepts additional params for special cases
+	 * @since   1.0
+	 */
+	public static function get($key)
+	{
+		$args = func_get_args();
+
+		switch ($key)
+		{
+			case 'repository' :
+				return self::getRepository($args[1]);
+
+			default :
+				return self::$instance->getContainer($key);
+		}
 	}
 }
