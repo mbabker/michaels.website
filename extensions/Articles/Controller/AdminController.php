@@ -8,7 +8,7 @@
 
 namespace Extensions\Articles\Controller;
 
-use BabDev\Website\Controller\AdminController;
+use BabDev\Website\Controller\AdminController as BaseAdminController;
 
 use BabDev\Website\Factory;
 use Joomla\Filter\InputFilter;
@@ -19,7 +19,7 @@ use Joomla\Registry\Registry;
  *
  * @since  1.0
  */
-class DefaultController extends AdminController
+class AdminController extends BaseAdminController
 {
 	/**
 	 * The default view for the application

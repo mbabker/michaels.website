@@ -30,6 +30,6 @@ class ListsModel extends AbstractModel
 		/** @var \BabDev\Website\Entity\ArticleRepository $repo */
 		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Article');
 
-		return $repo->getArticleList();
+		return $repo->getArticleList($this->getState()->get('category.alias', ''));
 	}
 }

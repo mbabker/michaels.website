@@ -1,6 +1,6 @@
 {
-	"blog": "\\Articles\\Controller\\BlogController",
-	"blog/:alias": "\\Articles\\Controller\\ArticleController",
-	"manager/articles": "\\Articles\\Controller\\DefaultController",
-	"manager/articles/:task/:id": "\\Articles\\Controller\\DefaultController"
+	":cat-alias": "\\Articles\\Controller\\BlogController",
+	":cat-alias/:alias": "\\Articles\\Controller\\ArticleController",
+	"manager/articles": "\\Articles\\Controller\\AdminController",
+	"manager/articles/:task/:id": "\\Articles\\Controller\\AdminController"
 }

@@ -18,21 +18,28 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * Retrieve a list of articles
 	 *
-	 * @param   string   $search     An optional title to search for
-	 * @param   integer  $limit      A limit to the number of items to retrieve, defaults to 10
-	 * @param   integer  $start      The first row to start the lookup at, defaults to 0 for the first row in the return
+	 * @param   string   $category  An optional category alias to filter on
+	 * @param   string   $search    An optional title to search for
+	 * @param   integer  $limit     A limit to the number of items to retrieve, defaults to 10
+	 * @param   integer  $start     The first row to start the lookup at, defaults to 0 for the first row in the return
 	 *
 	 * @return  array
 	 *
 	 * @since   1.0
 	 */
-	public function getArticleList($search = '', $limit = 10, $start = 0)
+	public function getArticleList($category = '', $search = '', $limit = 10, $start = 0)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
 		$q->select('a, c, uc, um')
 			->join('a.category', 'c')
 			->join('a.createdBy', 'uc')
 			->join('a.modifiedBy', 'um');
+
+		if (!empty($category))
+		{
+			$q->where($q->expr()->eq('c.alias', ':category'))
+				->setParameter('category', $category);
+		}
 
 		if (!empty($search))
 		{

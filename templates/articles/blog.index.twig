@@ -1,15 +1,18 @@
 {% extends "index.twig" %}
 
 {% block content %}
-    <div class="post-preview">
-        <a href="post.html">
-            <h2 class="post-title">
-                Post Title
-            </h2>
-            <h3 class="post-subtitle">
-                Post Subtitle
-            </h3>
-        </a>
-        <p class="post-meta">Posted by <a href="#">Author</a> on Date</p>
-    </div>
+    {% for article in articles %}
+        <div class="post-preview">
+            <a href="{{ uri.base.full }}{{ article.category.alias }}/{{ article.alias }}">
+                <h2 class="post-title">
+                    {{ article.title }}
+                </h2>
+            </a>
+            <p class="post-meta">Posted by {{ article.createdBy.name }} on {{ renderDate(article.dateAdded, 'l, F j, Y') }}</p>
+            <p>{{ getFirstParagraph(article.text) }}</p>
+        </div>
+        {% if not loop.last %}
+            <hr />
+        {% endif %}
+    {% endfor %}
 {% endblock %}

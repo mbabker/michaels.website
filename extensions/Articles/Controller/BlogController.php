@@ -10,6 +10,8 @@ namespace Extensions\Articles\Controller;
 
 use BabDev\Website\Controller\DefaultController;
 
+use Joomla\Registry\Registry;
+
 /**
  * Blog listing controller class
  *
@@ -17,4 +19,36 @@ use BabDev\Website\Controller\DefaultController;
  */
 class BlogController extends DefaultController
 {
+	/**
+	 * Method to initialize the model object
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 * @throws  \RuntimeException
+	 */
+	protected function initializeModel()
+	{
+		$model = '\\Extensions\\Articles\\Model\\ListsModel';
+
+		$object = $this->getContainer()->buildObject($model);
+		$object->setState($this->initializeModelState());
+
+		$this->getContainer()->set($model, $object)->alias('Joomla\\Model\\ModelInterface', $model);
+	}
+
+	/**
+	 * Method to initialize the state object for the model
+	 *
+	 * @return  Registry
+	 *
+	 * @since   1.0
+	 */
+	protected function initializeModelState()
+	{
+		$state = new Registry;
+		$state->set('category.alias', $this->getInput()->getString('cat-alias', ''));
+
+		return $state;
+	}
 }

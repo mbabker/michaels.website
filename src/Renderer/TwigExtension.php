@@ -101,7 +101,8 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
 			new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
 			new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb']),
-			new \Twig_SimpleFunction('getCategoryList', [$this, 'getCategoryList'])
+			new \Twig_SimpleFunction('getCategoryList', [$this, 'getCategoryList']),
+			new \Twig_SimpleFunction('getFirstParagraph', [$this, 'getFirstParagraph'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -158,6 +159,22 @@ class TwigExtension extends \Twig_Extension
 		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
 
 		return $repo->getCategoryList($extension);
+	}
+
+	/**
+	 * Retrieves the first paragraph of text for an article
+	 *
+	 * @param   string  $text  Article text to search
+	 *
+	 * @return  string
+	 *
+	 * @since   1.0
+	 */
+	public function getFirstParagraph($text)
+	{
+		preg_match("/<p>(.*)<\/p>/", $text, $matches);
+
+		return strip_tags(html_entity_decode($matches[1]));
 	}
 
 	/**

@@ -133,7 +133,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 		{
 			$replacements = [__NAMESPACE__ . '\\', 'Extensions\\' . $this->extension . '\\Controller\\', 'Controller'];
 			$defaultView = strtolower(str_replace($replacements, '', get_called_class()));
-			$this->defaultView = ($defaultView == 'default') ? $this->defaultView : $defaultView;
+			$this->defaultView = (in_array($defaultView, ['default', 'admin'])) ? $this->defaultView : $defaultView;
 			$this->initialized = true;
 		}
 	}
