@@ -133,7 +133,7 @@ class DefaultController extends AdminController
 
 		if (isset($data['text']))
 		{
-			$filteredData['text'] = $filter->clean($data['text'], 'html');
+			$filteredData['text'] = $filter->clean($data['text'], 'raw');
 		}
 
 		$filteredData['published'] = isset($data['published']);
