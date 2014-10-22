@@ -1,12 +1,12 @@
 <?php
 /**
- * Categories extension
+ * Articles extension
  *
  * @copyright  Copyright (C) 2014 Michael Babker. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
-namespace Extensions\Categories\Controller;
+namespace Extensions\Articles\Controller;
 
 use BabDev\Website\Controller\AdminController;
 
@@ -15,7 +15,7 @@ use Joomla\Filter\InputFilter;
 use Joomla\Registry\Registry;
 
 /**
- * Base controller for the categories extension
+ * Base controller for the articles extension
  *
  * @since  1.0
  */
@@ -48,7 +48,7 @@ class DefaultController extends AdminController
 		switch ($task)
 		{
 			case 'add' :
-				$this->getInput()->set('view', 'category');
+				$this->getInput()->set('view', 'article');
 				$this->getInput()->set('layout', 'add');
 
 				break;
@@ -56,10 +56,10 @@ class DefaultController extends AdminController
 			case 'edit' :
 				if (!$id)
 				{
-					throw new \InvalidArgumentException('A category ID was not provided');
+					throw new \InvalidArgumentException('A article ID was not provided');
 				}
 
-				$this->getInput()->set('view', 'category');
+				$this->getInput()->set('view', 'article');
 				$this->getInput()->set('layout', 'edit');
 
 				break;
@@ -81,11 +81,10 @@ class DefaultController extends AdminController
 	protected function initializeModelState()
 	{
 		$state = new Registry;
-		$state->set('category.extension', $this->getInput()->getString('extension'));
 
 		if ($id = $this->getInput()->getUint('id'))
 		{
-			$state->set('category.id', $id);
+			$state->set('article.id', $id);
 		}
 
 		return $state;
@@ -101,15 +100,14 @@ class DefaultController extends AdminController
 	private function save()
 	{
 		// Get the input data from the request
-		$data      = $this->getInput()->post->get('category', array(), 'array');
-		$extension = $this->getInput()->getString('extension');
+		$data = $this->getInput()->post->get('article', array(), 'array');
 
 		// If there aren't any elements, there's nothing to save
 		if (!count($data))
 		{
 			$this->getApplication()
 				->enqueueMessage('There was no data to save.')
-				->redirect($this->getApplication()->get('uri.base.full') . 'manager/' . $extension . '/categories');
+				->redirect($this->getApplication()->get('uri.base.full') . 'manager/articles');
 		}
 
 		// Now we need to filter our data
@@ -128,18 +126,28 @@ class DefaultController extends AdminController
 			$filteredData['alias'] = $filter->clean($data['alias'], 'string');
 		}
 
+		if (isset($data['category']))
+		{
+			$filteredData['category'] = $filter->clean($data['category'], 'uint');
+		}
+
+		if (isset($data['text']))
+		{
+			$filteredData['text'] = $filter->clean($data['text'], 'html');
+		}
+
 		$filteredData['published'] = isset($data['published']);
 
-		// We must have a category title
+		// We must have an article title
 		if ($filteredData['title'] == '')
 		{
 			$this->getApplication()
-				->enqueueMessage('A category title is required.')
-				->redirect($this->getApplication()->get('uri.base.full') . 'manager/' . $extension . '/categories/edit/' . $this->getInput()->getUint('id'));
+				->enqueueMessage('An article title is required.')
+				->redirect($this->getApplication()->get('uri.base.full') . 'manager/articles/edit/' . $this->getInput()->getUint('id'));
 		}
 
-		/** @var \Extensions\Categories\Model\CategoryModel $model */
-		$model = $this->getContainer()->buildObject('\\Extensions\\Categories\\Model\\CategoryModel');
+		/** @var \Extensions\Articles\Model\ArticleModel $model */
+		$model = $this->getContainer()->buildObject('\\Extensions\\Articles\\Model\\ArticleModel');
 		$model->setState($this->initializeModelState());
 
 		$user = $this->getApplication()->getUser();
@@ -155,13 +163,13 @@ class DefaultController extends AdminController
 		{
 			$model->save($this->getInput()->getUint('id', 0), $filteredData);
 
-			$message  = 'Category saved successfully!';
-			$redirect = $this->getApplication()->get('uri.base.full') . 'manager/' . $extension . '/categories';
+			$message  = 'Article saved successfully!';
+			$redirect = $this->getApplication()->get('uri.base.full') . 'manager/articles';
 		}
 		catch (\Exception $e)
 		{
-			$message  = 'An error occurred while saving the category: ' . $e->getMessage();
-			$redirect = $this->getApplication()->get('uri.base.full') . 'manager/' . $extension . '/categories/edit/' . $this->getInput()->getUint('id');
+			$message  = 'An error occurred while saving the article: ' . $e->getMessage();
+			$redirect = $this->getApplication()->get('uri.base.full') . 'manager/articles/edit/' . $this->getInput()->getUint('id');
 		}
 
 		$this->getApplication()->enqueueMessage($message)->redirect($redirect);

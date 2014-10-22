@@ -1,0 +1,51 @@
+{% extends "index.twig" %}
+
+{% block title %}Manage Michael's Website Articles{% endblock %}
+
+{% block contentHeaderText %}Article Manager{% endblock %}
+
+{% block breadcrumb %}<li class="active">{{ getBreadcrumb('articles')|raw }}</li>{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Articles</h3>
+                    <div class="box-tools">
+                        <a href="{{ uri.base.full }}manager/articles/add" type="submit" class="btn btn-default pull-right">Add New Article</a>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 10px">ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Created By</th>
+                        </tr>
+                        {% if articles|length %}
+                            {% for article in articles %}
+                                <tr>
+                                    <td>{{ article.id }}</td>
+                                    <td>
+                                        <a href="{{ uri.base.full }}manager/articles/edit/{{ article.id }}">{{ article.title }}</a><br />
+                                        <small>{{ article.alias }}</small>
+                                    </td>
+                                    <td>{{ article.category.title }}</td>
+                                    <td>{% if article.published %}<span class="label label-success">Published</span>{% else %}<span class="label label-danger">Unpublished</span>{% endif %}</td>
+                                    <td>{{ article.createdBy.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr class="warning">
+                                <td colspan="4">No Articles Found</td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

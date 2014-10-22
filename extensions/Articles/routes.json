@@ -1,4 +1,6 @@
 {
 	"blog": "\\Articles\\Controller\\BlogController",
-	"blog/:alias": "\\Articles\\Controller\\ArticleController"
+	"blog/:alias": "\\Articles\\Controller\\ArticleController",
+	"manager/articles": "\\Articles\\Controller\\DefaultController",
+	"manager/articles/:task/:id": "\\Articles\\Controller\\DefaultController"
 }

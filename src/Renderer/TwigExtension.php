@@ -9,6 +9,7 @@
 namespace BabDev\Website\Renderer;
 
 use BabDev\Website\Application;
+use BabDev\Website\Factory;
 
 /**
  * Twig extension class
@@ -32,6 +33,7 @@ class TwigExtension extends \Twig_Extension
 	 * @since  1.0
 	 */
 	private $breadcrumbLookup = [
+		'article'    => '<i class="fa fa-newspaper-o"></i> Article',
 		'articles'   => '<i class="fa fa-book"></i> Article Manager',
 		'categories' => '<i class="fa fa-list"></i> Category Manager',
 		'category'   => '<i class="fa fa-ellipsis-h"></i> Category',
@@ -99,7 +101,7 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
 			new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
 			new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb']),
-			new \Twig_SimpleFunction('getUser', [$this, 'getUser'])
+			new \Twig_SimpleFunction('getCategoryList', [$this, 'getCategoryList'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -142,6 +144,23 @@ class TwigExtension extends \Twig_Extension
 	}
 
 	/**
+	 * Retrieves the list of categories for a given extension
+	 *
+	 * @param   string  $string  The extension to process
+	 *
+	 * @return  array
+	 *
+	 * @since   1.0
+	 */
+	public function getCategoryList($extension)
+	{
+		/** @var \BabDev\Website\Entity\CategoryRepository $repo */
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
+
+		return $repo->getCategoryList($extension);
+	}
+
+	/**
 	 * Get the specified user's gravatar
 	 *
 	 * @param   string   $email  E-mail address to lookup
@@ -154,20 +173,6 @@ class TwigExtension extends \Twig_Extension
 	public function getGravatar($email, $size = 50)
 	{
 		return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
-	}
-
-	/**
-	 * Returns the User object for a given ID
-	 *
-	 * @param   integer  $id  User ID to lookup
-	 *
-	 * @return  \BabDev\Website\Entity\User
-	 *
-	 * @since   1.0
-	 */
-	public function getUser($id)
-	{
-		return $this->app->getUser($id);
 	}
 
 	/**

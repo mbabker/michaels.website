@@ -7,8 +7,6 @@
 {% block breadcrumb %}<li>{{ getBreadcrumb(extension)|raw }}</li><li>{{ getBreadcrumb('categories')|raw }}</li><li class="active">{{ getBreadcrumb('category')|raw }} {% if isNew %}Add{% else %}[{{ category.title }}]{% endif %}</li>{% endblock %}
 
 {% block content %}
-    {% set createdUser = getUser(category.createdBy.id) %}
-    {% set modifiedUser = getUser(category.modifiedBy.id) %}
     <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
@@ -54,11 +52,11 @@
                         </div>
                         <div class="form-group">
                             <label>Created Time</label>
-                            <p class="form-control-static">{{ renderDate(category.dateAdded) }} by {{ createdUser.name }}</p>
+                            <p class="form-control-static">{{ renderDate(category.dateAdded) }} by {{ category.createdBy.name }}</p>
                         </div>
                         <div class="form-group">
                             <label>Last Updated</label>
-                            <p class="form-control-static">{{ renderDate(category.dateModified) }} by {{ modifiedUser.name }}</p>
+                            <p class="form-control-static">{{ renderDate(category.dateModified) }} by {{ category.modifiedBy.name }}</p>
                         </div>
                         {% endif %}
                     </div>

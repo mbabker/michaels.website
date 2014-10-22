@@ -9,16 +9,15 @@
 namespace BabDev\Website\Entity;
 
 /**
- * Repository for the Category entity
+ * Repository for the Article entity
  *
  * @since  1.0
  */
-class CategoryRepository extends BaseRepository
+class ArticleRepository extends BaseRepository
 {
 	/**
-	 * Retrieve a list of categories for a given extension
+	 * Retrieve a list of articles
 	 *
-	 * @param   string   $extension  The extension to search for categories from
 	 * @param   string   $search     An optional title to search for
 	 * @param   integer  $limit      A limit to the number of items to retrieve, defaults to 10
 	 * @param   integer  $start      The first row to start the lookup at, defaults to 0 for the first row in the return
@@ -27,23 +26,21 @@ class CategoryRepository extends BaseRepository
 	 *
 	 * @since   1.0
 	 */
-	public function getCategoryList($extension, $search = '', $limit = 10, $start = 0)
+	public function getArticleList($search = '', $limit = 10, $start = 0)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
-		$q->select('c, uc, um')
-			->join('c.createdBy', 'uc')
-			->join('c.modifiedBy', 'um');
-
-		$q->where('c.extension = :extension')
-		  ->setParameter('extension', $extension);
+		$q->select('a, c, uc, um')
+			->join('a.category', 'c')
+			->join('a.createdBy', 'uc')
+			->join('a.modifiedBy', 'um');
 
 		if (!empty($search))
 		{
-			$q->andWhere($q->expr()->like('c.title', ':search'))
+			$q->where($q->expr()->like('a.title', ':search'))
 				->setParameter('search', "{$search}%");
 		}
 
-		$q->orderBy('c.title');
+		$q->orderBy('a.title');
 
 		if (!empty($limit))
 		{
@@ -67,7 +64,7 @@ class CategoryRepository extends BaseRepository
 
 		if (is_null($entity))
 		{
-			return new Category;
+			return new Article;
 		}
 
 		return $entity;
@@ -90,7 +87,7 @@ class CategoryRepository extends BaseRepository
 		$string = ($filter->strict) ? $filter->string : "%{$filter->string}%";
 
 		$expr = $q->expr()->orX(
-			$q->expr()->like('c.title', ':' . $unique)
+			$q->expr()->like('a.title', ':' . $unique)
 		);
 
 		if ($filter->not)
@@ -110,7 +107,7 @@ class CategoryRepository extends BaseRepository
 	 */
 	protected function getDefaultOrder()
 	{
-		return [['c.title', 'ASC']];
+		return [['a.title', 'ASC']];
 	}
 
 	/**
@@ -122,6 +119,6 @@ class CategoryRepository extends BaseRepository
 	 */
 	public function getTableAlias()
 	{
-		return 'c';
+		return 'a';
 	}
 }

@@ -26,7 +26,6 @@
                         </tr>
                         {% if categories|length %}
                             {% for category in categories %}
-                                {% set createdUser = getUser(category.createdBy.id) %}
                                 <tr>
                                     <td>{{ category.id }}</td>
                                     <td>
@@ -34,12 +33,12 @@
                                         <small>{{ category.alias }}</small>
                                     </td>
                                     <td>{% if category.published %}<span class="label label-success">Published</span>{% else %}<span class="label label-danger">Unpublished</span>{% endif %}</td>
-                                    <td>{{ createdUser.name }}</td>
+                                    <td>{{ category.createdBy.name }}</td>
                                 </tr>
                             {% endfor %}
                         {% else %}
                             <tr class="warning">
-                                <td colspan="2">No Categories Found</td>
+                                <td colspan="4">No Categories Found</td>
                             </tr>
                         {% endif %}
                     </table>

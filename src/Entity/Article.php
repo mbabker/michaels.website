@@ -14,7 +14,7 @@ namespace BabDev\Website\Entity;
  * @\Doctrine\ORM\Mapping\Table(name="articles")
  * @\Doctrine\ORM\Mapping\Entity
  */
-class Articles extends BaseEntity
+class Article extends BaseEntity
 {
 	/**
 	 * Primary Key
