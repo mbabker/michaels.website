@@ -56,7 +56,7 @@ class UpdateServer
 		$this->app->out('Updating Composer resources');
 
 		// Run Composer update
-		$this->app->runCommand('cd ' . JPATH_ROOT . ' && composer install --no-dev 2>&1');
+		$this->app->runCommand('cd ' . JPATH_ROOT . ' && composer install --no-dev --optimize-autoloader 2>&1');
 
 		$this->app->out('Update Finished');
 	}
