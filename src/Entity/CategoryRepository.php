@@ -30,10 +30,9 @@ class CategoryRepository extends BaseRepository
 	public function getCategoryList($extension, $search = '', $limit = 10, $start = 0)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
-		$q->select('partial c.{id, title, alias}');
+		$q->select('partial c.{id, title, alias, published}');
 
-		$q->where('c.published = true');
-		$q->andWhere('c.extension = :extension')
+		$q->where('c.extension = :extension')
 		  ->setParameter('extension', $extension);
 
 		if (!empty($search))
@@ -51,6 +50,25 @@ class CategoryRepository extends BaseRepository
 		}
 
 		return $q->getQuery()->getArrayResult();
+	}
+
+	/**
+	 * Get a single entity
+	 *
+	 * @param   integer  $id  ID to lookup the entity by
+	 *
+	 * @return  null|$this  The entity instance or null if the entity can not be found.
+	 */
+	public function getEntity($id = 0)
+	{
+		$entity = parent::getEntity($id);
+
+		if (is_null($entity))
+		{
+			return new Category;
+		}
+
+		return $entity;
 	}
 
 	/**

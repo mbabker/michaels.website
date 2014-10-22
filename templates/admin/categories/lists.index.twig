@@ -12,21 +12,29 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Categories - {{ extension|capitalize }}</h3>
+                    <div class="box-tools">
+                        <a href="{{ uri.base.full }}manager/{{ extension }}/categories/add" type="submit" class="btn btn-default pull-right">Add New Category</a>
+                    </div>
                 </div>
                 <div class="box-body no-padding">
                     <table class="table table-striped">
                         <tr>
                             <th style="width: 10px">ID</th>
                             <th>Name</th>
+                            <th>Status</th>
+                            <th>Created By</th>
                         </tr>
                         {% if categories|length %}
                             {% for category in categories %}
+                                {% set createdUser = getUser(category.createdBy.id) %}
                                 <tr>
                                     <td>{{ category.id }}</td>
                                     <td>
                                         <a href="{{ uri.base.full }}manager/{{ extension }}/categories/edit/{{ category.id }}">{{ category.title }}</a><br />
                                         <small>{{ category.alias }}</small>
                                     </td>
+                                    <td>{% if category.published %}<span class="label label-success">Published</span>{% else %}<span class="label label-danger">Unpublished</span>{% endif %}</td>
+                                    <td>{{ createdUser.name }}</td>
                                 </tr>
                             {% endfor %}
                         {% else %}

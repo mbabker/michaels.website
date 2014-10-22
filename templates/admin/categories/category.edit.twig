@@ -2,16 +2,18 @@
 
 {% block title %}Manage Michael's Website Categories{% endblock %}
 
-{% block contentHeaderText %}Category Manager - Edit [{{ category.title }}]{% endblock %}
+{% block contentHeaderText %}Category Manager - {% if isNew %}Add Category {% else %}Edit [{{ category.title }}]{% endif %}{% endblock %}
 
-{% block breadcrumb %}<li>{{ getBreadcrumb(extension)|raw }}</li><li>{{ getBreadcrumb('categories')|raw }}</li><li class="active">{{ getBreadcrumb('category')|raw }} [{{ category.title }}]</li>{% endblock %}
+{% block breadcrumb %}<li>{{ getBreadcrumb(extension)|raw }}</li><li>{{ getBreadcrumb('categories')|raw }}</li><li class="active">{{ getBreadcrumb('category')|raw }} {% if isNew %}Add{% else %}[{{ category.title }}]{% endif %}</li>{% endblock %}
 
 {% block content %}
+    {% set createdUser = getUser(category.createdBy.id) %}
+    {% set modifiedUser = getUser(category.modifiedBy.id) %}
     <div class="row">
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit [{{ category.title }}]</h3>
+                    <h3 class="box-title">{% if isNew %}Add Category {% else %}Edit [{{ category.title }}]{% endif %}</h3>
                 </div>
                 <form role="form" method="post" action="{{ uri.base.full }}manager/{{ extension }}/categories/save/{{ category.id }}">
                     <div class="box-body">
@@ -31,7 +33,9 @@
                     </div>
 
                     <div class="box-footer">
+                        {% if not isNew %}<input type="hidden" name="category[id]" value="{{ category.id }}" />{% endif %}
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ uri.base.full }}manager/{{ extension }}/categories" class="btn btn-default">Cancel</a>
                     </div>
                 </form>
             </div>
@@ -43,18 +47,20 @@
                 </div>
                 <form role="form">
                     <div class="box-body">
+                        {% if not isNew %}
                         <div class="form-group">
                             <label>Category ID</label>
                             <p class="form-control-static">{{ category.id }}</p>
                         </div>
                         <div class="form-group">
                             <label>Created Time</label>
-                            <p class="form-control-static">{{ renderDate(category.dateAdded) }}</p>
+                            <p class="form-control-static">{{ renderDate(category.dateAdded) }} by {{ createdUser.name }}</p>
                         </div>
                         <div class="form-group">
                             <label>Last Updated</label>
-                            <p class="form-control-static">{{ renderDate(category.dateModified) }}</p>
+                            <p class="form-control-static">{{ renderDate(category.dateModified) }} by {{ modifiedUser.name }}</p>
                         </div>
+                        {% endif %}
                     </div>
                 </form>
             </div>

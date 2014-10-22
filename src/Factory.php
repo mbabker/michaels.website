@@ -78,7 +78,7 @@ class Factory
 			throw new \InvalidArgumentException('A valid repository class was not found.');
 		}
 
-		return new $repo(self::$instance->getContainer()->get('em'), new ClassMetadata($entity));
+		return new $repo(self::get('em'), new ClassMetadata($entity));
 	}
 
 	/**

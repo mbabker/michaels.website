@@ -54,11 +54,30 @@ class CategoryHtmlView extends AbstractHtmlView
 	 *
 	 * @since   1.0
 	 */
+	private function add()
+	{
+		$this->setData([
+		    'extension' => $this->model->getState()->get('category.extension'),
+		    'isNew'     => true
+		]);
+
+		$layout = explode('.', $this->getLayout());
+		$this->setLayout($layout[0] . '.edit');
+	}
+
+	/**
+	 * Prepares the view when using the edit layout
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
 	private function edit()
 	{
 		$this->setData([
 			'category'  => $this->model->getCategory(),
-		    'extension' => $this->model->getState()->get('category.extension')
+		    'extension' => $this->model->getState()->get('category.extension'),
+		    'isNew'     => false
 		]);
 	}
 }

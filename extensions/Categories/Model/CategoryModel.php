@@ -57,6 +57,12 @@ class CategoryModel extends AbstractModel
 		/** @var \BabDev\Website\Entity\Category $category */
 		$category = $repo->getEntity($id);
 
+		/** @var \BabDev\Website\Entity\UserRepository $repo */
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\User');
+
+		/** @var \BabDev\Website\Entity\User $user */
+		$user = $repo->getEntity($data['user']);
+
 		// Before processing, ensure we have a valid alias
 		if (!isset($data['alias']))
 		{
@@ -75,6 +81,12 @@ class CategoryModel extends AbstractModel
 			$data['alias'] = (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d-H-i-s');
 		}
 
+		// Strip data out of the array
+		$isNew = $data['isNew'];
+
+		unset($data['isNew']);
+		unset($data['user']);
+
 		foreach ($data as $key => $value)
 		{
 			$function = 'set' . ucfirst($key);
@@ -82,7 +94,13 @@ class CategoryModel extends AbstractModel
 			$category->$function($value);
 		}
 
-		$category->setModifiedBy()
+		if ($isNew)
+		{
+			$category->setCreatedBy($user)
+				->setDateAdded();
+		}
+
+		$category->setModifiedBy($user)
 			->setDateModified()
 			->setExtension($this->getState()->get('category.extension'));
 		$repo->saveEntity($category);

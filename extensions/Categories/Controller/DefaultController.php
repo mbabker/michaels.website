@@ -10,6 +10,7 @@ namespace Extensions\Categories\Controller;
 
 use BabDev\Website\Controller\AdminController;
 
+use BabDev\Website\Factory;
 use Joomla\Filter\InputFilter;
 use Joomla\Registry\Registry;
 
@@ -46,6 +47,12 @@ class DefaultController extends AdminController
 
 		switch ($task)
 		{
+			case 'add' :
+				$this->getInput()->set('view', 'category');
+				$this->getInput()->set('layout', 'add');
+
+				break;
+
 			case 'edit' :
 				if (!$id)
 				{
@@ -58,11 +65,6 @@ class DefaultController extends AdminController
 				break;
 
 			case 'save' :
-				if (!$id)
-				{
-					throw new \InvalidArgumentException('A category ID was not provided');
-				}
-
 				$this->save();
 		}
 
@@ -115,6 +117,8 @@ class DefaultController extends AdminController
 		$filter       = new InputFilter;
 		$filteredData = array();
 
+		$filteredData['isNew'] = !isset($data['id']);
+
 		if (isset($data['title']))
 		{
 			$filteredData['title'] = $filter->clean($data['title'], 'string');
@@ -139,9 +143,18 @@ class DefaultController extends AdminController
 		$model = $this->getContainer()->buildObject('\\Extensions\\Categories\\Model\\CategoryModel');
 		$model->setState($this->initializeModelState());
 
+		$user = $this->getApplication()->getUser();
+
+		$filteredData['user'] = $user->getId();
+
+		// For proper saving, we need to clear this user object from the EntityManager
+		/** @var \Doctrine\ORM\EntityManager $entityManager */
+		$entityManager = Factory::get('em');
+		$entityManager->clear($user);
+
 		try
 		{
-			$model->save($this->getInput()->getUint('id'), $filteredData);
+			$model->save($this->getInput()->getUint('id', 0), $filteredData);
 
 			$message  = 'Category saved successfully!';
 			$redirect = $this->getApplication()->get('uri.base.full') . 'manager/' . $extension . '/categories';

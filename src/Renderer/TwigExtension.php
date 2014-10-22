@@ -25,12 +25,18 @@ class TwigExtension extends \Twig_Extension
 	 */
 	private $app;
 
+	/**
+	 * Container for the admin breadcrumbs
+	 *
+	 * @var    array
+	 * @since  1.0
+	 */
 	private $breadcrumbLookup = [
 		'articles'   => '<i class="fa fa-book"></i> Article Manager',
 		'categories' => '<i class="fa fa-list"></i> Category Manager',
 		'category'   => '<i class="fa fa-ellipsis-h"></i> Category',
-	    'users'      => '<i class="fa fa-users"></i> User Manager',
-	    'user'       => '<i class="fa fa-user"></i> User'
+		'users'      => '<i class="fa fa-users"></i> User Manager',
+		'user'       => '<i class="fa fa-user"></i> User'
 	];
 
 	/**
@@ -91,8 +97,9 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
 			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
-		    new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
-		    new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb'])
+			new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
+			new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb']),
+			new \Twig_SimpleFunction('getUser', [$this, 'getUser'])
 		];
 
 		if ($this->app->getContainer()->get('config')->get('template.debug'))
@@ -147,6 +154,20 @@ class TwigExtension extends \Twig_Extension
 	public function getGravatar($email, $size = 50)
 	{
 		return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
+	}
+
+	/**
+	 * Returns the User object for a given ID
+	 *
+	 * @param   integer  $id  User ID to lookup
+	 *
+	 * @return  \BabDev\Website\Entity\User
+	 *
+	 * @since   1.0
+	 */
+	public function getUser($id)
+	{
+		return $this->app->getUser($id);
 	}
 
 	/**
