@@ -15,7 +15,7 @@
         {% block headCSS %}
             <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href="{{ uri.base.full }}assets/css/clean-blog.min.css" rel="stylesheet" type="text/css">
+            <link href="{{ uri.media.full }}css/clean-blog.min.css" rel="stylesheet" type="text/css">
             <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
             <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         {% endblock %}
@@ -41,7 +41,7 @@
                 </div>
             </div>
         </nav>
-        <header class="intro-header" style="background-image: url('{% block headerBackground %}{{ uri.base.full }}assets/img/home-bg.jpg'){% endblock %}">
+        <header class="intro-header" style="background-image: url('{% block headerBackground %}{{ uri.media.full }}img/home-bg.jpg'){% endblock %}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -71,7 +71,7 @@
         {% block bodyJavaScript %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            <script src="{{ uri.base.full }}assets/js/clean-blog.min.js"></script>
+            <script src="{{ uri.media.full }}js/clean-blog.min.js"></script>
         {% endblock %}
     </body>
 </html>

@@ -13,28 +13,24 @@ use BabDev\Website\Controller\DefaultController;
 use Joomla\Registry\Registry;
 
 /**
- * Blog listing controller class
+ * Single article controller class
  *
  * @since  1.0
  */
-class BlogController extends DefaultController
+class ArticleController extends DefaultController
 {
 	/**
-	 * Method to initialize the model object
+	 * Method to initialize the controller object, called after the parent constructor has been processed
 	 *
 	 * @return  void
 	 *
 	 * @since   1.0
-	 * @throws  \RuntimeException
 	 */
-	protected function initializeModel()
+	protected function initializeController()
 	{
-		$model = '\\Extensions\\Articles\\Model\\ListsModel';
+		parent::initializeController();
 
-		$object = $this->getContainer()->buildObject($model);
-		$object->setState($this->initializeModelState());
-
-		$this->getContainer()->set($model, $object)->alias('Joomla\\Model\\ModelInterface', $model);
+		$this->getInput()->set('layout', 'display');
 	}
 
 	/**
@@ -48,6 +44,7 @@ class BlogController extends DefaultController
 	{
 		$state = new Registry;
 		$state->set('category.alias', 'blog');
+		$state->set('article.alias', $this->getInput()->getString('alias', ''));
 
 		return $state;
 	}

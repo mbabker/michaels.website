@@ -15,7 +15,7 @@
         {% block headCSS %}
             <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href="{{ uri.base.full }}assets/css/AdminLTE.css" rel="stylesheet" type="text/css">
+            <link href="{{ uri.media.full }}css/AdminLTE.css" rel="stylesheet" type="text/css">
         {% endblock %}
     </head>
     <body class="{% block bodyClass %}skin-blue{% endblock %}">
@@ -117,7 +117,7 @@
         {% block bodyJavaScript %}
             <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            <script src="{{ uri.base.full }}assets/js/AdminLTE.js"></script>
+            <script src="{{ uri.media.full }}js/AdminLTE.js"></script>
         {% endblock %}
     </body>
 </html>

@@ -1,0 +1,16 @@
+{% extends "index.twig" %}
+
+{% block title %}{{ article.category.title }} - {{ article.title }}{% endblock %}
+
+{% block headerBackground %}{{ uri.media.full }}img/post-bg.jpg'){% endblock %}
+
+{% block pageHeadingText %}
+    <div class="page-heading">
+        <h1>{{ article.title }}</h1>
+        <span class="meta">Posted by {{ article.createdBy.name }} on {{ renderDate(article.dateAdded, 'l, F j, Y') }}</span>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ article.text|raw }}
+{% endblock %}
