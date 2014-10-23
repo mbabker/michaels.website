@@ -8,8 +8,6 @@
 
 namespace BabDev\Website\Service;
 
-use Doctrine\Common\Cache\ApcCache;
-use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Proxy\AbstractProxyFactory;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;

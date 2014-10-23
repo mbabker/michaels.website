@@ -133,7 +133,7 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Retrieves the breadcrumb item for a given key
 	 *
-	 * @param   string  $string  The string to process
+	 * @param   string  $key  The string to process
 	 *
 	 * @return  string
 	 *
@@ -147,7 +147,7 @@ class TwigExtension extends \Twig_Extension
 	/**
 	 * Retrieves the list of categories for a given extension
 	 *
-	 * @param   string  $string  The extension to process
+	 * @param   string  $extension  The extension to process
 	 *
 	 * @return  array
 	 *

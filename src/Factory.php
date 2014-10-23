@@ -8,6 +8,8 @@
 
 namespace BabDev\Website;
 
+use BabDev\Website\Entity\BaseRepository;
+
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 use Joomla\DI\Container;
@@ -65,7 +67,7 @@ class Factory
 	 *
 	 * @param   string  $entity  The fully qualified class name of the entity
 	 *
-	 * @return  \BabDev\Website\Entity\BaseRepository
+	 * @return  BaseRepository
 	 *
 	 * @since   1.0
 	 */

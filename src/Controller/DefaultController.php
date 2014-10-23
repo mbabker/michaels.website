@@ -8,6 +8,8 @@
 
 namespace BabDev\Website\Controller;
 
+use BabDev\Website\Application;
+
 use Joomla\Application\AbstractApplication;
 use Joomla\Controller\AbstractController;
 use Joomla\DI\ContainerAwareInterface;
@@ -18,8 +20,8 @@ use Joomla\Registry\Registry;
 /**
  * Default controller class for the application
  *
- * @method         \BabDev\Website\Application  getApplication()  Get the application object.
- * @property-read  \BabDev\Website\Application  $app  Application object
+ * @method         Application  getApplication()  Get the application object.
+ * @property-read  Application  $app              Application object
  *
  * @since          1.0
  */

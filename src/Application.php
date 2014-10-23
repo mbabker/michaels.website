@@ -64,7 +64,11 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	}
 
 	/**
-	 * @return void
+	 * Creates the Factory object for the application
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
 	 */
 	public function createFactory()
 	{

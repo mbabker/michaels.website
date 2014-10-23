@@ -9,8 +9,8 @@
 namespace Extensions\Articles\Controller;
 
 use BabDev\Website\Controller\AdminController as BaseAdminController;
-
 use BabDev\Website\Factory;
+
 use Joomla\Filter\InputFilter;
 use Joomla\Registry\Registry;
 

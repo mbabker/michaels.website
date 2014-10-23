@@ -10,6 +10,7 @@ namespace Extensions\Articles\Model;
 
 use BabDev\Website\Factory;
 use BabDev\Website\Model\AbstractModel;
+
 use Joomla\Filter\OutputFilter;
 
 /**

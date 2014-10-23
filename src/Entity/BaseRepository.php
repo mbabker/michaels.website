@@ -47,7 +47,7 @@ class BaseRepository extends EntityRepository
 	 *
 	 * @param   integer  $id  ID to lookup the entity by
 	 *
-	 * @return  null|$this  The entity instance or null if the entity can not be found.
+	 * @return  null|User  The entity instance or null if the entity can not be found.
 	 */
 	public function getEntity($id = 0)
 	{
@@ -576,7 +576,7 @@ class BaseRepository extends EntityRepository
 	/**
 	 * Gets the properties of an ORM entity
 	 *
-	 * @param   object  $entityClass        The Entity to process
+	 * @param   object   $entityClass       The Entity to process
 	 * @param   boolean  $convertCamelCase  Flag to convert the columns from underscored to camelCase
 	 *
 	 * @return  array

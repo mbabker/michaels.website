@@ -59,7 +59,7 @@ class CategoryRepository extends BaseRepository
 	 *
 	 * @param   integer  $id  ID to lookup the entity by
 	 *
-	 * @return  null|$this  The entity instance or null if the entity can not be found.
+	 * @return  Category
 	 */
 	public function getEntity($id = 0)
 	{
@@ -76,8 +76,8 @@ class CategoryRepository extends BaseRepository
 	/**
 	 * Adds a catch all WHERE clause for the query
 	 *
-	 * @param   QueryBuilder  $q       The QueryBuilder object to append the clauses to
-	 * @param   array         $filter  Filter to process
+	 * @param   \Doctrine\ORM\QueryBuilder  $q       The QueryBuilder object to append the clauses to
+	 * @param   array                       $filter  Filter to process
 	 *
 	 * @return  array
 	 *

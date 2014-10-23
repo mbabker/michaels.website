@@ -8,9 +8,9 @@
 
 namespace Extensions\Categories\Model;
 
-use BabDev\Website\Entity\Category;
 use BabDev\Website\Factory;
 use BabDev\Website\Model\AbstractModel;
+
 use Joomla\Filter\OutputFilter;
 
 /**
