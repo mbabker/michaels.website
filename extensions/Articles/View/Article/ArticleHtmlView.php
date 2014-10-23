@@ -65,6 +65,23 @@ class ArticleHtmlView extends AbstractHtmlView
 	}
 
 	/**
+	 * Prepares the view when displaying a single article
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0
+	 */
+	private function display()
+	{
+		$this->setData([
+			'article' => $this->model->getArticleByAlias()
+		]);
+
+		$layout = explode('.', $this->getLayout());
+		$this->setLayout($layout[0] . '.index');
+	}
+
+	/**
 	 * Prepares the view when using the edit layout
 	 *
 	 * @return  void

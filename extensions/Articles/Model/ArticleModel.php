@@ -21,7 +21,7 @@ use Joomla\Filter\OutputFilter;
 class ArticleModel extends AbstractModel
 {
 	/**
-	 * Retrieve a single category
+	 * Retrieve a single article
 	 *
 	 * @param   integer|null  $id  The user ID to retrieve or null to use the active user
 	 *
@@ -37,6 +37,26 @@ class ArticleModel extends AbstractModel
 		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Article');
 
 		return $repo->getEntity($id);
+	}
+
+	/**
+	 * Retrieve a single article by alias
+	 *
+	 * @param   integer|null  $id  The user ID to retrieve or null to use the active user
+	 *
+	 * @return  \BabDev\Website\Entity\Article
+	 *
+	 * @since   1.0
+	 */
+	public function getArticleByAlias($alias = null, $categoryAlias = null)
+	{
+		$alias         = is_null($alias) ? $this->getState()->get('article.alias') : $alias;
+		$categoryAlias = is_null($categoryAlias) ? $this->getState()->get('category.alias') : $categoryAlias;
+
+		/** @var \BabDev\Website\Entity\ArticleRepository $repo */
+		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Article');
+
+		return $repo->loadByAlias($alias, $categoryAlias);
 	}
 
 	/**

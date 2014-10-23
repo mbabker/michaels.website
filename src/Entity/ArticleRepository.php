@@ -80,6 +80,29 @@ class ArticleRepository extends BaseRepository
 	}
 
 	/**
+	 * Loads an Article entity searching by alias
+	 *
+	 * @param   string  $alias          Article alias to search by
+	 * @param   string  $categoryAlias  Category alias to search by
+	 *
+	 * @return  Article|null  Article entity if object found, null otherwise
+	 */
+	public function loadByAlias($alias, $categoryAlias)
+	{
+		$q = $this->createQueryBuilder($this->getTableAlias());
+		$q->select('a, c, uc, um')
+			->join('a.category', 'c')
+			->join('a.createdBy', 'uc')
+			->join('a.modifiedBy', 'um')
+			->where($q->expr()->eq('a.alias', ':articleAlias'))
+			->setParameter('articleAlias', $alias)
+			->andWhere($q->expr()->eq('c.alias', ':catAlias'))
+			->setParameter('catAlias', $categoryAlias);
+
+		return $q->getQuery()->getOneOrNullResult();
+	}
+
+	/**
 	 * Adds a catch all WHERE clause for the query
 	 *
 	 * @param   \Doctrine\ORM\QueryBuilder  $q       The QueryBuilder object to append the clauses to
