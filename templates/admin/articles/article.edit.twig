@@ -38,9 +38,15 @@
                             {{ article.text }}
                         </textarea>
                         <h4>Additional Options</h4>
-                        <div class="form-group">
-                            <label for="article_image">Image</label>
-                            <input type="text" class="form-control" id="article_image" name="article[params][image]" placeholder="Enter the name of the article's header image" value="{{ article.params.image }}" />
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="article_image">Image</label>
+                                <input type="text" class="form-control" id="article_image" name="article[params][image]" placeholder="Enter the name of the article's header image" value="{{ article.params.image }}" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="article_publishUp">Start Publishing</label>
+                                <input type="text" class="form-control" id="article_publishUp" name="article[publishUp]" placeholder="Time the article should be published" value="{{ renderDate(article.dateAdded) }}" />
+                            </div>
                         </div>
                     </div>
 

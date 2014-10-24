@@ -34,7 +34,15 @@
                                         <small>{{ article.alias }}</small>
                                     </td>
                                     <td>{{ article.category.title }}</td>
-                                    <td>{% if article.published %}<span class="label label-success">Published</span>{% else %}<span class="label label-danger">Unpublished</span>{% endif %}</td>
+                                    <td>
+                                        {% if article.published and article.publishUp > now %}
+                                            <span class="label label-warning">Pending</span>
+                                        {% elseif article.published %}
+                                            <span class="label label-success">Published</span>
+                                        {% else %}
+                                            <span class="label label-danger">Unpublished</span>
+                                        {% endif %}
+                                    </td>
                                     <td>{{ article.createdBy.name }}</td>
                                 </tr>
                             {% endfor %}

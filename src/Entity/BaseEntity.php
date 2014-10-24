@@ -118,7 +118,7 @@ class BaseEntity
 	 *
 	 * @since   1.0
 	 */
-	public function setDateAdded($date = null)
+	public function setDateAdded(\DateTime $date = null)
 	{
 		$this->dateAdded = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
 
@@ -146,7 +146,7 @@ class BaseEntity
 	 *
 	 * @since   1.0
 	 */
-	public function setDateModified($date = null)
+	public function setDateModified(\DateTime $date = null)
 	{
 		$this->dateModified = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
 
@@ -287,6 +287,7 @@ class BaseEntity
 					$status = 'expired';
 				}
 			}
+			var_dump($status);die;
 
 			return $status;
 		}

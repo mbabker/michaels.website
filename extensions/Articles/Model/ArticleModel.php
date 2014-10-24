@@ -42,13 +42,16 @@ class ArticleModel extends AbstractModel
 	/**
 	 * Retrieve a single article by alias
 	 *
-	 * @param   integer|null  $id  The user ID to retrieve or null to use the active user
+	 * @param   string|null  $alias          The article alias to load
+	 * @param   string|null  $categoryAlias  The category alias to load
+	 * @param   boolean      $isPublished    Check if the article is published
 	 *
 	 * @return  \BabDev\Website\Entity\Article
 	 *
 	 * @since   1.0
+	 * @throws  \LogicException
 	 */
-	public function getArticleByAlias($alias = null, $categoryAlias = null)
+	public function getArticleByAlias($alias = null, $categoryAlias = null, $isPublished = false)
 	{
 		$alias         = is_null($alias) ? $this->getState()->get('article.alias') : $alias;
 		$categoryAlias = is_null($categoryAlias) ? $this->getState()->get('category.alias') : $categoryAlias;
@@ -56,7 +59,14 @@ class ArticleModel extends AbstractModel
 		/** @var \BabDev\Website\Entity\ArticleRepository $repo */
 		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Article');
 
-		return $repo->loadByAlias($alias, $categoryAlias);
+		$item = $repo->loadByAlias($alias, $categoryAlias, $isPublished);
+
+		if ($item == null)
+		{
+			throw new \LogicException('Article not found', 404);
+		}
+
+		return $item;
 	}
 
 	/**

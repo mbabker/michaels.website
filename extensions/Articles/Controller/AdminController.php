@@ -136,6 +136,11 @@ class AdminController extends BaseAdminController
 			$filteredData['text'] = $filter->clean($data['text'], 'raw');
 		}
 
+		if (isset($data['publishUp']))
+		{
+			$filteredData['publishUp'] = new \DateTime($filter->clean($data['publishUp'], 'string'), new \DateTimeZone('UTC'));
+		}
+
 		$filteredData['published'] = isset($data['published']);
 		$filteredData['params']    = array();
 

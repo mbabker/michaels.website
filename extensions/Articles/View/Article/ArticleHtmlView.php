@@ -74,7 +74,7 @@ class ArticleHtmlView extends AbstractHtmlView
 	private function display()
 	{
 		$this->setData([
-			'article' => $this->model->getArticleByAlias()
+			'article' => $this->model->getArticleByAlias(null, null, true)
 		]);
 
 		$layout = explode('.', $this->getLayout());

@@ -80,6 +80,16 @@ class Article extends BaseEntity
 	private $params;
 
 	/**
+	 * Date the object starts publishing
+	 *
+	 * @var    \DateTime
+	 * @since  1.0
+	 *
+	 * @\Doctrine\ORM\Mapping\Column(name="publish_up", type="datetime", nullable=true)
+	 */
+	private $publishUp;
+
+	/**
 	 * Retrieve the object ID
 	 *
 	 * @return  integer
@@ -229,5 +239,33 @@ class Article extends BaseEntity
 		$this->params = $params;
 
 		return $this;
+	}
+
+	/**
+	 * Set the time the article starts publishing
+	 *
+	 * @param   \DateTime  $date  Publish time
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 */
+	public function setPublishUp(\DateTime $date)
+	{
+		$this->publishUp = !is_null($date) ? $date : new \DateTime('now', new \DateTimeZone('UTC'));
+
+		return $this;
+	}
+
+	/**
+	 * Set the time the article starts publishing
+	 *
+	 * @return  \DateTime
+	 *
+	 * @since   1.0
+	 */
+	public function getPublishUp()
+	{
+		return $this->publishUp;
 	}
 }

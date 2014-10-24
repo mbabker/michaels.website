@@ -82,12 +82,15 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * Loads an Article entity searching by alias
 	 *
-	 * @param   string  $alias          Article alias to search by
-	 * @param   string  $categoryAlias  Category alias to search by
+	 * @param   string   $alias          Article alias to search by
+	 * @param   string   $categoryAlias  Category alias to search by
+	 * @param   boolean  $isPublished    Check if the article is published
 	 *
 	 * @return  Article|null  Article entity if object found, null otherwise
+	 *
+	 * @since   1.0
 	 */
-	public function loadByAlias($alias, $categoryAlias)
+	public function loadByAlias($alias, $categoryAlias, $isPublished)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
 		$q->select('a, c, uc, um')
@@ -98,6 +101,12 @@ class ArticleRepository extends BaseRepository
 			->setParameter('articleAlias', $alias)
 			->andWhere($q->expr()->eq('c.alias', ':catAlias'))
 			->setParameter('catAlias', $categoryAlias);
+
+		if ($isPublished)
+		{
+			$q->andWhere($q->expr()->lte('a.publishUp', ':publishUp'))
+				->setParameter('publishUp', new \DateTime('now', new \DateTimeZone('UTC')));
+		}
 
 		return $q->getQuery()->getOneOrNullResult();
 	}
