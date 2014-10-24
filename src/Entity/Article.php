@@ -70,6 +70,16 @@ class Article extends BaseEntity
 	private $category;
 
 	/**
+	 * Object parameters
+	 *
+	 * @var    array
+	 * @since  1.0
+	 *
+	 * @\Doctrine\ORM\Mapping\Column(name="params", type="array", nullable=true)
+	 */
+	private $params;
+
+	/**
 	 * Retrieve the object ID
 	 *
 	 * @return  integer
@@ -127,6 +137,18 @@ class Article extends BaseEntity
 	public function getCategory()
 	{
 		return $this->category;
+	}
+
+	/**
+	 * Retrieve the object params
+	 *
+	 * @return  array
+	 *
+	 * @since   1.0
+	 */
+	public function getParams()
+	{
+		return $this->params;
 	}
 
 	/**
@@ -189,6 +211,22 @@ class Article extends BaseEntity
 	public function setCategory(Category $category = null)
 	{
 		$this->category = $category;
+
+		return $this;
+	}
+
+	/**
+	 * Set the object's params
+	 *
+	 * @param   array  $params  Object params
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 */
+	public function setParams(array $params = array())
+	{
+		$this->params = $params;
 
 		return $this;
 	}

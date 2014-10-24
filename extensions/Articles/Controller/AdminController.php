@@ -137,6 +137,12 @@ class AdminController extends BaseAdminController
 		}
 
 		$filteredData['published'] = isset($data['published']);
+		$filteredData['params']    = array();
+
+		foreach ($data['params'] as $key => $value)
+		{
+			$filteredData['params'][$key] = $filter->clean($data['params'][$key], 'string');
+		}
 
 		// We must have an article title
 		if ($filteredData['title'] == '')

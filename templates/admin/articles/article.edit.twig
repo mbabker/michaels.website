@@ -37,6 +37,11 @@
                         <textarea id="article_editor" name="article[text]" rows="10" cols="80">
                             {{ article.text }}
                         </textarea>
+                        <h4>Additional Options</h4>
+                        <div class="form-group">
+                            <label for="article_image">Image</label>
+                            <input type="text" class="form-control" id="article_image" name="article[params][image]" placeholder="Enter the name of the article's header image" value="{{ article.params.image }}" />
+                        </div>
                     </div>
 
                     <div class="box-footer">

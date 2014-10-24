@@ -2,7 +2,7 @@
 
 {% block title %}{{ article.category.title }} - {{ article.title }}{% endblock %}
 
-{% block headerBackground %}{{ uri.media.full }}img/post-bg.jpg'){% endblock %}
+{% block headerBackground %}{% if article.params.image is empty %}{{ parent() }}{% else %}{{ uri.media.full }}img/{{ article.params.image }}{% endif %}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">
