@@ -21,15 +21,17 @@ class ListsModel extends AbstractModel
 	/**
 	 * Retrieve a list of articles
 	 *
+	 * @param   boolean  $isPublished  Flag if only published articles should be returned
+	 *
 	 * @return  \Doctrine\ORM\Tools\Pagination\Paginator
 	 *
 	 * @since   1.0
 	 */
-	public function getArticles()
+	public function getArticles($isPublished = false)
 	{
 		/** @var \BabDev\Website\Entity\ArticleRepository $repo */
 		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Article');
 
-		return $repo->getArticleList($this->getState()->get('category.alias', ''));
+		return $repo->getArticleList($this->getState()->get('category.alias', ''), $isPublished);
 	}
 }

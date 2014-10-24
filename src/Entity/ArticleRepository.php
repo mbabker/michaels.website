@@ -18,16 +18,17 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * Retrieve a list of articles
 	 *
-	 * @param   string   $category  An optional category alias to filter on
-	 * @param   string   $search    An optional title to search for
-	 * @param   integer  $limit     A limit to the number of items to retrieve, defaults to 10
-	 * @param   integer  $start     The first row to start the lookup at, defaults to 0 for the first row in the return
+	 * @param   string   $category     An optional category alias to filter on
+	 * @param   boolean  $isPublished  Flag if only published articles should be returned
+	 * @param   string   $search       An optional title to search for
+	 * @param   integer  $limit        A limit to the number of items to retrieve, defaults to 10
+	 * @param   integer  $start        The first row to start the lookup at, defaults to 0 for the first row in the return
 	 *
 	 * @return  array
 	 *
 	 * @since   1.0
 	 */
-	public function getArticleList($category = '', $search = '', $limit = 10, $start = 0)
+	public function getArticleList($category = '', $isPublished = false, $search = '', $limit = 10, $start = 0)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
 		$q->select('a, c, uc, um')
@@ -37,13 +38,22 @@ class ArticleRepository extends BaseRepository
 
 		if (!empty($category))
 		{
-			$q->where($q->expr()->eq('c.alias', ':category'))
+			$q->andWhere($q->expr()->eq('c.alias', ':category'))
 				->setParameter('category', $category);
+		}
+
+		if ($isPublished)
+		{
+			$q->andWhere($q->expr()->eq('a.published', ':published'))
+				->setParameter('published', true);
+
+			$q->andWhere($q->expr()->lte('a.publishUp', ':publishUp'))
+				->setParameter('publishUp', new \DateTime('now', new \DateTimeZone('UTC')));
 		}
 
 		if (!empty($search))
 		{
-			$q->where($q->expr()->like('a.title', ':search'))
+			$q->andWhere($q->expr()->like('a.title', ':search'))
 				->setParameter('search', "{$search}%");
 		}
 
@@ -104,6 +114,9 @@ class ArticleRepository extends BaseRepository
 
 		if ($isPublished)
 		{
+			$q->andWhere($q->expr()->eq('a.published', ':published'))
+				->setParameter('published', true);
+
 			$q->andWhere($q->expr()->lte('a.publishUp', ':publishUp'))
 				->setParameter('publishUp', new \DateTime('now', new \DateTimeZone('UTC')));
 		}

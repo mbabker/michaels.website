@@ -38,7 +38,7 @@ class BlogHtmlView extends AbstractHtmlView
 	public function render()
 	{
 		$this->setData([
-			'articles' => $this->model->getArticles()
+			'articles' => $this->model->getArticles(true)
 		]);
 
 		return parent::render();
