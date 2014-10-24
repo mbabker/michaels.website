@@ -2,14 +2,27 @@
 
 {% block title %}About Me{% endblock %}
 
+{% block headerBackground %}{{ uri.media.full }}img/castle.jpg{% endblock %}
+
 {% block pageHeadingText %}
     <div class="page-heading">
         <h1>About Me</h1>
         <hr class="small">
-        <span class="subheading">This is what I do.</span>
+        <span class="subheading">Army Vet, PHP geek, Joomla! PLT member.  Holds a prejudice against crap code and openly shares it.</span>
     </div>
 {% endblock %}
 
 {% block content %}
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+    <span class="pull-right" style="padding-left: 5px;"><img src="{{ uri.media.full }}img/about-michael.jpg" alt="Michael" width="90%"></span>
+    <p>Michael Babker is a multi talented IT professional and open source developer specializing in PHP based development. He has been developing for and contributing to the open source community for the last four years, specializing in Joomla based development. As part of his contributions to the Joomla project, he has served as a member of its Production Leadership Team and has been responsible for overseeing development of the Joomla CMS and Framework and served as the Release Lead for several of the 3.x CMS releases.</p>
+    <p>Before focusing primarily on web development, he served for nine years in the US Army as an Information Technology Specialist and performed in several roles including Help Desk Team Leader, Network Administrator, System Administrator, and Information Assurance Security Officer. As a Sergeant in the Army, he was directly responsible for the morale, welfare, and professional development of a team of junior Soldiers.</p>
+    <p>Michael holds an Associate of Arts in Information Technology with a concentration in Web Design and is currently CompTIA A+ certified.</p>
+    <h3>Awards &amp; Recognitions</h3>
+    <ul>
+    <li>US Army Signal Center and Fort Gordon Service Member of the Quarter - 1st Quarter, FY 2008</li>
+    <li>Nominated for the 116th Military Intelligence Group Soldier of the Year - 2008</li>
+    <li>Nominated for the USINSCOM Quality/Customer Service Award - 2010</li>
+    <li>Joomla Open Source Creative and Artistic Recognition - GitHub Junkie Award, J &amp; Beyond 2012</li>
+    </ul>
+    <p style="text-align: center !important;"><a href="http://militarysignatures.com"><img src="http://militarysignatures.com/signatures/member6409.png" alt="militarysignatures.com"></a></p> 	</div>
 {% endblock %}
