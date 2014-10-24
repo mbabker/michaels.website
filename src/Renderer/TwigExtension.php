@@ -174,7 +174,7 @@ class TwigExtension extends \Twig_Extension
 	{
 		preg_match("/<p>(.*)<\/p>/", $text, $matches);
 
-		return strip_tags(html_entity_decode($matches[1]));
+		return strip_tags(html_entity_decode($matches[1], ENT_QUOTES, 'UTF-8'));
 	}
 
 	/**
