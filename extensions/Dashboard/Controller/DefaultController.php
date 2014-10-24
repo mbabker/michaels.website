@@ -26,6 +26,11 @@ class DefaultController extends AdminController
 	 */
 	protected function initializeController()
 	{
-		$this->defaultView = 'dashboard';
+		if (!$this->initialized)
+		{
+			$this->defaultView = 'dashboard';
+
+			parent::initializeController();
+		}
 	}
 }
