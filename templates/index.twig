@@ -11,6 +11,8 @@
         {% block headJavaScript %}
             <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <script src="//platform.twitter.com/widgets.js" async></script>
+            <script src="//apis.google.com/js/platform.js" async defer></script>
         {% endblock %}
         {% block headCSS %}
             <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -21,7 +23,20 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=171554493014852&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navbar">
