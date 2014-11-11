@@ -91,7 +91,9 @@
     <script src="//cdn.ckeditor.com/4.4.5/standard/ckeditor.js"></script>
     <script type="text/javascript">
         $(function() {
-            CKEDITOR.replace('article_editor');
+            CKEDITOR.replace('article_editor', {
+                allowedContent: true
+            });
         });
     </script>
 {% endblock %}
