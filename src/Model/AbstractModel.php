@@ -21,14 +21,6 @@ use Joomla\Registry\Registry;
 abstract class AbstractModel extends BaseModel
 {
 	/**
-	 * Internal memory based cache array of data.
-	 *
-	 * @var    array
-	 * @since  1.0
-	 */
-	protected $cache = array();
-
-	/**
 	 * Context string for the model type.
 	 *
 	 * This is used to handle uniqueness when dealing with the getStoreId() method and caching data structures.
