@@ -32,7 +32,7 @@ class BlogController extends DefaultController
 		$model = '\\Extensions\\Articles\\Model\\ListsModel';
 
 		$object = $this->getContainer()->buildObject($model);
-		$object->setState($this->initializeModelState());
+		$object->setState($this->initializeModelState($object));
 
 		$this->getContainer()->set($model, $object)->alias('Joomla\\Model\\ModelInterface', $model);
 	}
@@ -40,13 +40,15 @@ class BlogController extends DefaultController
 	/**
 	 * Method to initialize the state object for the model
 	 *
+	 * @param   \Joomla\Model\ModelInterface  $model  The model object
+	 *
 	 * @return  Registry
 	 *
 	 * @since   1.0
 	 */
-	protected function initializeModelState()
+	protected function initializeModelState(\Joomla\Model\ModelInterface $model)
 	{
-		$state = new Registry;
+		$state = $model->getState();
 		$state->set('category.alias', 'blog');
 
 		return $state;

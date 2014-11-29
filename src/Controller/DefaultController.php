@@ -170,8 +170,9 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 			}
 		}
 
+		/** @var \Joomla\Model\ModelInterface $object */
 		$object = $this->getContainer()->buildObject($model);
-		$object->setState($this->initializeModelState());
+		$object->setState($this->initializeModelState($object));
 
 		$this->getContainer()->set($model, $object)->alias('Joomla\\Model\\ModelInterface', $model);
 	}
@@ -179,13 +180,15 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	/**
 	 * Method to initialize the state object for the model
 	 *
+	 * @param   \Joomla\Model\ModelInterface  $model  The model object
+	 *
 	 * @return  Registry
 	 *
 	 * @since   1.0
 	 */
-	protected function initializeModelState()
+	protected function initializeModelState(\Joomla\Model\ModelInterface $model)
 	{
-		return new Registry;
+		return $model->getState();
 	}
 
 	/**

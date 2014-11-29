@@ -74,13 +74,15 @@ class DefaultController extends AdminController
 	/**
 	 * Method to initialize the state object for the model
 	 *
+	 * @param   \Joomla\Model\ModelInterface  $model  The model object
+	 *
 	 * @return  Registry
 	 *
 	 * @since   1.0
 	 */
-	protected function initializeModelState()
+	protected function initializeModelState(\Joomla\Model\ModelInterface $model)
 	{
-		$state = new Registry;
+		$state = $model->getState();
 		$state->set('category.extension', $this->getInput()->getString('extension'));
 
 		if ($id = $this->getInput()->getUint('id'))
@@ -140,7 +142,7 @@ class DefaultController extends AdminController
 
 		/** @var \Extensions\Categories\Model\CategoryModel $model */
 		$model = $this->getContainer()->buildObject('\\Extensions\\Categories\\Model\\CategoryModel');
-		$model->setState($this->initializeModelState());
+		$model->setState($this->initializeModelState($model));
 
 		$user = $this->getApplication()->getUser();
 

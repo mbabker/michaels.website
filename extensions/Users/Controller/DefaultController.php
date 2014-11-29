@@ -72,13 +72,15 @@ class DefaultController extends AdminController
 	/**
 	 * Method to initialize the state object for the model
 	 *
+	 * @param   \Joomla\Model\ModelInterface  $model  The model object
+	 *
 	 * @return  Registry
 	 *
 	 * @since   1.0
 	 */
-	protected function initializeModelState()
+	protected function initializeModelState(\Joomla\Model\ModelInterface $model)
 	{
-		$state = new Registry;
+		$state = $model->getState();
 		$state->set('user.id', $this->getInput()->getUint('id'));
 
 		return $state;

@@ -74,13 +74,15 @@ class AdminController extends BaseAdminController
 	/**
 	 * Method to initialize the state object for the model
 	 *
+	 * @param   \Joomla\Model\ModelInterface  $model  The model object
+	 *
 	 * @return  Registry
 	 *
 	 * @since   1.0
 	 */
-	protected function initializeModelState()
+	protected function initializeModelState(\Joomla\Model\ModelInterface $model)
 	{
-		$state = new Registry;
+		$state = $model->getState();
 
 		if ($id = $this->getInput()->getUint('id'))
 		{
@@ -159,7 +161,7 @@ class AdminController extends BaseAdminController
 
 		/** @var \Extensions\Articles\Model\ArticleModel $model */
 		$model = $this->getContainer()->buildObject('\\Extensions\\Articles\\Model\\ArticleModel');
-		$model->setState($this->initializeModelState());
+		$model->setState($this->initializeModelState($model));
 
 		$user = $this->getApplication()->getUser();
 
