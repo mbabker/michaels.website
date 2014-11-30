@@ -150,7 +150,7 @@ class DefaultController extends AdminController
 
 		/** @var \Extensions\Users\Model\UserModel $model */
 		$model = $this->getContainer()->buildObject('\\Extensions\\Users\\Model\\UserModel');
-		$model->setState($this->initializeModelState());
+		$model->setState($this->initializeModelState($model));
 
 		try
 		{
