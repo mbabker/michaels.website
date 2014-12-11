@@ -79,7 +79,7 @@ class Install
 		try
 		{
 			/** @var \Doctrine\ORM\EntityManager $em */
-			$em = $this->app->getContainer()->get('em');
+			$em = $this->app->getContainer()->get('doctrine')->getManager();
 			$em->persist($user);
 			$em->flush();
 		}

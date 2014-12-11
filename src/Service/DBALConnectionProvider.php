@@ -9,6 +9,7 @@
 namespace BabDev\Website\Service;
 
 use Doctrine\Common\Proxy\AbstractProxyFactory;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
@@ -16,11 +17,11 @@ use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
 /**
- * EntityManager service provider
+ * DBAL Connection service provider
  *
  * @since  1.0
  */
-class EntityManagerProvider implements ServiceProviderInterface
+class DBALConnectionProvider implements ServiceProviderInterface
 {
 	/**
 	 * Registers the service provider with a DI container.
@@ -33,27 +34,26 @@ class EntityManagerProvider implements ServiceProviderInterface
 	 */
 	public function register(Container $container)
 	{
-		$container->set('Doctrine\\ORM\\EntityManager',
+		$container->set('Doctrine\\DBAL\\Connection',
 			function (Container $container)
 			{
 				$config = $container->get('config');
 
-				// Lookup path for entities
-				$paths = [JPATH_ROOT . '/src/Entity'];
+				// Set the DBAL Connection configuration
+				$connection = [
+					'driver'   => $config->get('database.driver'),
+					'host'     => $config->get('database.host'),
+					'user'     => $config->get('database.user'),
+					'password' => $config->get('database.password'),
+					'dbname'   => $config->get('database.name')
+				];
 
-				// Flag if we're in dev mode, base this on the database.debug option
-				$devMode = $config->get('database.debug');
-
-				// Setup the configuration
-				$emConfig = Setup::createAnnotationMetadataConfiguration($paths, $devMode);
-				$emConfig->setAutoGenerateProxyClasses(AbstractProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS);
-
-				// Create the EntityManager
-				return EntityManager::create($container->get('doctrine.default.dbal_connection'), $emConfig);
+				// Create the Connection
+				return DriverManager::getConnection($connection);
 			}, true, true
 		);
 
-		// Alias the EntityManager
-		$container->alias('doctrine.default.entity_manager', 'Doctrine\\ORM\\EntityManager');
+		// Alias the Connection
+		$container->set('doctrine.default.dbal_connection', $container->get('Doctrine\\DBAL\\Connection'));
 	}
 }

@@ -167,11 +167,6 @@ class AdminController extends BaseAdminController
 
 		$filteredData['user'] = $user->getId();
 
-		// For proper saving, we need to clear this user object from the EntityManager
-		/** @var \Doctrine\ORM\EntityManager $entityManager */
-		$entityManager = Factory::get('em');
-		$entityManager->clear($user);
-
 		try
 		{
 			$model->save($this->getInput()->getUint('id', 0), $filteredData);

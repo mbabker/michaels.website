@@ -26,7 +26,7 @@ try
 {
 	$container = (new Joomla\DI\Container)
 		->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-		->registerServiceProvider(new \BabDev\Website\Service\EntityManagerProvider);
+		->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider);
 
 	// Set error reporting based on config
 	$errorReporting = (int) $container->get('config')->get('errorReporting', 0);

@@ -80,7 +80,10 @@ class Factory
 			throw new \InvalidArgumentException('A valid repository class was not found.');
 		}
 
-		return new $repo(self::get('em'), new ClassMetadata($entity));
+		/** @var \BabDev\Website\Doctrine\ManagerRegistry $manager */
+		$manager = self::get('doctrine');
+
+		return new $repo($manager->getManager(), new ClassMetadata($entity));
 	}
 
 	/**

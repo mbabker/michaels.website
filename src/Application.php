@@ -305,7 +305,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 		$authentication = new Authentication;
 
 		// Add our authentication strategy
-		$strategy = new DatabaseStrategy($this->input, $this->getContainer()->get('em'));
+		$strategy = new DatabaseStrategy($this->input, $this->getContainer()->get('doctrine')->getManager());
 		$authentication->addStrategy('database', $strategy);
 
 		// Authenticate the user
@@ -393,7 +393,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
 				// Build a default view object and render with the exception layout
 				$controller->initializeRenderer();
-				$view = new DefaultHtmlView(new DefaultModel($this->getContainer()->get('em')), $this->getContainer()->get('renderer'));
+				$view = new DefaultHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
 
 				if ($admin)
 				{
