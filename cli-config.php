@@ -6,8 +6,6 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-
 // Application constants
 define('JPATH_ROOT',      __DIR__);
 define('JPATH_TEMPLATES', JPATH_ROOT . '/templates');
@@ -24,8 +22,8 @@ require JPATH_ROOT . '/vendor/autoload.php';
 
 $container = (new Joomla\DI\Container)
 	->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-	->registerServiceProvider(new \BabDev\Website\Service\EntityManagerProvider);
+	->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider);
 
 $entityManager = $container->get('em');
 
-return ConsoleRunner::createHelperSet($entityManager);
+return Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
