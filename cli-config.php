@@ -24,6 +24,6 @@ $container = (new Joomla\DI\Container)
 	->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
 	->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider);
 
-$entityManager = $container->get('em');
+$entityManager = $container->get('doctrine')->getManager();
 
 return Doctrine\ORM\Tools\Console\ConsoleRunner::createHelperSet($entityManager);
