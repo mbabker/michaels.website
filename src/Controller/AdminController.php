@@ -62,13 +62,13 @@ class AdminController extends DefaultController
 		{
 			if (is_dir(JPATH_TEMPLATES . '/admin'))
 			{
-				$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
+				$view->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
 			}
 
 			// Add the extension's view path if it exists
 			if (is_dir(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension)))
 			{
-				$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension));
+				$view->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin/' . strtolower($this->extension));
 			}
 		}
 

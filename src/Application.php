@@ -399,7 +399,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				{
 					if (is_dir(JPATH_TEMPLATES . '/admin'))
 					{
-						$view->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
+						$view->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
 					}
 				}
 

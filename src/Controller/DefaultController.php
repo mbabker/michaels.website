@@ -278,7 +278,7 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 				// Add the extension's view path if it exists
 				if (is_dir(JPATH_TEMPLATES . '/' . strtolower($this->extension)))
 				{
-					$object->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($this->extension));
+					$object->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($this->extension));
 				}
 
 				break;
