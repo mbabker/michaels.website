@@ -20,6 +20,7 @@ class ArticleRepository extends BaseRepository
 	 *
 	 * @param   string   $category     An optional category alias to filter on
 	 * @param   boolean  $isPublished  Flag if only published articles should be returned
+	 * @param   array    $order        An array with the column name and order direction
 	 * @param   string   $search       An optional title to search for
 	 * @param   integer  $limit        A limit to the number of items to retrieve, defaults to 10
 	 * @param   integer  $start        The first row to start the lookup at, defaults to 0 for the first row in the return
@@ -28,7 +29,8 @@ class ArticleRepository extends BaseRepository
 	 *
 	 * @since   1.0
 	 */
-	public function getArticleList($category = '', $isPublished = false, $search = '', $limit = 10, $start = 0)
+	public function getArticleList($category = '', $isPublished = false,
+		$order = ['column' => 'a.title', 'direction' => 'ASC'], $search = '', $limit = 10, $start = 0)
 	{
 		$q = $this->createQueryBuilder($this->getTableAlias());
 		$q->select('a, c, uc, um')
@@ -57,7 +59,7 @@ class ArticleRepository extends BaseRepository
 				->setParameter('search', "{$search}%");
 		}
 
-		$q->orderBy('a.title');
+		$q->orderBy($order['column'], $order['direction']);
 
 		if (!empty($limit))
 		{
