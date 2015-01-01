@@ -78,7 +78,8 @@ class TwigExtension extends \Twig_Extension
 			'uri'               => $this->app->get('uri'),
 			'userAuthenticated' => $this->app->getUser()->isAuthenticated(),
 			'currentUser'       => $this->app->getUser(),
-			'messages'          => $this->app->getMessageQueue()
+			'messages'          => $this->app->getMessageQueue(),
+			'now'               => new \DateTime('now', new \DateTimeZone('UTC'))
 		];
 
 		$this->app->clearMessageQueue();
