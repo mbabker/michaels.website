@@ -14,3 +14,4 @@
 # Don't add any post images to VCS
 /www/media/img/*.jpg
 /www/media/img/*.png
+/www/media/img/events/

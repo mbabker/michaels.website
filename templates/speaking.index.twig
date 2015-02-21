@@ -1,0 +1,72 @@
+{% extends "index.twig" %}
+
+{% block title %}Speaking Engagements{% endblock %}
+
+{% block headerBackground %}{{ uri.media.full }}img/jwc14-stage.jpg{% endblock %}
+
+{% block pageHeadingText %}
+    <div class="page-heading">
+        <h1>Speaking Engagements</h1>
+        <hr class="small">
+        <span class="subheading">Open Source & PHP Enthusiast, loves sharing his knowledge</span>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h3>Request a Talk</h3>
+    <p>I'm available to speak worldwide on a variety of topics based on my experiences developing primarily with Joomla and Symfony. If you’re interested in having me speak at an event, please contact me and include the location, date, and the URL for the event's website.</p>
+    <h3>Upcoming Events</h3>
+    <p>Listed below are upcoming events which I will be speaking at and the topics I will be presenting:</p>
+    <div class="row text-center">
+        <div class="col-md-6">
+            <a title="Joomla!dagen Nederland" href="http://www.joomladagen.nl" target="_blank">
+                <img src="{{ uri.media.full }}img/events/jdnl15.png" alt="Joomla!dagen Nederland - 11 & 12 april 2015, Zeist" title="Joomla!dagen Nederland - 11 & 12 april 2015, Zeist" />
+            </a><br />
+            <a title="Joomla!dagen Nederland Schedule" href="http://joomladagen.nl/programma/overzicht" target="_blank">Joomla!dagen Nederland</a><br />
+            <a title="The Success of Joomla! 3" href="http://joomladagen.nl/programma/presentaties/the-success-of-joomla-3" target="_blank">The Success of Joomla! 3 (Keynote)</a><br />
+            <a title="Stepping Beyond Your Comfort Zone" href="http://joomladagen.nl/programma/presentaties/stepping-beyond-your-comfort-zone" target="_blank">Stepping Beyond Your Comfort Zone</a>
+        </div>
+        <div class="col-md-6">
+            <a title="J and Beyond 2015" href="http://jandbeyond.org" target="_blank">
+                <img border="0" alt="J and Beyond 2015 | An International Joomla! Conference - May 29 - 31, 2015, Prague, Czech Republic" src="{{ uri.media.full }}img/events/jab15.png" />
+            </a><br />
+            <a href="http://jandbeyond.org" target="_blank">J and Beyond</a><br />Keynote Speaker
+        </div>
+    </div>
+    <h3>Previous Sessions</h3>
+    <p>I have experience speaking worldwide about Joomla! and PHP in general, to include the Joomla! World Conference, WordCamp Milwaukee, CoderFaire, and php[world]. Below are samples of sessions I have presented.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <iframe style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/13000272" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""></iframe>
+            <div style="margin-bottom: 5px;">
+                <strong>
+                    <a title="JAB12 - Changes in the API are Blowin' in the Wind" href="//www.slideshare.net/mbabker/changes-in-the-api-are-blowing-in-the-wind" target="_blank">J and Beyond 2012 - Changes in the API are Blowin' in the Wind</a>
+                </strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <iframe style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/32349436" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""></iframe>
+            <div style="margin-bottom: 5px;">
+                <strong>
+                    <a title="Looking at Joomla! 3.3" href="//www.slideshare.net/mbabker/looking-at-joomla-33" target="_blank">JoomlaDay Atlanta 2014 - Looking at Joomla! 3.3</a>
+                </strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <iframe style="border: 1px solid #CCC; border-width: 1px 1px 0; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/35720280?rel=0" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""></iframe>
+            <div style="margin-bottom: 5px;">
+                <strong>
+                    <a title="Getting Started with the Joomla! Framework" href="//www.slideshare.net/mbabker/getting-started-with-the-joomla-framework" target="_blank">Getting Started with the Joomla! Framework</a>
+                </strong>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <iframe src="//www.youtube.com/embed/T_MAS939RaA?list=UUy6ThiEDnalZOd_pgtpBk1Q" width="427" height="240" frameborder="0" allowfullscreen=""></iframe>
+            <div style="margin-bottom: 5px;">
+                <strong>
+                    <a title="The Success of Joomla! 3" href="//www.youtube.com/watch?v=T_MAS939RaA&amp;feature=youtu.be&amp;list=UUy6ThiEDnalZOd_pgtpBk1Q" target="_blank">JoomlaDay Germany 2014 - Keynote - The Success of Joomla! 3</a>
+                </strong>
+            </div>
+        </div>
+    </div>
+{% endblock %}

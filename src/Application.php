@@ -90,7 +90,8 @@ final class Application extends AbstractWebApplication implements ContainerAware
 			$router = (new Router($this->input))
 				->setControllerPrefix('\\Extensions')
 				->setDefaultController('\\Articles\\Controller\\BlogController')
-				->addMap('/about', '\\Articles\\Controller\\AboutController');
+				->addMap('/about', '\\Articles\\Controller\\AboutController')
+				->addMap('/speaking', '\\Articles\\Controller\\SpeakingController');
 
 			// Search for extension specific routes
 			/* @type \DirectoryIterator $fileInfo */
