@@ -416,7 +416,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
 				$controller = (new DefaultController($this->input, $this))->setContainer($this->getContainer());
 
 				// Build a default view object and render with the exception layout
-				$controller->initializeRenderer();
 				$view = new BaseHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
 
 				if ($admin)
