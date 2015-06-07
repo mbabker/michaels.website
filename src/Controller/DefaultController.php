@@ -16,6 +16,7 @@ use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Input\Input;
 use Joomla\Registry\Registry;
+use Joomla\View\BaseHtmlView;
 
 /**
  * Default controller class for the application
@@ -192,34 +193,6 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 	}
 
 	/**
-	 * Method to initialize the renderer object
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 * @throws  \RuntimeException
-	 */
-	public function initializeRenderer()
-	{
-		// Add the provider to the DI container if it doesn't exist
-		if (!$this->getContainer()->exists('renderer'))
-		{
-			$type = $this->getContainer()->get('config')->get('template.renderer');
-
-			// Set the class name for the renderer's service provider
-			$class = '\\BabDev\\Website\\Service\\' . ucfirst($type) . 'RendererProvider';
-
-			// Sanity check
-			if (!class_exists($class))
-			{
-				throw new \RuntimeException(sprintf('Renderer provider for renderer type %s not found.', ucfirst($type)));
-			}
-
-			$this->getContainer()->registerServiceProvider(new $class($this->getApplication()));
-		}
-	}
-
-	/**
 	 * Method to initialize the view object
 	 *
 	 * @return  \Joomla\View\ViewInterface  View object
@@ -263,33 +236,19 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 			}
 		}
 
-		// The view classes have different dependencies, switch it from here
-		switch ($format)
+		$object = $this->getContainer()->buildObject($class);
+
+		// Add paths to the HTML view
+		if ($object instanceof BaseHtmlView)
 		{
-			case 'Json' :
-				// We can just instantiate the view here
-				$object = $this->getContainer()->buildObject($class);
+			// We need to set the layout too
+			$object->setLayout(strtolower($view) . '.' . strtolower($this->getInput()->getWord('layout', 'index')));
 
-				break;
-
-			case 'Html' :
-			default     :
-				// HTML views require a renderer object too, fetch it
-				$this->initializeRenderer();
-
-				// Instantiate the view now
-				$object = $this->getContainer()->buildObject($class);
-
-				// We need to set the layout too
-				$object->setLayout(strtolower($view) . '.' . strtolower($this->getInput()->getWord('layout', 'index')));
-
-				// Add the extension's view path if it exists
-				if (is_dir(JPATH_TEMPLATES . '/' . strtolower($this->extension)))
-				{
-					$object->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($this->extension));
-				}
-
-				break;
+			// Add the extension's view path if it exists
+			if (is_dir(JPATH_TEMPLATES . '/' . strtolower($this->extension)))
+			{
+				$object->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/' . strtolower($this->extension));
+			}
 		}
 
 		return $object;

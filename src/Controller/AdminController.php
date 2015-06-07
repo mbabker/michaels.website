@@ -8,6 +8,8 @@
 
 namespace BabDev\Website\Controller;
 
+use Joomla\View\BaseHtmlView;
+
 /**
  * Base administrator controller class for the application
  *
@@ -58,7 +60,7 @@ class AdminController extends DefaultController
 		$view = parent::initializeView();
 
 		// Add the admin template path to the lookup if it exists for HTML views
-		if (strtolower($this->getInput()->getWord('format', 'html')) == 'html')
+		if ($view instanceof BaseHtmlView)
 		{
 			if (is_dir(JPATH_TEMPLATES . '/admin'))
 			{
