@@ -412,9 +412,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
 			case 'html' :
 			default :
-				// Need the default controller in order to fetch the renderer
-				$controller = (new DefaultController($this->input, $this))->setContainer($this->getContainer());
-
 				// Build a default view object and render with the exception layout
 				$view = new BaseHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
 
