@@ -9,11 +9,11 @@
 namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
-use BabDev\Renderer\TwigRenderer;
 use BabDev\Website\Renderer\TwigExtension;
 
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
+use Joomla\Renderer\TwigRenderer;
 
 /**
  * Twig renderer service provider
@@ -53,7 +53,7 @@ class TwigRendererProvider implements ServiceProviderInterface
 	 */
 	public function register(Container $container)
 	{
-		$container->set('BabDev\\Renderer\\RendererInterface',
+		$container->set('Joomla\\Renderer\\RendererInterface',
 			function (Container $container) {
 				/* @type  \Joomla\Registry\Registry  $config */
 				$config = $container->get('config');
@@ -86,6 +86,6 @@ class TwigRendererProvider implements ServiceProviderInterface
 		);
 
 		// Alias the renderer
-		$container->alias('renderer', 'BabDev\\Renderer\\RendererInterface');
+		$container->alias('renderer', 'Joomla\\Renderer\\RendererInterface');
 	}
 }

@@ -1,13 +1,13 @@
 {
 	"name"       : "babdev/michaels-website",
-	"description": "Source code for http://michaels.website",
+	"description": "Source code for https://michaels.website",
 	"license"    : "GPL-2.0+",
 	"type"       : "project",
 	"authors"    : [
 		{
 			"name"    : "Michael Babker",
 			"email"   : "michael.babker@gmail.com",
-			"homepage": "http://www.babdev.com",
+			"homepage": "https://www.babdev.com",
 			"role"    : "Developer"
 		}
 	],
@@ -21,10 +21,10 @@
 		"joomla/filter"          : "~1.1",
 		"joomla/model"           : "~1.1",
 		"joomla/registry"        : "~1.2",
+		"joomla/renderer"        : "~2.0@dev",
 		"joomla/router"          : "~1.1",
 		"joomla/view"            : "~1.1",
-		"babdev/renderer"        : "1.x@dev",
-		"doctrine/orm"           : "~2.4",
+		"doctrine/orm"           : "~2.5",
 		"symfony/http-foundation": "~2.5",
 		"twig/twig"              : "1.*"
 	},

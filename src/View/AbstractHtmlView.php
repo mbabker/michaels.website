@@ -8,9 +8,8 @@
 
 namespace BabDev\Website\View;
 
-use BabDev\Renderer\RendererInterface;
-
 use Joomla\Model\ModelInterface;
+use Joomla\Renderer\RendererInterface;
 use Joomla\View\AbstractView;
 
 /**
