@@ -8,7 +8,6 @@
 
 namespace BabDev\Website\Service;
 
-use BabDev\Website\Application;
 use BabDev\Website\Renderer\TwigExtension;
 
 use Joomla\DI\Container;
@@ -22,26 +21,6 @@ use Joomla\Renderer\TwigRenderer;
  */
 class TwigRendererProvider implements ServiceProviderInterface
 {
-	/**
-	 * Application object
-	 *
-	 * @var    Application
-	 * @since  1.0
-	 */
-	private $app;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param   Application  $app  Application object
-	 *
-	 * @since   1.0
-	 */
-	public function __construct(Application $app)
-	{
-		$this->app = $app;
-	}
-
 	/**
 	 * Registers the service provider with a DI container.
 	 *
@@ -62,7 +41,7 @@ class TwigRendererProvider implements ServiceProviderInterface
 				$renderer = new TwigRenderer($config->get('template'));
 
 				// Add our Twig extension
-				$renderer->getRenderer()->addExtension(new TwigExtension($this->app));
+				$renderer->getRenderer()->addExtension(new TwigExtension($container->get('app')));
 
 				// Add the debug extension if enabled
 				if ($config->get('template.debug'))

@@ -12,6 +12,7 @@ use BabDev\Website\Cli\Command\Install;
 use BabDev\Website\Cli\Command\UpdateServer;
 use BabDev\Website\Service\ConfigurationProvider;
 use BabDev\Website\Service\DoctrineProvider;
+use BabDev\Website\Service\TwigRendererProvider;
 
 use Joomla\Application\AbstractCliApplication;
 use Joomla\DI\Container;
@@ -36,7 +37,8 @@ class Application extends AbstractCliApplication implements ContainerAwareInterf
 	{
 		$container = (new Container)
 			->registerServiceProvider(new ConfigurationProvider)
-			->registerServiceProvider(new DoctrineProvider);
+			->registerServiceProvider(new DoctrineProvider)
+			->registerServiceProvider(new TwigRendererProvider);
 
 		$this->setContainer($container);
 

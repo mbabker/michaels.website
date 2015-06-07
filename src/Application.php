@@ -14,14 +14,15 @@ use BabDev\Website\Controller\AdminController;
 use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Entity\User;
 use BabDev\Website\Model\DefaultModel;
-use BabDev\Website\View\DefaultHtmlView;
 
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
+use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
+use Joomla\View\BaseHtmlView;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -50,6 +51,28 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 * @since  1.0
 	 */
 	private $user;
+
+	/**
+	 * Constructor
+	 *
+	 * @param   Container  $container  DI Container
+	 *
+	 * @since   1.0
+	 */
+	public function __construct(Container $container)
+	{
+		parent::__construct();
+
+		$container->set('BabDev\\Website\\Application', $this)
+			->alias('Joomla\\Application\\AbstractWebApplication', 'BabDev\\Website\\Application')
+			->alias('Joomla\\Application\\AbstractApplication', 'BabDev\\Website\\Application')
+			->alias('app', 'BabDev\\Website\\Application')
+			->set('Joomla\\Input\\Input', $this->input)
+			->set('Joomla\\DI\\Container', $container);
+
+		$this->setContainer($container);
+		$this->createFactory();
+	}
 
 	/**
 	 * Clear the system message queue.
@@ -394,7 +417,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
 				// Build a default view object and render with the exception layout
 				$controller->initializeRenderer();
-				$view = new DefaultHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
+				$view = new BaseHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
 
 				if ($admin)
 				{

@@ -22,7 +22,8 @@ require JPATH_ROOT . '/vendor/autoload.php';
 
 $container = (new Joomla\DI\Container)
 	->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-	->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider);
+	->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider)
+	->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider);
 
 $entityManager = $container->get('doctrine')->getManager();
 

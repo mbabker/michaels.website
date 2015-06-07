@@ -26,7 +26,8 @@ try
 {
 	$container = (new Joomla\DI\Container)
 		->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-		->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider);
+		->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider)
+		->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider);
 
 	// Set error reporting based on config
 	$errorReporting = (int) $container->get('config')->get('errorReporting', 0);
@@ -42,7 +43,15 @@ catch (\Exception $e)
 }
 
 // Execute the application
-$app = new BabDev\Website\Application;
-$app->setContainer($container);
-$app->createFactory();
-$app->execute();
+try
+{
+	(new BabDev\Website\Application($container))->execute();
+}
+catch (\Exception $e)
+{
+	header('HTTP/1.1 500 Internal Server Error', null, 500);
+	header('Content-Type: text/html; charset=utf-8');
+	echo 'An error occurred while executing the application: ' . $e->getMessage();
+
+	exit;
+}
