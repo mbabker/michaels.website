@@ -247,10 +247,18 @@ class DefaultController extends AbstractController implements ContainerAwareInte
 			{
 				$class = '\\BabDev\\Website\\View\\Default' . $format . 'View';
 
-				// If we still have nothing, abort mission
+				// If we still have nothing, maybe Joomla core has an option
 				if (!class_exists($class))
 				{
-					throw new \RuntimeException(sprintf('A view class was not found for the %s view in the %s format.', $view, $format));
+					$class = '\\Joomla\\View\\Base' . $format . 'View';
+
+					// Still nothing?  Well, with this many options, we can say we did our best.
+					if (!class_exists($class))
+					{
+						throw new \RuntimeException(
+							sprintf('A view class was not found for the %s view in the %s format.', $view, $format)
+						);
+					}
 				}
 			}
 		}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2b308021b6b083462c4202db6616ff1f",
+    "hash": "61b46dfb5151997b73c19eb4b199d4b4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -928,43 +928,6 @@
             "time": "2015-04-02 16:30:40"
         },
         {
-            "name": "joomla/filesystem",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joomla-framework/filesystem.git",
-                "reference": "31884adf5470baf14de74bfd36482fd18ae048ad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/filesystem/zipball/31884adf5470baf14de74bfd36482fd18ae048ad",
-                "reference": "31884adf5470baf14de74bfd36482fd18ae048ad",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.10"
-            },
-            "type": "joomla-package",
-            "autoload": {
-                "psr-4": {
-                    "Joomla\\Filesystem\\": "src/",
-                    "Joomla\\Filesystem\\Tests\\": "Tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Joomla Filesystem Package",
-            "homepage": "https://github.com/joomla/joomla-framework-filesystem",
-            "keywords": [
-                "filesystem",
-                "framework",
-                "joomla"
-            ],
-            "time": "2014-04-10 02:54:58"
-        },
-        {
             "name": "joomla/filter",
             "version": "1.1.5",
             "source": {
@@ -1362,32 +1325,32 @@
         },
         {
             "name": "joomla/view",
-            "version": "1.2.0",
+            "version": "dev-2.0-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/view.git",
-                "reference": "2254fec4b1a11d2dfd0fe9dd096b263194583d22"
+                "reference": "31a491d3f1cf55787b66d80b813b4da75e7ccd08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/view/zipball/2254fec4b1a11d2dfd0fe9dd096b263194583d22",
-                "reference": "2254fec4b1a11d2dfd0fe9dd096b263194583d22",
+                "url": "https://api.github.com/repos/joomla-framework/view/zipball/31a491d3f1cf55787b66d80b813b4da75e7ccd08",
+                "reference": "31a491d3f1cf55787b66d80b813b4da75e7ccd08",
                 "shasum": ""
             },
             "require": {
-                "joomla/filesystem": "~1.0",
-                "joomla/model": "~1.0",
+                "joomla/model": "~1.0|2.0.*@dev",
+                "joomla/renderer": "2.x@dev",
                 "php": ">=5.3.10"
             },
             "require-dev": {
-                "joomla/test": "~1.0",
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "1.*"
+                "joomla/test": "1.*@stable",
+                "phpunit/phpunit": "4.*@stable",
+                "squizlabs/php_codesniffer": "1.*@stable"
             },
             "type": "joomla-package",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-2.0-dev": "2.0-dev"
                 }
             },
             "autoload": {
@@ -1407,7 +1370,7 @@
                 "joomla",
                 "view"
             ],
-            "time": "2014-09-01 02:30:31"
+            "time": "2015-06-07 15:21:54"
         },
         {
             "name": "psr/log",
@@ -1619,7 +1582,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "joomla/renderer": 20
+        "joomla/renderer": 20,
+        "joomla/view": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

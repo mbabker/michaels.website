@@ -8,16 +8,15 @@
 
 namespace Extensions\Categories\View\Category;
 
-use BabDev\Website\View\AbstractHtmlView;
-
 use Extensions\Categories\Model\CategoryModel;
+use Joomla\View\BaseHtmlView;
 
 /**
  * HTML view class for interfacing with a single category
  *
  * @since  1.0
  */
-class CategoryHtmlView extends AbstractHtmlView
+class CategoryHtmlView extends BaseHtmlView
 {
 	/**
 	 * The model object.

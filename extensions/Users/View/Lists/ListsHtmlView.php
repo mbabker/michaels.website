@@ -8,16 +8,15 @@
 
 namespace Extensions\Users\View\Lists;
 
-use BabDev\Website\View\AbstractHtmlView;
-
 use Extensions\Users\Model\ListsModel;
+use Joomla\View\BaseHtmlView;
 
 /**
  * HTML view class for listing the application's users
  *
  * @since  1.0
  */
-class ListsHtmlView extends AbstractHtmlView
+class ListsHtmlView extends BaseHtmlView
 {
 	/**
 	 * The model object.

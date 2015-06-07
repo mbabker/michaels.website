@@ -8,16 +8,15 @@
 
 namespace Extensions\Users\View\User;
 
-use BabDev\Website\View\AbstractHtmlView;
-
 use Extensions\Users\Model\UserModel;
+use Joomla\View\BaseHtmlView;
 
 /**
  * HTML view class for interfacing with a single user
  *
  * @since  1.0
  */
-class UserHtmlView extends AbstractHtmlView
+class UserHtmlView extends BaseHtmlView
 {
 	/**
 	 * The model object.

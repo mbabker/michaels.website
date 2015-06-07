@@ -8,16 +8,15 @@
 
 namespace Extensions\Articles\View\Lists;
 
-use BabDev\Website\View\AbstractHtmlView;
-
 use Extensions\Articles\Model\ListsModel;
+use Joomla\View\BaseHtmlView;
 
 /**
  * HTML view class for listing articles
  *
  * @since  1.0
  */
-class ListsHtmlView extends AbstractHtmlView
+class ListsHtmlView extends BaseHtmlView
 {
 	/**
 	 * The model object.

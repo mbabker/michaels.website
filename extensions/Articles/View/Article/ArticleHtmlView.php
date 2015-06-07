@@ -8,16 +8,15 @@
 
 namespace Extensions\Articles\View\Article;
 
-use BabDev\Website\View\AbstractHtmlView;
-
 use Extensions\Articles\Model\ArticleModel;
+use Joomla\View\BaseHtmlView;
 
 /**
  * HTML view class for interfacing with a single article
  *
  * @since  1.0
  */
-class ArticleHtmlView extends AbstractHtmlView
+class ArticleHtmlView extends BaseHtmlView
 {
 	/**
 	 * The model object.

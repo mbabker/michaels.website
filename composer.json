@@ -23,7 +23,7 @@
 		"joomla/registry"        : "~1.2",
 		"joomla/renderer"        : "~2.0@dev",
 		"joomla/router"          : "~1.1",
-		"joomla/view"            : "~1.1",
+		"joomla/view"            : "~2.0@dev",
 		"doctrine/orm"           : "~2.5",
 		"symfony/http-foundation": "~2.5",
 		"twig/twig"              : "1.*"
