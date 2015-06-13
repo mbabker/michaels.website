@@ -61,7 +61,8 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	 */
 	public function __construct(Container $container)
 	{
-		parent::__construct();
+		$config = $container()->get('config');
+		parent::__construct(null, $config);
 
 		$container->set('BabDev\\Website\\Application', $this)
 			->alias('Joomla\\Application\\AbstractWebApplication', 'BabDev\\Website\\Application')
