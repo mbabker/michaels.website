@@ -34,5 +34,8 @@
 			"BabDev\\Website\\": "src/",
 			"Extensions\\": "extensions/"
 		}
-	}
+	},
+    "config": {
+        "preferred-install": "dist"
+    }
 }
