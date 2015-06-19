@@ -106,7 +106,7 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('getFirstParagraph', [$this, 'getFirstParagraph'])
 		];
 
-		if ($this->app->getContainer()->get('config')->get('template.debug'))
+		if ($this->app->get('template.debug'))
 		{
 			array_push($functions, new \Twig_SimpleFunction('dump', [$this, 'dump']));
 		}
