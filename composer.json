@@ -12,7 +12,7 @@
 		}
 	],
 	"require"    : {
-		"php"                    : ">=5.4",
+		"php"                    : ">=5.5",
 		"joomla/application"     : "~1.2",
 		"joomla/authentication"  : "~1.0",
 		"joomla/controller"      : "~1.1",
