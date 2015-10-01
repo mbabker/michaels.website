@@ -47,6 +47,10 @@
                                 <label for="article_publishUp">Start Publishing</label>
                                 <input type="text" class="form-control" id="article_publishUp" name="article[publishUp]" placeholder="Time the article should be published" value="{% if not isNew %}{{ renderDate(article.publishUp) }}{% endif %}" />
                             </div>
+                            <div class="form-group col-md-6">
+                                <label for="article_metadesc">Meta Description</label>
+                                <input type="text" class="form-control" id="article_metadesc" name="article[params][metadesc]" placeholder="Enter the article's meta description" value="{{ article.params.metadesc }}" />
+                            </div>
                         </div>
                     </div>
 
@@ -72,11 +76,11 @@
                         </div>
                         <div class="form-group">
                             <label>Created Time</label>
-                            <p class="form-control-static">{{ renderDate(article.dateAdded) }} by {{ article.createdBy.name }}</p>
+                            <p class="form-control-static">{{ article.dateAdded|date('Y-m-d H:i:s') }} by {{ article.createdBy.name }}</p>
                         </div>
                         <div class="form-group">
                             <label>Last Updated</label>
-                            <p class="form-control-static">{{ renderDate(article.dateModified) }} by {{ article.modifiedBy.name }}</p>
+                            <p class="form-control-static">{{ article.dateModified|date('Y-m-d H:i:s') }} by {{ article.modifiedBy.name }}</p>
                         </div>
                         {% endif %}
                     </div>

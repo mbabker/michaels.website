@@ -96,22 +96,14 @@ class TwigExtension extends \Twig_Extension
 	 */
 	public function getFunctions()
 	{
-		$functions = [
+		return [
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
 			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
-			new \Twig_SimpleFunction('renderDate', [$this, 'renderDate']),
 			new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb']),
 			new \Twig_SimpleFunction('getCategoryList', [$this, 'getCategoryList']),
 			new \Twig_SimpleFunction('getFirstParagraph', [$this, 'getFirstParagraph'])
 		];
-
-		if ($this->app->get('template.debug'))
-		{
-			array_push($functions, new \Twig_SimpleFunction('dump', [$this, 'dump']));
-		}
-
-		return $functions;
 	}
 
 	/**
@@ -191,21 +183,6 @@ class TwigExtension extends \Twig_Extension
 	public function getGravatar($email, $size = 50)
 	{
 		return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
-	}
-
-	/**
-	 * Formats a DateTime object for output
-	 *
-	 * @param   \DateTime  $date    The DateTime object to format
-	 * @param   string     $format  The date format to use
-	 *
-	 * @return  string
-	 *
-	 * @since   1.0
-	 */
-	public function renderDate(\DateTime $date, $format = 'Y-m-d H:i:s')
-	{
-		return $date->format($format);
 	}
 
 	/**

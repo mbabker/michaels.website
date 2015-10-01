@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label>Last Login Time</label>
-                            <p class="form-control-static">{{ renderDate(user.lastLogin) }}</p>
+                            <p class="form-control-static">{{ user.lastLogin|date('Y-m-d H:i:s') }}</p>
                         </div>
                     </div>
                 </form>

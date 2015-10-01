@@ -103,10 +103,8 @@ class BaseEntity
 
 			return $status == 'published';
 		}
-		else
-		{
-			return $this->getPublished();
-		}
+
+		return $this->getPublished();
 	}
 
 	/**
@@ -264,33 +262,30 @@ class BaseEntity
 		{
 			return 'unpublished';
 		}
-		else
+
+		$status = 'published';
+
+		if (method_exists($this, 'getPublishUp'))
 		{
-			$status = 'published';
+			$up = $this->getPublishUp();
 
-			if (method_exists($this, 'getPublishUp'))
+			if (!empty($up) && $current <= $up)
 			{
-				$up = $this->getPublishUp();
-
-				if (!empty($up) && $current <= $up)
-				{
-					$status = 'pending';
-				}
+				$status = 'pending';
 			}
-
-			if (method_exists($this, 'getPublishDown'))
-			{
-				$down = $this->getPublishDown();
-
-				if (!empty($down) && $current >= $down)
-				{
-					$status = 'expired';
-				}
-			}
-			var_dump($status);die;
-
-			return $status;
 		}
+
+		if (method_exists($this, 'getPublishDown'))
+		{
+			$down = $this->getPublishDown();
+
+			if (!empty($down) && $current >= $down)
+			{
+				$status = 'expired';
+			}
+		}
+
+		return $status;
 	}
 
 	/**

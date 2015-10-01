@@ -2,6 +2,17 @@
 
 {% block title %}About Me{% endblock %}
 
+{% block metaDescription %}About Michael Babker{% endblock %}
+
+{% block metaOgType %}profile{% endblock %}
+
+{% block metadata %}
+    <meta property="og:profile:first_name" content="Michael" />
+    <meta property="og:profile:last_name" content="Babker" />
+    <meta property="og:profile:username" content="mbabker" />
+    <meta property="og:profile:gender" content="male" />
+{% endblock %}
+
 {% block headerBackground %}{{ uri.media.full }}img/castle.jpg{% endblock %}
 
 {% block pageHeadingText %}

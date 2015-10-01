@@ -43,6 +43,9 @@ class TwigRendererProvider implements ServiceProviderInterface
 				// Add our Twig extension
 				$renderer->getRenderer()->addExtension(new TwigExtension($container->get('app')));
 
+				// Add Twig's Text extension
+				$renderer->getRenderer()->addExtension(new \Twig_Extensions_Extension_Text());
+
 				// Add the debug extension if enabled
 				if ($config->get('template.debug'))
 				{

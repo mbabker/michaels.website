@@ -52,11 +52,11 @@
                         </div>
                         <div class="form-group">
                             <label>Created Time</label>
-                            <p class="form-control-static">{{ renderDate(category.dateAdded) }} by {{ category.createdBy.name }}</p>
+                            <p class="form-control-static">{{ category.dateAdded|date('Y-m-d H:i:s') }} by {{ category.createdBy.name }}</p>
                         </div>
                         <div class="form-group">
                             <label>Last Updated</label>
-                            <p class="form-control-static">{{ renderDate(category.dateModified) }} by {{ category.modifiedBy.name }}</p>
+                            <p class="form-control-static">{{ category.dateModified|date('Y-m-d H:i:s') }} by {{ category.modifiedBy.name }}</p>
                         </div>
                         {% endif %}
                     </div>

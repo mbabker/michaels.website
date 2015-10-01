@@ -2,12 +2,22 @@
 
 {% block title %}{{ article.category.title }} - {{ article.title }}{% endblock %}
 
+{% block metaDescription %}{% if article.params.metadesc is empty %}{{ parent() }}{% else %}{{ article.params.metadesc|truncate(200, true) }}{% endif %}{% endblock %}
+
+{% block metaOgType %}article{% endblock %}
+
+{% block metadata %}
+    <meta property="og:article:published_time" content="{{ article.publishUp|date('c') }}" />
+    <meta property="og:article:modified_time" content="{{ article.dateModified|date('c') }}" />
+    <meta property="og:article:author" content="{{ article.createdBy.name }}" />
+{% endblock %}
+
 {% block headerBackground %}{% if article.params.image is empty %}{{ parent() }}{% else %}{{ uri.media.full }}img/{{ article.params.image }}{% endif %}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">
         <h1>{{ article.title }}</h1>
-        <span class="meta">Posted by {{ article.createdBy.name }} on {{ renderDate(article.publishUp, 'l, F j, Y') }}</span>
+        <span class="meta">Posted by {{ article.createdBy.name }} on {{ article.publishUp|date('l, F j, Y') }}</span>
     </div>
 {% endblock %}
 
