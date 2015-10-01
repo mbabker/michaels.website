@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "20399c431c65987d4dfa0bd34e72cedc",
+    "hash": "e25d0311a1d8f2d83a04cd97c6b04f3f",
     "packages": [
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.6",
+            "version": "v1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4"
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f4a91702ca3cd2e568c3736aa031ed00c3752af4",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
                 "shasum": ""
             },
             "require": {
@@ -72,20 +72,20 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-06-17 12:21:22"
+            "time": "2015-08-31 12:32:49"
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03"
+                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c9eadeb743ac6199f7eec423cb9426bc518b7b03",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/8c434000f420ade76a07c64cbe08ca47e5c101ca",
+                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-04-15 00:11:59"
+            "time": "2015-08-31 12:36:41"
         },
         {
             "name": "doctrine/collections",
@@ -212,16 +212,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "cd8daf2501e10c63dced7b8b9b905844316ae9d3"
+                "reference": "0009b8f0d4a917aabc971fb089eba80e872f83f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/cd8daf2501e10c63dced7b8b9b905844316ae9d3",
-                "reference": "cd8daf2501e10c63dced7b8b9b905844316ae9d3",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/0009b8f0d4a917aabc971fb089eba80e872f83f9",
+                "reference": "0009b8f0d4a917aabc971fb089eba80e872f83f9",
                 "shasum": ""
             },
             "require": {
@@ -281,20 +281,20 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-04-02 19:55:44"
+            "time": "2015-08-31 13:00:22"
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
+                "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
-                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/01dbcbc5cd0a913d751418e635434a18a2f2a75c",
+                "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c",
                 "shasum": ""
             },
             "require": {
@@ -352,7 +352,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-01-12 21:52:47"
+            "time": "2015-09-16 16:29:33"
         },
         {
             "name": "doctrine/inflector",
@@ -531,16 +531,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe"
+                "reference": "e6a83bedbe67579cb0bfb688e982e617943a2945"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe",
-                "reference": "aa80c7d2c55a372f5f9f825f5c66dbda53a6e3fe",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/e6a83bedbe67579cb0bfb688e982e617943a2945",
+                "reference": "e6a83bedbe67579cb0bfb688e982e617943a2945",
                 "shasum": ""
             },
             "require": {
@@ -604,7 +604,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-04-02 20:40:18"
+            "time": "2015-08-31 12:59:39"
         },
         {
             "name": "joomla/application",
@@ -664,16 +664,16 @@
         },
         {
             "name": "joomla/authentication",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/authentication.git",
-                "reference": "4e4f34e9717ee621c6f5b4295198e625c57be554"
+                "reference": "e0a94b5184ea1fdc058a787986bd2708474d9fc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/authentication/zipball/4e4f34e9717ee621c6f5b4295198e625c57be554",
-                "reference": "4e4f34e9717ee621c6f5b4295198e625c57be554",
+                "url": "https://api.github.com/repos/joomla-framework/authentication/zipball/e0a94b5184ea1fdc058a787986bd2708474d9fc1",
+                "reference": "e0a94b5184ea1fdc058a787986bd2708474d9fc1",
                 "shasum": ""
             },
             "require": {
@@ -716,7 +716,7 @@
                 "framework",
                 "joomla"
             ],
-            "time": "2015-08-01 18:54:18"
+            "time": "2015-08-06 15:57:12"
         },
         {
             "name": "joomla/compat",
@@ -1103,12 +1103,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/renderer.git",
-                "reference": "0bd2b628e4c1e392199d855391b618cba270e4fc"
+                "reference": "98d0a3a08293744db3ba637c984f8d0436690df3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/renderer/zipball/0bd2b628e4c1e392199d855391b618cba270e4fc",
-                "reference": "0bd2b628e4c1e392199d855391b618cba270e4fc",
+                "url": "https://api.github.com/repos/joomla-framework/renderer/zipball/98d0a3a08293744db3ba637c984f8d0436690df3",
+                "reference": "98d0a3a08293744db3ba637c984f8d0436690df3",
                 "shasum": ""
             },
             "require": {
@@ -1149,7 +1149,7 @@
                 "joomla",
                 "renderer"
             ],
-            "time": "2015-06-07 17:17:06"
+            "time": "2015-08-22 19:16:57"
         },
         {
             "name": "joomla/router",
@@ -1330,12 +1330,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/view.git",
-                "reference": "0965f04416ec7f7aba48da69836074ea18fdf14d"
+                "reference": "a7e91bd58a8402201ff114490ab40ce6d66de806"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/view/zipball/0965f04416ec7f7aba48da69836074ea18fdf14d",
-                "reference": "0965f04416ec7f7aba48da69836074ea18fdf14d",
+                "url": "https://api.github.com/repos/joomla-framework/view/zipball/a7e91bd58a8402201ff114490ab40ce6d66de806",
+                "reference": "a7e91bd58a8402201ff114490ab40ce6d66de806",
                 "shasum": ""
             },
             "require": {
@@ -1371,7 +1371,7 @@
                 "joomla",
                 "view"
             ],
-            "time": "2015-06-07 15:45:57"
+            "time": "2015-08-22 19:17:03"
         },
         {
             "name": "psr/log",
@@ -1413,16 +1413,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.7.3",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "06cb17c013a82f94a3d840682b49425cd00a2161"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/d6cf02fe73634c96677e428f840704bfbcaec29e",
-                "reference": "d6cf02fe73634c96677e428f840704bfbcaec29e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/06cb17c013a82f94a3d840682b49425cd00a2161",
+                "reference": "06cb17c013a82f94a3d840682b49425cd00a2161",
                 "shasum": ""
             },
             "require": {
@@ -1466,20 +1466,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-28 15:18:12"
+            "time": "2015-09-25 08:32:23"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.7.3",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca"
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "e1509119f164a0d0a940d7d924d693a7a28a5470"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/863af6898081b34c65d42100c370b9f3c51b70ca",
-                "reference": "863af6898081b34c65d42100c370b9f3c51b70ca",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e1509119f164a0d0a940d7d924d693a7a28a5470",
+                "reference": "e1509119f164a0d0a940d7d924d693a7a28a5470",
                 "shasum": ""
             },
             "require": {
@@ -1519,29 +1519,33 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-22 10:11:00"
+            "time": "2015-09-22 13:49:29"
         },
         {
             "name": "twig/twig",
-            "version": "v1.19.0",
+            "version": "v1.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90"
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/edbeaf43b0a606cdaadc32a11d2673614a377b90",
-                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.7"
             },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.19-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -1576,7 +1580,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-07-31 13:45:26"
+            "time": "2015-09-22 13:59:32"
         }
     ],
     "packages-dev": [],
@@ -1589,7 +1593,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4"
+        "php": ">=5.5"
     },
     "platform-dev": []
 }
