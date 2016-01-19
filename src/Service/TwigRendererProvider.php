@@ -38,7 +38,14 @@ class TwigRendererProvider implements ServiceProviderInterface
 				$config = $container->get('config');
 
 				// Instantiate the renderer object
-				$renderer = new TwigRenderer($config->get('template'));
+				$rendererConfig = (array) $config->get('template');
+
+				// If the cache isn't false, then it should be a file path relative to the app root
+				$rendererConfig['cache'] = $rendererConfig['cache'] === false ? false
+					: JPATH_ROOT . '/cache/twig';
+
+				// Instantiate the renderer object
+				$renderer = new TwigRenderer($rendererConfig);
 
 				// Add our Twig extension
 				$renderer->getRenderer()->addExtension(new TwigExtension($container->get('app')));
