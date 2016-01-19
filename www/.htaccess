@@ -156,7 +156,7 @@ RewriteRule (.*) index.php
 
 
 ###########################################
-# ======== Enable PHP 5.5 on host ========
+# ======== Enable PHP 7.0 on host ========
 
-AddHandler application/x-httpd-php55 .php .php5 .php4 .php3
+AddHandler application/x-httpd-php70 .php .php5 .php4 .php3
 ###########################################

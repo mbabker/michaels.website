@@ -12,7 +12,7 @@
 		}
 	],
 	"require"    : {
-		"php"                    : ">=5.5",
+		"php"                    : ">=7.0",
 		"joomla/application"     : "~1.2",
 		"joomla/authentication"  : "~1.0",
 		"joomla/controller"      : "~1.1",
@@ -26,7 +26,7 @@
 		"joomla/uri"             : "~1.1",
 		"joomla/view"            : "~2.0@dev",
 		"doctrine/orm"           : "~2.5",
-		"symfony/http-foundation": "~2.5",
+		"symfony/http-foundation": "3.0.*",
 		"twig/twig"              : "1.*",
 		"twig/extensions"        : "1.*"
 	},
@@ -36,7 +36,7 @@
 			"Extensions\\": "extensions/"
 		}
 	},
-    "config": {
-        "preferred-install": "dist"
-    }
+	"config": {
+		"preferred-install": "dist"
+	}
 }
