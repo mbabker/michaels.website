@@ -25,7 +25,7 @@
                             {% for user in users %}
                                 <tr>
                                     <td>{{ user.id }}</td>
-                                    <td><a href="{{ uri.base.full }}manager/users/edit/{{ user.id }}">{{ user.name }}</a></td>
+                                    <td><a href="{{ route('manager/users/edit/' ~ user.id) }}">{{ user.name }}</a></td>
                                     <td>{{ user.username }}</td>
                                     <td>{{ user.email }}</td>
                                 </tr>

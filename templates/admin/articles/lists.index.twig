@@ -13,7 +13,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Articles</h3>
                     <div class="box-tools">
-                        <a href="{{ uri.base.full }}manager/articles/add" type="submit" class="btn btn-default pull-right">Add New Article</a>
+                        <a href="{{ route('manager/articles/add') }}" type="submit" class="btn btn-default pull-right">Add New Article</a>
                     </div>
                 </div>
                 <div class="box-body no-padding">
@@ -30,12 +30,12 @@
                                 <tr>
                                     <td>{{ article.id }}</td>
                                     <td>
-                                        <a href="{{ uri.base.full }}manager/articles/edit/{{ article.id }}">{{ article.title }}</a><br />
+                                        <a href="{{ route('manager/articles/edit/' ~ article.id) }}">{{ article.title }}</a><br />
                                         <small>{{ article.alias }}</small>
                                     </td>
                                     <td>{{ article.category.title }}</td>
                                     <td>
-                                        {% if article.published and article.publishUp > now %}
+                                        {% if article.published and article.publishUp > date('now', 'UTC') %}
                                             <span class="label label-warning">Pending</span>
                                         {% elseif article.published %}
                                             <span class="label label-success">Published</span>

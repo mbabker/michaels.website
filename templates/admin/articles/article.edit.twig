@@ -13,7 +13,7 @@
                 <div class="box-header">
                     <h3 class="box-title">{% if isNew %}Add Article {% else %}Edit [{{ article.title }}]{% endif %}</h3>
                 </div>
-                <form role="form" method="post" action="{{ uri.base.full }}manager/articles/save/{{ article.id }}">
+                <form role="form" method="post" action="{{ route('manager/articles/save/' ~ article.id) }}">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="article_title">Title</label>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="article_publishUp">Start Publishing</label>
-                                <input type="text" class="form-control" id="article_publishUp" name="article[publishUp]" placeholder="Time the article should be published" value="{% if not isNew %}{{ renderDate(article.publishUp) }}{% endif %}" />
+                                <input type="text" class="form-control" id="article_publishUp" name="article[publishUp]" placeholder="Time the article should be published" value="{% if not isNew %}{{ article.publishUp|date }}{% endif %}" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="article_metadesc">Meta Description</label>
@@ -57,7 +57,7 @@
                     <div class="box-footer">
                         {% if not isNew %}<input type="hidden" name="article[id]" value="{{ article.id }}" />{% endif %}
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ uri.base.full }}manager/articles" class="btn btn-default">Cancel</a>
+                        <a href="{{ route('manager/articles') }}" class="btn btn-default">Cancel</a>
                     </div>
                 </form>
             </div>

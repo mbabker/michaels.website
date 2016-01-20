@@ -13,7 +13,7 @@
     <meta property="og:profile:gender" content="male" />
 {% endblock %}
 
-{% block headerBackground %}{{ uri.media.full }}img/castle.jpg{% endblock %}
+{% block headerBackground %}{{ asset('img/castle.jpg') }}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">
@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block content %}
-    <span class="pull-right" style="padding-left: 5px;"><img src="{{ uri.media.full }}img/about-michael.jpg" alt="Michael" width="90%"></span>
+    <span class="pull-right" style="padding-left: 5px;"><img src="{{ asset('img/about-michael.jpg') }}" alt="Michael" width="90%"></span>
     <p>Michael Babker is a multi talented IT professional and open source developer specializing in PHP based development. He has been developing for and contributing to the open source community for the last four years, specializing in Joomla based development. As part of his contributions to the Joomla project, he has served as a member of its Production Leadership Team and has been responsible for overseeing development of the Joomla CMS and Framework and served as the Release Lead for several of the 3.x CMS releases.</p>
     <p>Before focusing primarily on web development, he served for nine years in the US Army as an Information Technology Specialist and performed in several roles including Help Desk Team Leader, Network Administrator, System Administrator, and Information Assurance Security Officer. As a Sergeant in the Army, he was directly responsible for the morale, welfare, and professional development of a team of junior Soldiers.</p>
     <p>Michael holds an Associate of Arts in Information Technology with a concentration in Web Design and is currently CompTIA A+ certified.</p>
@@ -35,5 +35,5 @@
     <li>Nominated for the USINSCOM Quality/Customer Service Award - 2010</li>
     <li>Joomla Open Source Creative and Artistic Recognition - GitHub Junkie Award, J &amp; Beyond 2012</li>
     </ul>
-    <p style="text-align: center !important;"><a href="http://militarysignatures.com"><img style="max-width: 100%;" src="{{ uri.media.full }}img/mil-sig.png" alt="militarysignatures.com"></a></p>
+    <p style="text-align: center !important;"><a href="http://militarysignatures.com"><img style="max-width: 100%;" src="{{ asset('img/mil-sig.png') }}" alt="militarysignatures.com"></a></p>
 {% endblock %}

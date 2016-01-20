@@ -13,7 +13,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Edit [{{ user.name }}]</h3>
                 </div>
-                <form role="form" method="post" action="{{ uri.base.full }}manager/users/save/{{ user.id }}">
+                <form role="form" method="post" action="{{ route('manager/users/save/' ~ user.id) }}">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="user_name">Name</label>

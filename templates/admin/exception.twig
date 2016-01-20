@@ -1,18 +1,18 @@
 {% extends "index.twig" %}
 
-{% block htmlClass %}{% if not userAuthenticated %} class="bg-black"{% endif %}{% endblock %}
+{% block htmlClass %}{% if not userAuthenticated() %} class="bg-black"{% endif %}{% endblock %}
 
-{% block bodyClass %}{% if userAuthenticated %}skin-blue{% else %}bg-black{% endif %}{% endblock %}
+{% block bodyClass %}{% if userAuthenticated() %}skin-blue{% else %}bg-black{% endif %}{% endblock %}
 
 {% block title %}{{ exception.code ? exception.code ~ ' - ' : '' }}Error{% endblock %}
 
 {% block primaryContentContainer %}
-    {% if userAuthenticated %}
+    {% if userAuthenticated() %}
         {{ parent() }}
     {% else %}
     <div class="form-box" id="login-box">
         <div class="header">Sign In</div>
-        <form action="{{ uri.base.full }}manage" method="post">
+        <form action="{{ route('manage') }}" method="post">
             <div class="body bg-gray">
                 <div class="alert alert-danger">
                     <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
@@ -41,7 +41,7 @@
         <div class="error-content">
             <h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
             <p>Error Message: {{ exception.message|stripJRoot }}</p>
-            <p>Try <a href="{{ uri.base.full }}manager">returning to the dashboard.</a></p>
+            <p>Try <a href="{{ route('manager') }}">returning to the dashboard.</a></p>
         </div>
     </div>
 {% endblock %}

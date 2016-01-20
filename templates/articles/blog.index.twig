@@ -3,7 +3,7 @@
 {% block content %}
     {% for article in articles %}
         <div class="post-preview">
-            <a href="{{ uri.base.full }}{{ article.category.alias }}/{{ article.alias }}">
+            <a href="{{ route(article.category.alias ~ '/' ~ article.alias) }}">
                 <h2 class="post-title">
                     {{ article.title }}
                 </h2>
@@ -11,13 +11,13 @@
             <p class="post-meta">Posted by {{ article.createdBy.name }} on {{ article.publishUp|date('l, F j, Y') }}</p>
             <div class="row text-center">
                 <div class="col-sm-2">
-                    <div class="fb-like" data-href="{{ uri.base.full }}{{ article.category.alias }}/{{ article.alias }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true" style="display: inline-flex"></div>
+                    <div class="fb-like" data-href="{{ route(article.category.alias ~ '/' ~ article.alias) }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true" style="display: inline-flex"></div>
                 </div>
                 <div class="col-sm-2">
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ uri.base.full }}{{ article.category.alias }}/{{ article.alias }}" data-text="{{ article.title }}" data-via="mbabker">Tweet</a>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ route(article.category.alias ~ '/' ~ article.alias) }}" data-text="{{ article.title }}" data-via="mbabker">Tweet</a>
                 </div>
                 <div class="col-sm-2">
-                    <g:plusone size="medium" count="true" href="{{ uri.base.full }}{{ article.category.alias }}/{{ article.alias }}"></g:plusone>
+                    <g:plusone size="medium" count="true" href="{{ route(article.category.alias ~ '/' ~ article.alias) }}"></g:plusone>
                 </div>
             </div>
             <p>{{ getFirstParagraph(article.text) }}</p>

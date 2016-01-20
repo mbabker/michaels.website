@@ -13,7 +13,7 @@
                 <div class="box-header">
                     <h3 class="box-title">{% if isNew %}Add Category {% else %}Edit [{{ category.title }}]{% endif %}</h3>
                 </div>
-                <form role="form" method="post" action="{{ uri.base.full }}manager/{{ extension }}/categories/save/{{ category.id }}">
+                <form role="form" method="post" action="{{ route('manager/' ~ extension ~ '/categories/save/' ~ category.id) }}">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="category_title">Title</label>
@@ -33,7 +33,7 @@
                     <div class="box-footer">
                         {% if not isNew %}<input type="hidden" name="category[id]" value="{{ category.id }}" />{% endif %}
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="{{ uri.base.full }}manager/{{ extension }}/categories" class="btn btn-default">Cancel</a>
+                        <a href="{{ route('manager/' ~ extension ~ '/categories') }}" class="btn btn-default">Cancel</a>
                     </div>
                 </form>
             </div>

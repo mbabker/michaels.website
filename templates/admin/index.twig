@@ -1,4 +1,4 @@
-{% set routeParts = uri.route|split("/") %}
+{% set currentUser = getUser() %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"{% block htmlClass %}{% endblock %}>
@@ -18,13 +18,13 @@
         {% block headCSS %}
             <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href="{{ uri.media.full }}css/AdminLTE.css" rel="stylesheet" type="text/css">
+            <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet" type="text/css">
         {% endblock %}
     </head>
     <body class="{% block bodyClass %}skin-blue{% endblock %}">
         {% block primaryContentContainer %}
             <header class="header">
-                <a href="{{ uri.base.full }}manager" class="logo">
+                <a href="{{ route('manager') }}" class="logo">
                     Michael's Website
                 </a>
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -51,7 +51,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{{ uri.base.full }}logout" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -72,8 +72,8 @@
                             </div>
                         </div>
                         <ul class="sidebar-menu">
-                            <li class="{{ uri.route == "manager" ? "active" : "" }}">
-                                <a href="{{ uri.base.full }}manager">
+                            <li class="{{ currentRoute('manager') ? "active" : "" }}">
+                                <a href="{{ route('manager') }}">
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                 </a>
                             </li>
@@ -84,12 +84,12 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li class="{{ ((routeParts[1] == "articles") and (routeParts[2] != "categories")) ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles"><i class="fa fa-angle-double-right"></i> Articles</a></li>
-                                    <li class="{{ routeParts[2] == "categories" ? " active" : "" }}"><a href="{{ uri.base.full }}manager/articles/categories"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+                                    <li class="{{ currentRoute('manager/articles') ? " active" : "" }}"><a href="{{ route('manager/articles') }}"><i class="fa fa-angle-double-right"></i> Articles</a></li>
+                                    <li class="{{ currentRoute('manager/articles/categories') ? " active" : "" }}"><a href="{{ route('manager/articles/categories') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
                                 </ul>
                             </li>
                             <li class="{{ routeParts[1] == "users" ? "active" : "" }}">
-                                <a href="{{ uri.base.full }}manager/users">
+                                <a href="{{ route('manager/users') }}">
                                     <i class="fa fa-users"></i> <span>User Manager</span>
                                 </a>
                             </li>
@@ -100,12 +100,12 @@
                     <section class="content-header">
                         <h1>{% block contentHeaderText %}{% endblock %}</h1>
                         <ol class="breadcrumb">
-                            <li><a href="{{ uri.base.full }}manager"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li><a href="{{ route('manager') }}"><i class="fa fa-dashboard"></i> Home</a></li>
                             {% block breadcrumb %}{% endblock %}
                         </ol>
                     </section>
                     <section class="content">
-                        {% for type, flashMessages in messages %}
+                        {% for type, flashMessages in messageQueue() %}
                             {% for flashMessage in flashMessages %}
                                 <div class="alert alert-{{ type }}">
                                     {{ flashMessage }}
@@ -120,7 +120,7 @@
         {% block bodyJavaScript %}
             <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-            <script src="{{ uri.media.full }}js/AdminLTE.js"></script>
+            <script src="{{ asset('js/AdminLTE.js') }}"></script>
         {% endblock %}
     </body>
 </html>

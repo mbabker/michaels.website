@@ -7,9 +7,9 @@
 {% block primaryContentContainer %}
     <div class="form-box" id="login-box">
         <div class="header">Sign In</div>
-        <form action="{{ uri.base.full }}manage" method="post">
+        <form action="{{ route('manage') }}" method="post">
             <div class="body bg-gray">
-                {% for type, flashMessages in messages %}
+                {% for type, flashMessages in messageQueue() %}
                     {% for flashMessage in flashMessages %}
                         <div class="alert alert-{{ type }}">
                             {{ flashMessage }}
