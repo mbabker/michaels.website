@@ -192,7 +192,7 @@ class TwigExtension extends \Twig_Extension
 	 *
 	 * @since   1.0
 	 */
-	public function getRequestUri($route)
+	public function getRequestUri()
 	{
 		return $this->app->get('uri.request');
 	}

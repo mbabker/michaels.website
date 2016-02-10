@@ -25,6 +25,7 @@ require JPATH_ROOT . '/vendor/autoload.php';
 try
 {
 	$container = (new Joomla\DI\Container)
+		->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider)
 		->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
 		->registerServiceProvider(new BabDev\Website\Service\DoctrineProvider)
 		->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider);
@@ -35,6 +36,8 @@ try
 }
 catch (\Exception $e)
 {
+	error_log($e);
+
 	header('HTTP/1.1 500 Internal Server Error', null, 500);
 	header('Content-Type: text/html; charset=utf-8');
 	echo 'An error occurred while booting the application: ' . $e->getMessage();
@@ -45,10 +48,13 @@ catch (\Exception $e)
 // Execute the application
 try
 {
-	(new BabDev\Website\Application($container))->execute();
+	$container->get(BabDev\Website\Application::class)->execute();
 }
 catch (\Exception $e)
 {
+	var_dump($e);die;
+	error_log($e);
+
 	header('HTTP/1.1 500 Internal Server Error', null, 500);
 	header('Content-Type: text/html; charset=utf-8');
 	echo 'An error occurred while executing the application: ' . $e->getMessage();

@@ -14,16 +14,13 @@ use BabDev\Website\Controller\AdminController;
 use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Entity\User;
 use BabDev\Website\Model\DefaultModel;
-
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
-use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
 use Joomla\View\BaseHtmlView;
-
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -45,34 +42,20 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	private $newSession = null;
 
 	/**
+	 * Application router.
+	 *
+	 * @var    Router
+	 * @since  1.0
+	 */
+	private $router;
+
+	/**
 	 * The User object.
 	 *
 	 * @var    User
 	 * @since  1.0
 	 */
 	private $user;
-
-	/**
-	 * Constructor
-	 *
-	 * @param   Container  $container  DI Container
-	 *
-	 * @since   1.0
-	 */
-	public function __construct(Container $container)
-	{
-		parent::__construct(null, $container->get('config'));
-
-		$container->set('BabDev\\Website\\Application', $this)
-			->alias('Joomla\\Application\\AbstractWebApplication', 'BabDev\\Website\\Application')
-			->alias('Joomla\\Application\\AbstractApplication', 'BabDev\\Website\\Application')
-			->alias('app', 'BabDev\\Website\\Application')
-			->set('Joomla\\Input\\Input', $this->input)
-			->set('Joomla\\DI\\Container', $container);
-
-		$this->setContainer($container);
-		$this->createFactory();
-	}
 
 	/**
 	 * Clear the system message queue.
@@ -444,6 +427,22 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	public function setMessageQueue($type, $message = '')
 	{
 		$this->getSession()->getFlashBag()->set($type, $message);
+	}
+
+	/**
+	 * Set the application's router.
+	 *
+	 * @param   Router  $router  Router object to set.
+	 *
+	 * @return  $this
+	 *
+	 * @since   1.0
+	 */
+	public function setRouter(Router $router)
+	{
+		$this->router = $router;
+
+		return $this;
 	}
 
 	/**
