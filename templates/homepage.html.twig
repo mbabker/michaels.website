@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% include 'partials/blog_list.html.twig' with {'articles': articles} %}
+{% endblock %}
