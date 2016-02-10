@@ -36,12 +36,12 @@
     <ul class="pager">
         {% if article.previous %}
         <li class="previous">
-            <a href="{{ route('blog/' ~ article.previous) }}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Previous Post</a>
+            <a href="{{ route('blog/' ~ article.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
         </li>
         {% endif %}
         {% if article.next %}
         <li class="next">
-            <a href="{{ route('blog/' ~ article.next) }}">Next Post <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+            <a href="{{ route('blog/' ~ article.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
         </li>
         {% endif %}
     </ul>
