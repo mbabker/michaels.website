@@ -1,37 +1,48 @@
 {% extends 'base.html.twig' %}
+{% set article = getPage('blog', item) %}
 
-{% block title %}{{ article.category.title }} - {{ article.title }}{% endblock %}
-
-{% block metaDescription %}{% if article.params.metadesc is empty %}{{ parent() }}{% else %}{{ article.params.metadesc|truncate(200, true) }}{% endif %}{% endblock %}
+{% block title %}Blog - {{ article.title }}{% endblock %}
 
 {% block metaOgType %}article{% endblock %}
 
 {% block metadata %}
-    <meta property="og:article:published_time" content="{{ article.publishUp|date('c') }}" />
-    <meta property="og:article:modified_time" content="{{ article.dateModified|date('c') }}" />
-    <meta property="og:article:author" content="{{ article.createdBy.name }}" />
+    <meta property="og:article:published_time" content="{{ article.publish_up|date('c') }}" />
+    <meta property="og:article:modified_time" content="{{ article.date_modified|date('c') }}" />
+    <meta property="og:article:author" content="{{ article.author }}" />
 {% endblock %}
 
-{% block headerBackground %}{% if article.params.image is empty %}{{ parent() }}{% else %}{{ asset('img/' ~ article.params.image) }}{% endif %}{% endblock %}
+{% block headerBackground %}{% if article.image is empty %}{{ parent() }}{% else %}{{ asset('img/' ~ article.image) }}{% endif %}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">
         <h1>{{ article.title }}</h1>
-        <span class="meta">Posted by {{ article.createdBy.name }} on {{ article.publishUp|date('l, F j, Y') }}</span>
+        <span class="meta">Posted by {{ article.author }} on {{ article.publish_up|date('l, F j, Y') }}</span>
     </div>
 {% endblock %}
 
 {% block content %}
     <div class="row text-center">
         <div class="col-sm-2">
-            <div class="fb-like" data-href="{{ route(article.category.alias ~ '/' ~ article.alias) }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true" style="display: inline-flex"></div>
+            <div class="fb-like" data-href="{{ route('blog/' ~ article.alias) }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true" style="display: inline-flex"></div>
         </div>
         <div class="col-sm-2">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ route(article.category.alias ~ '/' ~ article.alias) }}" data-text="{{ article.title }}" data-via="mbabker">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ route('blog/' ~ article.alias) }}" data-text="{{ article.title }}" data-via="mbabker">Tweet</a>
         </div>
         <div class="col-sm-2">
-            <g:plusone size="medium" count="true" href="{{ route(article.category.alias ~ '/' ~ article.alias) }}"></g:plusone>
+            <g:plusone size="medium" count="true" href="{{ route('blog/' ~ article.alias) }}"></g:plusone>
         </div>
     </div>
     {{ article.text|raw }}
+    <ul class="pager">
+        {% if article.previous %}
+        <li class="previous">
+            <a href="{{ route('blog/' ~ article.previous) }}"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Previous Post</a>
+        </li>
+        {% endif %}
+        {% if article.next %}
+        <li class="next">
+            <a href="{{ route('blog/' ~ article.next) }}">Next Post <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+        </li>
+        {% endif %}
+    </ul>
 {% endblock %}

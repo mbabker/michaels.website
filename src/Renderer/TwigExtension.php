@@ -11,6 +11,8 @@ namespace BabDev\Website\Renderer;
 use BabDev\Website\Application;
 use BabDev\Website\Entity\User;
 use BabDev\Website\Factory;
+use Joomla\Filesystem\Folder;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Twig extension class
@@ -68,6 +70,8 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_SimpleFunction('route', [$this, 'getRouteUri']),
 			new \Twig_SimpleFunction('currentRoute', [$this, 'isCurrentRoute']),
 			new \Twig_SimpleFunction('requestURI', [$this, 'getRequestUri']),
+			new \Twig_SimpleFunction('getPage', [$this, 'getPage']),
+			new \Twig_SimpleFunction('getPages', [$this, 'getPages'])
 		];
 	}
 
@@ -116,6 +120,61 @@ class TwigExtension extends \Twig_Extension
 		preg_match("/<p>(.*)<\/p>/", $text, $matches);
 
 		return strip_tags(html_entity_decode($matches[1], ENT_QUOTES, 'UTF-8'));
+	}
+
+	/**
+	 * Get the requested page
+	 *
+	 * @param   string  $section  The section to lookup
+	 * @param   string  $page     The page to lookup in the section
+	 *
+	 * @return  array
+	 *
+	 * @since   1.0
+	 * @throws  \InvalidArgumentException
+	 */
+	public function getPage($section, $page)
+	{
+		$lookupPath = JPATH_ROOT . '/pages/' . $section;
+
+		$files = Folder::files($lookupPath, '.yml');
+
+		foreach ($files as $file)
+		{
+			$parts = explode('_', $file);
+
+			if ($parts[1] === $page . '.yml')
+			{
+				return (new Parser)->parse(file_get_contents($lookupPath . '/' . $file));
+			}
+		}
+
+		throw new \InvalidArgumentException(sprintf('Unable to handle request for route `%s`.', $this->app->get('uri.route')), 404);
+	}
+
+	/**
+	 * Get all pages in a section
+	 *
+	 * @param   string  $section  The section to lookup
+	 *
+	 * @return  array
+	 *
+	 * @since   1.0
+	 */
+	public function getPages($section)
+	{
+		$lookupPath = JPATH_ROOT . '/pages/' . $section;
+
+		$files = Folder::files($lookupPath, '.yml');
+		$pages = [];
+
+		foreach ($files as $file)
+		{
+			$parts = explode('_', $file);
+			$pages[$parts[0]] = (new Parser)->parse(file_get_contents($lookupPath . '/' . $file));
+		}
+
+		return $pages;
 	}
 
 	/**

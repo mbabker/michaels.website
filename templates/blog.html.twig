@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {% include 'partials/blog_list.html.twig' with {'articles': articles} %}
+    {% include 'partials/blog_list.html.twig' with {'articles': getPages('blog'), 'section': 'blog'} %}
 {% endblock %}

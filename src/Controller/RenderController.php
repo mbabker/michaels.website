@@ -83,7 +83,7 @@ class RenderController extends AbstractController
 			throw new \InvalidArgumentException(sprintf('Unable to handle request for route `%s`.', $route), 404);
 		}
 
-		$this->getApplication()->setBody($this->renderer->render($layout));
+		$this->getApplication()->setBody($this->renderer->render($layout, ['item' => $item]));
 
 		return true;
 	}
