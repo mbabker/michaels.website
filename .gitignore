@@ -10,3 +10,4 @@
 
 # Configuration #
 /etc/config.json
+/.php_cs.cache

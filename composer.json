@@ -26,6 +26,9 @@
         "twig/twig": "1.*",
         "twig/extensions": "1.*"
     },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "~1.11"
+    },
     "autoload": {
         "psr-4": {
             "BabDev\\Website\\": "src/"
