@@ -1,5 +1,0 @@
-{
-	"manager/:extension/categories": "\\Categories\\Controller\\DefaultController",
-	"manager/:extension/categories/:task": "\\Categories\\Controller\\DefaultController",
-	"manager/:extension/categories/:task/*id": "\\Categories\\Controller\\DefaultController"
-}

@@ -1,12 +1,4 @@
 {
-	"database": {
-		"driver"  : "mysqli",
-		"host"    : "",
-		"user"    : "",
-		"password": "",
-		"name"    : "",
-		"debug"   : false
-	},
 	"template": {
 		"renderer" : "twig",
 		"path"     : "/absolute/path/to/templates",

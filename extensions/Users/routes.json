@@ -1,6 +1,0 @@
-{
-	"manage": "\\Users\\Controller\\LoginController",
-	"logout": "\\Users\\Controller\\LogoutController",
-	"manager/users": "\\Users\\Controller\\DefaultController",
-	"manager/users/:task/:id": "\\Users\\Controller\\DefaultController"
-}

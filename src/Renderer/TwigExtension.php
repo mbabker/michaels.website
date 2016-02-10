@@ -28,21 +28,6 @@ class TwigExtension extends \Twig_Extension
 	private $app;
 
 	/**
-	 * Container for the admin breadcrumbs
-	 *
-	 * @var    array
-	 * @since  1.0
-	 */
-	private $breadcrumbLookup = [
-		'article'    => '<i class="fa fa-newspaper-o"></i> Article',
-		'articles'   => '<i class="fa fa-book"></i> Article Manager',
-		'categories' => '<i class="fa fa-list"></i> Category Manager',
-		'category'   => '<i class="fa fa-ellipsis-h"></i> Category',
-		'users'      => '<i class="fa fa-users"></i> User Manager',
-		'user'       => '<i class="fa fa-user"></i> User'
-	];
-
-	/**
 	 * Constructor
 	 *
 	 * @param   Application  $app  The application object
@@ -78,17 +63,11 @@ class TwigExtension extends \Twig_Extension
 		return [
 			new \Twig_SimpleFunction('sprintf', 'sprintf'),
 			new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
-			new \Twig_SimpleFunction('gravatar', [$this, 'getGravatar']),
-			new \Twig_SimpleFunction('getBreadcrumb', [$this, 'getBreadcrumb']),
-			new \Twig_SimpleFunction('getCategoryList', [$this, 'getCategoryList']),
 			new \Twig_SimpleFunction('getFirstParagraph', [$this, 'getFirstParagraph']),
 			new \Twig_SimpleFunction('asset', [$this, 'getAssetUri']),
 			new \Twig_SimpleFunction('route', [$this, 'getRouteUri']),
 			new \Twig_SimpleFunction('currentRoute', [$this, 'isCurrentRoute']),
 			new \Twig_SimpleFunction('requestURI', [$this, 'getRequestUri']),
-			new \Twig_SimpleFunction('userAuthenticated', [$this, 'isAuthenticated']),
-			new \Twig_SimpleFunction('getUser', [$this, 'getUser']),
-			new \Twig_SimpleFunction('messageQueue', [$this, 'getMessageQueue']),
 		];
 	}
 
@@ -124,37 +103,6 @@ class TwigExtension extends \Twig_Extension
 	}
 
 	/**
-	 * Retrieves the breadcrumb item for a given key
-	 *
-	 * @param   string  $key  The string to process
-	 *
-	 * @return  string
-	 *
-	 * @since   1.0
-	 */
-	public function getBreadcrumb($key)
-	{
-		return $this->breadcrumbLookup[$key];
-	}
-
-	/**
-	 * Retrieves the list of categories for a given extension
-	 *
-	 * @param   string  $extension  The extension to process
-	 *
-	 * @return  array
-	 *
-	 * @since   1.0
-	 */
-	public function getCategoryList($extension)
-	{
-		/** @var \BabDev\Website\Entity\CategoryRepository $repo */
-		$repo = Factory::get('repository', '\\BabDev\\Website\\Entity\\Category');
-
-		return $repo->getCategoryList($extension);
-	}
-
-	/**
 	 * Retrieves the first paragraph of text for an article
 	 *
 	 * @param   string  $text  Article text to search
@@ -168,21 +116,6 @@ class TwigExtension extends \Twig_Extension
 		preg_match("/<p>(.*)<\/p>/", $text, $matches);
 
 		return strip_tags(html_entity_decode($matches[1], ENT_QUOTES, 'UTF-8'));
-	}
-
-	/**
-	 * Get the specified user's gravatar
-	 *
-	 * @param   string   $email  E-mail address to lookup
-	 * @param   integer  $size   Size in pixels of the image
-	 *
-	 * @return  string
-	 *
-	 * @since   1.0
-	 */
-	public function getGravatar($email, $size = 50)
-	{
-		return 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) . '&s=' . $size;
 	}
 
 	/**
@@ -209,47 +142,6 @@ class TwigExtension extends \Twig_Extension
 	public function getRouteUri($route)
 	{
 		return $this->app->get('uri.base.full') . $route;
-	}
-
-	/**
-	 * Retrieves and clear the system message queue
-	 *
-	 * @return  array
-	 *
-	 * @since   1.0
-	 */
-	public function getMessageQueue()
-	{
-		$messages = $this->app->getMessageQueue();
-		$this->app->clearMessageQueue();
-
-		return $messages;
-	}
-
-	/**
-	 * Retrieves a User object
-	 *
-	 * @param   integer  $id  The user id or the current user.
-	 *
-	 * @return  User
-	 *
-	 * @since   1.0
-	 */
-	public function getUser($id = 0)
-	{
-		return $this->app->getUser($id);
-	}
-
-	/**
-	 * Check if the user is authenticated
-	 *
-	 * @return  boolean
-	 *
-	 * @since   1.0
-	 */
-	public function isAuthenticated()
-	{
-		return $this->app->getUser()->isAuthenticated();
 	}
 
 	/**

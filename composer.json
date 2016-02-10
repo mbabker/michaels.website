@@ -1,42 +1,35 @@
 {
-	"name"       : "babdev/michaels-website",
-	"description": "Source code for https://michaels.website",
-	"license"    : "GPL-2.0+",
-	"type"       : "project",
-	"authors"    : [
-		{
-			"name"    : "Michael Babker",
-			"email"   : "michael.babker@gmail.com",
-			"homepage": "https://www.babdev.com",
-			"role"    : "Developer"
-		}
-	],
-	"require"    : {
-		"php"                    : ">=7.0",
-		"joomla/application"     : "~1.2",
-		"joomla/authentication"  : "~1.0",
-		"joomla/controller"      : "~1.1",
-		"joomla/date"            : "~1.1",
-		"joomla/di"              : "~1.2",
-		"joomla/filter"          : "~1.1",
-		"joomla/model"           : "~1.1",
-		"joomla/registry"        : "~1.2",
-		"joomla/renderer"        : "~2.0@dev",
-		"joomla/router"          : "~1.1",
-		"joomla/uri"             : "~1.1",
-		"joomla/view"            : "~2.0@dev",
-		"doctrine/orm"           : "~2.5",
-		"symfony/http-foundation": "3.0.*",
-		"twig/twig"              : "1.*",
-		"twig/extensions"        : "1.*"
-	},
-	"autoload"   : {
-		"psr-4": {
-			"BabDev\\Website\\": "src/",
-			"Extensions\\": "extensions/"
-		}
-	},
-	"config": {
-		"preferred-install": "dist"
-	}
+    "name": "babdev/michaels-website",
+    "description": "Source code for https://michaels.website",
+    "license": "GPL-2.0+",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Michael Babker",
+            "email": "michael.babker@gmail.com",
+            "homepage": "https://www.babdev.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "joomla/application": "~1.2",
+        "joomla/controller": "~1.1",
+        "joomla/di": "~1.2",
+        "joomla/filter": "~1.1",
+        "joomla/registry": "~1.2",
+        "joomla/renderer": "~2.0@dev",
+        "joomla/router": "~1.1",
+        "joomla/uri": "~1.1",
+        "twig/twig": "1.*",
+        "twig/extensions": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "BabDev\\Website\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
 }

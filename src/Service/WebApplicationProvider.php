@@ -47,8 +47,6 @@ class WebApplicationProvider implements ServiceProviderInterface
 					$application->setContainer($container);
 					$application->setRouter($container->get(Router::class));
 
-					$application->createFactory();
-
 					return $application;
 				},
 				true
