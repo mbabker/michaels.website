@@ -68,9 +68,11 @@ class WebApplicationProvider implements ServiceProviderInterface
 			function (Container $container)
 			{
 				$router = (new Router($container->get(Input::class)))
-					->setContainer($container)
 					->setControllerPrefix('BabDev\\Website\\Controller\\')
-					->addMap('/:source', 'RenderController');
+					->setDefaultController('RenderController')
+					->addMap('/:slug', 'RenderController')
+					->addMap('/:slug/*', 'RenderController')
+					->setContainer($container);
 
 				return $router;
 			},

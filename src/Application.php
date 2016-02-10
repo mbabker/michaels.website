@@ -10,17 +10,13 @@ namespace BabDev\Website;
 
 use BabDev\Website\Authentication\AuthenticationException;
 use BabDev\Website\Authentication\DatabaseStrategy;
-use BabDev\Website\Controller\AdminController;
-use BabDev\Website\Controller\DefaultController;
 use BabDev\Website\Entity\User;
-use BabDev\Website\Model\DefaultModel;
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Authentication\Authentication;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
-use Joomla\View\BaseHtmlView;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
@@ -92,49 +88,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	{
 		try
 		{
-			// Instantiate the router
-			$router = (new Router($this->input))
-				->setControllerPrefix('\\Extensions')
-				->setDefaultController('\\Articles\\Controller\\BlogController')
-				->addMap('/about', '\\Articles\\Controller\\AboutController')
-				->addMap('/speaking', '\\Articles\\Controller\\SpeakingController');
-
-			// Search for extension specific routes
-			/* @type \DirectoryIterator $fileInfo */
-			foreach (new \DirectoryIterator(JPATH_ROOT . '/extensions') as $fileInfo)
-			{
-				if ($fileInfo->isDot())
-				{
-					continue;
-				}
-
-				$path = realpath(JPATH_ROOT . '/extensions/' . $fileInfo->getFilename() . '/routes.json');
-
-				if ($path)
-				{
-					$maps = json_decode(file_get_contents($path));
-
-					if (!$maps)
-					{
-						throw new \RuntimeException('Invalid router file - ' . $path, 500);
-					}
-
-					$router->addMaps($maps);
-				}
-			}
-
-			// Fetch the controller
-			/* @type  \Joomla\Controller\AbstractController  $controller */
-			$controller = $router->getController($this->get('uri.route'));
-
-			// Inject the DI container and application into the controller and execute it
-			$controller->setContainer($this->getContainer())->setApplication($this)->execute();
+			// Fetch and execute the controller
+			$this->router->getController($this->get('uri.route'))->execute();
 		}
-		catch (\Exception $exception)
+		catch (\Throwable $throwable)
 		{
-			$admin = isset($controller) ? ($controller instanceof AdminController) : (strpos($this->get('uri.route'), 'manager') !== false) ? true : false;
-			$this->setErrorHeader($exception);
-			$this->setErrorOutput($exception, $admin);
+			$this->setErrorHeader($throwable);
+			$this->setErrorOutput($throwable);
 		}
 	}
 
@@ -345,13 +305,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	/**
 	 * Set the HTTP Response Header for error conditions
 	 *
-	 * @param   \Exception  $exception  The Exception object
+	 * @param   \Throwable  $throwable  The Throwable object
 	 *
 	 * @return  void
 	 *
 	 * @since   1.0
 	 */
-	private function setErrorHeader(\Exception $exception)
+	private function setErrorHeader(\Throwable $exception)
 	{
 		switch ($exception->getCode())
 		{
@@ -371,14 +331,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
 	/**
 	 * Set the body for error conditions
 	 *
-	 * @param   \Exception  $exception  The Exception object
-	 * @param   boolean     $admin      Flag if the route was to an admin view
+	 * @param   \Throwable  $throwable  The Throwable object
 	 *
 	 * @return  void
 	 *
 	 * @since   1.0
 	 */
-	private function setErrorOutput(\Exception $exception, $admin)
+	private function setErrorOutput(\Throwable $exception)
 	{
 		switch (strtolower($this->input->getWord('format', 'html')))
 		{
@@ -395,18 +354,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
 			case 'html' :
 			default :
-				// Build a default view object and render with the exception layout
-				$view = new BaseHtmlView(new DefaultModel($this->getContainer()->get('doctrine')->getManager()), $this->getContainer()->get('renderer'));
-
-				if ($admin)
-				{
-					if (is_dir(JPATH_TEMPLATES . '/admin'))
-					{
-						$view->getRenderer()->getRenderer()->getLoader()->prependPath(JPATH_TEMPLATES . '/admin');
-					}
-				}
-
-				$body = $view->setLayout('exception')->setData(['exception' => $exception])->render();
+				$body = $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $exception]);
 
 				break;
 		}
