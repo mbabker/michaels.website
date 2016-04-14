@@ -14,35 +14,37 @@ if (!file_exists(JPATH_ROOT . '/vendor/autoload.php')) {
 
 require JPATH_ROOT . '/vendor/autoload.php';
 
-// Wrap in a try/catch so we can display an error if need be
-try {
-    $container = (new Joomla\DI\Container)
-        ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-        ->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider)
-        ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider);
+(function () {
+    // Wrap in a try/catch so we can display an error if need be
+    try {
+        $container = (new Joomla\DI\Container)
+            ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
+            ->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider)
+            ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider);
 
-    // Set error reporting based on config
-    $errorReporting = (int)$container->get('config')->get('errorReporting', 0);
-    error_reporting($errorReporting);
-} catch (\Throwable $t) {
-    error_log($t);
+        // Set error reporting based on config
+        $errorReporting = (int) $container->get('config')->get('errorReporting', 0);
+        error_reporting($errorReporting);
+    } catch (\Throwable $t) {
+        error_log($t);
 
-    header('HTTP/1.1 500 Internal Server Error', null, 500);
-    header('Content-Type: text/html; charset=utf-8');
-    echo 'An error occurred while booting the application: ' . $t->getMessage();
+        header('HTTP/1.1 500 Internal Server Error', null, 500);
+        header('Content-Type: text/html; charset=utf-8');
+        echo 'An error occurred while booting the application: ' . $t->getMessage();
 
-    exit;
-}
+        exit;
+    }
 
-// Execute the application
-try {
-    $container->get(BabDev\Website\Application::class)->execute();
-} catch (\Throwable $t) {
-    error_log($t);
+    // Execute the application
+    try {
+        $container->get(BabDev\Website\Application::class)->execute();
+    } catch (\Throwable $t) {
+        error_log($t);
 
-    header('HTTP/1.1 500 Internal Server Error', null, 500);
-    header('Content-Type: text/html; charset=utf-8');
-    echo 'An error occurred while executing the application: ' . $t->getMessage();
+        header('HTTP/1.1 500 Internal Server Error', null, 500);
+        header('Content-Type: text/html; charset=utf-8');
+        echo 'An error occurred while executing the application: ' . $t->getMessage();
 
-    exit;
-}
+        exit;
+    }
+})();
