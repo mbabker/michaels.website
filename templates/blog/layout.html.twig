@@ -21,7 +21,9 @@
 {% endblock %}
 
 {% block content %}
-    {{ article.text|raw }}
+    <article>
+        {{ article.text|raw }}
+    </article>
     <ul class="pager">
         {% if article.previous %}
         <li class="previous">

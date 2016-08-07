@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xml:lang="en" lang="en" dir="ltr">
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,22 +20,19 @@
         <title>{% block title %}Michael's Website{% endblock %}</title>
         {% block headJavaScript %}{% endblock %}
         {% block headCSS %}
-            <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-            <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet" type="text/css">
-            <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-            <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+            <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navbar">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ route('') }}">Michael's Website</a>
                 </div>
@@ -62,45 +59,61 @@
                 </div>
             </div>
         </header>
-        <div class="container">
+        <main class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     {% block content %}{% endblock %}
                 </div>
             </div>
-        </div>
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        <ul class="list-inline text-center">
-                            <li>
-                                <a href="https://twitter.com/mbabker">
-                                    <span class="fa-stack fa-lg" aria-hidden="true">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <span class="sr-only">Twitter</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/mbabker">
-                                    <span class="fa-stack fa-lg" aria-hidden="true">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                    <span class="sr-only">GitHub</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-muted">&copy; 2014 - {{ now|date('Y') }} Michael Babker</p>
-                    </div>
+        </main>
+        <footer class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/mbabker">
+                                <span class="fa-stack fa-lg" aria-hidden="true">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sr-only">Twitter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mbabker">
+                                <span class="fa-stack fa-lg" aria-hidden="true">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sr-only">GitHub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/mbabker">
+                                <span class="fa-stack fa-lg" aria-hidden="true">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sr-only">LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://volunteers.joomla.org/joomlers/michael-babker">
+                                <span class="fa-stack fa-lg" aria-hidden="true">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-joomla fa-stack-1x fa-inverse"></i>
+                                </span>
+                                <span class="sr-only">Joomla!</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">&copy; 2014 - {{ now|date('Y') }} Michael Babker</p>
                 </div>
             </div>
         </footer>
         {% block bodyJavaScript %}
-            <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="{{ asset('js/clean-blog.min.js') }}"></script>
             <script>
                 (function(i, s, o, g, r, a, m) {
