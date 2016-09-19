@@ -3,8 +3,13 @@
 {% block title %}{{ exception.code ? exception.code ~ ' - ' : '' }}Error{% endblock %}
 
 {% block content %}
-    <div class="alert alert-danger">
-        <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
-        <p>{{ exception.message|stripJRoot }}</p>
-    </div>
+    {% if exception.code == 404 %}
+        <h2>I still haven't found what you're looking for...</h2>
+        <p>I tried my best, but I just couldn't find it. Sorry about that.</p>
+    {% else %}
+        <div class="alert alert-danger">
+            <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
+            <p>{{ exception.message|stripJRoot }}</p>
+        </div>
+    {% endif %}
 {% endblock %}
