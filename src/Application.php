@@ -40,13 +40,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
     {
         // Set the MIME for the application based on format
         switch (strtolower($this->input->getWord('format', 'html'))) {
-            case 'json' :
+            case 'json':
                 $this->mimeType = 'application/json';
 
                 break;
 
             // Don't need to do anything for the default case
-            default :
+            default:
                 break;
         }
     }
@@ -59,13 +59,13 @@ final class Application extends AbstractWebApplication implements ContainerAware
     private function setErrorHeader(\Throwable $throwable)
     {
         switch ($throwable->getCode()) {
-            case 404 :
+            case 404:
                 $this->setHeader('HTTP/1.1 404 Not Found', 404, true);
 
                 break;
 
-            case 500 :
-            default  :
+            case 500:
+            default:
                 $this->setHeader('HTTP/1.1 500 Internal Server Error', 500, true);
 
                 break;
@@ -80,7 +80,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
     private function setErrorOutput(\Throwable $throwable)
     {
         switch (strtolower($this->input->getWord('format', 'html'))) {
-            case 'json' :
+            case 'json':
                 $data = [
                     'code'    => $throwable->getCode(),
                     'message' => $throwable->getMessage(),
@@ -91,8 +91,8 @@ final class Application extends AbstractWebApplication implements ContainerAware
 
                 break;
 
-            case 'html' :
-            default :
+            case 'html':
+            default:
                 $body = $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable]);
 
                 break;
