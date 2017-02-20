@@ -34,24 +34,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function initialise()
-    {
-        // Set the MIME for the application based on format
-        switch (strtolower($this->input->getWord('format', 'html'))) {
-            case 'json':
-                $this->mimeType = 'application/json';
-
-                break;
-
-            // Don't need to do anything for the default case
-            default:
-                break;
-        }
-    }
-
-    /**
      * Set the HTTP Response Header for error conditions.
      *
      * @param \Throwable $throwable The Throwable object
@@ -79,26 +61,9 @@ final class Application extends AbstractWebApplication implements ContainerAware
      */
     private function setErrorOutput(\Throwable $throwable)
     {
-        switch (strtolower($this->input->getWord('format', 'html'))) {
-            case 'json':
-                $data = [
-                    'code'    => $throwable->getCode(),
-                    'message' => $throwable->getMessage(),
-                    'error'   => true,
-                ];
-
-                $body = json_encode($data);
-
-                break;
-
-            case 'html':
-            default:
-                $body = $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable]);
-
-                break;
-        }
-
-        $this->setBody($body);
+        $this->setBody(
+            $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable])
+        );
     }
 
     /**
