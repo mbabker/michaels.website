@@ -2,6 +2,7 @@
 
 namespace BabDev\Website\Renderer;
 
+use BabDev\Website\Model\BlogPostModel;
 use Joomla\Filesystem\Folder;
 use Symfony\Component\Yaml\Parser;
 
@@ -24,7 +25,7 @@ class TwigExtension extends \Twig_Extension
             new \Twig_Function('currentRoute', [TwigRuntime::class, 'isCurrentRoute']),
             new \Twig_Function('requestURI', [TwigRuntime::class, 'getRequestUri']),
             new \Twig_Function('getPage', [$this, 'getPage']),
-            new \Twig_Function('getPages', [$this, 'getPages']),
+            new \Twig_Function('get_all_blog_posts', [BlogPostModel::class, 'getPosts']),
         ];
     }
 

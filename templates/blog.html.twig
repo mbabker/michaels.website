@@ -1,5 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Blog | {{ parent() }}{% endblock %}
+
+{% block metaDescription %}Michael Babker's Blog{% endblock %}
+
+{% block pageHeadingText %}
+    <div class="site-heading">
+        <h1>Michael's Blog</h1>
+        <hr class="small">
+        <span class="subheading">My random thoughts and ramblings.</span>
+    </div>
+{% endblock %}
+
 {% block content %}
-    {% include 'partials/blog_list.html.twig' with {'articles': getPages('blog'), 'section': 'blog'} %}
+    {% include 'partials/blog_list.html.twig' with {'articles': get_all_blog_posts()} %}
 {% endblock %}
