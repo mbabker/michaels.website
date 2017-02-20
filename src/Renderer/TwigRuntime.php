@@ -59,18 +59,6 @@ class TwigRuntime
     }
 
     /**
-     * Check if a route is the route for the current page.
-     *
-     * @param string $route The route to process
-     *
-     * @return bool
-     */
-    public function isCurrentRoute(string $route): bool
-    {
-        return $this->app->get('uri.route') === $route;
-    }
-
-    /**
      * Render the pagination for this page.
      *
      * @param Pagerfanta $pagerfanta The pagination object
