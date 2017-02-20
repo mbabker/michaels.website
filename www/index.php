@@ -41,8 +41,11 @@ require JPATH_ROOT . '/vendor/autoload.php';
     } catch (\Throwable $t) {
         error_log($t);
 
-        header('HTTP/1.1 500 Internal Server Error', null, 500);
-        header('Content-Type: text/html; charset=utf-8');
+        if (!headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error', null, 500);
+            header('Content-Type: text/html; charset=utf-8');
+        }
+
         echo 'An error occurred while executing the application: ' . $t->getMessage();
 
         exit;
