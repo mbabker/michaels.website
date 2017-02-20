@@ -4,6 +4,7 @@ namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
 use BabDev\Website\Renderer\TwigExtension;
+use BabDev\Website\Renderer\TwigRuntimeLoader;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Renderer\RendererInterface;
@@ -37,11 +38,17 @@ class TemplatingProvider implements ServiceProviderInterface
                         ['debug' => $templateDebug]
                     );
 
+                    // Add the runtime loader
+                    $runtimeLoader = new TwigRuntimeLoader();
+                    $runtimeLoader->setContainer($container);
+
+                    $environment->addRuntimeLoader($runtimeLoader);
+
                     // Add a global tracking the debug state
                     $environment->addGlobal('layoutDebug', $templateDebug);
 
                     // Set up the environment's caching mechanism
-                    $cacheService = new \Twig_Cache_Null;
+                    $cacheService = new \Twig_Cache_Null();
 
                     if ($templateDebug === false && $templateCache !== false) {
                         // Check for a custom cache path otherwise use the default
@@ -60,7 +67,7 @@ class TemplatingProvider implements ServiceProviderInterface
 
                     // Add the debug extension if enabled
                     if ($templateDebug) {
-                        $environment->addExtension(new \Twig_Extension_Debug);
+                        $environment->addExtension(new \Twig_Extension_Debug());
                     }
 
                     return new TwigRenderer($environment);
