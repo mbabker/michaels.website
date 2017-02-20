@@ -19,7 +19,7 @@ require JPATH_ROOT . '/vendor/autoload.php';
     try {
         $container = (new Joomla\DI\Container)
             ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\TwigRendererProvider)
+            ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider)
             ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider);
 
         // Set error reporting based on config

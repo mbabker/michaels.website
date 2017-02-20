@@ -10,9 +10,9 @@ use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
 
 /**
- * Twig renderer service provider.
+ * Templating service provider.
  */
-class TwigRendererProvider implements ServiceProviderInterface
+class TemplatingProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}
