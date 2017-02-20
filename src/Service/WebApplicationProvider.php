@@ -5,6 +5,7 @@ namespace BabDev\Website\Service;
 use BabDev\Website\Application;
 use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\HomepageController;
+use BabDev\Website\Controller\PageController;
 use BabDev\Website\Controller\RenderController;
 use BabDev\Website\Model\BlogPostModel;
 use BabDev\Website\Router;
@@ -56,7 +57,7 @@ class WebApplicationProvider implements ServiceProviderInterface
                     ->setDefaultController('HomepageController')
                     ->addMap('/blog', 'BlogController')
                     ->addMap('/blog/page/:page', 'BlogController')
-                    ->addMap('/:slug/*', 'RenderController')
+                    ->addMap('/:view', 'PageController')
                     ->setContainer($container);
 
                 return $router;
@@ -84,6 +85,22 @@ class WebApplicationProvider implements ServiceProviderInterface
             HomepageController::class,
             function (Container $container): HomepageController {
                 $controller = new HomepageController(
+                    $container->get(RendererInterface::class),
+                    $container->get(BlogPostModel::class)
+                );
+
+                $controller->setApplication($container->get(Application::class));
+                $controller->setInput($container->get(Input::class));
+
+                return $controller;
+            },
+            true
+        );
+
+        $container->share(
+            PageController::class,
+            function (Container $container): PageController {
+                $controller = new PageController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class)
                 );
