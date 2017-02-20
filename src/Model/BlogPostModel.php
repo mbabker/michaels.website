@@ -38,6 +38,32 @@ class BlogPostModel
     }
 
     /**
+     * Get a single post.
+     *
+     * @param string $alias The blog post's slug to lookup
+     *
+     * @return array
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function getPost(string $alias): array
+    {
+        $lookupPath = JPATH_ROOT . '/pages/blog';
+
+        $files = Folder::files($lookupPath, '.yml');
+
+        foreach ($files as $file) {
+            $parts = explode('_', $file);
+
+            if ($parts[1] === $alias . '.yml') {
+                return (new Parser)->parse(file_get_contents($lookupPath . '/' . $file));
+            }
+        }
+
+        throw new \InvalidArgumentException('No post found for the given alias.', 404);
+    }
+
+    /**
      * Get all blog posts.
      *
      * @return array

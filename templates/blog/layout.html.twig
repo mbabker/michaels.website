@@ -1,38 +1,43 @@
 {% extends 'base.html.twig' %}
-{% set article = getPage('blog', item) %}
 
-{% block title %}Blog - {{ article.title }}{% endblock %}
+{% block title %}Blog - {{ post.title }}{% endblock %}
 
 {% block metaOgType %}article{% endblock %}
 
 {% block metadata %}
-    <meta property="og:article:published_time" content="{{ article.publish_up|date('c') }}" />
-    <meta property="og:article:modified_time" content="{{ article.date_modified|date('c') }}" />
-    <meta property="og:article:author" content="{{ article.author }}" />
+    <meta property="og:article:published_time" content="{{ post.publish_up|date('c') }}" />
+    <meta property="og:article:modified_time" content="{{ post.date_modified|date('c') }}" />
+    <meta property="og:article:author" content="{{ post.author }}" />
 {% endblock %}
 
-{% block headerBackground %}{% if article.image is empty %}{{ parent() }}{% else %}{{ asset('img/' ~ article.image) }}{% endif %}{% endblock %}
+{%- block headerBackground -%}
+    {%- if post.image is empty -%}
+        {{ parent() }}
+    {%- else -%}
+        {{ asset('img/' ~ post.image) }}
+    {%- endif -%}
+{%- endblock -%}
 
 {% block pageHeadingText %}
     <div class="page-heading">
-        <h1>{{ article.title }}</h1>
-        <span class="meta">Posted by {{ article.author }} on {{ article.publish_up|date('l, F j, Y') }}</span>
+        <h1>{{ post.title }}</h1>
+        <span class="meta">Posted by {{ post.author }} on {{ post.publish_up|date('l, F j, Y') }}</span>
     </div>
 {% endblock %}
 
 {% block content %}
     <article>
-        {{ article.text|raw }}
+        {{ post.text|raw }}
     </article>
     <ul class="pager">
-        {% if article.previous %}
+        {% if post.previous %}
         <li class="previous">
-            <a href="{{ route('blog/' ~ article.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
+            <a href="{{ route('blog/' ~ post.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
         </li>
         {% endif %}
-        {% if article.next %}
+        {% if post.next %}
         <li class="next">
-            <a href="{{ route('blog/' ~ article.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
+            <a href="{{ route('blog/' ~ post.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
         </li>
         {% endif %}
     </ul>
