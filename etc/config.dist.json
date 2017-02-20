@@ -1,10 +1,10 @@
 {
-	"template": {
-		"renderer" : "twig",
-		"path"     : "/absolute/path/to/templates",
-		"debug"    : false,
-		"extension": ".twig",
-		"cache"    : false
-	},
-	"errorReporting": 0
+  "template": {
+    "paths": [
+      "/absolute/path/to/templates"
+    ],
+    "debug": false,
+    "cache": false
+  },
+  "errorReporting": 0
 }

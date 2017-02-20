@@ -24,44 +24,46 @@ class TwigRendererProvider implements ServiceProviderInterface
             ->set(
                 RendererInterface::class,
                 function (Container $container): RendererInterface {
-                    /* @type  \Joomla\Registry\Registry $config */
+                    /** @var \Joomla\Registry\Registry $config */
                     $config = $container->get('config');
 
-                    // Instantiate the renderer object
-                    $rendererConfig = (array) $config->get('template');
+                    $templatePaths = $config->get('template.paths', [JPATH_TEMPLATES]);
+                    $templateDebug = (bool) $config->get('template.debug', false);
+                    $templateCache = $config->get('template.cache', false);
 
-                    // If the cache isn't false, then it should be a file path relative to the app root
-                    $rendererConfig['cache'] = $rendererConfig['cache'] === false ? false : JPATH_ROOT . '/cache/twig';
-
-                    // Instantiate the renderer object
-                    $renderer = new TwigRenderer($rendererConfig);
-
-                    // Add our Twig extension
-                    $renderer->getRenderer()->addExtension(new TwigExtension($container->get(Application::class)));
-
-                    // Add Twig's Text extension
-                    $renderer->getRenderer()->addExtension(new \Twig_Extensions_Extension_Text());
-
-                    // Add the debug extension if enabled
-                    if ($config->get('template.debug')) {
-                        $renderer->getRenderer()->addExtension(new \Twig_Extension_Debug);
-                    }
-
-                    // Set the Lexer object
-                    $renderer->getRenderer()->setLexer(
-                        new \Twig_Lexer(
-                            $renderer->getRenderer(),
-                            [
-                                'delimiters' => [
-                                    'tag_comment'  => ['{#', '#}'],
-                                    'tag_block'    => ['{%', '%}'],
-                                    'tag_variable' => ['{{', '}}'],
-                                ],
-                            ]
-                        )
+                    // Instantiate the Twig environment
+                    $environment = new \Twig_Environment(
+                        new \Twig_Loader_Filesystem($templatePaths),
+                        ['debug' => $templateDebug]
                     );
 
-                    return $renderer;
+                    // Add a global tracking the debug state
+                    $environment->addGlobal('layoutDebug', $templateDebug);
+
+                    // Set up the environment's caching mechanism
+                    $cacheService = new \Twig_Cache_Null;
+
+                    if ($templateDebug === false && $templateCache !== false) {
+                        // Check for a custom cache path otherwise use the default
+                        $cachePath = $templateCache === true ? JPATH_ROOT . '/cache/twig' : $templateCache;
+
+                        $cacheService = new \Twig_Cache_Filesystem($cachePath);
+                    }
+
+                    $environment->setCache($cacheService);
+
+                    // Add our Twig extension
+                    $environment->addExtension(new TwigExtension($container->get(Application::class)));
+
+                    // Add Twig's Text extension
+                    $environment->addExtension(new \Twig_Extensions_Extension_Text());
+
+                    // Add the debug extension if enabled
+                    if ($templateDebug) {
+                        $environment->addExtension(new \Twig_Extension_Debug);
+                    }
+
+                    return new TwigRenderer($environment);
                 },
                 true,
                 true
