@@ -3,7 +3,9 @@
 namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
+use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\RenderController;
+use BabDev\Website\Model\BlogPostModel;
 use BabDev\Website\Router;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
@@ -50,12 +52,28 @@ class WebApplicationProvider implements ServiceProviderInterface
             function (Container $container): Router {
                 $router = (new Router($container->get(Input::class)))
                     ->setControllerPrefix('BabDev\\Website\\Controller\\')
-                    ->setDefaultController('RenderController')
+                    ->setDefaultController('HomepageController')
                     ->addMap('/:slug', 'RenderController')
                     ->addMap('/:slug/*', 'RenderController')
                     ->setContainer($container);
 
                 return $router;
+            },
+            true
+        );
+
+        $container->share(
+            HomepageController::class,
+            function (Container $container): HomepageController {
+                $controller = new HomepageController(
+                    $container->get(RendererInterface::class),
+                    $container->get(BlogPostModel::class)
+                );
+
+                $controller->setApplication($container->get(Application::class));
+                $controller->setInput($container->get(Input::class));
+
+                return $controller;
             },
             true
         );
@@ -73,6 +91,13 @@ class WebApplicationProvider implements ServiceProviderInterface
                 return $controller;
             },
             true
+        );
+
+        $container->share(
+            BlogPostModel::class,
+            function (Container $container): BlogPostModel {
+                return new BlogPostModel();
+            }
         );
     }
 }

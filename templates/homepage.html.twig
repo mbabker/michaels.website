@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    {% include 'partials/blog_list.html.twig' with {'articles': getPages('blog'), 'section': 'blog'} %}
+    <h2 class="post-title">Latest Blog Post</h2>
+    {% include 'partials/blog_preview.html.twig' with {'article': latest} %}
 {% endblock %}

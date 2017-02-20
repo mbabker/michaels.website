@@ -1,13 +1,5 @@
 {% for article in articles|reverse %}
-    <div class="post-preview">
-        <a href="{{ route(section ~ '/' ~ article.alias) }}">
-            <h2 class="post-title">
-                {{ article.title }}
-            </h2>
-        </a>
-        <p class="post-meta">Posted by {{ article.author }} on {{ article.publish_up|date('l, F j, Y') }}</p>
-        <p>{{ getFirstParagraph(article.text) }}</p>
-    </div>
+    {% include 'partials/blog_preview.html.twig' with {'article': article} %}
     {% if not loop.last %}
         <hr />
     {% endif %}

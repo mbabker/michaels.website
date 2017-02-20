@@ -1,0 +1,9 @@
+<div class="post-preview">
+    <a href="{{ route(section ~ '/' ~ article.alias) }}">
+        <h3>
+            {{ article.title }}
+        </h3>
+    </a>
+    <p class="post-meta">Posted by {{ article.author }} on {{ article.publish_up|date('l, F j, Y') }}</p>
+    <p>{{ getFirstParagraph(article.text) }}</p>
+</div>
