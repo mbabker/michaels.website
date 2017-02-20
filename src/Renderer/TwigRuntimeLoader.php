@@ -2,6 +2,7 @@
 
 namespace BabDev\Website\Renderer;
 
+use Joomla\DI\Container;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 
@@ -11,6 +12,14 @@ use Joomla\DI\ContainerAwareTrait;
 class TwigRuntimeLoader implements \Twig_RuntimeLoaderInterface, ContainerAwareInterface
 {
     use ContainerAwareTrait;
+
+    /**
+     * @param Container $container The service container.
+     */
+    public function __construct(Container $container)
+    {
+        $this->setContainer($container);
+    }
 
     /**
      * {@inheritdoc}
