@@ -26,6 +26,7 @@ class TwigExtension extends \Twig_Extension
             new \Twig_Function('requestURI', [TwigRuntime::class, 'getRequestUri']),
             new \Twig_Function('getPage', [$this, 'getPage']),
             new \Twig_Function('get_all_blog_posts', [BlogPostModel::class, 'getPosts']),
+            new \Twig_Function('render_pagination', [TwigRuntime::class, 'renderPagination'], ['is_safe' => ['html']]),
         ];
     }
 

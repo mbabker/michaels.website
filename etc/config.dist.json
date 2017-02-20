@@ -6,5 +6,8 @@
     "debug": false,
     "cache": false
   },
+  "paginator": {
+    "per_page": 5
+  },
   "errorReporting": 0
 }

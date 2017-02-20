@@ -3,6 +3,7 @@
 namespace BabDev\Website\Model;
 
 use Joomla\Filesystem\Folder;
+use Pagerfanta\Adapter\ArrayAdapter;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -20,6 +21,20 @@ class BlogPostModel
         $posts = $this->getPosts();
 
         return end($posts);
+    }
+
+    /**
+     * Get the blog posts for a given page as a pagination adapter.
+     *
+     * @return ArrayAdapter
+     */
+    public function getPaginatorAdapter(): ArrayAdapter
+    {
+        $posts = $this->getPosts();
+
+        $orderedPosts = array_reverse($posts);
+
+        return new ArrayAdapter($orderedPosts);
     }
 
     /**

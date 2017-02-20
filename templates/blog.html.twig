@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog | {{ parent() }}{% endblock %}
+{% block title %}{% if page > 1 %}Page {{ page }} | {% endif %}Blog | {{ parent() }}{% endblock %}
 
 {% block metaDescription %}Michael Babker's Blog{% endblock %}
 
@@ -13,5 +13,8 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/blog_list.html.twig' with {'articles': get_all_blog_posts()} %}
+    {% include 'partials/blog_list.html.twig' with {'articles': posts, 'section': 'blog'} %}
+    {% if paginator.haveToPaginate %}
+        {{ render_pagination(paginator) }}
+    {% endif %}
 {% endblock %}
