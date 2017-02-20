@@ -119,22 +119,6 @@ class WebApplicationProvider implements ServiceProviderInterface
             PageController::class,
             function (Container $container): PageController {
                 $controller = new PageController(
-                    $container->get(RendererInterface::class),
-                    $container->get(BlogPostModel::class)
-                );
-
-                $controller->setApplication($container->get(Application::class));
-                $controller->setInput($container->get(Input::class));
-
-                return $controller;
-            },
-            true
-        );
-
-        $container->share(
-            RenderController::class,
-            function (Container $container): RenderController {
-                $controller = new RenderController(
                     $container->get(RendererInterface::class)
                 );
 

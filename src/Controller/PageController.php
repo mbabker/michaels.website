@@ -3,7 +3,6 @@
 namespace BabDev\Website\Controller;
 
 use BabDev\Website\Application;
-use BabDev\Website\Model\BlogPostModel;
 use Joomla\Controller\AbstractController;
 use Joomla\Renderer\RendererInterface;
 
@@ -16,23 +15,16 @@ use Joomla\Renderer\RendererInterface;
 class PageController extends AbstractController
 {
     /**
-     * @var BlogPostModel
-     */
-    private $blogModel;
-
-    /**
      * @var RendererInterface
      */
     private $renderer;
 
     /**
-     * @param RendererInterface $renderer  The template renderer.
-     * @param BlogPostModel     $blogModel The blog model.
+     * @param RendererInterface $renderer The template renderer.
      */
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
+    public function __construct(RendererInterface $renderer)
     {
-        $this->blogModel = $blogModel;
-        $this->renderer  = $renderer;
+        $this->renderer = $renderer;
     }
 
     /**
