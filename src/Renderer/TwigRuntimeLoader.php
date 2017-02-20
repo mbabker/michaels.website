@@ -2,12 +2,11 @@
 
 namespace BabDev\Website\Renderer;
 
-use Joomla\DI\{
-    ContainerAwareInterface, ContainerAwareTrait
-};
+use Joomla\DI\ContainerAwareInterface;
+use Joomla\DI\ContainerAwareTrait;
 
 /**
- * Twig runtime loader
+ * Twig runtime loader.
  */
 class TwigRuntimeLoader implements \Twig_RuntimeLoaderInterface, ContainerAwareInterface
 {

@@ -2,7 +2,6 @@
 
 namespace BabDev\Website\Renderer;
 
-use BabDev\Website\Application;
 use Joomla\Filesystem\Folder;
 use Symfony\Component\Yaml\Parser;
 
@@ -12,41 +11,20 @@ use Symfony\Component\Yaml\Parser;
 class TwigExtension extends \Twig_Extension
 {
     /**
-     * @var Application
-     */
-    private $app;
-
-    /**
-     * @param Application $app The application object
-     */
-    public function __construct(Application $app)
-    {
-        $this->app = $app;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName(): string
-    {
-        return 'babdev-michaels-website';
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction('sprintf', 'sprintf'),
-            new \Twig_SimpleFunction('stripJRoot', [$this, 'stripJRoot']),
-            new \Twig_SimpleFunction('getFirstParagraph', [$this, 'getFirstParagraph']),
-            new \Twig_SimpleFunction('asset', [$this, 'getAssetUri']),
-            new \Twig_SimpleFunction('route', [$this, 'getRouteUri']),
-            new \Twig_SimpleFunction('currentRoute', [$this, 'isCurrentRoute']),
-            new \Twig_SimpleFunction('requestURI', [$this, 'getRequestUri']),
-            new \Twig_SimpleFunction('getPage', [$this, 'getPage']),
-            new \Twig_SimpleFunction('getPages', [$this, 'getPages']),
+            new \Twig_Function('sprintf', 'sprintf'),
+            new \Twig_Function('stripJRoot', [$this, 'stripJRoot']),
+            new \Twig_Function('getFirstParagraph', [$this, 'getFirstParagraph']),
+            new \Twig_Function('asset', [TwigRuntime::class, 'getAssetUri']),
+            new \Twig_Function('route', [TwigRuntime::class, 'getRouteUri']),
+            new \Twig_Function('currentRoute', [TwigRuntime::class, 'isCurrentRoute']),
+            new \Twig_Function('requestURI', [TwigRuntime::class, 'getRequestUri']),
+            new \Twig_Function('getPage', [$this, 'getPage']),
+            new \Twig_Function('getPages', [$this, 'getPages']),
         ];
     }
 
@@ -56,23 +34,11 @@ class TwigExtension extends \Twig_Extension
     public function getFilters(): array
     {
         return [
-            new \Twig_SimpleFilter('basename', 'basename'),
-            new \Twig_SimpleFilter('get_class', 'get_class'),
-            new \Twig_SimpleFilter('json_decode', 'json_decode'),
-            new \Twig_SimpleFilter('stripJRoot', [$this, 'stripJRoot']),
+            new \Twig_Filter('basename', 'basename'),
+            new \Twig_Filter('get_class', 'get_class'),
+            new \Twig_Filter('json_decode', 'json_decode'),
+            new \Twig_Filter('stripJRoot', [$this, 'stripJRoot']),
         ];
-    }
-
-    /**
-     * Retrieves the URI for a web asset.
-     *
-     * @param string $asset The asset to process
-     *
-     * @return string
-     */
-    public function getAssetUri(string $asset): string
-    {
-        return $this->app->get('uri.media.full') . $asset;
     }
 
     /**
@@ -136,40 +102,6 @@ class TwigExtension extends \Twig_Extension
         }
 
         return $pages;
-    }
-
-    /**
-     * Retrieves the current URI.
-     *
-     * @return string
-     */
-    public function getRequestUri(): string
-    {
-        return $this->app->get('uri.request');
-    }
-
-    /**
-     * Retrieves the URI for a route.
-     *
-     * @param string $route The route to process
-     *
-     * @return string
-     */
-    public function getRouteUri(string $route): string
-    {
-        return $this->app->get('uri.base.full') . $route;
-    }
-
-    /**
-     * Check if a route is the route for the current page.
-     *
-     * @param string $route The route to process
-     *
-     * @return bool
-     */
-    public function isCurrentRoute(string $route): string
-    {
-        return $this->app->get('uri.route') === $route;
     }
 
     /**

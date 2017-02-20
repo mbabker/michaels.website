@@ -4,6 +4,7 @@ namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
 use BabDev\Website\Renderer\TwigExtension;
+use BabDev\Website\Renderer\TwigRuntime;
 use BabDev\Website\Renderer\TwigRuntimeLoader;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -75,5 +76,20 @@ class TemplatingProvider implements ServiceProviderInterface
                 true,
                 true
             );
+
+        $container->alias(TwigRuntime::class, 'twig.runtime')
+            ->share('twig.runtime', [$this, 'getTwigRuntimeService'], true);
+    }
+
+    /**
+     * Get the `twig.runtime` service.
+     *
+     * @param Container $container The DI container.
+     *
+     * @return TwigRuntime
+     */
+    public function getTwigRuntimeService(Container $container): TwigRuntime
+    {
+        return new TwigRuntime($container->get(Application::class));
     }
 }
