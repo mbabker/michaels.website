@@ -5,6 +5,7 @@ namespace BabDev\Website\Renderer;
 use BabDev\Website\Application;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
+use Symfony\Component\Asset\Packages;
 
 /**
  * Twig runtime class.
@@ -17,23 +18,31 @@ class TwigRuntime
     private $app;
 
     /**
-     * @param Application $app The application object
+     * @var Packages
      */
-    public function __construct(Application $app)
+    private $packages;
+
+    /**
+     * @param Application $app      The application object
+     * @param Packages    $packages Packages object to look up asset paths
+     */
+    public function __construct(Application $app, Packages $packages)
     {
-        $this->app = $app;
+        $this->app      = $app;
+        $this->packages = $packages;
     }
 
     /**
      * Retrieves the URI for a web asset.
      *
-     * @param string $asset The asset to process
+     * @param string $path        A public path
+     * @param string $packageName The name of the asset package to use
      *
      * @return string
      */
-    public function getAssetUri(string $asset): string
+    public function getAssetUri($path, $packageName = null): string
     {
-        return $this->app->get('uri.media.full') . $asset;
+        return $this->packages->getUrl($path, $packageName);
     }
 
     /**

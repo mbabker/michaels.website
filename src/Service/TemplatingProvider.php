@@ -3,13 +3,19 @@
 namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
+use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
 use BabDev\Website\Renderer\TwigRuntimeLoader;
+use Joomla\Application\AbstractApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
+use Symfony\Component\Asset\Packages;
+use Symfony\Component\Asset\PathPackage;
+use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 
 /**
  * Templating service provider.
@@ -21,6 +27,9 @@ class TemplatingProvider implements ServiceProviderInterface
      */
     public function register(Container $container)
     {
+        $container->alias(Packages::class, 'asset.packages')
+            ->share('asset.packages', [$this, 'getAssetPackagesService'], true);
+
         $container->alias(RendererInterface::class, 'renderer')
             ->alias(TwigRenderer::class, 'renderer')
             ->share('renderer', [$this, 'getRendererService'], true);
@@ -50,6 +59,26 @@ class TemplatingProvider implements ServiceProviderInterface
 
         $container->alias(TwigRuntimeLoader::class, 'twig.runtime.loader')
             ->share('twig.runtime.loader', [$this, 'getTwigRuntimeLoaderService'], true);
+    }
+
+    /**
+     * Get the `asset.packages` service.
+     *
+     * @param Container $container The DI container.
+     *
+     * @return Packages
+     */
+    public function getAssetPackagesService(Container $container) : Packages
+    {
+        $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : md5(get_class($this));
+        $context = new ApplicationContext($container->get(AbstractApplication::class));
+
+        return new Packages(
+            new PathPackage('media', new StaticVersionStrategy($version), $context),
+            [
+                'no_version' => new PathPackage('media', new EmptyVersionStrategy(), $context),
+            ]
+        );
     }
 
     /**
@@ -211,7 +240,7 @@ class TemplatingProvider implements ServiceProviderInterface
      */
     public function getTwigRuntimeService(Container $container): TwigRuntime
     {
-        return new TwigRuntime($container->get(Application::class));
+        return new TwigRuntime($container->get(Application::class), $container->get(Packages::class));
     }
 
     /**

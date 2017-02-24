@@ -14,7 +14,7 @@
     {%- if post.image is empty -%}
         {{ parent() }}
     {%- else -%}
-        {{ asset('img/' ~ post.image) }}
+        {{ asset('img/' ~ post.image, 'no_version') }}
     {%- endif -%}
 {%- endblock -%}
 

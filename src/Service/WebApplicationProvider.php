@@ -7,7 +7,6 @@ use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
-use BabDev\Website\Controller\RenderController;
 use BabDev\Website\Model\BlogPostModel;
 use BabDev\Website\Router;
 use Joomla\Application as JoomlaApplication;
