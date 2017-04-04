@@ -5,5 +5,5 @@
         </h3>
     </a>
     <p class="post-meta">Posted by {{ article.author }} on {{ article.publish_up|date('l, F j, Y') }}</p>
-    <p>{{ first_paragraph(article.text) }}</p>
+    <p>{{ article.preview ?: first_paragraph(article.text) }}</p>
 </div>
