@@ -9,11 +9,18 @@ use Joomla\Renderer\RendererInterface;
 /**
  * Controller rendering single pages.
  *
- * @method         Application  getApplication()  Get the application object.
- * @property-read  Application $app              Application object
+ * @method        Application getApplication() Get the application object.
+ * @property-read Application $app             Application object
  */
 class PageController extends AbstractController
 {
+    /**
+     * Container defining layouts which shouldn't be routable
+     *
+     * @var array
+     */
+    private $excludedLayouts = ['base', 'exception', 'homepage'];
+
     /**
      * @var RendererInterface
      */
@@ -36,8 +43,8 @@ class PageController extends AbstractController
     {
         $layout = $this->getInput()->getString('view', '') . '.html.twig';
 
-        // Since this is a catch-all route, if the layout doesn't exist, treat this as a 404
-        if (!$this->renderer->pathExists($layout)) {
+        // Since this is a catch-all route, if the layout doesn't exist, or is an excluded layout, treat this as a 404
+        if (!$this->renderer->pathExists($layout) || in_array($view, $this->excludedLayouts)) {
             throw new \RuntimeException(
                 sprintf('Unable to handle request for route `%s`.', $this->getApplication()->get('uri.route')), 404
             );

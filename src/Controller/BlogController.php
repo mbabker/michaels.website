@@ -11,8 +11,8 @@ use Pagerfanta\Pagerfanta;
 /**
  * Controller rendering the blog list view.
  *
- * @method         Application  getApplication()  Get the application object.
- * @property-read  Application $app              Application object
+ * @method        Application getApplication() Get the application object.
+ * @property-read Application $app             Application object
  */
 class BlogController extends AbstractController
 {

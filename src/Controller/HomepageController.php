@@ -10,8 +10,8 @@ use Joomla\Renderer\RendererInterface;
 /**
  * Controller rendering the site homepage.
  *
- * @method         Application  getApplication()  Get the application object.
- * @property-read  Application $app              Application object
+ * @method        Application getApplication() Get the application object.
+ * @property-read Application $app             Application object
  */
 class HomepageController extends AbstractController
 {

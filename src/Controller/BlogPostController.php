@@ -10,8 +10,8 @@ use Joomla\Renderer\RendererInterface;
 /**
  * Controller rendering single blog posts.
  *
- * @method         Application  getApplication()  Get the application object.
- * @property-read  Application  $app              Application object
+ * @method        Application getApplication() Get the application object.
+ * @property-read Application $app             Application object
  */
 class BlogPostController extends AbstractController
 {
