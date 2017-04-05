@@ -5,8 +5,8 @@
 {% block metaOgType %}article{% endblock %}
 
 {% block metadata %}
-    <meta property="og:article:published_time" content="{{ post.publish_up|date('c') }}" />
-    <meta property="og:article:modified_time" content="{{ post.date_modified|date('c') }}" />
+    <meta property="og:article:published_time" content="{{ post.publishUp|date('c') }}" />
+    <meta property="og:article:modified_time" content="{{ post.dateModified|date('c') }}" />
     <meta property="og:article:author" content="{{ post.author }}" />
 {% endblock %}
 
@@ -21,7 +21,7 @@
 {% block pageHeadingText %}
     <div class="page-heading">
         <h1>{{ post.title }}</h1>
-        <span class="meta">Posted by {{ post.author }} on {{ post.publish_up|date('l, F j, Y') }}</span>
+        <span class="meta">Posted by {{ post.author }} on {{ post.publishUp|date('l, F j, Y') }}</span>
     </div>
 {% endblock %}
 
@@ -30,12 +30,12 @@
         {{ post.text|raw }}
     </article>
     <ul class="pager">
-        {% if post.previous %}
+        {% if post.hasPrevious %}
         <li class="previous">
             <a href="{{ route('blog/' ~ post.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
         </li>
         {% endif %}
-        {% if post.next %}
+        {% if post.hasNext %}
         <li class="next">
             <a href="{{ route('blog/' ~ post.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
         </li>

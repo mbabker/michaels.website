@@ -2,15 +2,29 @@
 
 namespace BabDev\Website\Model;
 
+use BabDev\Website\Entity\BlogPost;
 use Joomla\Filesystem\Folder;
 use Pagerfanta\Adapter\ArrayAdapter;
-use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Model for fetching blog posts.
  */
 class BlogPostModel
 {
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
+
+    /**
+     * @param SerializerInterface $serializer
+     */
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
     /**
      * Get the latest blog post.
      *
@@ -42,11 +56,11 @@ class BlogPostModel
      *
      * @param string $alias The blog post's slug to lookup
      *
-     * @return array
+     * @return BlogPost
      *
      * @throws \InvalidArgumentException
      */
-    public function getPost(string $alias): array
+    public function getPost(string $alias): BlogPost
     {
         $lookupPath = JPATH_ROOT . '/pages/blog';
 
@@ -56,7 +70,7 @@ class BlogPostModel
             $parts = explode('_', $file);
 
             if ($parts[1] === $alias . '.yml') {
-                return (new Parser)->parse(file_get_contents($lookupPath . '/' . $file));
+                return $this->deserializePost($lookupPath . '/' . $file);
             }
         }
 
@@ -66,7 +80,7 @@ class BlogPostModel
     /**
      * Get all blog posts.
      *
-     * @return array
+     * @return BlogPost[]
      */
     public function getPosts(): array
     {
@@ -77,11 +91,27 @@ class BlogPostModel
 
         foreach ($files as $file) {
             $parts            = explode('_', $file);
-            $posts[$parts[0]] = (new Parser)->parse(file_get_contents($lookupPath . '/' . $file));
+            $posts[$parts[0]] = $this->deserializePost($lookupPath . '/' . $file);
         }
 
         ksort($posts);
 
         return $posts;
+    }
+
+    /**
+     * Deserialize the contents of a post's YAML file into a BlogPost entity.
+     *
+     * @param string $filename
+     *
+     * @return BlogPost
+     */
+    private function deserializePost(string $filename): BlogPost
+    {
+        return $this->serializer->deserialize(
+            file_get_contents($filename),
+            BlogPost::class,
+            'yaml'
+        );
     }
 }

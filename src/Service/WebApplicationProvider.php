@@ -132,7 +132,7 @@ class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             BlogPostModel::class,
             function (Container $container): BlogPostModel {
-                return new BlogPostModel();
+                return new BlogPostModel($container->get('serializer'));
             }
         );
     }
