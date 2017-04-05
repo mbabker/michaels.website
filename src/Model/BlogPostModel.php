@@ -28,9 +28,9 @@ class BlogPostModel
     /**
      * Get the latest blog post.
      *
-     * @return array
+     * @return BlogPost
      */
-    public function getLatestPost(): array
+    public function getLatestPost(): BlogPost
     {
         $posts = $this->getPosts();
 
