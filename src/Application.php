@@ -33,11 +33,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
         }
     }
 
-    /**
-     * Set the HTTP Response Header for error conditions.
-     *
-     * @param \Throwable $throwable The Throwable object
-     */
     private function setErrorHeader(\Throwable $throwable)
     {
         switch ($throwable->getCode()) {
@@ -54,11 +49,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
         }
     }
 
-    /**
-     * Set the body for error conditions.
-     *
-     * @param \Throwable $throwable The Throwable object
-     */
     private function setErrorOutput(\Throwable $throwable)
     {
         $this->setBody(
@@ -66,14 +56,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
         );
     }
 
-    /**
-     * Set the application's router.
-     *
-     * @param Router $router Router object to set.
-     *
-     * @return $this
-     */
-    public function setRouter(Router $router): Application
+    public function setRouter(Router $router): self
     {
         $this->router = $router;
 

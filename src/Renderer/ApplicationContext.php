@@ -12,16 +12,12 @@ use Symfony\Component\Asset\Context\ContextInterface;
 class ApplicationContext implements ContextInterface
 {
     /**
-     * Application object.
-     *
      * @var AbstractApplication
      */
     private $app;
 
     /**
-     * Constructor.
-     *
-     * @param AbstractApplication $app The application object
+     * @param AbstractApplication $app
      */
     public function __construct(AbstractApplication $app)
     {
@@ -29,9 +25,7 @@ class ApplicationContext implements ContextInterface
     }
 
     /**
-     * Gets the base path.
-     *
-     * @return string The base path
+     * {@inheritdoc}
      */
     public function getBasePath()
     {
@@ -39,9 +33,7 @@ class ApplicationContext implements ContextInterface
     }
 
     /**
-     * Checks whether the request is secure or not.
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isSecure()
     {

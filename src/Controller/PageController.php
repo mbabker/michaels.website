@@ -27,18 +27,13 @@ class PageController extends AbstractController
     private $renderer;
 
     /**
-     * @param RendererInterface $renderer The template renderer.
+     * @param RendererInterface $renderer
      */
     public function __construct(RendererInterface $renderer)
     {
         $this->renderer = $renderer;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \InvalidArgumentException
-     */
     public function execute(): bool
     {
         $view   = $this->getInput()->getString('view', '');

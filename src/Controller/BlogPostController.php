@@ -26,8 +26,8 @@ class BlogPostController extends AbstractController
     private $renderer;
 
     /**
-     * @param RendererInterface $renderer  The template renderer.
-     * @param BlogPostModel     $blogModel The blog model.
+     * @param RendererInterface $renderer
+     * @param BlogPostModel     $blogModel
      */
     public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
     {
@@ -35,11 +35,6 @@ class BlogPostController extends AbstractController
         $this->renderer  = $renderer;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \InvalidArgumentException
-     */
     public function execute(): bool
     {
         $alias = $this->getInput()->getPath('alias', '');

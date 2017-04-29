@@ -25,11 +25,6 @@ class BlogPostModel
         $this->serializer = $serializer;
     }
 
-    /**
-     * Get the latest blog post.
-     *
-     * @return BlogPost
-     */
     public function getLatestPost(): BlogPost
     {
         $posts = $this->getPosts();
@@ -51,15 +46,6 @@ class BlogPostModel
         return new ArrayAdapter($orderedPosts);
     }
 
-    /**
-     * Get a single post.
-     *
-     * @param string $alias The blog post's slug to lookup
-     *
-     * @return BlogPost
-     *
-     * @throws \InvalidArgumentException
-     */
     public function getPost(string $alias): BlogPost
     {
         $lookupPath = JPATH_ROOT . '/pages/blog';
@@ -78,8 +64,6 @@ class BlogPostModel
     }
 
     /**
-     * Get all blog posts.
-     *
      * @return BlogPost[]
      */
     public function getPosts(): array
@@ -99,13 +83,6 @@ class BlogPostModel
         return $posts;
     }
 
-    /**
-     * Deserialize the contents of a post's YAML file into a BlogPost entity.
-     *
-     * @param string $filename
-     *
-     * @return BlogPost
-     */
     private function deserializePost(string $filename): BlogPost
     {
         return $this->serializer->deserialize(

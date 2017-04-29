@@ -14,7 +14,7 @@ class TwigRuntimeLoader implements \Twig_RuntimeLoaderInterface, ContainerAwareI
     use ContainerAwareTrait;
 
     /**
-     * @param Container $container The service container.
+     * @param Container $container
      */
     public function __construct(Container $container)
     {

@@ -61,13 +61,6 @@ class TemplatingProvider implements ServiceProviderInterface
             ->share('twig.runtime.loader', [$this, 'getTwigRuntimeLoaderService'], true);
     }
 
-    /**
-     * Get the `asset.packages` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return Packages
-     */
     public function getAssetPackagesService(Container $container): Packages
     {
         $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : md5(get_class($this));
@@ -81,25 +74,11 @@ class TemplatingProvider implements ServiceProviderInterface
         );
     }
 
-    /**
-     * Get the `renderer` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return RendererInterface
-     */
     public function getRendererService(Container $container): RendererInterface
     {
         return new TwigRenderer($container->get('twig.environment'));
     }
 
-    /**
-     * Get the `twig.cache` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_CacheInterface
-     */
     public function getTwigCacheService(Container $container): \Twig_CacheInterface
     {
         /** @var \Joomla\Registry\Registry $config */
@@ -118,13 +97,6 @@ class TemplatingProvider implements ServiceProviderInterface
         return new \Twig_Cache_Null();
     }
 
-    /**
-     * Get the `twig.environment` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_Environment
-     */
     public function getTwigEnvironmentService(Container $container): \Twig_Environment
     {
         /** @var \Joomla\Registry\Registry $config */
@@ -152,49 +124,21 @@ class TemplatingProvider implements ServiceProviderInterface
         return $environment;
     }
 
-    /**
-     * Get the `twig.extension.app` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return TwigExtension
-     */
     public function getTwigExtensionAppService(Container $container): TwigExtension
     {
         return new TwigExtension();
     }
 
-    /**
-     * Get the `twig.extension.debug` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_Extension_Debug
-     */
     public function getTwigExtensionDebugService(Container $container): \Twig_Extension_Debug
     {
         return new \Twig_Extension_Debug();
     }
 
-    /**
-     * Get the `twig.extension.text` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_Extensions_Extension_Text
-     */
     public function getTwigExtensionTextService(Container $container): \Twig_Extensions_Extension_Text
     {
         return new \Twig_Extensions_Extension_Text();
     }
 
-    /**
-     * Get the `twig.extensions` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_ExtensionInterface[]
-     */
     public function getTwigExtensionsService(Container $container): array
     {
         /** @var \Joomla\Registry\Registry $config */
@@ -214,13 +158,6 @@ class TemplatingProvider implements ServiceProviderInterface
         return $extensions;
     }
 
-    /**
-     * Get the `twig.loader` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return \Twig_LoaderInterface
-     */
     public function getTwigLoaderService(Container $container): \Twig_LoaderInterface
     {
         /** @var \Joomla\Registry\Registry $config */
@@ -231,25 +168,11 @@ class TemplatingProvider implements ServiceProviderInterface
         return new \Twig_Loader_Filesystem($templatePaths);
     }
 
-    /**
-     * Get the `twig.runtime` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return TwigRuntime
-     */
     public function getTwigRuntimeService(Container $container): TwigRuntime
     {
         return new TwigRuntime($container->get(Application::class), $container->get(Packages::class));
     }
 
-    /**
-     * Get the `twig.runtime.loader` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return TwigRuntimeLoader
-     */
     public function getTwigRuntimeLoaderService(Container $container): TwigRuntimeLoader
     {
         return new TwigRuntimeLoader($container);

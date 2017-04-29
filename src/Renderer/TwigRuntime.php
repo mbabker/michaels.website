@@ -23,8 +23,8 @@ class TwigRuntime
     private $packages;
 
     /**
-     * @param Application $app      The application object
-     * @param Packages    $packages Packages object to look up asset paths
+     * @param Application $app
+     * @param Packages    $packages
      */
     public function __construct(Application $app, Packages $packages)
     {
@@ -32,48 +32,21 @@ class TwigRuntime
         $this->packages = $packages;
     }
 
-    /**
-     * Retrieves the URI for a web asset.
-     *
-     * @param string $path        A public path
-     * @param string $packageName The name of the asset package to use
-     *
-     * @return string
-     */
-    public function getAssetUri(string $path, $packageName = null): string
+    public function getAssetUri(string $path, ?string $packageName = null): string
     {
         return $this->packages->getUrl($path, $packageName);
     }
 
-    /**
-     * Retrieves the current URI.
-     *
-     * @return string
-     */
     public function getRequestUri(): string
     {
         return $this->app->get('uri.request', '');
     }
 
-    /**
-     * Retrieves the URI for a route.
-     *
-     * @param string $route The route to process
-     *
-     * @return string
-     */
     public function getRouteUri(string $route): string
     {
         return $this->app->get('uri.base.full', '') . $route;
     }
 
-    /**
-     * Render the pagination for this page.
-     *
-     * @param Pagerfanta $pagerfanta The pagination object
-     *
-     * @return string
-     */
     public function renderPagination(Pagerfanta $pagerfanta): string
     {
         $routeGenerator = function ($page) {

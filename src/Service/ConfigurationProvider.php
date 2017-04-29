@@ -12,8 +12,6 @@ use Joomla\Registry\Registry;
 class ConfigurationProvider implements ServiceProviderInterface
 {
     /**
-     * Configuration instance.
-     *
      * @var Registry
      */
     private $config;

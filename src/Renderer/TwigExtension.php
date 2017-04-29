@@ -32,13 +32,6 @@ class TwigExtension extends \Twig_Extension
         ];
     }
 
-    /**
-     * Retrieves the first paragraph of text for an article.
-     *
-     * @param string $text Article text to search
-     *
-     * @return string
-     */
     public function getFirstParagraph(string $text): string
     {
         preg_match("/<p>(.*)<\/p>/", $text, $matches);
@@ -46,13 +39,6 @@ class TwigExtension extends \Twig_Extension
         return strip_tags(html_entity_decode($matches[1], ENT_QUOTES, 'UTF-8'));
     }
 
-    /**
-     * Strips the application root path from a string.
-     *
-     * @param string $string The string to process
-     *
-     * @return string
-     */
     public function stripRootPath(string $string): string
     {
         return str_replace(JPATH_ROOT, '', $string);

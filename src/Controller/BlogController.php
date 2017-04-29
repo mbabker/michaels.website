@@ -27,8 +27,8 @@ class BlogController extends AbstractController
     private $renderer;
 
     /**
-     * @param RendererInterface $renderer  The template renderer.
-     * @param BlogPostModel     $blogModel The blog model.
+     * @param RendererInterface $renderer
+     * @param BlogPostModel     $blogModel
      */
     public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
     {
@@ -36,11 +36,6 @@ class BlogController extends AbstractController
         $this->renderer  = $renderer;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \InvalidArgumentException
-     */
     public function execute(): bool
     {
         $page    = $this->getInput()->getUint('page', 1);

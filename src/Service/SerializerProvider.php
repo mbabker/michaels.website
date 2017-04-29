@@ -37,13 +37,6 @@ class SerializerProvider implements ServiceProviderInterface
             ->share('serializer.normalizer.object', [$this, 'getSerializerNormalizerObjectService'], true);
     }
 
-    /**
-     * Get the `serializer` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return Serializer
-     */
     public function getSerializerService(Container $container): Serializer
     {
         $encoders = [
@@ -58,37 +51,16 @@ class SerializerProvider implements ServiceProviderInterface
         return new Serializer($normalizers, $encoders);
     }
 
-    /**
-     * Get the `serializer.encoder.yaml` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return YamlEncoder
-     */
     public function getSerializerEncoderYamlService(Container $container): YamlEncoder
     {
         return new YamlEncoder(new Dumper(), new Parser());
     }
 
-    /**
-     * Get the `serializer.normalizer.datetime` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return DateTimeNormalizer
-     */
     public function getSerializerNormalizerDateTimeService(Container $container): DateTimeNormalizer
     {
         return new DateTimeNormalizer();
     }
 
-    /**
-     * Get the `serializer.normalizer.object` service.
-     *
-     * @param Container $container The DI container.
-     *
-     * @return ObjectNormalizer
-     */
     public function getSerializerNormalizerObjectService(Container $container): ObjectNormalizer
     {
         return new ObjectNormalizer(null, null, null, new PhpDocExtractor());
