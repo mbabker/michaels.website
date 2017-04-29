@@ -53,7 +53,7 @@ class TwigExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function stripRootPath(string $string)
+    public function stripRootPath(string $string): string
     {
         return str_replace(JPATH_ROOT, '', $string);
     }

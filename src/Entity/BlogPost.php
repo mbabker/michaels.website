@@ -73,7 +73,7 @@ class BlogPost
     /**
      * @param string $author
      */
-    public function setAuthor($author)
+    public function setAuthor(string $author)
     {
         $this->author = $author;
     }
@@ -89,7 +89,7 @@ class BlogPost
     /**
      * @param string $category
      */
-    public function setCategory($category)
+    public function setCategory(string $category)
     {
         $this->category = $category;
     }
@@ -97,7 +97,7 @@ class BlogPost
     /**
      * @return \DateTime|null
      */
-    public function getPublishUp()
+    public function getPublishUp(): ?\DateTime
     {
         return $this->publish_up;
     }
@@ -113,7 +113,7 @@ class BlogPost
     /**
      * @return \DateTime|null
      */
-    public function getDateModified()
+    public function getDateModified(): ?\DateTime
     {
         return $this->date_modified;
     }
@@ -137,7 +137,7 @@ class BlogPost
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -153,7 +153,7 @@ class BlogPost
     /**
      * @param string $alias
      */
-    public function setAlias($alias)
+    public function setAlias(string $alias)
     {
         $this->alias = $alias;
     }
@@ -169,7 +169,7 @@ class BlogPost
     /**
      * @param string $text
      */
-    public function setText($text)
+    public function setText(string $text)
     {
         $this->text = $text;
     }
@@ -185,7 +185,7 @@ class BlogPost
     /**
      * @param string $preview
      */
-    public function setPreview($preview)
+    public function setPreview(string $preview)
     {
         $this->preview = $preview;
     }
@@ -201,7 +201,7 @@ class BlogPost
     /**
      * @param string $image
      */
-    public function setImage($image)
+    public function setImage(string $image)
     {
         $this->image = $image;
     }
@@ -217,7 +217,7 @@ class BlogPost
     /**
      * @param string $previous
      */
-    public function setPrevious($previous)
+    public function setPrevious(string $previous)
     {
         $this->previous = $previous;
     }
@@ -233,7 +233,7 @@ class BlogPost
     /**
      * @param string $next
      */
-    public function setNext($next)
+    public function setNext(string $next)
     {
         $this->next = $next;
     }

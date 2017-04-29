@@ -40,7 +40,7 @@ class TwigRuntime
      *
      * @return string
      */
-    public function getAssetUri($path, $packageName = null): string
+    public function getAssetUri(string $path, $packageName = null): string
     {
         return $this->packages->getUrl($path, $packageName);
     }
@@ -52,7 +52,7 @@ class TwigRuntime
      */
     public function getRequestUri(): string
     {
-        return $this->app->get('uri.request');
+        return $this->app->get('uri.request', '');
     }
 
     /**
@@ -64,7 +64,7 @@ class TwigRuntime
      */
     public function getRouteUri(string $route): string
     {
-        return $this->app->get('uri.base.full') . $route;
+        return $this->app->get('uri.base.full', '') . $route;
     }
 
     /**

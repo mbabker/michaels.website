@@ -68,7 +68,7 @@ class TemplatingProvider implements ServiceProviderInterface
      *
      * @return Packages
      */
-    public function getAssetPackagesService(Container $container) : Packages
+    public function getAssetPackagesService(Container $container): Packages
     {
         $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : md5(get_class($this));
         $context = new ApplicationContext($container->get(AbstractApplication::class));

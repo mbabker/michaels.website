@@ -44,7 +44,7 @@ class SerializerProvider implements ServiceProviderInterface
      *
      * @return Serializer
      */
-    public function getSerializerService(Container $container) : Serializer
+    public function getSerializerService(Container $container): Serializer
     {
         $encoders = [
             $container->get('serializer.encoder.yaml'),
@@ -65,7 +65,7 @@ class SerializerProvider implements ServiceProviderInterface
      *
      * @return YamlEncoder
      */
-    public function getSerializerEncoderYamlService(Container $container) : YamlEncoder
+    public function getSerializerEncoderYamlService(Container $container): YamlEncoder
     {
         return new YamlEncoder(new Dumper(), new Parser());
     }
@@ -77,7 +77,7 @@ class SerializerProvider implements ServiceProviderInterface
      *
      * @return DateTimeNormalizer
      */
-    public function getSerializerNormalizerDateTimeService(Container $container) : DateTimeNormalizer
+    public function getSerializerNormalizerDateTimeService(Container $container): DateTimeNormalizer
     {
         return new DateTimeNormalizer();
     }
@@ -89,7 +89,7 @@ class SerializerProvider implements ServiceProviderInterface
      *
      * @return ObjectNormalizer
      */
-    public function getSerializerNormalizerObjectService(Container $container) : ObjectNormalizer
+    public function getSerializerNormalizerObjectService(Container $container): ObjectNormalizer
     {
         return new ObjectNormalizer(null, null, null, new PhpDocExtractor());
     }
