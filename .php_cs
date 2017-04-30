@@ -1,50 +1,48 @@
 <?php
 
-return Symfony\CS\Config\Config::create()
-    ->setUsingLinter(false)
+return PhpCsFixer\Config::create()
     ->setUsingCache(true)
-    ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
-    ->fixers([
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PSR2' => true,
         // contrib
-        'align_double_arrow',
-        'align_equals',
-        'concat_with_spaces',
-        'header_comment',
-        'ordered_use',
-        'short_array_syntax',
+        'array_syntax' => ['syntax' => 'short'],
+        'binary_operator_spaces' => ['align_double_arrow' => true, 'align_equals' => true],
+        'concat_space' => ['spacing' => 'one'],
+        'ordered_imports' => true,
         // symfony
-        'array_element_no_space_before_comma',
-        'array_element_white_space_after_comma',
-        'blankline_after_open_tag',
-        'empty_return',
-        'function_typehint_space',
-        'include',
-        'join_function',
-        'list_commas',
-        'multiline_array_trailing_comma',
-        'no_blank_lines_after_class_opening',
-        'no_empty_lines_after_phpdocs',
-        'phpdoc_indent',
-        'phpdoc_inline_tag',
-        'phpdoc_no_empty_return',
-        'phpdoc_params',
-        'phpdoc_scalar',
-        'phpdoc_short_description',
-        'phpdoc_trim',
-        'phpdoc_type_to_var',
-        'phpdoc_types',
-        'phpdoc_var_without_name',
-        'remove_lines_between_uses',
-        'return',
-        'single_array_no_trailing_comma',
-        'single_blank_line_before_namespace',
-        'single_quote',
-        'spaces_cast',
-        'ternary_spaces',
-        'trim_array_spaces',
-        'unused_use',
+        'blank_line_after_opening_tag' => true,
+        'blank_line_before_return' => true,
+        'cast_spaces' => true,
+        'function_typehint_space' => true,
+        'include' => true,
+        'no_alias_functions' => true,
+        'no_blank_lines_after_class_opening' => true,
+        'no_blank_lines_after_phpdoc' => true,
+        'no_extra_consecutive_blank_lines' => ['use'],
+        'no_trailing_comma_in_list_call' => true,
+        'no_trailing_comma_in_singleline_array' => true,
+        'no_unused_imports' => true,
+        'no_whitespace_before_comma_in_array' => true,
+        'phpdoc_align' => true,
+        'phpdoc_indent' => true,
+        'phpdoc_inline_tag' => true,
+        'phpdoc_no_alias_tag' => ['type' => 'var'],
+        'phpdoc_no_empty_return' => true,
+        'phpdoc_scalar' => true,
+        'phpdoc_summary' => true,
+        'phpdoc_trim' => true,
+        'phpdoc_types' => true,
+        'phpdoc_var_without_name' => true,
+        'simplified_null_return' => true,
+        'single_blank_line_before_namespace' => true,
+        'single_quote' => true,
+        'ternary_operator_spaces' => true,
+        'trailing_comma_in_multiline_array' => true,
+        'trim_array_spaces' => true,
+        'whitespace_after_comma_in_array' => true,
     ])
-    ->finder(
-        Symfony\CS\Finder\DefaultFinder::create()
+    ->setFinder(
+        PhpCsFixer\Finder::create()
             ->in([__DIR__ . '/src'])
     );
