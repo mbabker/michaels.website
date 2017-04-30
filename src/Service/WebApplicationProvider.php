@@ -8,12 +8,12 @@ use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
 use BabDev\Website\Model\BlogPostModel;
-use BabDev\Website\Router;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
+use Joomla\Router\Router;
 
 /**
  * Application service provider.
@@ -52,16 +52,12 @@ class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             Router::class,
             function (Container $container): Router {
-                $router = (new Router($container->get(Input::class)))
-                    ->setControllerPrefix('BabDev\\Website\\Controller\\')
-                    ->setDefaultController('HomepageController')
-                    ->addMap('/blog', 'BlogController')
-                    ->addMap('/blog/page/:page', 'BlogController')
-                    ->addMap('/blog/:alias', 'BlogPostController')
-                    ->addMap('/:view', 'PageController')
-                    ->setContainer($container);
-
-                return $router;
+                return (new Router())
+                    ->get('/', HomepageController::class)
+                    ->get('/blog', BlogController::class)
+                    ->get('/blog/page/:page', BlogController::class, ['page' => '(\d+)'])
+                    ->get('/blog/:alias', BlogPostController::class)
+                    ->get('/:view', PageController::class);
             },
             true
         );

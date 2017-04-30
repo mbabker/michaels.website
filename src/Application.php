@@ -3,9 +3,11 @@
 namespace BabDev\Website;
 
 use Joomla\Application\AbstractWebApplication;
+use Joomla\Controller\ControllerInterface;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
 use Joomla\Router\Router;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Web application class.
@@ -25,35 +27,44 @@ final class Application extends AbstractWebApplication implements ContainerAware
     protected function doExecute()
     {
         try {
-            // Fetch and execute the controller
-            $this->router->getController($this->get('uri.route'))->execute();
+            $route = $this->router->parseRoute($this->get('uri.route'), $this->input->getMethod());
+
+            // Add variables to the input if not already set
+            foreach ($route['vars'] as $key => $value) {
+                $this->input->def($key, $value);
+            }
+
+            /** @var ControllerInterface $controller */
+            $controller = $this->getContainer()->get($route['controller']);
+            $controller->execute();
         } catch (\Throwable $throwable) {
-            $this->setErrorHeader($throwable);
-            $this->setErrorOutput($throwable);
+            $this->allowCache(false);
+
+            $response = new HtmlResponse(
+                $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable])
+            );
+
+            switch ($throwable->getCode()) {
+                case 404:
+                    $response = $response->withStatus(404);
+                    break;
+
+                case 500:
+                default:
+                    $response = $response->withStatus(500);
+                    break;
+            }
+
+            $this->setResponse($response);
         }
     }
 
-    private function setErrorHeader(\Throwable $throwable)
+    /**
+     * {@inheritdoc}
+     */
+    public function getFormToken($forceNew = false): string
     {
-        switch ($throwable->getCode()) {
-            case 404:
-                $this->setHeader('HTTP/1.1 404 Not Found', 404, true);
-
-                break;
-
-            case 500:
-            default:
-                $this->setHeader('HTTP/1.1 500 Internal Server Error', 500, true);
-
-                break;
-        }
-    }
-
-    private function setErrorOutput(\Throwable $throwable)
-    {
-        $this->setBody(
-            $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable])
-        );
+        return '';
     }
 
     public function setRouter(Router $router): self

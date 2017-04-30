@@ -5,6 +5,7 @@ namespace BabDev\Website\Controller;
 use BabDev\Website\Application;
 use Joomla\Controller\AbstractController;
 use Joomla\Renderer\RendererInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Controller rendering single pages.
@@ -46,7 +47,7 @@ class PageController extends AbstractController
             );
         }
 
-        $this->getApplication()->setBody($this->renderer->render($layout));
+        $this->getApplication()->setResponse(new HtmlResponse($this->renderer->render($layout)));
 
         return true;
     }

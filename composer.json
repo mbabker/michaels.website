@@ -13,14 +13,13 @@
     ],
     "require": {
         "php": ">=7.1",
-        "joomla/application": "~1.2",
-        "joomla/controller": "~1.1",
+        "joomla/application": "~2.0@dev",
+        "joomla/controller": "~2.0@dev",
         "joomla/di": "~2.0@dev",
-        "joomla/filter": "~1.1",
-        "joomla/registry": "~1.2",
+        "joomla/registry": "~2.0@dev",
         "joomla/renderer": "~2.0@dev",
-        "joomla/router": "~1.1",
-        "joomla/uri": "~1.1",
+        "joomla/router": "~2.0@dev",
+        "joomla/uri": "~2.0@dev",
         "pagerfanta/pagerfanta": "~1.0",
         "phpdocumentor/reflection-docblock": "~3.1",
         "symfony/asset": "3.2.*",
@@ -30,7 +29,8 @@
         "symfony/serializer": "3.2.*",
         "symfony/yaml": "3.2.*",
         "twig/twig": "~2.2",
-        "twig/extensions": "1.*"
+        "twig/extensions": "1.*",
+        "zendframework/zend-diactoros": "~1.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.0"

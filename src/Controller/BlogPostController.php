@@ -6,6 +6,7 @@ use BabDev\Website\Application;
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Controller\AbstractController;
 use Joomla\Renderer\RendererInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Controller rendering single blog posts.
@@ -39,12 +40,14 @@ class BlogPostController extends AbstractController
     {
         $alias = $this->getInput()->getPath('alias', '');
 
-        $this->getApplication()->setBody(
-            $this->renderer->render(
-                'blog/layout.html.twig',
-                [
-                    'post' => $this->blogModel->getPost($alias),
-                ]
+        $this->getApplication()->setResponse(
+            new HtmlResponse(
+                $this->renderer->render(
+                    'blog/layout.html.twig',
+                    [
+                        'post' => $this->blogModel->getPost($alias),
+                    ]
+                )
             )
         );
 

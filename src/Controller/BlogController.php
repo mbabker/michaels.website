@@ -7,6 +7,7 @@ use BabDev\Website\Model\BlogPostModel;
 use Joomla\Controller\AbstractController;
 use Joomla\Renderer\RendererInterface;
 use Pagerfanta\Pagerfanta;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Controller rendering the blog list view.
@@ -45,14 +46,16 @@ class BlogController extends AbstractController
         $paginator->setMaxPerPage($this->getApplication()->get('paginator.per_page', 5));
         $paginator->setCurrentPage($page);
 
-        $this->getApplication()->setBody(
-            $this->renderer->render(
-                'blog.html.twig',
-                [
-                    'page'      => $page,
-                    'paginator' => $paginator,
-                    'posts'     => $paginator->getCurrentPageResults(),
-                ]
+        $this->getApplication()->setResponse(
+            new HtmlResponse(
+                $this->renderer->render(
+                    'blog.html.twig',
+                    [
+                        'page'      => $page,
+                        'paginator' => $paginator,
+                        'posts'     => $paginator->getCurrentPageResults(),
+                    ]
+                )
             )
         );
 

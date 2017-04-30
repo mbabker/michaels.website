@@ -6,6 +6,7 @@ use BabDev\Website\Application;
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Controller\AbstractController;
 use Joomla\Renderer\RendererInterface;
+use Zend\Diactoros\Response\HtmlResponse;
 
 /**
  * Controller rendering the site homepage.
@@ -37,8 +38,10 @@ class HomepageController extends AbstractController
 
     public function execute(): bool
     {
-        $this->getApplication()->setBody(
-            $this->renderer->render('homepage.html.twig', ['latest' => $this->blogModel->getLatestPost()])
+        $this->getApplication()->setResponse(
+            new HtmlResponse(
+                $this->renderer->render('homepage.html.twig', ['latest' => $this->blogModel->getLatestPost()])
+            )
         );
 
         return true;
