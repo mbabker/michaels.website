@@ -3,8 +3,8 @@
 namespace BabDev\Website\Model;
 
 use BabDev\Website\Entity\BlogPost;
-use Joomla\Filesystem\Folder;
 use Pagerfanta\Adapter\ArrayAdapter;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -12,6 +12,8 @@ use Symfony\Component\Serializer\SerializerInterface;
  */
 class BlogPostModel
 {
+    private const BLOG_PATH = JPATH_ROOT . '/pages/blog';
+
     /**
      * @var SerializerInterface
      */
@@ -48,16 +50,17 @@ class BlogPostModel
 
     public function getPost(string $alias): BlogPost
     {
-        $lookupPath = JPATH_ROOT . '/pages/blog';
+        $finder = Finder::create()
+            ->files()
+            ->in(self::BLOG_PATH)
+            ->name("*_$alias.yml");
 
-        $files = Folder::files($lookupPath, '.yml');
+        if (count($finder) > 1) {
+            throw new \InvalidArgumentException('Non-unique blog post alias given.', 404);
+        }
 
-        foreach ($files as $file) {
-            $parts = explode('_', $file);
-
-            if ($parts[1] === $alias . '.yml') {
-                return $this->deserializePost($lookupPath . '/' . $file);
-            }
+        foreach ($finder as $file) {
+            return $this->deserializePost($file->getPathname());
         }
 
         throw new \InvalidArgumentException('No post found for the given alias.', 404);
@@ -68,14 +71,11 @@ class BlogPostModel
      */
     public function getPosts(): array
     {
-        $lookupPath = JPATH_ROOT . '/pages/blog';
-
-        $files = Folder::files($lookupPath, '.yml');
         $posts = [];
 
-        foreach ($files as $file) {
+        foreach ($this->findPostFiles() as $file) {
             $parts            = explode('_', $file);
-            $posts[$parts[0]] = $this->deserializePost($lookupPath . '/' . $file);
+            $posts[$parts[0]] = $this->deserializePost($file->getPathname());
         }
 
         ksort($posts);
@@ -90,5 +90,13 @@ class BlogPostModel
             BlogPost::class,
             'yaml'
         );
+    }
+
+    private function findPostFiles(): Finder
+    {
+        return Finder::create()
+            ->files()
+            ->in(self::BLOG_PATH)
+            ->name('*.yml');
     }
 }
