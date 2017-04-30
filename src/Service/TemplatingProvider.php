@@ -6,7 +6,6 @@ use BabDev\Website\Application;
 use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
-use BabDev\Website\Renderer\TwigRuntimeLoader;
 use Joomla\Application\AbstractApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -57,7 +56,7 @@ class TemplatingProvider implements ServiceProviderInterface
         $container->alias(TwigRuntime::class, 'twig.runtime')
             ->share('twig.runtime', [$this, 'getTwigRuntimeService'], true);
 
-        $container->alias(TwigRuntimeLoader::class, 'twig.runtime.loader')
+        $container->alias(\Twig_ContainerRuntimeLoader::class, 'twig.runtime.loader')
             ->share('twig.runtime.loader', [$this, 'getTwigRuntimeLoaderService'], true);
     }
 
@@ -173,8 +172,8 @@ class TemplatingProvider implements ServiceProviderInterface
         return new TwigRuntime($container->get(Application::class), $container->get(Packages::class));
     }
 
-    public function getTwigRuntimeLoaderService(Container $container): TwigRuntimeLoader
+    public function getTwigRuntimeLoaderService(Container $container): \Twig_ContainerRuntimeLoader
     {
-        return new TwigRuntimeLoader($container);
+        return new \Twig_ContainerRuntimeLoader($container);
     }
 }
