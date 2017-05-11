@@ -74,7 +74,7 @@ class BlogPostModel
         $posts = [];
 
         foreach ($this->findPostFiles() as $file) {
-            $parts            = explode('_', $file);
+            $parts            = explode('_', $file->getFilename());
             $posts[$parts[0]] = $this->deserializePost($file->getPathname());
         }
 
