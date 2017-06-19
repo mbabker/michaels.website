@@ -11,3 +11,10 @@
 # Configuration #
 /etc/config.json
 /.php_cs.cache
+
+# Local resources #
+/cache/twig/
+
+# DebugBar assets #
+/www/media/css/debugbar.css
+/www/media/js/debugbar.js

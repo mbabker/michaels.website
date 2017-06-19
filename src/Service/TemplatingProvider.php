@@ -36,8 +36,9 @@ class TemplatingProvider implements ServiceProviderInterface
         $container->alias(\Twig_CacheInterface::class, 'twig.cache')
             ->share('twig.cache', [$this, 'getTwigCacheService'], true);
 
+        // This service cannot be protected as it is decorated when the debug bar is available
         $container->alias(\Twig_Environment::class, 'twig.environment')
-            ->share('twig.environment', [$this, 'getTwigEnvironmentService'], true);
+            ->share('twig.environment', [$this, 'getTwigEnvironmentService']);
 
         $container->alias(TwigExtension::class, 'twig.extension.app')
             ->share('twig.extension.app', [$this, 'getTwigExtensionAppService'], true);
@@ -117,7 +118,8 @@ class TemplatingProvider implements ServiceProviderInterface
         // Add the Twig extensions
         $environment->setExtensions($container->get('twig.extensions'));
 
-        // Add a global tracking the debug state
+        // Add a global tracking the debug states
+        $environment->addGlobal('appDebug', $config->get('debug', false));
         $environment->addGlobal('layoutDebug', $templateDebug);
 
         return $environment;

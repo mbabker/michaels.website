@@ -26,6 +26,9 @@
             <link href="{{ asset('css/clean-blog.min.css') }}" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
         {% endblock %}
+        {% if appDebug %}
+            <link rel="stylesheet" href="{{ asset('css/debugbar.css', 'no_version') }}" type="text/css">
+        {% endif %}
     </head>
     <body>
         <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -134,5 +137,8 @@
                 ga('send', 'pageview');
             </script>
         {% endblock %}
+        {% if appDebug %}
+            <script src="{{ asset('js/debugbar.js', 'no_version') }}"></script>
+        {% endif %}
     </body>
 </html>

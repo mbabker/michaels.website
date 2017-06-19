@@ -12,6 +12,7 @@ use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Input\Input;
+use Joomla\Registry\Registry;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Router;
 
@@ -30,11 +31,18 @@ class WebApplicationProvider implements ServiceProviderInterface
             ->share(
                 JoomlaApplication\AbstractApplication::class,
                 function (Container $container): JoomlaApplication\AbstractApplication {
-                    $application = new Application($container->get(Input::class), $container->get('config'));
+                    /** @var Registry $config */
+                    $config = $container->get('config');
+
+                    $application = new Application($container->get(Input::class), $config);
 
                     // Inject extra services
                     $application->setContainer($container);
                     $application->setRouter($container->get(Router::class));
+
+                    if ($config->get('debug', false) && $container->has('debug.bar')) {
+                        $application->setDebugBar($container->get('debug.bar'));
+                    }
 
                     return $application;
                 },

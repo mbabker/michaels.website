@@ -2,6 +2,7 @@
 
 namespace BabDev\Website;
 
+use DebugBar\DebugBar;
 use Joomla\Application\AbstractWebApplication;
 use Joomla\Controller\ControllerInterface;
 use Joomla\DI\ContainerAwareInterface;
@@ -15,6 +16,11 @@ use Zend\Diactoros\Response\HtmlResponse;
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
+
+    /**
+     * @var DebugBar
+     */
+    private $debugBar;
 
     /**
      * @var Router
@@ -65,6 +71,44 @@ final class Application extends AbstractWebApplication implements ContainerAware
     public function getFormToken($forceNew = false): string
     {
         return '';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function respond()
+    {
+        // Render the debug bar output if able
+        if ($this->debugBar && !($this->mimeType === 'application/json' || $this->getResponse() instanceof JsonResponse)) {
+            $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
+
+            // Fetch the body
+            $body = $this->getBody();
+
+            // If for whatever reason we're missing the closing body tag, just append the scripts
+            if (!stristr($body, '</body>')) {
+                $body .= $debugBarOutput;
+            } else {
+                // Find the closing tag and put the scripts in
+                $pos = strripos($body, '</body>');
+
+                if ($pos !== false) {
+                    $body = substr_replace($body, $debugBarOutput . '</body>', $pos, strlen('</body>'));
+                }
+            }
+
+            // Reset the body
+            $this->setBody($body);
+        }
+
+        parent::respond();
+    }
+
+    public function setDebugBar(DebugBar $debugBar): self
+    {
+        $this->debugBar = $debugBar;
+
+        return $this;
     }
 
     public function setRouter(Router $router): self

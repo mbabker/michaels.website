@@ -23,6 +23,11 @@ require JPATH_ROOT . '/vendor/autoload.php';
             ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider)
             ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider);
 
+        // Conditionally include the DebugBar service provider based on the app being in debug mode
+        if ((bool) $container->get('config')->get('debug', false)) {
+            $container->registerServiceProvider(new BabDev\Website\Service\DebugBarProvider);
+        }
+
         // Set error reporting based on config
         $errorReporting = (int) $container->get('config')->get('errorReporting', 0);
         error_reporting($errorReporting);

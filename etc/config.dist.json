@@ -9,5 +9,6 @@
   "paginator": {
     "per_page": 5
   },
-  "errorReporting": 0
+  "errorReporting": 0,
+  "debug": false
 }
