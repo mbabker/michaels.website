@@ -15,6 +15,9 @@
 # Local resources #
 /cache/twig/
 
+# NPM
+/node_modules
+
 # DebugBar assets #
 /www/media/css/debugbar.css
 /www/media/js/debugbar.js

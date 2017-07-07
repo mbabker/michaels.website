@@ -3,6 +3,7 @@
 namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
+use BabDev\Website\Asset\MixPathPackage;
 use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
@@ -14,6 +15,7 @@ use Joomla\Renderer\TwigRenderer;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
 use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 
 /**
@@ -63,13 +65,21 @@ class TemplatingProvider implements ServiceProviderInterface
 
     public function getAssetPackagesService(Container $container): Packages
     {
-        $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : md5(get_class($this));
-        $context = new ApplicationContext($container->get(AbstractApplication::class));
+        /** @var AbstractApplication $app */
+        $app = $container->get(AbstractApplication::class);
+
+        $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : '';
+        $context = new ApplicationContext($app);
+
+        // If we have a version, set to null to use the strategy's default format
+        $versionFormat = $version ? null : '%s';
+
+        $defaultPackage = new PathPackage('/media/', new EmptyVersionStrategy($version), $context);
 
         return new Packages(
-            new PathPackage('media', new StaticVersionStrategy($version), $context),
+            $defaultPackage,
             [
-                'no_version' => new PathPackage('media', new EmptyVersionStrategy(), $context),
+                'mix' => new MixPathPackage($defaultPackage, '/media/', new JsonManifestVersionStrategy(JPATH_ROOT . '/www/media/mix-manifest.json'), $context),
             ]
         );
     }
