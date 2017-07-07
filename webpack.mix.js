@@ -6,7 +6,7 @@ mix.setPublicPath('www/media/');
 mix.setResourceRoot('/media/');
 
 // Core app JS
-//mix.js('assets/js/template.js', 'js');
+mix.js('assets/js/template.js', 'js');
 
 // Core app CSS
 mix.sass('assets/scss/template.scss', 'css');

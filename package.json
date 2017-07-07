@@ -8,7 +8,8 @@
   "dependencies": {
     "autoprefixer": "^6.6.1",
     "bootstrap-sass": "3.3.7",
-    "font-awesome": "4.7.0"
+    "font-awesome": "4.7.0",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "cross-env": "^5.0",
