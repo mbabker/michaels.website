@@ -9,7 +9,13 @@ mix.setResourceRoot('/media/');
 mix.js('assets/js/template.js', 'js');
 
 // Core app CSS
-mix.sass('assets/scss/template.scss', 'css');
+mix
+    .sass('assets/scss/template.scss', 'css')
+    .options({
+        postCss: [
+            require('autoprefixer')({ browsers: 'last 2 versions' })
+        ]
+    });
 
 // Version assets
 mix.version();
