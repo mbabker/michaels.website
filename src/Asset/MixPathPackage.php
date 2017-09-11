@@ -8,7 +8,7 @@ use Symfony\Component\Asset\PathPackage as BasePathPackage;
 use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 
 /**
- * Extended path package for resolving assets from a Laravel Mix manifest
+ * Extended path package for resolving assets from a Laravel Mix manifest.
  */
 class MixPathPackage extends BasePathPackage
 {
@@ -23,8 +23,12 @@ class MixPathPackage extends BasePathPackage
      * @param VersionStrategyInterface $versionStrategy
      * @param ContextInterface         $context
      */
-    public function __construct(Package $decoratedPackage, $basePath, VersionStrategyInterface $versionStrategy, ContextInterface $context = null)
-    {
+    public function __construct(
+        Package $decoratedPackage,
+        $basePath,
+        VersionStrategyInterface $versionStrategy,
+        ContextInterface $context = null
+    ) {
         parent::__construct($basePath, $versionStrategy, $context);
 
         $this->decoratedPackage = $decoratedPackage;
@@ -47,6 +51,6 @@ class MixPathPackage extends BasePathPackage
             return $this->decoratedPackage->getUrl($path);
         }
 
-        return $this->getBasePath().ltrim($versionedPath, '/');
+        return $this->getBasePath() . ltrim($versionedPath, '/');
     }
 }

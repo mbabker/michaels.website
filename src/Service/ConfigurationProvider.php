@@ -41,7 +41,8 @@ class ConfigurationProvider implements ServiceProviderInterface
             'config',
             function (): Registry {
                 return $this->config;
-            }, true
+            },
+            true
         );
     }
 }

@@ -16,7 +16,6 @@ use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
-use Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy;
 
 /**
  * Templating service provider.
