@@ -5,7 +5,7 @@ namespace BabDev\Website\Renderer;
 /**
  * Twig extension class.
  */
-class TwigExtension extends \Twig_Extension
+final class TwigExtension extends \Twig_Extension
 {
     /**
      * {@inheritdoc}

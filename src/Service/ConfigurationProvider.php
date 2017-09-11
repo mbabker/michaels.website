@@ -9,7 +9,7 @@ use Joomla\Registry\Registry;
 /**
  * Configuration service provider.
  */
-class ConfigurationProvider implements ServiceProviderInterface
+final class ConfigurationProvider implements ServiceProviderInterface
 {
     /**
      * @var Registry

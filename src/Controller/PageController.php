@@ -13,7 +13,7 @@ use Zend\Diactoros\Response\HtmlResponse;
  * @method        Application getApplication() Get the application object.
  * @property-read Application $app             Application object
  */
-class PageController extends AbstractController
+final class PageController extends AbstractController
 {
     /**
      * Container defining layouts which shouldn't be routable.
@@ -27,9 +27,6 @@ class PageController extends AbstractController
      */
     private $renderer;
 
-    /**
-     * @param RendererInterface $renderer
-     */
     public function __construct(RendererInterface $renderer)
     {
         $this->renderer = $renderer;

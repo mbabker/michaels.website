@@ -10,7 +10,7 @@ use Symfony\Component\Asset\Packages;
 /**
  * Twig runtime class.
  */
-class TwigRuntime
+final class TwigRuntime
 {
     /**
      * @var Application
@@ -22,10 +22,6 @@ class TwigRuntime
      */
     private $packages;
 
-    /**
-     * @param Application $app
-     * @param Packages    $packages
-     */
     public function __construct(Application $app, Packages $packages)
     {
         $this->app      = $app;

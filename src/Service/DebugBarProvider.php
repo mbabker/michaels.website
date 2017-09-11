@@ -13,7 +13,7 @@ use Joomla\DI\ServiceProviderInterface;
 /**
  * Debug bar service provider.
  */
-class DebugBarProvider implements ServiceProviderInterface
+final class DebugBarProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}

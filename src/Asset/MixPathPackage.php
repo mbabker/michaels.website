@@ -10,19 +10,13 @@ use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 /**
  * Extended path package for resolving assets from a Laravel Mix manifest.
  */
-class MixPathPackage extends BasePathPackage
+final class MixPathPackage extends BasePathPackage
 {
     /**
      * @var Package
      */
     private $decoratedPackage;
 
-    /**
-     * @param Package                  $decoratedPackage
-     * @param string                   $basePath
-     * @param VersionStrategyInterface $versionStrategy
-     * @param ContextInterface         $context
-     */
     public function __construct(
         Package $decoratedPackage,
         $basePath,

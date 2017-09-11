@@ -20,7 +20,7 @@ use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
 /**
  * Templating service provider.
  */
-class TemplatingProvider implements ServiceProviderInterface
+final class TemplatingProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}
@@ -73,7 +73,7 @@ class TemplatingProvider implements ServiceProviderInterface
         // If we have a version, set to null to use the strategy's default format
         $versionFormat = $version ? null : '%s';
 
-        $defaultPackage = new PathPackage('/media/', new EmptyVersionStrategy($version), $context);
+        $defaultPackage = new PathPackage('/media/', new EmptyVersionStrategy(), $context);
 
         return new Packages(
             $defaultPackage,

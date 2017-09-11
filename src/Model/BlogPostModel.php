@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 /**
  * Model for fetching blog posts.
  */
-class BlogPostModel
+final class BlogPostModel
 {
     private const BLOG_PATH = JPATH_ROOT . '/pages/blog';
 
@@ -19,9 +19,6 @@ class BlogPostModel
      */
     private $serializer;
 
-    /**
-     * @param SerializerInterface $serializer
-     */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;

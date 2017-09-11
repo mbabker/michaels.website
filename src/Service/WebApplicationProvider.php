@@ -19,7 +19,7 @@ use Joomla\Router\Router;
 /**
  * Application service provider.
  */
-class WebApplicationProvider implements ServiceProviderInterface
+final class WebApplicationProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}

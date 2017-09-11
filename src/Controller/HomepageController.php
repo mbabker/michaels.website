@@ -14,7 +14,7 @@ use Zend\Diactoros\Response\HtmlResponse;
  * @method        Application getApplication() Get the application object.
  * @property-read Application $app             Application object
  */
-class HomepageController extends AbstractController
+final class HomepageController extends AbstractController
 {
     /**
      * @var BlogPostModel
@@ -26,10 +26,6 @@ class HomepageController extends AbstractController
      */
     private $renderer;
 
-    /**
-     * @param RendererInterface $renderer
-     * @param BlogPostModel     $blogModel
-     */
     public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
     {
         $this->blogModel = $blogModel;

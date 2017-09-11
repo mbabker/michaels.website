@@ -5,7 +5,7 @@ namespace BabDev\Website\Entity;
 /**
  * Blog post entity.
  */
-class BlogPost
+final class BlogPost
 {
     /**
      * @var string

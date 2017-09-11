@@ -16,7 +16,7 @@ use Symfony\Component\Yaml\Parser;
 /**
  * Serializer service provider.
  */
-class SerializerProvider implements ServiceProviderInterface
+final class SerializerProvider implements ServiceProviderInterface
 {
     /**
      * {@inheritdoc}
