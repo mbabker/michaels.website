@@ -67,11 +67,7 @@ final class TemplatingProvider implements ServiceProviderInterface
         /** @var AbstractApplication $app */
         $app = $container->get(AbstractApplication::class);
 
-        $version = file_exists(JPATH_ROOT . '/current_SHA') ? trim(file_get_contents(JPATH_ROOT . '/current_SHA')) : '';
         $context = new ApplicationContext($app);
-
-        // If we have a version, set to null to use the strategy's default format
-        $versionFormat = $version ? null : '%s';
 
         $defaultPackage = new PathPackage('/media/', new EmptyVersionStrategy(), $context);
 
