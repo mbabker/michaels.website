@@ -148,7 +148,7 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 # ======== Redirect HTTP to HTTPS =========
 
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP_HOST} !^michaels.website.dev
+RewriteCond %{HTTP_HOST} !^michaels.website.localhost
 RewriteCond %{HTTP_HOST} ^michaels.website
 RewriteRule ^(.*)$ https://michaels.website/$1 [R=301,L,QSA]
 
