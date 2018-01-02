@@ -6,9 +6,6 @@ use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Registry\Registry;
 
-/**
- * Configuration service provider.
- */
 final class ConfigurationProvider implements ServiceProviderInterface
 {
     /**
@@ -16,9 +13,6 @@ final class ConfigurationProvider implements ServiceProviderInterface
      */
     private $config;
 
-    /**
-     * @throws \RuntimeException
-     */
     public function __construct()
     {
         // Set the configuration file path for the application.
@@ -32,9 +26,6 @@ final class ConfigurationProvider implements ServiceProviderInterface
         $this->config = (new Registry)->loadFile($file);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function register(Container $container)
     {
         $container->share(

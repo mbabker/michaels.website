@@ -8,6 +8,7 @@ use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
 use BabDev\Website\Model\BlogPostModel;
+use DebugBar\DebugBar;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -15,39 +16,34 @@ use Joomla\Input\Input;
 use Joomla\Registry\Registry;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Router;
+use Symfony\Component\Serializer\SerializerInterface;
 
-/**
- * Application service provider.
- */
 final class WebApplicationProvider implements ServiceProviderInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function register(Container $container)
     {
-        $container->alias(Application::class, JoomlaApplication\AbstractApplication::class)
-            ->alias(JoomlaApplication\AbstractWebApplication::class, JoomlaApplication\AbstractApplication::class)
-            ->share(
-                JoomlaApplication\AbstractApplication::class,
-                function (Container $container): JoomlaApplication\AbstractApplication {
-                    /** @var Registry $config */
-                    $config = $container->get('config');
+        $container->share(
+            JoomlaApplication\AbstractApplication::class,
+            function (Container $container): JoomlaApplication\AbstractApplication {
+                /** @var Registry $config */
+                $config = $container->get('config');
 
-                    $application = new Application($container->get(Input::class), $config);
+                $application = new Application($container->get(Input::class), $config);
 
-                    // Inject extra services
-                    $application->setContainer($container);
-                    $application->setRouter($container->get(Router::class));
+                // Inject extra services
+                $application->setContainer($container);
+                $application->setRouter($container->get(Router::class));
 
-                    if ($config->get('debug', false) && $container->has('debug.bar')) {
-                        $application->setDebugBar($container->get('debug.bar'));
-                    }
+                if ($config->get('debug', false) && $container->has(DebugBar::class)) {
+                    $application->setDebugBar($container->get(DebugBar::class));
+                }
 
-                    return $application;
-                },
-                true
-            );
+                return $application;
+            },
+            true
+        )
+            ->alias(Application::class, JoomlaApplication\AbstractApplication::class)
+            ->alias(JoomlaApplication\AbstractWebApplication::class, JoomlaApplication\AbstractApplication::class);
 
         $container->share(
             Input::class,
@@ -136,7 +132,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             BlogPostModel::class,
             function (Container $container): BlogPostModel {
-                return new BlogPostModel($container->get('serializer'));
+                return new BlogPostModel($container->get(SerializerInterface::class));
             }
         );
     }

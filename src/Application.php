@@ -10,9 +10,6 @@ use Joomla\DI\ContainerAwareTrait;
 use Joomla\Router\Router;
 use Zend\Diactoros\Response\HtmlResponse;
 
-/**
- * Web application class.
- */
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
@@ -30,7 +27,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
     /**
      * {@inheritdoc}
      */
-    protected function doExecute()
+    protected function doExecute(): void
     {
         try {
             $route = $this->router->parseRoute($this->get('uri.route'), $this->input->getMethod());
@@ -76,7 +73,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
     /**
      * {@inheritdoc}
      */
-    protected function respond()
+    protected function respond(): void
     {
         // Render the debug bar output if able
         if ($this->debugBar && !($this->mimeType === 'application/json' || $this->getResponse() instanceof JsonResponse)) {

@@ -7,9 +7,6 @@ use Pagerfanta\Adapter\ArrayAdapter;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Serializer\SerializerInterface;
 
-/**
- * Model for fetching blog posts.
- */
 final class BlogPostModel
 {
     private const BLOG_PATH = JPATH_ROOT . '/pages/blog';
@@ -31,11 +28,6 @@ final class BlogPostModel
         return end($posts);
     }
 
-    /**
-     * Get the blog posts for a given page as a pagination adapter.
-     *
-     * @return ArrayAdapter
-     */
     public function getPaginatorAdapter(): ArrayAdapter
     {
         $posts = $this->getPosts();
@@ -47,10 +39,7 @@ final class BlogPostModel
 
     public function getPost(string $alias): BlogPost
     {
-        $finder = Finder::create()
-            ->files()
-            ->in(self::BLOG_PATH)
-            ->name("*_$alias.yml");
+        $finder = $this->buildFinder()->name("*_$alias.yml");
 
         if (count($finder) > 1) {
             throw new \InvalidArgumentException('Non-unique blog post alias given.', 404);
@@ -80,6 +69,13 @@ final class BlogPostModel
         return $posts;
     }
 
+    private function buildFinder(): Finder
+    {
+        return Finder::create()
+            ->files()
+            ->in(self::BLOG_PATH);
+    }
+
     private function deserializePost(string $filename): BlogPost
     {
         return $this->serializer->deserialize(
@@ -91,9 +87,6 @@ final class BlogPostModel
 
     private function findPostFiles(): Finder
     {
-        return Finder::create()
-            ->files()
-            ->in(self::BLOG_PATH)
-            ->name('*.yml');
+        return $this->buildFinder()->name('*.yml');
     }
 }

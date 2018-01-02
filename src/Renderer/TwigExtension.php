@@ -2,14 +2,8 @@
 
 namespace BabDev\Website\Renderer;
 
-/**
- * Twig extension class.
- */
 final class TwigExtension extends \Twig_Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -21,9 +15,6 @@ final class TwigExtension extends \Twig_Extension
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFilters(): array
     {
         return [

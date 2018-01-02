@@ -4,9 +4,6 @@ namespace BabDev\Website\DebugBar\Twig;
 
 use DebugBar\DataCollector\TimeDataCollector;
 
-/**
- * Wrapped a Twig Environment to provide profiling features.
- */
 class TraceableTwigEnvironment extends \Twig_Environment
 {
     protected $twig;

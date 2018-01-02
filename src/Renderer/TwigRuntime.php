@@ -7,9 +7,6 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
 use Symfony\Component\Asset\Packages;
 
-/**
- * Twig runtime class.
- */
 final class TwigRuntime
 {
     /**

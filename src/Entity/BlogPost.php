@@ -2,9 +2,6 @@
 
 namespace BabDev\Website\Entity;
 
-/**
- * Blog post entity.
- */
 final class BlogPost
 {
     /**

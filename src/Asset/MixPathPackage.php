@@ -7,9 +7,6 @@ use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\PathPackage as BasePathPackage;
 use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 
-/**
- * Extended path package for resolving assets from a Laravel Mix manifest.
- */
 final class MixPathPackage extends BasePathPackage
 {
     /**
@@ -28,10 +25,7 @@ final class MixPathPackage extends BasePathPackage
         $this->decoratedPackage = $decoratedPackage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getUrl($path)
+    public function getUrl($path): string
     {
         if ($this->isAbsoluteUrl($path)) {
             return $path;

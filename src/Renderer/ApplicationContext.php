@@ -6,9 +6,6 @@ use Joomla\Application\AbstractApplication;
 use Joomla\Application\AbstractWebApplication;
 use Symfony\Component\Asset\Context\ContextInterface;
 
-/**
- * Joomla! application aware context.
- */
 final class ApplicationContext implements ContextInterface
 {
     /**
@@ -21,18 +18,12 @@ final class ApplicationContext implements ContextInterface
         $this->app = $app;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return rtrim($this->app->get('uri.base.path'), '/');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isSecure()
+    public function isSecure(): bool
     {
         if ($this->app instanceof AbstractWebApplication) {
             return $this->app->isSslConnection();
