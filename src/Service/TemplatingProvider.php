@@ -62,9 +62,9 @@ final class TemplatingProvider implements ServiceProviderInterface
                 $config = $container->get('config');
 
                 $templateDebug = (bool) $config->get('template.debug', false);
-                $templateCache = $config->get('template.cache', false);
+                $templateCache = (bool) $config->get('template.cache', false);
 
-                if ($templateDebug === false && $templateCache !== false) {
+                if ($templateDebug === false && $templateCache === true) {
                     return new \Twig_Cache_Filesystem(JPATH_ROOT . '/cache/twig');
                 }
 
@@ -102,7 +102,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 }
 
                 // Add a global tracking the debug states
-                $environment->addGlobal('appDebug', $config->get('debug', false));
+                $environment->addGlobal('appDebug', (bool) $config->get('debug', false));
                 $environment->addGlobal('layoutDebug', $templateDebug);
 
                 return $environment;
