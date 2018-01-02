@@ -65,10 +65,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 $templateCache = $config->get('template.cache', false);
 
                 if ($templateDebug === false && $templateCache !== false) {
-                    // Check for a custom cache path otherwise use the default
-                    $cachePath = $templateCache === true ? JPATH_ROOT . '/cache/twig' : $templateCache;
-
-                    return new \Twig_Cache_Filesystem($cachePath);
+                    return new \Twig_Cache_Filesystem(JPATH_ROOT . '/cache/twig');
                 }
 
                 return new \Twig_Cache_Null();
