@@ -1,8 +1,5 @@
 {
   "template": {
-    "paths": [
-      "/absolute/path/to/templates"
-    ],
     "debug": false,
     "cache": false
   },

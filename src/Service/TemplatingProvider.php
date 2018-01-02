@@ -82,10 +82,8 @@ final class TemplatingProvider implements ServiceProviderInterface
 
                 $templateDebug = (bool) $config->get('template.debug', false);
 
-                $templatePaths = $config->get('template.paths', [JPATH_TEMPLATES]);
-
                 $environment = new \Twig_Environment(
-                    new \Twig_Loader_Filesystem($templatePaths),
+                    new \Twig_Loader_Filesystem([JPATH_TEMPLATES]),
                     ['debug' => $templateDebug]
                 );
 
