@@ -43,6 +43,10 @@ final class Application extends AbstractWebApplication implements ContainerAware
         } catch (\Throwable $throwable) {
             $this->allowCache(false);
 
+            if ($this->debugBar) {
+                $this->debugBar->getCollector('exceptions')->addThrowable($throwable);
+            }
+
             $response = new HtmlResponse(
                 $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable])
             );

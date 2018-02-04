@@ -83,7 +83,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 $templateDebug = (bool) $config->get('template.debug', false);
 
                 $environment = new \Twig_Environment(
-                    new \Twig_Loader_Filesystem([JPATH_TEMPLATES]),
+                    $container->get(\Twig_LoaderInterface::class),
                     ['debug' => $templateDebug]
                 );
 
@@ -107,6 +107,23 @@ final class TemplatingProvider implements ServiceProviderInterface
 
                 return $environment;
             }
+        );
+
+        $container->share(
+            \Twig_LoaderInterface::class,
+            function (Container $container): \Twig_LoaderInterface {
+                return new \Twig_Loader_Filesystem([JPATH_TEMPLATES]);
+            },
+            true
+        )
+            ->alias(\Twig_Loader_Filesystem::class, \Twig_LoaderInterface::class);
+
+        $container->share(
+            \Twig_Profiler_Profile::class,
+            function (Container $container): \Twig_Profiler_Profile {
+                return new \Twig_Profiler_Profile();
+            },
+            true
         );
 
         $container->share(

@@ -2,10 +2,12 @@
 
 namespace BabDev\Website\Service;
 
-use BabDev\Website\DebugBar\Twig\TraceableTwigEnvironment;
-use BabDev\Website\DebugBar\Twig\TwigCollector;
+use BabDev\Website\DebugBar\JoomlaHttpDriver;
+use DebugBar\Bridge\Twig\TimeableTwigExtensionProfiler;
+use DebugBar\Bridge\TwigProfileCollector;
 use DebugBar\DebugBar;
 use DebugBar\StandardDebugBar;
+use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
 use Joomla\DI\ServiceProviderInterface;
@@ -26,7 +28,9 @@ final class DebugBarProvider implements ServiceProviderInterface
                 $debugBar = new StandardDebugBar;
 
                 // Add collectors
-                $debugBar->addCollector(new TwigCollector($container->get(\Twig_Environment::class)));
+                $debugBar->addCollector(
+                    new TwigProfileCollector($container->get(\Twig_Profiler_Profile::class), $container->get(\Twig_LoaderInterface::class))
+                );
 
                 // Ensure the assets are dumped
                 $renderer = $debugBar->getJavascriptRenderer();
@@ -41,10 +45,25 @@ final class DebugBarProvider implements ServiceProviderInterface
         )
             ->alias(DebugBar::class, StandardDebugBar::class);
 
+        $container->share(
+            JoomlaHttpDriver::class,
+            function (Container $container): JoomlaHttpDriver {
+                return new JoomlaHttpDriver($container->get(AbstractWebApplication::class));
+            },
+            true
+        );
+
         $container->extend(
             \Twig_Environment::class,
-            function (\Twig_Environment $twig): TraceableTwigEnvironment {
-                return new TraceableTwigEnvironment($twig);
+            function (\Twig_Environment $twig, Container $container): \Twig_Environment {
+                $twig->addExtension(
+                    new TimeableTwigExtensionProfiler(
+                        $container->get(\Twig_Profiler_Profile::class),
+                        $container->get(DebugBar::class)->getCollector('time')
+                    )
+                );
+
+                return $twig;
             }
         );
     }

@@ -41,6 +41,13 @@ require JPATH_ROOT . '/vendor/autoload.php';
         exit;
     }
 
+    // There is a circular dependency in building the HTTP driver while the application is being resolved, so it'll need to be set here for now
+    if ($container->has(\DebugBar\DebugBar::class)) {
+        /** @var \DebugBar\DebugBar $debugBar */
+        $debugBar = $container->get(\DebugBar\DebugBar::class);
+        $debugBar->setHttpDriver($container->get(\BabDev\Website\DebugBar\JoomlaHttpDriver::class));
+    }
+
     // Execute the application
     try {
         $container->get(BabDev\Website\Application::class)->execute();
