@@ -1,6 +1,7 @@
 <?php
 
 // Application constants
+define('APP_START', microtime(true));
 define('JPATH_ROOT', dirname(__DIR__));
 define('JPATH_TEMPLATES', JPATH_ROOT . '/templates');
 
@@ -47,6 +48,10 @@ require JPATH_ROOT . '/vendor/autoload.php';
         /** @var \DebugBar\DebugBar $debugBar */
         $debugBar = $container->get(\DebugBar\DebugBar::class);
         $debugBar->setHttpDriver($container->get(\BabDev\Website\DebugBar\JoomlaHttpDriver::class));
+
+        /** @var \DebugBar\DataCollector\TimeDataCollector $collector */
+        $collector = $debugBar->getCollector('time');
+        $collector->addMeasure('initialization', APP_START, microtime(true));
     }
 
     // Execute the application

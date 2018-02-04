@@ -7,17 +7,13 @@ use Joomla\Application\AbstractWebApplication;
 use Joomla\Controller\ControllerInterface;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\ContainerAwareTrait;
+use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Router;
 use Zend\Diactoros\Response\HtmlResponse;
 
 final class Application extends AbstractWebApplication implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-
-    /**
-     * @var DebugBar
-     */
-    private $debugBar;
 
     /**
      * @var Router
@@ -43,12 +39,12 @@ final class Application extends AbstractWebApplication implements ContainerAware
         } catch (\Throwable $throwable) {
             $this->allowCache(false);
 
-            if ($this->debugBar) {
-                $this->debugBar->getCollector('exceptions')->addThrowable($throwable);
+            if ($this->getContainer()->has(DebugBar::class)) {
+                $this->getContainer()->has(DebugBar::class)->getCollector('exceptions')->addThrowable($throwable);
             }
 
             $response = new HtmlResponse(
-                $this->getContainer()->get('renderer')->render('exception.html.twig', ['exception' => $throwable])
+                $this->getContainer()->get(RendererInterface::class)->render('exception.html.twig', ['exception' => $throwable])
             );
 
             switch ($throwable->getCode()) {
@@ -72,44 +68,6 @@ final class Application extends AbstractWebApplication implements ContainerAware
     public function getFormToken($forceNew = false): string
     {
         return '';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function respond(): void
-    {
-        // Render the debug bar output if able
-        if ($this->debugBar && !($this->mimeType === 'application/json' || $this->getResponse() instanceof JsonResponse)) {
-            $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
-
-            // Fetch the body
-            $body = $this->getBody();
-
-            // If for whatever reason we're missing the closing body tag, just append the scripts
-            if (!stristr($body, '</body>')) {
-                $body .= $debugBarOutput;
-            } else {
-                // Find the closing tag and put the scripts in
-                $pos = strripos($body, '</body>');
-
-                if ($pos !== false) {
-                    $body = substr_replace($body, $debugBarOutput . '</body>', $pos, strlen('</body>'));
-                }
-            }
-
-            // Reset the body
-            $this->setBody($body);
-        }
-
-        parent::respond();
-    }
-
-    public function setDebugBar(DebugBar $debugBar): self
-    {
-        $this->debugBar = $debugBar;
-
-        return $this;
     }
 
     public function setRouter(Router $router): self

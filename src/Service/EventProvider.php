@@ -9,10 +9,11 @@ use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\Dispatcher;
 use Joomla\Event\DispatcherInterface;
 
-class EventProvider implements ServiceProviderInterface
+final class EventProvider implements ServiceProviderInterface
 {
     public function register(Container $container)
     {
+        // This service cannot be protected as it is decorated when the debug bar is available
         $container->share(
             DispatcherInterface::class,
             function (Container $container): DispatcherInterface {

@@ -3,6 +3,8 @@
 namespace BabDev\Website\Service;
 
 use BabDev\Website\DebugBar\JoomlaHttpDriver;
+use BabDev\Website\Event\DebugDispatcher;
+use BabDev\Website\EventListener\DebugSubscriber;
 use DebugBar\Bridge\Twig\TimeableTwigExtensionProfiler;
 use DebugBar\Bridge\TwigProfileCollector;
 use DebugBar\DebugBar;
@@ -11,6 +13,7 @@ use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
 use Joomla\DI\ServiceProviderInterface;
+use Joomla\Event\DispatcherInterface;
 
 final class DebugBarProvider implements ServiceProviderInterface
 {
@@ -51,6 +54,17 @@ final class DebugBarProvider implements ServiceProviderInterface
                 return new JoomlaHttpDriver($container->get(AbstractWebApplication::class));
             },
             true
+        );
+
+        $container->extend(
+            DispatcherInterface::class,
+            function (DispatcherInterface $dispatcher, Container $container): DispatcherInterface {
+                $dispatcher = new DebugDispatcher($dispatcher, $container->get(DebugBar::class));
+
+                $dispatcher->addSubscriber(new DebugSubscriber($container->get(DebugBar::class)));
+
+                return $dispatcher;
+            }
         );
 
         $container->extend(

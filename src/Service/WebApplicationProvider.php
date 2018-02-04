@@ -8,7 +8,6 @@ use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
 use BabDev\Website\Model\BlogPostModel;
-use DebugBar\DebugBar;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -35,10 +34,6 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 $application->setContainer($container);
                 $application->setDispatcher($container->get(DispatcherInterface::class));
                 $application->setRouter($container->get(Router::class));
-
-                if ($config->get('debug', false) && $container->has(DebugBar::class)) {
-                    $application->setDebugBar($container->get(DebugBar::class));
-                }
 
                 return $application;
             },
