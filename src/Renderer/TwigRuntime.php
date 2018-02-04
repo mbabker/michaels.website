@@ -3,6 +3,7 @@
 namespace BabDev\Website\Renderer;
 
 use BabDev\Website\Application;
+use BabDev\Website\Manager\PreloadManager;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
 use Symfony\Component\Asset\Packages;
@@ -19,10 +20,16 @@ final class TwigRuntime
      */
     private $packages;
 
-    public function __construct(Application $app, Packages $packages)
+    /**
+     * @var PreloadManager
+     */
+    private $preloadManager;
+
+    public function __construct(Application $app, Packages $packages, PreloadManager $preloadManager)
     {
-        $this->app      = $app;
-        $this->packages = $packages;
+        $this->app            = $app;
+        $this->packages       = $packages;
+        $this->preloadManager = $preloadManager;
     }
 
     public function getAssetUri(string $path, ?string $packageName = null): string
@@ -38,6 +45,20 @@ final class TwigRuntime
     public function getRouteUri(string $route): string
     {
         return $this->app->get('uri.base.full', '') . $route;
+    }
+
+    public function preloadAsset(string $uri, string $linkType = 'preload', array $attributes = []): string
+    {
+        // Make sure the preload method is supported, special case for `dns-prefetch` to convert it to the right method name
+        if ($linkType === 'dns-prefetch') {
+            $this->preloadManager->dnsPrefetch($uri, $attributes);
+        } elseif (method_exists($this->preloadManager, $linkType)) {
+            $this->preloadManager->$linkType($uri, $attributes);
+        } else {
+            throw new \InvalidArgumentException(sprintf('The "%s" method is not supported for preloading.', $linkType), 500);
+        }
+
+        return $uri;
     }
 
     public function renderPagination(Pagerfanta $pagerfanta): string

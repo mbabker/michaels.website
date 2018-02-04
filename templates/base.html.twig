@@ -21,7 +21,7 @@
         <title>{% block title %}Michael's Website{% endblock %}</title>
         {% block headJavaScript %}{% endblock %}
         {% block headCSS %}
-            <link href="{{ asset('css/template.css', 'mix') }}" rel="stylesheet">
+            <link href="{{ preload(asset('css/template.css', 'mix')) }}" rel="stylesheet">
         {% endblock %}
         {% if appDebug %}
             <link href="{{ asset('css/debugbar.css') }}" rel="stylesheet">
@@ -114,7 +114,7 @@
             </div>
         </footer>
         {% block bodyJavaScript %}
-            <script src="{{ asset('js/template.js', 'mix') }}"></script>
+            <script src="{{ preload(asset('js/template.js', 'mix')) }}"></script>
             <script>
                 (function(i, s, o, g, r, a, m) {
                     i['GoogleAnalyticsObject'] = r;

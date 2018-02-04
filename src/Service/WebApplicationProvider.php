@@ -12,6 +12,7 @@ use DebugBar\DebugBar;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
+use Joomla\Event\DispatcherInterface;
 use Joomla\Input\Input;
 use Joomla\Registry\Registry;
 use Joomla\Renderer\RendererInterface;
@@ -32,6 +33,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
 
                 // Inject extra services
                 $application->setContainer($container);
+                $application->setDispatcher($container->get(DispatcherInterface::class));
                 $application->setRouter($container->get(Router::class));
 
                 if ($config->get('debug', false) && $container->has(DebugBar::class)) {

@@ -9,6 +9,7 @@ final class TwigExtension extends \Twig_Extension
         return [
             new \Twig_Function('asset', [TwigRuntime::class, 'getAssetUri']),
             new \Twig_Function('first_paragraph', [$this, 'getFirstParagraph']),
+            new \Twig_Function('preload', [TwigRuntime::class, 'preloadAsset']),
             new \Twig_Function('request_uri', [TwigRuntime::class, 'getRequestUri']),
             new \Twig_Function('route', [TwigRuntime::class, 'getRouteUri']),
             new \Twig_Function('render_pagination', [TwigRuntime::class, 'renderPagination'], ['is_safe' => ['html']]),

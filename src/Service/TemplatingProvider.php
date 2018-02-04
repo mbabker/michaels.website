@@ -4,6 +4,7 @@ namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
 use BabDev\Website\Asset\MixPathPackage;
+use BabDev\Website\Manager\PreloadManager;
 use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
@@ -44,6 +45,14 @@ final class TemplatingProvider implements ServiceProviderInterface
                         ),
                     ]
                 );
+            },
+            true
+        );
+
+        $container->share(
+            PreloadManager::class,
+            function (Container $container): PreloadManager {
+                return new PreloadManager();
             },
             true
         );
@@ -131,7 +140,7 @@ final class TemplatingProvider implements ServiceProviderInterface
         $container->share(
             TwigRuntime::class,
             function (Container $container): TwigRuntime {
-                return new TwigRuntime($container->get(Application::class), $container->get(Packages::class));
+                return new TwigRuntime($container->get(Application::class), $container->get(Packages::class), $container->get(PreloadManager::class));
             },
             true
         );
