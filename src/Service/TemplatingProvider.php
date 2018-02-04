@@ -29,14 +29,16 @@ final class TemplatingProvider implements ServiceProviderInterface
 
                 $context = new ApplicationContext($app);
 
-                $defaultPackage = new PathPackage('/media/', new EmptyVersionStrategy(), $context);
+                $mediaPath = $app->get('uri.media.path', '/media/');
+
+                $defaultPackage = new PathPackage($mediaPath, new EmptyVersionStrategy(), $context);
 
                 return new Packages(
                     $defaultPackage,
                     [
                         'mix' => new MixPathPackage(
                             $defaultPackage,
-                            '/media/',
+                            $mediaPath,
                             new JsonManifestVersionStrategy(JPATH_ROOT . '/www/media/mix-manifest.json'),
                             $context
                         ),
