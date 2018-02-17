@@ -3,7 +3,7 @@
 namespace BabDev\Website\Renderer;
 
 use BabDev\Website\Application;
-use BabDev\Website\Manager\PreloadManager;
+use Joomla\Preload\PreloadManager;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
 use Symfony\Component\Asset\Packages;
@@ -49,14 +49,7 @@ final class TwigRuntime
 
     public function preloadAsset(string $uri, string $linkType = 'preload', array $attributes = []): string
     {
-        // Make sure the preload method is supported, special case for `dns-prefetch` to convert it to the right method name
-        if ($linkType === 'dns-prefetch') {
-            $this->preloadManager->dnsPrefetch($uri, $attributes);
-        } elseif (method_exists($this->preloadManager, $linkType)) {
-            $this->preloadManager->$linkType($uri, $attributes);
-        } else {
-            throw new \InvalidArgumentException(sprintf('The "%s" method is not supported for preloading.', $linkType), 500);
-        }
+        $this->preloadManager->link($uri, $linkType, $attributes);
 
         return $uri;
     }

@@ -4,13 +4,13 @@ namespace BabDev\Website\Service;
 
 use BabDev\Website\Application;
 use BabDev\Website\Asset\MixPathPackage;
-use BabDev\Website\Manager\PreloadManager;
 use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
 use Joomla\Application\AbstractApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
+use Joomla\Preload\PreloadManager;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
 use Symfony\Component\Asset\Packages;
@@ -45,14 +45,6 @@ final class TemplatingProvider implements ServiceProviderInterface
                         ),
                     ]
                 );
-            },
-            true
-        );
-
-        $container->share(
-            PreloadManager::class,
-            function (Container $container): PreloadManager {
-                return new PreloadManager();
             },
             true
         );

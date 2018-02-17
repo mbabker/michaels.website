@@ -23,7 +23,8 @@ require JPATH_ROOT . '/vendor/autoload.php';
             ->registerServiceProvider(new BabDev\Website\Service\EventProvider)
             ->registerServiceProvider(new BabDev\Website\Service\SerializerProvider)
             ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider);
+            ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider)
+            ->registerServiceProvider(new Joomla\Preload\Service\PreloadProvider);
 
         // Conditionally include the DebugBar service provider based on the app being in debug mode
         if ((bool) $container->get('config')->get('debug', false)) {

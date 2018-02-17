@@ -40,7 +40,7 @@ final class Application extends AbstractWebApplication implements ContainerAware
             $this->allowCache(false);
 
             if ($this->getContainer()->has(DebugBar::class)) {
-                $this->getContainer()->has(DebugBar::class)->getCollector('exceptions')->addThrowable($throwable);
+                $this->getContainer()->get(DebugBar::class)->getCollector('exceptions')->addThrowable($throwable);
             }
 
             $response = new HtmlResponse(

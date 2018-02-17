@@ -2,8 +2,6 @@
 
 namespace BabDev\Website\Service;
 
-use BabDev\Website\EventListener\PreloadSubscriber;
-use BabDev\Website\Manager\PreloadManager;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\Dispatcher;
@@ -19,7 +17,9 @@ final class EventProvider implements ServiceProviderInterface
             function (Container $container): DispatcherInterface {
                 $dispatcher = new Dispatcher;
 
-                $dispatcher->addSubscriber(new PreloadSubscriber($container->get(PreloadManager::class)));
+                foreach ($container->getTagged('event.subscriber') as $subscriber) {
+                    $dispatcher->addSubscriber($subscriber);
+                }
 
                 return $dispatcher;
             }

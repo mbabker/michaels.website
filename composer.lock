@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "42015d9eb996853cdba2a05ebc803187",
+    "content-hash": "2292ad2024dd9818958b42e33e861db3",
     "packages": [
         {
             "name": "fig/link-util",
@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/controller.git",
-                "reference": "eef984467f698ba8187763c4e4ac64c19595c4c7"
+                "reference": "fad0742b56ed085fee7699f01ae90d54ac9e83a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/controller/zipball/eef984467f698ba8187763c4e4ac64c19595c4c7",
-                "reference": "eef984467f698ba8187763c4e4ac64c19595c4c7",
+                "url": "https://api.github.com/repos/joomla-framework/controller/zipball/fad0742b56ed085fee7699f01ae90d54ac9e83a2",
+                "reference": "fad0742b56ed085fee7699f01ae90d54ac9e83a2",
                 "shasum": ""
             },
             "require": {
@@ -138,9 +138,9 @@
             },
             "require-dev": {
                 "joomla/application": "~1.0|~2.0",
+                "joomla/coding-standards": "~2.0@alpha",
                 "joomla/input": "~1.0|~2.0",
-                "phpunit/phpunit": "~6.3",
-                "squizlabs/php_codesniffer": "1.*"
+                "phpunit/phpunit": "~6.3"
             },
             "suggest": {
                 "joomla/application": "The joomla/application package is required to use Joomla\\Controller\\AbstractController",
@@ -168,7 +168,7 @@
                 "framework",
                 "joomla"
             ],
-            "time": "2018-01-30T01:56:37+00:00"
+            "time": "2018-02-10T00:30:21+00:00"
         },
         {
             "name": "joomla/di",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/di.git",
-                "reference": "dfb066cb3a95754722377c77285df4383710c3c0"
+                "reference": "5271b8a87e49e807ca5ef1bd8396315a595386c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/di/zipball/dfb066cb3a95754722377c77285df4383710c3c0",
-                "reference": "dfb066cb3a95754722377c77285df4383710c3c0",
+                "url": "https://api.github.com/repos/joomla-framework/di/zipball/5271b8a87e49e807ca5ef1bd8396315a595386c4",
+                "reference": "5271b8a87e49e807ca5ef1bd8396315a595386c4",
                 "shasum": ""
             },
             "require": {
@@ -192,8 +192,8 @@
                 "psr/container-implementation": "~1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.3",
-                "squizlabs/php_codesniffer": "1.*"
+                "joomla/coding-standards": "~2.0@alpha",
+                "phpunit/phpunit": "~6.3"
             },
             "type": "joomla-package",
             "extra": {
@@ -220,7 +220,7 @@
                 "ioc",
                 "joomla"
             ],
-            "time": "2018-01-27T23:43:54+00:00"
+            "time": "2018-02-10T16:10:50+00:00"
         },
         {
             "name": "joomla/event",
@@ -228,20 +228,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/event.git",
-                "reference": "d5886905fd6d592b5f04592b4fe099d3166f7d7a"
+                "reference": "71d0e41338a9e6cf8682f171fb483c7efb591876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/event/zipball/d5886905fd6d592b5f04592b4fe099d3166f7d7a",
-                "reference": "d5886905fd6d592b5f04592b4fe099d3166f7d7a",
+                "url": "https://api.github.com/repos/joomla-framework/event/zipball/71d0e41338a9e6cf8682f171fb483c7efb591876",
+                "reference": "71d0e41338a9e6cf8682f171fb483c7efb591876",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.3",
-                "squizlabs/php_codesniffer": "1.*"
+                "joomla/coding-standards": "~2.0@alpha",
+                "phpunit/phpunit": "~6.3"
             },
             "type": "joomla-package",
             "extra": {
@@ -265,7 +265,7 @@
                 "framework",
                 "joomla"
             ],
-            "time": "2018-01-30T02:00:52+00:00"
+            "time": "2018-02-10T16:18:57+00:00"
         },
         {
             "name": "joomla/filter",
@@ -364,6 +364,64 @@
                 "joomla"
             ],
             "time": "2014-10-12T18:01:36+00:00"
+        },
+        {
+            "name": "joomla/preload",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joomla-framework/preload.git",
+                "reference": "ae46d108d56decca6b29ed8d40a84462cd46b6be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joomla-framework/preload/zipball/ae46d108d56decca6b29ed8d40a84462cd46b6be",
+                "reference": "ae46d108d56decca6b29ed8d40a84462cd46b6be",
+                "shasum": ""
+            },
+            "require": {
+                "fig/link-util": "~1.0",
+                "php": "~7.0",
+                "psr/link": "~1.0"
+            },
+            "require-dev": {
+                "joomla/application": "~2.0",
+                "joomla/coding-standards": "~2.0@alpha",
+                "joomla/di": "~1.5|~2.0",
+                "joomla/event": "~2.0",
+                "joomla/uri": "~2.0",
+                "phpunit/phpunit": "~6.3",
+                "symfony/web-link": "~3.4|~4.0"
+            },
+            "suggest": {
+                "joomla/application": "To use the PreloadSubscriber event listener, install `~2.0`",
+                "joomla/di": "To use the PreloadProvider service provider, install `~1.5|~2.0`",
+                "joomla/event": "To use the PreloadSubscriber event listener, install `~2.0`",
+                "symfony/web-link": "To use the PreloadSubscriber event listener, install `~3.4|~4.0`"
+            },
+            "type": "joomla-package",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Joomla\\Preload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Joomla Preload Package",
+            "homepage": "https://github.com/joomla-framework/preload",
+            "keywords": [
+                "console",
+                "framework",
+                "joomla"
+            ],
+            "time": "2018-02-17T00:53:23+00:00"
         },
         {
             "name": "joomla/registry",
@@ -2161,23 +2219,23 @@
         },
         {
             "name": "gecko-packages/gecko-php-unit",
-            "version": "v3.1",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GeckoPackages/GeckoPHPUnit.git",
-                "reference": "dbb18b292cfa14444d2e6d15202b9dcf5ab8365e"
+                "reference": "8b0320158e34c3d85e5133c341d55c4d6ec5e927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GeckoPackages/GeckoPHPUnit/zipball/dbb18b292cfa14444d2e6d15202b9dcf5ab8365e",
-                "reference": "dbb18b292cfa14444d2e6d15202b9dcf5ab8365e",
+                "url": "https://api.github.com/repos/GeckoPackages/GeckoPHPUnit/zipball/8b0320158e34c3d85e5133c341d55c4d6ec5e927",
+                "reference": "8b0320158e34c3d85e5133c341d55c4d6ec5e927",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0"
             },
             "conflict": {
-                "phpunit/phpunit": "<6.0"
+                "phpunit/phpunit": "<6.0 || >6.5"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0"
@@ -2209,7 +2267,7 @@
                 "filesystem",
                 "phpunit"
             ],
-            "time": "2018-01-24T18:03:59+00:00"
+            "time": "2018-02-05T09:18:39+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -2322,23 +2380,23 @@
         },
         {
             "name": "php-cs-fixer/diff",
-            "version": "v1.2.1",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/diff.git",
-                "reference": "b95b8c02c58670b15612cfc60873f3f7f5290484"
+                "reference": "78bb099e9c16361126c86ce82ec4405ebab8e756"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/diff/zipball/b95b8c02c58670b15612cfc60873f3f7f5290484",
-                "reference": "b95b8c02c58670b15612cfc60873f3f7f5290484",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/diff/zipball/78bb099e9c16361126c86ce82ec4405ebab8e756",
+                "reference": "78bb099e9c16361126c86ce82ec4405ebab8e756",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.4.3",
+                "phpunit/phpunit": "^5.7.23 || ^6.4.3",
                 "symfony/process": "^3.3"
             },
             "type": "library",
@@ -2369,7 +2427,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-10-21T10:28:17+00:00"
+            "time": "2018-02-15T16:58:55+00:00"
         },
         {
             "name": "symfony/console",
@@ -2894,6 +2952,7 @@
         "joomla/controller": 20,
         "joomla/di": 20,
         "joomla/event": 20,
+        "joomla/preload": 20,
         "joomla/registry": 20,
         "joomla/renderer": 20,
         "joomla/router": 20,
