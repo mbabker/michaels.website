@@ -4,16 +4,10 @@ namespace BabDev\Website\Controller;
 
 use BabDev\Website\Application;
 use BabDev\Website\Model\BlogPostModel;
-use Joomla\Controller\AbstractController;
+use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 
-/**
- * Controller rendering single blog posts.
- *
- * @method        Application getApplication() Get the application object.
- * @property-read Application $app             Application object
- */
 final class BlogPostController extends AbstractController
 {
     /**
@@ -26,8 +20,10 @@ final class BlogPostController extends AbstractController
      */
     private $renderer;
 
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
+    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, Application $app, Input $input = null)
     {
+        parent::__construct($app, $input);
+
         $this->blogModel = $blogModel;
         $this->renderer  = $renderer;
     }

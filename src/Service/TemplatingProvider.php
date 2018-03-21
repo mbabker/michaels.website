@@ -22,6 +22,11 @@ final class TemplatingProvider implements ServiceProviderInterface
 {
     public function register(Container $container)
     {
+        /** @var \Joomla\Registry\Registry $config */
+        $config = $container->get('config');
+
+        $templateDebug = (bool) $config->get('template.debug', false);
+
         $container->share(
             Packages::class,
             function (Container $container): Packages {
@@ -60,11 +65,7 @@ final class TemplatingProvider implements ServiceProviderInterface
 
         $container->share(
             \Twig_CacheInterface::class,
-            function (Container $container): \Twig_CacheInterface {
-                /** @var \Joomla\Registry\Registry $config */
-                $config = $container->get('config');
-
-                $templateDebug = (bool) $config->get('template.debug', false);
+            function (Container $container) use ($config, $templateDebug): \Twig_CacheInterface {
                 $templateCache = (bool) $config->get('template.cache', false);
 
                 if ($templateDebug === false && $templateCache === true) {
@@ -76,15 +77,9 @@ final class TemplatingProvider implements ServiceProviderInterface
             true
         );
 
-        // This service cannot be protected as it is decorated when the debug bar is available
         $container->share(
             \Twig_Environment::class,
-            function (Container $container): \Twig_Environment {
-                /** @var \Joomla\Registry\Registry $config */
-                $config = $container->get('config');
-
-                $templateDebug = (bool) $config->get('template.debug', false);
-
+            function (Container $container) use ($config, $templateDebug): \Twig_Environment {
                 $environment = new \Twig_Environment(
                     $container->get(\Twig_LoaderInterface::class),
                     ['debug' => $templateDebug]
@@ -97,18 +92,35 @@ final class TemplatingProvider implements ServiceProviderInterface
                 $environment->setCache($container->get(\Twig_CacheInterface::class));
 
                 // Add the Twig extensions
-                $environment->addExtension(new TwigExtension());
-                $environment->addExtension(new \Twig_Extensions_Extension_Text());
-
-                if ($templateDebug) {
-                    $environment->addExtension(new \Twig_Extension_Debug());
-                }
+                $environment->setExtensions($container->getTagged('twig.extension'));
 
                 // Add a global tracking the debug states
                 $environment->addGlobal('appDebug', (bool) $config->get('debug', false));
                 $environment->addGlobal('layoutDebug', $templateDebug);
 
                 return $environment;
+            },
+            true
+        );
+
+        $container->share(
+            TwigExtension::class,
+            function (): TwigExtension {
+                return new TwigExtension();
+            }
+        );
+
+        $container->share(
+            \Twig_Extensions_Extension_Text::class,
+            function (): \Twig_Extensions_Extension_Text {
+                return new \Twig_Extensions_Extension_Text();
+            }
+        );
+
+        $container->share(
+            \Twig_Extension_Debug::class,
+            function (): \Twig_Extension_Debug {
+                return new \Twig_Extension_Debug();
             }
         );
 
@@ -136,5 +148,16 @@ final class TemplatingProvider implements ServiceProviderInterface
             },
             true
         );
+
+        $twigExtensions = [
+            TwigExtension::class,
+            \Twig_Extensions_Extension_Text::class,
+        ];
+
+        if ($templateDebug) {
+            $twigExtensions[] = \Twig_Extension_Debug::class;
+        }
+
+        $container->tag('twig.extension', $twigExtensions);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace BabDev\Website\Service;
 
+use BabDev\Website\Application;
 use BabDev\Website\DebugBar\JoomlaHttpDriver;
 use BabDev\Website\Event\DebugDispatcher;
 use BabDev\Website\EventListener\DebugSubscriber;
@@ -9,7 +10,6 @@ use DebugBar\Bridge\Twig\TimeableTwigExtensionProfiler;
 use DebugBar\Bridge\TwigProfileCollector;
 use DebugBar\DebugBar;
 use DebugBar\StandardDebugBar;
-use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
 use Joomla\DI\ServiceProviderInterface;
@@ -51,10 +51,21 @@ final class DebugBarProvider implements ServiceProviderInterface
         $container->share(
             JoomlaHttpDriver::class,
             function (Container $container): JoomlaHttpDriver {
-                return new JoomlaHttpDriver($container->get(AbstractWebApplication::class));
+                return new JoomlaHttpDriver($container->get(Application::class));
             },
             true
         );
+
+        $container->share(
+            TimeableTwigExtensionProfiler::class,
+            function (Container $container): TimeableTwigExtensionProfiler {
+                return new TimeableTwigExtensionProfiler(
+                    $container->get(\Twig_Profiler_Profile::class),
+                    $container->get(DebugBar::class)->getCollector('time')
+                );
+            }
+        )
+            ->tag('twig.extension', [TimeableTwigExtensionProfiler::class]);
 
         $container->extend(
             DispatcherInterface::class,
@@ -64,20 +75,6 @@ final class DebugBarProvider implements ServiceProviderInterface
                 $dispatcher->addSubscriber(new DebugSubscriber($container->get(DebugBar::class)));
 
                 return $dispatcher;
-            }
-        );
-
-        $container->extend(
-            \Twig_Environment::class,
-            function (\Twig_Environment $twig, Container $container): \Twig_Environment {
-                $twig->addExtension(
-                    new TimeableTwigExtensionProfiler(
-                        $container->get(\Twig_Profiler_Profile::class),
-                        $container->get(DebugBar::class)->getCollector('time')
-                    )
-                );
-
-                return $twig;
             }
         );
     }

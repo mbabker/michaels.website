@@ -3,17 +3,11 @@
 namespace BabDev\Website\Controller;
 
 use BabDev\Website\Application;
-use Joomla\Controller\AbstractController;
+use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Exception\RouteNotFoundException;
 use Zend\Diactoros\Response\HtmlResponse;
 
-/**
- * Controller rendering single pages.
- *
- * @method        Application getApplication() Get the application object.
- * @property-read Application $app             Application object
- */
 final class PageController extends AbstractController
 {
     /**
@@ -28,8 +22,10 @@ final class PageController extends AbstractController
      */
     private $renderer;
 
-    public function __construct(RendererInterface $renderer)
+    public function __construct(RendererInterface $renderer, Application $app, Input $input = null)
     {
+        parent::__construct($app, $input);
+
         $this->renderer = $renderer;
     }
 

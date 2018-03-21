@@ -4,17 +4,11 @@ namespace BabDev\Website\Controller;
 
 use BabDev\Website\Application;
 use BabDev\Website\Model\BlogPostModel;
-use Joomla\Controller\AbstractController;
+use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Pagerfanta\Pagerfanta;
 use Zend\Diactoros\Response\HtmlResponse;
 
-/**
- * Controller rendering the blog list view.
- *
- * @method        Application getApplication() Get the application object.
- * @property-read Application $app             Application object
- */
 final class BlogController extends AbstractController
 {
     /**
@@ -27,8 +21,10 @@ final class BlogController extends AbstractController
      */
     private $renderer;
 
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel)
+    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, Application $app, Input $input = null)
     {
+        parent::__construct($app, $input);
+
         $this->blogModel = $blogModel;
         $this->renderer  = $renderer;
     }

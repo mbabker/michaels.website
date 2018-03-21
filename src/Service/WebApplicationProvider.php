@@ -7,7 +7,10 @@ use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
+use BabDev\Website\ControllerResolver;
+use BabDev\Website\ExceptionHandler;
 use BabDev\Website\Model\BlogPostModel;
+use DebugBar\DebugBar;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -28,19 +31,44 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 /** @var Registry $config */
                 $config = $container->get('config');
 
-                $application = new Application($container->get(Input::class), $config);
+                $application = new Application(
+                    $container->get(ControllerResolver::class),
+                    $container->get(Router::class),
+                    $container->get(Input::class),
+                    $config
+                );
 
                 // Inject extra services
-                $application->setContainer($container);
                 $application->setDispatcher($container->get(DispatcherInterface::class));
-                $application->setRouter($container->get(Router::class));
 
                 return $application;
             },
             true
         )
-            ->alias(Application::class, JoomlaApplication\AbstractApplication::class)
-            ->alias(JoomlaApplication\AbstractWebApplication::class, JoomlaApplication\AbstractApplication::class);
+            ->alias(Application::class, JoomlaApplication\AbstractApplication::class);
+
+        $container->share(
+            ControllerResolver::class,
+            function (Container $container): ControllerResolver {
+                $resolver = new ControllerResolver();
+                $resolver->setContainer($container);
+
+                return $resolver;
+            }
+        );
+
+        $container->share(
+            ExceptionHandler::class,
+            function (Container $container): ExceptionHandler {
+                $debugBar = $container->has(DebugBar::class) ? $container->get(DebugBar::class) : null;
+
+                return new ExceptionHandler(
+                    $container->get(RendererInterface::class),
+                    $debugBar
+                );
+            },
+            true
+        );
 
         $container->share(
             Input::class,
@@ -66,15 +94,12 @@ final class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             BlogController::class,
             function (Container $container): BlogController {
-                $controller = new BlogController(
+                return new BlogController(
                     $container->get(RendererInterface::class),
-                    $container->get(BlogPostModel::class)
+                    $container->get(BlogPostModel::class),
+                    $container->get(Application::class),
+                    $container->get(Input::class)
                 );
-
-                $controller->setApplication($container->get(Application::class));
-                $controller->setInput($container->get(Input::class));
-
-                return $controller;
             },
             true
         );
@@ -82,15 +107,12 @@ final class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             BlogPostController::class,
             function (Container $container): BlogPostController {
-                $controller = new BlogPostController(
+                return new BlogPostController(
                     $container->get(RendererInterface::class),
-                    $container->get(BlogPostModel::class)
+                    $container->get(BlogPostModel::class),
+                    $container->get(Application::class),
+                    $container->get(Input::class)
                 );
-
-                $controller->setApplication($container->get(Application::class));
-                $controller->setInput($container->get(Input::class));
-
-                return $controller;
             },
             true
         );
@@ -98,15 +120,12 @@ final class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             HomepageController::class,
             function (Container $container): HomepageController {
-                $controller = new HomepageController(
+                return new HomepageController(
                     $container->get(RendererInterface::class),
-                    $container->get(BlogPostModel::class)
+                    $container->get(BlogPostModel::class),
+                    $container->get(Application::class),
+                    $container->get(Input::class)
                 );
-
-                $controller->setApplication($container->get(Application::class));
-                $controller->setInput($container->get(Input::class));
-
-                return $controller;
             },
             true
         );
@@ -114,14 +133,11 @@ final class WebApplicationProvider implements ServiceProviderInterface
         $container->share(
             PageController::class,
             function (Container $container): PageController {
-                $controller = new PageController(
-                    $container->get(RendererInterface::class)
+                return new PageController(
+                    $container->get(RendererInterface::class),
+                    $container->get(Application::class),
+                    $container->get(Input::class)
                 );
-
-                $controller->setApplication($container->get(Application::class));
-                $controller->setInput($container->get(Input::class));
-
-                return $controller;
             },
             true
         );

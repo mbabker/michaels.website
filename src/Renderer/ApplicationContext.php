@@ -2,18 +2,17 @@
 
 namespace BabDev\Website\Renderer;
 
-use Joomla\Application\AbstractApplication;
-use Joomla\Application\AbstractWebApplication;
+use BabDev\Website\Application;
 use Symfony\Component\Asset\Context\ContextInterface;
 
 final class ApplicationContext implements ContextInterface
 {
     /**
-     * @var AbstractApplication
+     * @var Application
      */
     private $app;
 
-    public function __construct(AbstractApplication $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }
@@ -25,10 +24,6 @@ final class ApplicationContext implements ContextInterface
 
     public function isSecure(): bool
     {
-        if ($this->app instanceof AbstractWebApplication) {
-            return $this->app->isSslConnection();
-        }
-
-        return false;
+        return $this->app->isSslConnection();
     }
 }
