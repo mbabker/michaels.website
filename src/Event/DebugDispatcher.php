@@ -59,9 +59,24 @@ final class DebugDispatcher implements DispatcherInterface
         return $event;
     }
 
+    public function getListeners($event)
+    {
+        return $this->dispatcher->getListeners($event);
+    }
+
+    public function hasListener(callable $callback, $eventName = null)
+    {
+        return $this->dispatcher->hasListener($callback, $eventName);
+    }
+
     public function removeListener(string $eventName, callable $listener)
     {
         $this->dispatcher->removeListener($eventName, $listener);
+    }
+
+    public function removeSubscriber(SubscriberInterface $subscriber)
+    {
+        $this->dispatcher->removeSubscriber($subscriber);
     }
 
     public function triggerEvent($event)

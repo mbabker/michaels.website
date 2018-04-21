@@ -4,6 +4,8 @@ namespace BabDev\Website;
 
 use Joomla\Application\AbstractApplication;
 use Joomla\Application\ApplicationEvents;
+use Joomla\Application\Controller\ControllerResolverInterface;
+use Joomla\Application\Event\ApplicationErrorEvent;
 use Joomla\Input\Input;
 use Joomla\Registry\Registry;
 use Joomla\Router\Router;
@@ -16,7 +18,7 @@ use Zend\Diactoros\Response\SapiEmitter;
 final class Application extends AbstractApplication
 {
     /**
-     * @var ControllerResolver
+     * @var ControllerResolverInterface
      */
     private $controllerResolver;
 
@@ -35,8 +37,12 @@ final class Application extends AbstractApplication
      */
     private $router;
 
-    public function __construct(ControllerResolver $controllerResolver, Router $router, Input $input = null, Registry $config = null)
-    {
+    public function __construct(
+        ControllerResolverInterface $controllerResolver,
+        Router $router,
+        Input $input = null,
+        Registry $config = null
+    ) {
         parent::__construct($input, $config);
 
         $this->controllerResolver = $controllerResolver;
@@ -84,21 +90,25 @@ final class Application extends AbstractApplication
         $route = $this->router->parseRoute($this->get('uri.route'), $this->input->getMethod());
 
         // Add variables to the input if not already set
-        foreach ($route['vars'] as $key => $value) {
+        foreach ($route->getRouteVariables() as $key => $value) {
             $this->input->def($key, $value);
         }
 
-        $this->controllerResolver->resolve($route['controller'])->execute();
+        call_user_func($this->controllerResolver->resolve($route));
     }
 
     public function execute(): void
     {
-        $this->dispatchEvent(ApplicationEvents::BEFORE_EXECUTE);
+        try {
+            $this->dispatchEvent(ApplicationEvents::BEFORE_EXECUTE);
 
-        $this->loadSystemUris();
-        $this->doExecute();
+            $this->loadSystemUris();
+            $this->doExecute();
 
-        $this->dispatchEvent(ApplicationEvents::AFTER_EXECUTE);
+            $this->dispatchEvent(ApplicationEvents::AFTER_EXECUTE);
+        } catch (\Throwable $throwable) {
+            $this->dispatchEvent(ApplicationEvents::ERROR, new ApplicationErrorEvent($throwable, $this));
+        }
 
         $this->dispatchEvent(ApplicationEvents::BEFORE_RESPOND);
 

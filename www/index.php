@@ -37,18 +37,12 @@ require JPATH_ROOT . '/vendor/autoload.php';
     } catch (\Throwable $t) {
         error_log($t);
 
-        try {
-            $container->get(BabDev\Website\ExceptionHandler::class)->handle($t);
-        } catch (\Throwable $nested) {
-            if (!headers_sent()) {
-                header('HTTP/1.1 500 Internal Server Error', null, 500);
-                header('Content-Type: text/html; charset=utf-8');
-            }
-
-            echo 'An error occurred while booting the application: ' . $t->getMessage();
-        } finally {
-            exit;
+        if (!headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error', null, 500);
+            header('Content-Type: text/html; charset=utf-8');
         }
+
+        echo 'An error occurred while booting the application: ' . $t->getMessage();
     }
 
     // There is a circular dependency in building the HTTP driver while the application is being resolved, so it'll need to be set here for now
@@ -68,15 +62,11 @@ require JPATH_ROOT . '/vendor/autoload.php';
     } catch (\Throwable $t) {
         error_log($t);
 
-        try {
-            $container->get(BabDev\Website\ExceptionHandler::class)->handle($t);
-        } catch (\Throwable $nested) {
-            if (!headers_sent()) {
-                header('HTTP/1.1 500 Internal Server Error', null, 500);
-                header('Content-Type: text/html; charset=utf-8');
-            }
-
-            echo 'An error occurred while executing the application: ' . $t->getMessage();
+        if (!headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error', null, 500);
+            header('Content-Type: text/html; charset=utf-8');
         }
+
+        echo 'An error occurred while executing the application: ' . $t->getMessage();
     }
 })();

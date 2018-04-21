@@ -7,10 +7,7 @@ use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
-use BabDev\Website\ControllerResolver;
-use BabDev\Website\ExceptionHandler;
 use BabDev\Website\Model\BlogPostModel;
-use DebugBar\DebugBar;
 use Joomla\Application as JoomlaApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
@@ -32,7 +29,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 $config = $container->get('config');
 
                 $application = new Application(
-                    $container->get(ControllerResolver::class),
+                    $container->get(JoomlaApplication\Controller\ControllerResolverInterface::class),
                     $container->get(Router::class),
                     $container->get(Input::class),
                     $config
@@ -48,27 +45,12 @@ final class WebApplicationProvider implements ServiceProviderInterface
             ->alias(Application::class, JoomlaApplication\AbstractApplication::class);
 
         $container->share(
-            ControllerResolver::class,
-            function (Container $container): ControllerResolver {
-                $resolver = new ControllerResolver();
-                $resolver->setContainer($container);
-
-                return $resolver;
+            JoomlaApplication\Controller\ControllerResolverInterface::class,
+            function (Container $container): JoomlaApplication\Controller\ControllerResolverInterface {
+                return new JoomlaApplication\Controller\ContainerControllerResolver($container);
             }
-        );
-
-        $container->share(
-            ExceptionHandler::class,
-            function (Container $container): ExceptionHandler {
-                $debugBar = $container->has(DebugBar::class) ? $container->get(DebugBar::class) : null;
-
-                return new ExceptionHandler(
-                    $container->get(RendererInterface::class),
-                    $debugBar
-                );
-            },
-            true
-        );
+        )
+            ->alias(JoomlaApplication\Controller\ContainerControllerResolver::class, JoomlaApplication\Controller\ControllerResolverInterface::class);
 
         $container->share(
             Input::class,

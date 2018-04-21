@@ -5,6 +5,7 @@ namespace BabDev\Website\EventListener;
 use BabDev\Website\Application;
 use DebugBar\DebugBar;
 use Joomla\Application\ApplicationEvents;
+use Joomla\Application\Event\ApplicationErrorEvent;
 use Joomla\Application\Event\ApplicationEvent;
 use Joomla\Event\Priority;
 use Joomla\Event\SubscriberInterface;
@@ -28,6 +29,7 @@ final class DebugSubscriber implements SubscriberInterface
             ApplicationEvents::BEFORE_EXECUTE => ['markBeforeExecute', Priority::HIGH],
             ApplicationEvents::AFTER_EXECUTE  => ['markAfterExecute', Priority::LOW],
             ApplicationEvents::BEFORE_RESPOND => 'handleDebugResponse',
+            ApplicationEvents::ERROR          => 'handleError',
         ];
     }
 
@@ -61,6 +63,13 @@ final class DebugSubscriber implements SubscriberInterface
         $stream = new Stream('php://memory', 'rw');
         $stream->write((string) $body);
         $application->setResponse($application->getResponse()->withBody($stream));
+    }
+
+    public function handleError(ApplicationErrorEvent $event)
+    {
+        /** @var \DebugBar\DataCollector\ExceptionsCollector $collector */
+        $collector = $this->debugBar->getCollector('exceptions');
+        $collector->addThrowable($event->getError());
     }
 
     public function markAfterExecute(ApplicationEvent $event): void
