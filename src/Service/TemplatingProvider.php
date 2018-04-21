@@ -24,7 +24,7 @@ final class TemplatingProvider implements ServiceProviderInterface
         /** @var \Joomla\Registry\Registry $config */
         $config = $container->get('config');
 
-        $templateDebug = (bool)$config->get('template.debug', false);
+        $templateDebug = (bool) $config->get('template.debug', false);
 
         $container->share(
             Packages::class,
@@ -145,7 +145,6 @@ final class TemplatingProvider implements ServiceProviderInterface
             function (Container $container): TwigRuntime {
                 return new TwigRuntime(
                     $container->get(AbstractApplication::class),
-                    $container->get(Packages::class),
                     $container->get(PreloadManager::class)
                 );
             },

@@ -2,12 +2,14 @@
 
 namespace BabDev\Website\Renderer;
 
+use Symfony\Component\Asset\Packages;
+
 final class TwigExtension extends \Twig_Extension
 {
     public function getFunctions(): array
     {
         return [
-            new \Twig_Function('asset', [TwigRuntime::class, 'getAssetUri']),
+            new \Twig_Function('asset', [Packages::class, 'getUrl']),
             new \Twig_Function('first_paragraph', [$this, 'getFirstParagraph']),
             new \Twig_Function('preload', [TwigRuntime::class, 'preloadAsset']),
             new \Twig_Function('request_uri', [TwigRuntime::class, 'getRequestUri']),

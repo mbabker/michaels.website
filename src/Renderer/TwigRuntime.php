@@ -6,7 +6,6 @@ use Joomla\Application\AbstractApplication;
 use Joomla\Preload\PreloadManager;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
-use Symfony\Component\Asset\Packages;
 
 final class TwigRuntime
 {
@@ -16,25 +15,14 @@ final class TwigRuntime
     private $app;
 
     /**
-     * @var Packages
-     */
-    private $packages;
-
-    /**
      * @var PreloadManager
      */
     private $preloadManager;
 
-    public function __construct(AbstractApplication $app, Packages $packages, PreloadManager $preloadManager)
+    public function __construct(AbstractApplication $app, PreloadManager $preloadManager)
     {
         $this->app            = $app;
-        $this->packages       = $packages;
         $this->preloadManager = $preloadManager;
-    }
-
-    public function getAssetUri(string $path, ?string $packageName = null): string
-    {
-        return $this->packages->getUrl($path, $packageName);
     }
 
     public function getRequestUri(): string
