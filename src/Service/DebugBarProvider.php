@@ -2,7 +2,6 @@
 
 namespace BabDev\Website\Service;
 
-use BabDev\Website\Application;
 use BabDev\Website\DebugBar\JoomlaHttpDriver;
 use BabDev\Website\Event\DebugDispatcher;
 use BabDev\Website\EventListener\DebugSubscriber;
@@ -10,6 +9,7 @@ use DebugBar\Bridge\Twig\TimeableTwigExtensionProfiler;
 use DebugBar\Bridge\TwigProfileCollector;
 use DebugBar\DebugBar;
 use DebugBar\StandardDebugBar;
+use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
 use Joomla\DI\ServiceProviderInterface;
@@ -51,7 +51,7 @@ final class DebugBarProvider implements ServiceProviderInterface
         $container->share(
             JoomlaHttpDriver::class,
             function (Container $container): JoomlaHttpDriver {
-                return new JoomlaHttpDriver($container->get(Application::class));
+                return new JoomlaHttpDriver($container->get(AbstractWebApplication::class));
             },
             true
         );

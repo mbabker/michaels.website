@@ -18,17 +18,17 @@ require JPATH_ROOT . '/vendor/autoload.php';
 (function () {
     // Wrap in a try/catch so we can display an error if need be
     try {
-        $container = (new Joomla\DI\Container)
-            ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\EventProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\SerializerProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider)
-            ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider)
-            ->registerServiceProvider(new Joomla\Preload\Service\PreloadProvider);
+        $container = (new Joomla\DI\Container())
+            ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider())
+            ->registerServiceProvider(new BabDev\Website\Service\EventProvider())
+            ->registerServiceProvider(new BabDev\Website\Service\SerializerProvider())
+            ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider())
+            ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider())
+            ->registerServiceProvider(new Joomla\Preload\Service\PreloadProvider());
 
         // Conditionally include the DebugBar service provider based on the app being in debug mode
         if ((bool) $container->get('config')->get('debug', false)) {
-            $container->registerServiceProvider(new BabDev\Website\Service\DebugBarProvider);
+            $container->registerServiceProvider(new BabDev\Website\Service\DebugBarProvider());
         }
 
         // Set error reporting based on config
@@ -46,10 +46,10 @@ require JPATH_ROOT . '/vendor/autoload.php';
     }
 
     // There is a circular dependency in building the HTTP driver while the application is being resolved, so it'll need to be set here for now
-    if ($container->has(\DebugBar\DebugBar::class)) {
+    if ($container->has(DebugBar\DebugBar::class)) {
         /** @var \DebugBar\DebugBar $debugBar */
-        $debugBar = $container->get(\DebugBar\DebugBar::class);
-        $debugBar->setHttpDriver($container->get(\BabDev\Website\DebugBar\JoomlaHttpDriver::class));
+        $debugBar = $container->get(DebugBar\DebugBar::class);
+        $debugBar->setHttpDriver($container->get(BabDev\Website\DebugBar\JoomlaHttpDriver::class));
 
         /** @var \DebugBar\DataCollector\TimeDataCollector $collector */
         $collector = $debugBar->getCollector('time');
@@ -58,7 +58,7 @@ require JPATH_ROOT . '/vendor/autoload.php';
 
     // Execute the application
     try {
-        $container->get(BabDev\Website\Application::class)->execute();
+        $container->get(Joomla\Application\AbstractApplication::class)->execute();
     } catch (\Throwable $t) {
         error_log($t);
 

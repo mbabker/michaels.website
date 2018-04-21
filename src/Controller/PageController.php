@@ -2,7 +2,7 @@
 
 namespace BabDev\Website\Controller;
 
-use BabDev\Website\Application;
+use Joomla\Application\WebApplication;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Exception\RouteNotFoundException;
@@ -22,7 +22,7 @@ final class PageController extends AbstractController
      */
     private $renderer;
 
-    public function __construct(RendererInterface $renderer, Application $app, Input $input = null)
+    public function __construct(RendererInterface $renderer, WebApplication $app, Input $input = null)
     {
         parent::__construct($app, $input);
 

@@ -2,14 +2,14 @@
 
 namespace BabDev\Website\Controller;
 
-use BabDev\Website\Application;
+use Joomla\Application\WebApplication;
 use Joomla\Controller\ControllerInterface;
 use Joomla\Input\Input;
 
 abstract class AbstractController implements ControllerInterface
 {
     /**
-     * @var Application
+     * @var WebApplication
      */
     private $app;
 
@@ -18,13 +18,13 @@ abstract class AbstractController implements ControllerInterface
      */
     private $input;
 
-    public function __construct(Application $app, Input $input = null)
+    public function __construct(WebApplication $app, Input $input = null)
     {
         $this->app   = $app;
         $this->input = $input ?: $app->input;
     }
 
-    protected function getApplication(): Application
+    protected function getApplication(): WebApplication
     {
         return $this->app;
     }

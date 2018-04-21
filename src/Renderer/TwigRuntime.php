@@ -2,7 +2,7 @@
 
 namespace BabDev\Website\Renderer;
 
-use BabDev\Website\Application;
+use Joomla\Application\AbstractApplication;
 use Joomla\Preload\PreloadManager;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\TwitterBootstrap3View;
@@ -11,7 +11,7 @@ use Symfony\Component\Asset\Packages;
 final class TwigRuntime
 {
     /**
-     * @var Application
+     * @var AbstractApplication
      */
     private $app;
 
@@ -25,7 +25,7 @@ final class TwigRuntime
      */
     private $preloadManager;
 
-    public function __construct(Application $app, Packages $packages, PreloadManager $preloadManager)
+    public function __construct(AbstractApplication $app, Packages $packages, PreloadManager $preloadManager)
     {
         $this->app            = $app;
         $this->packages       = $packages;

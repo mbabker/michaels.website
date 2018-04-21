@@ -2,17 +2,17 @@
 
 namespace BabDev\Website\DebugBar;
 
-use BabDev\Website\Application;
 use DebugBar\HttpDriverInterface;
+use Joomla\Application\AbstractWebApplication;
 
 final class JoomlaHttpDriver implements HttpDriverInterface
 {
     /**
-     * @var Application
+     * @var AbstractWebApplication
      */
     private $application;
 
-    public function __construct(Application $application)
+    public function __construct(AbstractWebApplication $application)
     {
         $this->application = $application;
     }

@@ -2,14 +2,13 @@
 
 namespace BabDev\Website\EventListener;
 
-use BabDev\Website\Application;
 use DebugBar\DebugBar;
 use Joomla\Application\ApplicationEvents;
 use Joomla\Application\Event\ApplicationErrorEvent;
 use Joomla\Application\Event\ApplicationEvent;
+use Joomla\Application\WebApplication;
 use Joomla\Event\Priority;
 use Joomla\Event\SubscriberInterface;
-use Zend\Diactoros\Stream;
 
 final class DebugSubscriber implements SubscriberInterface
 {
@@ -35,17 +34,13 @@ final class DebugSubscriber implements SubscriberInterface
 
     public function handleDebugResponse(ApplicationEvent $event): void
     {
-        /** @var Application $application */
+        /** @var WebApplication $application */
         $application = $event->getApplication();
-
-        if (!($application instanceof Application)) {
-            return;
-        }
 
         $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
 
         // Fetch the body
-        $body = (string) $application->getResponse()->getBody();
+        $body = $application->getBody();
 
         // If for whatever reason we're missing the closing body tag, just append the scripts
         if (!stristr($body, '</body>')) {
@@ -60,9 +55,7 @@ final class DebugSubscriber implements SubscriberInterface
         }
 
         // Reset the body
-        $stream = new Stream('php://memory', 'rw');
-        $stream->write((string) $body);
-        $application->setResponse($application->getResponse()->withBody($stream));
+        $application->setBody($body);
     }
 
     public function handleError(ApplicationErrorEvent $event)

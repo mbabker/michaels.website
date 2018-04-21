@@ -2,13 +2,16 @@
 
 namespace BabDev\Website\Service;
 
-use BabDev\Website\Application;
 use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
 use BabDev\Website\Model\BlogPostModel;
-use Joomla\Application as JoomlaApplication;
+use Joomla\Application\AbstractApplication;
+use Joomla\Application\AbstractWebApplication;
+use Joomla\Application\Controller\ContainerControllerResolver;
+use Joomla\Application\Controller\ControllerResolverInterface;
+use Joomla\Application\WebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
@@ -23,13 +26,13 @@ final class WebApplicationProvider implements ServiceProviderInterface
     public function register(Container $container)
     {
         $container->share(
-            JoomlaApplication\AbstractApplication::class,
-            function (Container $container): JoomlaApplication\AbstractApplication {
+            WebApplication::class,
+            function (Container $container): WebApplication {
                 /** @var Registry $config */
                 $config = $container->get('config');
 
-                $application = new Application(
-                    $container->get(JoomlaApplication\Controller\ControllerResolverInterface::class),
+                $application = new WebApplication(
+                    $container->get(ControllerResolverInterface::class),
                     $container->get(Router::class),
                     $container->get(Input::class),
                     $config
@@ -42,15 +45,16 @@ final class WebApplicationProvider implements ServiceProviderInterface
             },
             true
         )
-            ->alias(Application::class, JoomlaApplication\AbstractApplication::class);
+            ->alias(AbstractWebApplication::class, WebApplication::class)
+            ->alias(AbstractApplication::class, WebApplication::class);
 
         $container->share(
-            JoomlaApplication\Controller\ControllerResolverInterface::class,
-            function (Container $container): JoomlaApplication\Controller\ControllerResolverInterface {
-                return new JoomlaApplication\Controller\ContainerControllerResolver($container);
+            ControllerResolverInterface::class,
+            function (Container $container): ControllerResolverInterface {
+                return new ContainerControllerResolver($container);
             }
         )
-            ->alias(JoomlaApplication\Controller\ContainerControllerResolver::class, JoomlaApplication\Controller\ControllerResolverInterface::class);
+            ->alias(ContainerControllerResolver::class, ControllerResolverInterface::class);
 
         $container->share(
             Input::class,
@@ -79,7 +83,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new BlogController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(Application::class),
+                    $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
             },
@@ -92,7 +96,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new BlogPostController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(Application::class),
+                    $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
             },
@@ -105,7 +109,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new HomepageController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(Application::class),
+                    $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
             },
@@ -117,7 +121,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
             function (Container $container): PageController {
                 return new PageController(
                     $container->get(RendererInterface::class),
-                    $container->get(Application::class),
+                    $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
             },

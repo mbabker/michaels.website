@@ -2,17 +2,17 @@
 
 namespace BabDev\Website\Renderer;
 
-use BabDev\Website\Application;
+use Joomla\Application\AbstractWebApplication;
 use Symfony\Component\Asset\Context\ContextInterface;
 
 final class ApplicationContext implements ContextInterface
 {
     /**
-     * @var Application
+     * @var AbstractWebApplication
      */
     private $app;
 
-    public function __construct(Application $app)
+    public function __construct(AbstractWebApplication $app)
     {
         $this->app = $app;
     }

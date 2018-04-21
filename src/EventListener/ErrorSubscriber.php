@@ -2,9 +2,9 @@
 
 namespace BabDev\Website\EventListener;
 
-use BabDev\Website\Application;
 use Joomla\Application\ApplicationEvents;
 use Joomla\Application\Event\ApplicationErrorEvent;
+use Joomla\Application\WebApplication;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Renderer\RendererInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -30,7 +30,7 @@ final class ErrorSubscriber implements SubscriberInterface
 
     public function handleError(ApplicationErrorEvent $event)
     {
-        /** @var Application $app */
+        /** @var WebApplication $app */
         $app = $event->getApplication();
 
         $response = new HtmlResponse(

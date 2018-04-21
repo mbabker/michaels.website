@@ -2,8 +2,8 @@
 
 namespace BabDev\Website\Controller;
 
-use BabDev\Website\Application;
 use BabDev\Website\Model\BlogPostModel;
+use Joomla\Application\WebApplication;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Pagerfanta\Pagerfanta;
@@ -21,7 +21,7 @@ final class BlogController extends AbstractController
      */
     private $renderer;
 
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, Application $app, Input $input = null)
+    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app, Input $input = null)
     {
         parent::__construct($app, $input);
 
