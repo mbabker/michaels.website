@@ -16,6 +16,16 @@ use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
+use Twig\Cache\CacheInterface;
+use Twig\Cache\FilesystemCache;
+use Twig\Cache\NullCache;
+use Twig\Environment;
+use Twig\Extension\DebugExtension;
+use Twig\Extensions\TextExtension;
+use Twig\Loader\FilesystemLoader;
+use Twig\Loader\LoaderInterface;
+use Twig\Profiler\Profile;
+use Twig\RuntimeLoader\ContainerRuntimeLoader;
 
 final class TemplatingProvider implements ServiceProviderInterface
 {
@@ -56,39 +66,40 @@ final class TemplatingProvider implements ServiceProviderInterface
         $container->share(
             RendererInterface::class,
             function (Container $container): RendererInterface {
-                return new TwigRenderer($container->get(\Twig_Environment::class));
+                return new TwigRenderer($container->get(Environment::class));
             },
             true
         )
             ->alias(TwigRenderer::class, RendererInterface::class);
 
         $container->share(
-            \Twig_CacheInterface::class,
-            function (Container $container) use ($config, $templateDebug): \Twig_CacheInterface {
+            CacheInterface::class,
+            function (Container $container) use ($config, $templateDebug): CacheInterface {
                 $templateCache = (bool) $config->get('template.cache', false);
 
                 if ($templateDebug === false && $templateCache === true) {
-                    return new \Twig_Cache_Filesystem(JPATH_ROOT . '/cache/twig');
+                    return new FilesystemCache(JPATH_ROOT . '/cache/twig');
                 }
 
-                return new \Twig_Cache_Null();
+                return new NullCache();
             },
             true
-        );
+        )
+            ->alias(\Twig_CacheInterface::class, CacheInterface::class);
 
         $container->share(
-            \Twig_Environment::class,
-            function (Container $container) use ($config, $templateDebug): \Twig_Environment {
-                $environment = new \Twig_Environment(
-                    $container->get(\Twig_LoaderInterface::class),
+            Environment::class,
+            function (Container $container) use ($config, $templateDebug): Environment {
+                $environment = new Environment(
+                    $container->get(LoaderInterface::class),
                     ['debug' => $templateDebug]
                 );
 
                 // Add the runtime loader
-                $environment->addRuntimeLoader(new \Twig_ContainerRuntimeLoader($container));
+                $environment->addRuntimeLoader(new ContainerRuntimeLoader($container));
 
                 // Set up the environment's caching service
-                $environment->setCache($container->get(\Twig_CacheInterface::class));
+                $environment->setCache($container->get(CacheInterface::class));
 
                 // Add the Twig extensions
                 $environment->setExtensions($container->getTagged('twig.extension'));
@@ -100,7 +111,8 @@ final class TemplatingProvider implements ServiceProviderInterface
                 return $environment;
             },
             true
-        );
+        )
+            ->alias(\Twig_Environment::class, Environment::class);
 
         $container->share(
             TwigExtension::class,
@@ -110,35 +122,38 @@ final class TemplatingProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            \Twig_Extensions_Extension_Text::class,
-            function (): \Twig_Extensions_Extension_Text {
-                return new \Twig_Extensions_Extension_Text();
+            TextExtension::class,
+            function (): TextExtension {
+                return new TextExtension();
             }
         );
 
         $container->share(
-            \Twig_Extension_Debug::class,
-            function (): \Twig_Extension_Debug {
-                return new \Twig_Extension_Debug();
+            DebugExtension::class,
+            function (): DebugExtension {
+                return new DebugExtension();
             }
         );
 
         $container->share(
-            \Twig_LoaderInterface::class,
-            function (Container $container): \Twig_LoaderInterface {
-                return new \Twig_Loader_Filesystem([JPATH_TEMPLATES]);
+            LoaderInterface::class,
+            function (Container $container): LoaderInterface {
+                return new FilesystemLoader([JPATH_TEMPLATES]);
             },
             true
         )
-            ->alias(\Twig_Loader_Filesystem::class, \Twig_LoaderInterface::class);
+            ->alias(\Twig_Loader_Filesystem::class, LoaderInterface::class)
+            ->alias(FilesystemLoader::class, LoaderInterface::class)
+            ->alias(\Twig_LoaderInterface::class, LoaderInterface::class);
 
         $container->share(
-            \Twig_Profiler_Profile::class,
-            function (Container $container): \Twig_Profiler_Profile {
-                return new \Twig_Profiler_Profile();
+            Profile::class,
+            function (Container $container): Profile {
+                return new Profile();
             },
             true
-        );
+        )
+            ->alias(\Twig_Profiler_Profile::class, Profile::class);
 
         $container->share(
             TwigRuntime::class,
@@ -153,11 +168,11 @@ final class TemplatingProvider implements ServiceProviderInterface
 
         $twigExtensions = [
             TwigExtension::class,
-            \Twig_Extensions_Extension_Text::class,
+            TextExtension::class,
         ];
 
         if ($templateDebug) {
-            $twigExtensions[] = \Twig_Extension_Debug::class;
+            $twigExtensions[] = DebugExtension::class;
         }
 
         $container->tag('twig.extension', $twigExtensions);

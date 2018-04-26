@@ -3,26 +3,29 @@
 namespace BabDev\Website\Renderer;
 
 use Symfony\Component\Asset\Packages;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
-final class TwigExtension extends \Twig_Extension
+final class TwigExtension extends AbstractExtension
 {
     public function getFunctions(): array
     {
         return [
-            new \Twig_Function('asset', [Packages::class, 'getUrl']),
-            new \Twig_Function('first_paragraph', [$this, 'getFirstParagraph']),
-            new \Twig_Function('preload', [TwigRuntime::class, 'preloadAsset']),
-            new \Twig_Function('request_uri', [TwigRuntime::class, 'getRequestUri']),
-            new \Twig_Function('route', [TwigRuntime::class, 'getRouteUri']),
-            new \Twig_Function('render_pagination', [TwigRuntime::class, 'renderPagination'], ['is_safe' => ['html']]),
+            new TwigFunction('asset', [Packages::class, 'getUrl']),
+            new TwigFunction('first_paragraph', [$this, 'getFirstParagraph']),
+            new TwigFunction('preload', [TwigRuntime::class, 'preloadAsset']),
+            new TwigFunction('request_uri', [TwigRuntime::class, 'getRequestUri']),
+            new TwigFunction('route', [TwigRuntime::class, 'getRouteUri']),
+            new TwigFunction('render_pagination', [TwigRuntime::class, 'renderPagination'], ['is_safe' => ['html']]),
         ];
     }
 
     public function getFilters(): array
     {
         return [
-            new \Twig_Filter('get_class', 'get_class'),
-            new \Twig_Filter('strip_root_path', [$this, 'stripRootPath']),
+            new TwigFilter('get_class', 'get_class'),
+            new TwigFilter('strip_root_path', [$this, 'stripRootPath']),
         ];
     }
 

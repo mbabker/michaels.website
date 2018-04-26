@@ -14,6 +14,8 @@ use Joomla\DI\Container;
 use Joomla\DI\Exception\DependencyResolutionException;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
+use Twig\Loader\LoaderInterface;
+use Twig\Profiler\Profile;
 
 final class DebugBarProvider implements ServiceProviderInterface
 {
@@ -32,7 +34,7 @@ final class DebugBarProvider implements ServiceProviderInterface
 
                 // Add collectors
                 $debugBar->addCollector(
-                    new TwigProfileCollector($container->get(\Twig_Profiler_Profile::class), $container->get(\Twig_LoaderInterface::class))
+                    new TwigProfileCollector($container->get(Profile::class), $container->get(LoaderInterface::class))
                 );
 
                 // Ensure the assets are dumped
@@ -60,7 +62,7 @@ final class DebugBarProvider implements ServiceProviderInterface
             TimeableTwigExtensionProfiler::class,
             function (Container $container): TimeableTwigExtensionProfiler {
                 return new TimeableTwigExtensionProfiler(
-                    $container->get(\Twig_Profiler_Profile::class),
+                    $container->get(Profile::class),
                     $container->get(DebugBar::class)->getCollector('time')
                 );
             }
