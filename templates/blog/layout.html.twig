@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog - {{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} | {{ parent() }} Blog{% endblock %}
 
 {% block metaOgType %}article{% endblock %}
 
