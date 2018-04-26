@@ -40,7 +40,7 @@
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap/badges";
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
-//@import "~bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/alerts";
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap/media";
@@ -62,3 +62,9 @@
 
 // Template rules
 @import "theme";
+
+// Customizations
+.thumbnail {
+  border: 0;
+  max-width: 90%;
+}

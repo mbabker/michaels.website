@@ -422,12 +422,6 @@ form .row:first-child .floating-label-form-group {
 
 // Highlight Color Customization
 
-::-moz-selection {
-  color: white;
-  text-shadow: none;
-  background: $theme-primary;
-}
-
 ::selection {
   color: white;
   text-shadow: none;
@@ -435,11 +429,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 img::selection {
-  color: white;
-  background: transparent;
-}
-
-img::-moz-selection {
   color: white;
   background: transparent;
 }

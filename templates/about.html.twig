@@ -24,7 +24,9 @@
 {% endblock %}
 
 {% block content %}
-    <span class="pull-right" style="padding-left: 5px;"><img src="{{ asset('img/about-michael.jpg') }}" alt="Michael" width="90%"></span>
+    <div class="pull-right thumbnail">
+        <img src="{{ asset('img/about-michael.jpg') }}" alt="Michael">
+    </div>
     <p>Michael Babker is a multi talented IT professional and open source developer. He has been developing for and contributing to the open source community since 2010, specializing in WordPress, Joomla, and Symfony based development. As part of his contributions to the Joomla! project, he has previously lead its security team and was the release coordinator. Michael is currently a member of the Board of Directors of Open Source Matters, Inc., the not-for-profit organization supporting the Joomla! project, as the Production Department Coordinator.</p>
     <p>Before transitioning into web development as a full time career, he served for nine years in the US Army as an Information Technology Specialist and served in several roles including Help Desk Team Leader, Senior Information Systems Support Specialist, and Information Assurance Security Officer. As a Sergeant in the Army, he was directly responsible for the morale, welfare, and professional development of a team of junior Soldiers.</p>
     <p>Michael holds an Associate of Arts in Information Technology with a concentration in Web Design and is currently the Lead Developer for <a href="https://hdwebpros.com">Happy Dog Web Productions</a>.</p>
@@ -40,5 +42,5 @@
         <li><a href="https://www.openhub.net/accounts/mbabker">OpenHUB profile</a></li>
         <li><a href="https://github.com/mbabker">GitHub profile</a></li>
     </ul>
-    <p style="text-align: center !important;"><img style="max-width: 100%;" src="{{ asset('img/mil-sig.png') }}" alt="militarysignatures.com"></p>
+    <p class="text-center"><img src="{{ asset('img/mil-sig.png') }}" alt="militarysignatures.com"></p>
 {% endblock %}
