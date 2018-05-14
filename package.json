@@ -6,14 +6,15 @@
     "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
-    "autoprefixer": "^6.6.1",
+    "autoprefixer": "^8.5.0",
     "bootstrap-sass": "3.3.7",
+    "cookieconsent": "^3.0.6",
     "font-awesome": "4.7.0",
-    "jquery": "^3.2.1"
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
-    "cross-env": "^5.0",
-    "laravel-mix": "^1.0.0"
+    "cross-env": "^5.1.5",
+    "laravel-mix": "^2.1.11"
   },
   "license": "GPL-2.0+"
 }
