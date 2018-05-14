@@ -23,7 +23,7 @@
         "joomla/renderer": "~2.0@dev",
         "joomla/router": "~2.0@dev",
         "joomla/uri": "~2.0@dev",
-        "pagerfanta/pagerfanta": "~1.0",
+        "pagerfanta/pagerfanta": "~2.0",
         "phpdocumentor/reflection-docblock": "~4.3",
         "psr/link": "~1.0",
         "symfony/asset": "4.0.*",
@@ -47,6 +47,8 @@
         }
     },
     "config": {
-        "preferred-install": "dist"
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
     }
 }
