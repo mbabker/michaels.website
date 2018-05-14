@@ -17,6 +17,18 @@
         <meta name="twitter:site" content="@mbabker" />
         <meta name="twitter:description" content="{{ block('metaDescription') }}" />
         <meta name="twitter:title" content="{{ block('title') }}" />
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Person",
+          "name": "Michael Babker",
+          "url": "https://michaels.website",
+          "sameAs": [
+            "https://www.linkedin.com/in/mbabker",
+            "https://twitter.com/mbabker"
+          ]
+        }
+        </script>
         {% block metadata %}{% endblock %}
         <title>{% block title %}Michael's Website{% endblock %}</title>
         {% block headJavaScript %}{% endblock %}
@@ -49,7 +61,7 @@
                 </div>
             </div>
         </nav>
-        <header class="intro-header" style="background-image: url('{% block headerBackground %}{{ asset('img/home-bg.jpg') }}{% endblock %}')">
+        <header class="intro-header" style="background-image: url('{% block headerBackground %}{{ asset('img/home-bg.jpg', 'url') }}{% endblock %}')">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">

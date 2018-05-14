@@ -13,8 +13,11 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/blog_list.html.twig' with {'articles': posts, 'section': 'blog'} %}
-    {% if paginator.haveToPaginate %}
-        {{ render_pagination(paginator) }}
-    {% endif %}
+    <div itemscope itemtype="https://schema.org/Blog">
+        <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{ request_uri() }}">
+        {% include 'partials/blog_list.html.twig' with {'articles': posts, 'section': 'blog'} %}
+        {% if paginator.haveToPaginate %}
+            {{ render_pagination(paginator) }}
+        {% endif %}
+    </div>
 {% endblock %}

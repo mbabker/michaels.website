@@ -8,20 +8,49 @@
     <meta property="og:article:published_time" content="{{ post.publishUp|date('c') }}" />
     <meta property="og:article:modified_time" content="{{ post.dateModified|date('c') }}" />
     <meta property="og:article:author" content="{{ post.author }}" />
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ request_uri() }}"
+      },
+      "headline": "{{ post.title }}",
+      "image": [
+        "{{ block('headerBackground') }}"
+      ],
+      "datePublished": "{{ post.publishUp|date('c') }}",
+      "dateModified": "{{ post.dateModified|date('c') }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ post.author }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "{{ post.author }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ asset('img/about-michael.jpg', 'url') }}"
+        }
+      },
+      "description": "{{ post.preview ?: first_paragraph(post.text) }}"
+    }
+    </script>
 {% endblock %}
 
 {%- block headerBackground -%}
     {%- if post.image is empty -%}
         {{ parent() }}
     {%- else -%}
-        {{ asset('img/' ~ post.image) }}
+        {{ asset('img/' ~ post.image, 'url') }}
     {%- endif -%}
 {%- endblock -%}
 
 {% block pageHeadingText %}
     <div class="page-heading">
         <h1>{{ post.title }}</h1>
-        <span class="meta">Posted by {{ post.author }} on {{ post.publishUp|date('l, F j, Y') }}</span>
+        <span class="meta">Posted by {{ post.author }} on <time datetime="{{ post.publishUp|date('c') }}">{{ post.publishUp|date('l, F j, Y') }}</time></span>
     </div>
 {% endblock %}
 

@@ -1,9 +1,18 @@
-<div class="post-preview">
+<div class="post-preview" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="Michael Babker">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="{{ asset('img/about-michael.jpg', 'url') }}">
+        </div>
+    </div>
+    <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{ route(section ~ '/' ~ article.alias) }}">
+    <meta itemprop="image" content="{{ post.image ? asset('img/' ~ post.image, 'url') : asset('img/home-bg.jpg', 'url') }}">
+    <meta itemprop="dateModified" content="{{ post.dateModified|date('c') }}">
     <a href="{{ route(section ~ '/' ~ article.alias) }}">
-        <h3>
+        <h3 itemprop="headline">
             {{ article.title }}
         </h3>
     </a>
-    <p class="post-meta">Posted by {{ article.author }} on {{ article.publishUp|date('l, F j, Y') }}</p>
-    <p>{{ article.preview ?: first_paragraph(article.text) }}</p>
+    <p class="post-meta">Posted by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ article.author }}</span></span> on <time datetime="{{ article.publishUp|date('c') }}" itemprop="datePublished">{{ article.publishUp|date('l, F j, Y') }}</time></p>
+    <p itemprop="description">{{ article.preview ?: first_paragraph(article.text) }}</p>
 </div>

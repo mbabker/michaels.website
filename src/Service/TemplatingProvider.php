@@ -14,6 +14,7 @@ use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
+use Symfony\Component\Asset\UrlPackage;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 use Symfony\Component\Asset\VersionStrategy\JsonManifestVersionStrategy;
 use Twig\Cache\CacheInterface;
@@ -57,6 +58,11 @@ final class TemplatingProvider implements ServiceProviderInterface
                             new JsonManifestVersionStrategy(JPATH_ROOT . '/www/media/mix-manifest.json'),
                             $context
                         ),
+                        'url' => new UrlPackage(
+                            [$app->get('uri.media.full')],
+                            new EmptyVersionStrategy(),
+                            $context
+                        )
                     ]
                 );
             },
