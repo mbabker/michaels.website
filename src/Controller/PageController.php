@@ -31,7 +31,7 @@ final class PageController extends AbstractController
 
     public function execute(): bool
     {
-        $view   = $this->getInput()->getString('view', '');
+        $view   = strtolower($this->getInput()->getString('view', ''));
         $layout = "$view.html.twig";
 
         // Since this is a catch-all route, if the layout doesn't exist, or is an excluded layout, treat this as a 404
