@@ -26,13 +26,13 @@
         "pagerfanta/pagerfanta": "~2.0",
         "phpdocumentor/reflection-docblock": "~4.3",
         "psr/link": "~1.0",
-        "symfony/asset": "4.0.*",
-        "symfony/finder": "4.0.*",
-        "symfony/property-access": "4.0.*",
-        "symfony/property-info": "4.0.*",
-        "symfony/serializer": "4.0.*",
-        "symfony/web-link": "4.0.*",
-        "symfony/yaml": "4.0.*",
+        "symfony/asset": "4.1.*",
+        "symfony/finder": "4.1.*",
+        "symfony/property-access": "4.1.*",
+        "symfony/property-info": "4.1.*",
+        "symfony/serializer": "4.1.*",
+        "symfony/web-link": "4.1.*",
+        "symfony/yaml": "4.1.*",
         "twig/twig": "^2.4.8",
         "twig/extensions": "^1.5.1",
         "zendframework/zend-diactoros": "~1.4"
@@ -40,6 +40,11 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.0",
         "maximebf/debugbar": "^1.13"
+    },
+    "replace": {
+        "paragonie/random_compat": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php72": "*"
     },
     "autoload": {
         "psr-4": {
