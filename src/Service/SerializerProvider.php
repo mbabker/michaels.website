@@ -8,13 +8,10 @@ use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Yaml\Dumper;
-use Symfony\Component\Yaml\Parser;
 
 final class SerializerProvider implements ServiceProviderInterface
 {
@@ -25,7 +22,6 @@ final class SerializerProvider implements ServiceProviderInterface
             function (): Serializer {
                 $encoders = [
                     new JsonEncoder(new JsonEncode(), new JsonDecode()),
-                    new YamlEncoder(new Dumper(), new Parser()),
                 ];
 
                 $normalizers = [
