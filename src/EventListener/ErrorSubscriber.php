@@ -28,7 +28,7 @@ final class ErrorSubscriber implements SubscriberInterface
         ];
     }
 
-    public function handleError(ApplicationErrorEvent $event)
+    public function handleError(ApplicationErrorEvent $event): void
     {
         /** @var WebApplication $app */
         $app = $event->getApplication();

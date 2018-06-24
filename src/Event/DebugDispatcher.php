@@ -32,10 +32,6 @@ final class DebugDispatcher implements DispatcherInterface
 
     public function addSubscriber(SubscriberInterface $subscriber)
     {
-        if (!method_exists($this->dispatcher, 'addSubscriber')) {
-            throw new \RuntimeException('The decorated dispatcher does not implement the `addSubscriber` method.');
-        }
-
         $this->dispatcher->addSubscriber($subscriber);
 
         return $this;

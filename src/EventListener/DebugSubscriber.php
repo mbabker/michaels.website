@@ -58,7 +58,7 @@ final class DebugSubscriber implements SubscriberInterface
         $application->setBody($body);
     }
 
-    public function handleError(ApplicationErrorEvent $event)
+    public function handleError(ApplicationErrorEvent $event): void
     {
         /** @var \DebugBar\DataCollector\ExceptionsCollector $collector */
         $collector = $this->debugBar->getCollector('exceptions');
