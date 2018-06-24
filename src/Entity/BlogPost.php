@@ -45,26 +45,26 @@ final class BlogPost
     private $preview = '';
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $image = '';
+    private $image;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $previous = '';
+    private $previous;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private $next = '';
+    private $next;
 
     public function getAuthor(): string
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author)
+    public function setAuthor(string $author): void
     {
         $this->author = $author;
     }
@@ -74,7 +74,7 @@ final class BlogPost
         return $this->category;
     }
 
-    public function setCategory(string $category)
+    public function setCategory(string $category): void
     {
         $this->category = $category;
     }
@@ -84,7 +84,7 @@ final class BlogPost
         return $this->publish_up;
     }
 
-    public function setPublishUp(\DateTime $publish_up)
+    public function setPublishUp(\DateTime $publish_up): void
     {
         $this->publish_up = $publish_up;
     }
@@ -94,7 +94,7 @@ final class BlogPost
         return $this->date_modified;
     }
 
-    public function setDateModified(\DateTime $date_modified)
+    public function setDateModified(\DateTime $date_modified): void
     {
         $this->date_modified = $date_modified;
     }
@@ -104,7 +104,7 @@ final class BlogPost
         return $this->title;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -114,7 +114,7 @@ final class BlogPost
         return $this->alias;
     }
 
-    public function setAlias(string $alias)
+    public function setAlias(string $alias): void
     {
         $this->alias = $alias;
     }
@@ -124,7 +124,7 @@ final class BlogPost
         return $this->text;
     }
 
-    public function setText(string $text)
+    public function setText(string $text): void
     {
         $this->text = $text;
     }
@@ -134,48 +134,48 @@ final class BlogPost
         return $this->preview;
     }
 
-    public function setPreview(string $preview)
+    public function setPreview(string $preview): void
     {
         $this->preview = $preview;
     }
 
-    public function getImage(): string
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(string $image)
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
 
-    public function getPrevious(): string
+    public function getPrevious(): ?string
     {
         return $this->previous;
     }
 
-    public function setPrevious(string $previous)
+    public function setPrevious(?string $previous): void
     {
         $this->previous = $previous;
     }
 
-    public function getNext(): string
+    public function getNext(): ?string
     {
         return $this->next;
     }
 
-    public function setNext(string $next)
+    public function setNext(?string $next): void
     {
         $this->next = $next;
     }
 
     public function hasPrevious(): bool
     {
-        return $this->getPrevious() !== '';
+        return $this->getPrevious() !== null;
     }
 
     public function hasNext(): bool
     {
-        return $this->getNext() !== '';
+        return $this->getNext() !== null;
     }
 }

@@ -4,6 +4,7 @@ namespace BabDev\Website\Model;
 
 use BabDev\Website\Entity\BlogPost;
 use Pagerfanta\Adapter\ArrayAdapter;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -39,7 +40,7 @@ final class BlogPostModel
 
     public function getPost(string $alias): BlogPost
     {
-        $finder = $this->buildFinder()->name("*_$alias.yml");
+        $finder = $this->buildFinder()->name("*_$alias.md");
 
         if (count($finder) > 1) {
             throw new \InvalidArgumentException('Non-unique blog post alias given.', 404);
@@ -78,15 +79,17 @@ final class BlogPostModel
 
     private function deserializePost(string $filename): BlogPost
     {
+        $frontMatter = YamlFrontMatter::parseFile($filename);
+
         return $this->serializer->deserialize(
-            file_get_contents($filename),
+            json_encode(array_merge($frontMatter->matter(), ['text' => $frontMatter->body()])),
             BlogPost::class,
-            'yaml'
+            'json'
         );
     }
 
     private function findPostFiles(): Finder
     {
-        return $this->buildFinder()->name('*.yml');
+        return $this->buildFinder()->name('*.md');
     }
 }

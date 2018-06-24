@@ -5,6 +5,9 @@ namespace BabDev\Website\Service;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
+use Symfony\Component\Serializer\Encoder\JsonDecode;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\YamlEncoder;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -21,6 +24,7 @@ final class SerializerProvider implements ServiceProviderInterface
             SerializerInterface::class,
             function (): Serializer {
                 $encoders = [
+                    new JsonEncoder(new JsonEncode(), new JsonDecode()),
                     new YamlEncoder(new Dumper(), new Parser()),
                 ];
 
