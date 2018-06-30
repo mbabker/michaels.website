@@ -62,7 +62,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                             [$app->get('uri.media.full')],
                             new EmptyVersionStrategy(),
                             $context
-                        )
+                        ),
                     ]
                 );
             },

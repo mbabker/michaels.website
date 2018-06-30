@@ -41,6 +41,8 @@ return PhpCsFixer\Config::create()
         'trailing_comma_in_multiline_array' => true,
         'trim_array_spaces' => true,
         'whitespace_after_comma_in_array' => true,
+        // local
+        'native_function_invocation' => ['include' => ['@compiler_optimized']]
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

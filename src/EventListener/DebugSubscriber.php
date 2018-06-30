@@ -50,7 +50,7 @@ final class DebugSubscriber implements SubscriberInterface
             $pos = strripos($body, '</body>');
 
             if ($pos !== false) {
-                $body = substr_replace($body, $debugBarOutput . '</body>', $pos, strlen('</body>'));
+                $body = substr_replace($body, $debugBarOutput . '</body>', $pos, \strlen('</body>'));
             }
         }
 

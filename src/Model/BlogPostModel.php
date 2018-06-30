@@ -42,7 +42,7 @@ final class BlogPostModel
     {
         $finder = $this->buildFinder()->name("*_$alias.md");
 
-        if (count($finder) > 1) {
+        if (\count($finder) > 1) {
             throw new \InvalidArgumentException('Non-unique blog post alias given.', 404);
         }
 
