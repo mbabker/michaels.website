@@ -11,8 +11,7 @@ return PhpCsFixer\Config::create()
         'concat_space' => ['spacing' => 'one'],
         'ordered_imports' => true,
         // symfony
-        'blank_line_after_opening_tag' => true,
-        'blank_line_before_return' => true,
+        'blank_line_before_statement' => ['statements' => ['return']],
         'cast_spaces' => true,
         'function_typehint_space' => true,
         'include' => true,
@@ -42,6 +41,7 @@ return PhpCsFixer\Config::create()
         'trim_array_spaces' => true,
         'whitespace_after_comma_in_array' => true,
         // local
+        '@PHP71Migration:risky' => true,
         'native_function_invocation' => ['include' => ['@compiler_optimized']]
     ])
     ->setFinder(

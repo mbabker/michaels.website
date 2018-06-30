@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Service;
 
@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 final class SerializerProvider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         $container->share(
             SerializerInterface::class,

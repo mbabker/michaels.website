@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Service;
 
@@ -30,7 +30,7 @@ use Twig\RuntimeLoader\ContainerRuntimeLoader;
 
 final class TemplatingProvider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         /** @var \Joomla\Registry\Registry $config */
         $config = $container->get('config');

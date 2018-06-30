@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Controller;
 
@@ -39,7 +39,7 @@ abstract class AbstractController implements ControllerInterface
         return serialize($this->getInput());
     }
 
-    public function unserialize($input)
+    public function unserialize($input): void
     {
         $input = unserialize($input);
 

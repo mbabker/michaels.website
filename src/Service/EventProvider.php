@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Service;
 
@@ -11,7 +11,7 @@ use Joomla\Renderer\RendererInterface;
 
 final class EventProvider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         // This service cannot be protected as it is decorated when the debug bar is available
         $container->share(

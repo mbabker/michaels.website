@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Event;
 
@@ -65,12 +65,12 @@ final class DebugDispatcher implements DispatcherInterface
         return $this->dispatcher->hasListener($callback, $eventName);
     }
 
-    public function removeListener(string $eventName, callable $listener)
+    public function removeListener(string $eventName, callable $listener): void
     {
         $this->dispatcher->removeListener($eventName, $listener);
     }
 
-    public function removeSubscriber(SubscriberInterface $subscriber)
+    public function removeSubscriber(SubscriberInterface $subscriber): void
     {
         $this->dispatcher->removeSubscriber($subscriber);
     }

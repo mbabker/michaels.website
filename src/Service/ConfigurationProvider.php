@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Service;
 
@@ -26,7 +26,7 @@ final class ConfigurationProvider implements ServiceProviderInterface
         $this->config = (new Registry)->loadFile($file);
     }
 
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         $container->share(
             'config',

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\DebugBar;
 
@@ -17,7 +17,7 @@ final class JoomlaHttpDriver implements HttpDriverInterface
         $this->application = $application;
     }
 
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): void
     {
         foreach ($headers as $name => $value) {
             $this->application->setHeader($name, $value);
@@ -30,7 +30,7 @@ final class JoomlaHttpDriver implements HttpDriverInterface
         return false;
     }
 
-    public function setSessionValue($name, $value)
+    public function setSessionValue($name, $value): void
     {
         // This application has no session integration
     }
@@ -41,13 +41,13 @@ final class JoomlaHttpDriver implements HttpDriverInterface
         return false;
     }
 
-    public function getSessionValue($name)
+    public function getSessionValue($name): void
     {
         // This application has no session integration
         return;
     }
 
-    public function deleteSessionValue($name)
+    public function deleteSessionValue($name): void
     {
         // This application has no session integration
     }

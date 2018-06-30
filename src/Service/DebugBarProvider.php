@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace BabDev\Website\Service;
 
@@ -19,7 +19,7 @@ use Twig\Profiler\Profile;
 
 final class DebugBarProvider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(Container $container): void
     {
         $container->share(
             StandardDebugBar::class,
