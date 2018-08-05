@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h2 class="post-title">Latest Blog Post</h2>
+    <h1>Latest Blog Post</h1>
     {% include 'partials/blog_preview.html.twig' with {'article': latest, 'section': 'blog'} %}
 {% endblock %}

@@ -9,9 +9,9 @@
     <meta itemprop="image" content="{{ post.image ? asset('img/' ~ post.image, 'url') : asset('img/home-bg.jpg', 'url') }}">
     <meta itemprop="dateModified" content="{{ post.dateModified|date('c') }}">
     <a href="{{ route(section ~ '/' ~ article.alias) }}">
-        <h3 itemprop="headline">
+        <h2 class="post-title" itemprop="headline">
             {{ article.title }}
-        </h3>
+        </h2>
     </a>
     <p class="post-meta">Posted by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ article.author }}</span></span> on <time datetime="{{ article.publishUp|date('c') }}" itemprop="datePublished">{{ article.publishUp|date('l, F j, Y') }}</time></p>
     <p itemprop="description">{{ article.preview ?: first_paragraph(article.text) }}</p>

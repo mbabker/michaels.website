@@ -5,7 +5,7 @@ namespace BabDev\Website\Renderer;
 use Joomla\Application\AbstractApplication;
 use Joomla\Preload\PreloadManager;
 use Pagerfanta\Pagerfanta;
-use Pagerfanta\View\TwitterBootstrap3View;
+use Pagerfanta\View\TwitterBootstrap4View;
 
 final class TwigRuntime
 {
@@ -52,6 +52,6 @@ final class TwigRuntime
             return $this->getRouteUri("blog/page/$page");
         };
 
-        return (new TwitterBootstrap3View())->render($pagerfanta, $routeGenerator);
+        return (new TwitterBootstrap4View())->render($pagerfanta, $routeGenerator);
     }
 }

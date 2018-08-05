@@ -48,7 +48,7 @@
 {%- endblock -%}
 
 {% block pageHeadingText %}
-    <div class="page-heading">
+    <div class="post-heading">
         <h1>{{ post.title }}</h1>
         <span class="meta">Posted by {{ post.author }} on <time datetime="{{ post.publishUp|date('c') }}">{{ post.publishUp|date('l, F j, Y') }}</time></span>
     </div>
@@ -58,16 +58,16 @@
     <article>
         {{ post.text|raw }}
     </article>
-    <ul class="pager">
+    <div class="row">
         {% if post.hasPrevious %}
-        <li class="previous">
-            <a href="{{ route('blog/' ~ post.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
-        </li>
+            <div class="col-md">
+                <a class="btn btn-outline-primary float-md-left" href="{{ route('blog/' ~ post.previous) }}"><i class="fa fa-arrow-left"></i> Previous Post</a>
+            </div>
         {% endif %}
         {% if post.hasNext %}
-        <li class="next">
-            <a href="{{ route('blog/' ~ post.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
-        </li>
+            <div class="col-md">
+                <a class="btn btn-outline-primary float-md-right" href="{{ route('blog/' ~ post.next) }}">Next Post <i class="fa fa-arrow-right"></i></a>
+            </div>
         {% endif %}
-    </ul>
+    </div>
 {% endblock %}

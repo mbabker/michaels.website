@@ -41,30 +41,35 @@
         {% endif %}
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="{{ route('') }}">Michael's Website</a>
-                </div>
-                <div class="collapse navbar-collapse" id="site-navbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ route('') }}">Home</a></li>
-                        <li><a href="{{ route('about') }}">About Me</a></li>
-                        <li><a href="{{ route('blog') }}">Blog</a></li>
-                        <li><a href="{{ route('speaking') }}">Speaking</a></li>
-                        {% block navbar %}{% endblock %}
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('') }}">Michael's Website</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('speaking') }}">Speaking</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <header class="intro-header" style="background-image: url('{% block headerBackground %}{{ asset('img/home-bg.jpg', 'url') }}{% endblock %}')">
+        <header class="masthead" style="background-image: url('{% block headerBackground %}{{ asset('img/home-bg.jpg', 'url') }}{% endblock %}')">
+            <div class="overlay"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
+                    <div class="col-lg-8 col-md-10 mx-auto">
                         {% block pageHeadingText %}
                         <div class="site-heading">
                             <h1>Michael's Website</h1>
@@ -76,16 +81,16 @@
         </header>
         <main class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-md-10 mx-auto">
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </main>
         <footer class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-md-10 mx-auto">
                     <ul class="list-inline text-center">
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://github.com/mbabker" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -94,7 +99,7 @@
                                 <span class="sr-only">GitHub</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://volunteers.joomla.org/joomlers/michael-babker" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -103,7 +108,7 @@
                                 <span class="sr-only">Joomla!</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://www.linkedin.com/in/mbabker" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -112,7 +117,7 @@
                                 <span class="sr-only">LinkedIn</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://www.reddit.com/user/mbabker" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -121,7 +126,7 @@
                                 <span class="sr-only">Reddit</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://stackoverflow.com/users/498353/michael" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -130,7 +135,7 @@
                                 <span class="sr-only">Stack Overflow</span>
                             </a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a href="https://twitter.com/mbabker" rel="nofollow noopener">
                                 <span class="fa-stack fa-lg" aria-hidden="true">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -140,7 +145,7 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">&copy; 2014 - {{ now|date('Y') }} Michael Babker | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
+                    <p class="copyright text-muted text-center">&copy; 2014 - {{ now|date('Y') }} Michael Babker | <a href="{{ route('privacy') }}">Privacy Policy</a></p>
                 </div>
             </div>
         </footer>
