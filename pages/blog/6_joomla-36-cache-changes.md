@@ -7,7 +7,7 @@ title: 'Joomla! 3.6 Cache Changes'
 alias: 'joomla-36-cache-changes'
 image: ~
 previous: 'joomla-351-mail-changes'
-next: ~
+next: 'open-sourcing-docs-concept'
 ---
 
 <p>With the release of Joomla! 3.6, additional error handling was introduced to the caching layer to help prevent issues. Unfortunately, this has exposed some misconfigured sites and has been met with calls for the change to be reverted and for Joomla to essentially discard cache layer errors silently. I'm going to explain here why the changes were made, how this is consistent with the rest of the method's error checks, and what can be done to make this error happen less frequently.</p>
