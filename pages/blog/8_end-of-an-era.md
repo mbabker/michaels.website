@@ -1,8 +1,8 @@
 ---
 author: 'Michael Babker'
 category: 'Blog'
-publish_up: '2018-12-12 18:00:00'
-date_modified: '2018-12-12 18:00:00'
+publish_up: '2018-12-12 07:30:00'
+date_modified: '2018-12-12 07:30:00'
 title: 'The End of an Era'
 alias: 'end-of-an-era'
 image: 'moon.jpg'
