@@ -21,3 +21,7 @@
 # DebugBar assets #
 /www/media/css/debugbar.css
 /www/media/js/debugbar.js
+
+# Deploy resources
+/staging
+/site.zip
