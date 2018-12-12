@@ -7,7 +7,7 @@ title: 'Open Sourcing Docs Concept'
 alias: 'open-sourcing-docs-concept'
 image: 'binary.jpg'
 previous: 'joomla-36-cache-changes'
-next: ~
+next: 'end-of-an-era'
 ---
 
 <p>For various reasons I don't really feel like getting into right now, I've honestly been feeling a fair bit burned out on Open Source contributions or just coding outside work in general lately, and as a result a lot of ideas and concepts I've started are just going nowhere. In the interest of sharing though, in the off chance there might be interest from someone in picking up on what was started, I've open sourced one of the concepts I started on; an upgraded version of the Joomla! API Documentation website, available at <a href="https://github.com/mbabker/api-docs">https://github.com/mbabker/api-docs</a>.</p>
