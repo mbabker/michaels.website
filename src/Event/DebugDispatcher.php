@@ -30,14 +30,12 @@ final class DebugDispatcher implements DispatcherInterface
         return $this->dispatcher->addListener($eventName, $callback, $priority);
     }
 
-    public function addSubscriber(SubscriberInterface $subscriber)
+    public function addSubscriber(SubscriberInterface $subscriber): void
     {
         $this->dispatcher->addSubscriber($subscriber);
-
-        return $this;
     }
 
-    public function dispatch(string $name, EventInterface $event = null): EventInterface
+    public function dispatch(string $name, ?EventInterface $event = null): EventInterface
     {
         /** @var \DebugBar\DataCollector\TimeDataCollector $collector */
         $collector = $this->debugBar->getCollector('time');
@@ -55,7 +53,7 @@ final class DebugDispatcher implements DispatcherInterface
         return $event;
     }
 
-    public function getListeners($event)
+    public function getListeners($event = null)
     {
         return $this->dispatcher->getListeners($event);
     }

@@ -12,36 +12,36 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "fig/link-util": "~1.0",
-        "joomla/application": "~2.0@dev",
-        "joomla/controller": "~2.0@dev",
-        "joomla/di": "~2.0@dev",
-        "joomla/event": "~2.0@dev",
-        "joomla/input": "~2.0@dev",
-        "joomla/preload": "~2.0@dev",
-        "joomla/registry": "~2.0@dev",
-        "joomla/renderer": "~2.0@dev",
-        "joomla/router": "~2.0@dev",
-        "joomla/uri": "~2.0@dev",
-        "pagerfanta/pagerfanta": "~2.0",
-        "phpdocumentor/reflection-docblock": "~4.3",
-        "psr/link": "~1.0",
-        "spatie/yaml-front-matter": "^2.0",
-        "symfony/asset": "4.2.*",
-        "symfony/finder": "4.2.*",
-        "symfony/property-access": "4.2.*",
-        "symfony/property-info": "4.2.*",
-        "symfony/serializer": "4.2.*",
-        "symfony/web-link": "4.2.*",
-        "symfony/yaml": "4.2.*",
-        "twig/extensions": "^1.5.1",
-        "twig/twig": "^2.4.8",
-        "zendframework/zend-diactoros": "~2.0"
+        "php": "^7.2",
+        "fig/link-util": "^1.0",
+        "joomla/application": "^2.0@dev",
+        "joomla/controller": "^2.0@dev",
+        "joomla/di": "^2.0@dev",
+        "joomla/event": "^2.0@dev",
+        "joomla/input": "^2.0@dev",
+        "joomla/preload": "^2.0@dev",
+        "joomla/registry": "^2.0@dev",
+        "joomla/renderer": "^2.0@dev",
+        "joomla/router": "^2.0@dev",
+        "joomla/uri": "^2.0@dev",
+        "pagerfanta/pagerfanta": "^2.1.2",
+        "phpdocumentor/reflection-docblock": "^4.3.1",
+        "psr/link": "^1.0",
+        "spatie/yaml-front-matter": "^2.0.2",
+        "symfony/asset": "4.3.*",
+        "symfony/finder": "4.3.*",
+        "symfony/property-access": "4.3.*",
+        "symfony/property-info": "4.3.*",
+        "symfony/serializer": "4.3.*",
+        "symfony/web-link": "4.3.*",
+        "symfony/yaml": "4.3.*",
+        "twig/extensions": "^1.5.4",
+        "twig/twig": "^2.11.3",
+        "zendframework/zend-diactoros": "^2.1.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~2.12",
-        "maximebf/debugbar": "^1.13"
+        "friendsofphp/php-cs-fixer": "~2.15.1",
+        "maximebf/debugbar": "^1.15"
     },
     "replace": {
         "paragonie/random_compat": "*",
@@ -56,6 +56,9 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.2.19"
+        }
     }
 }

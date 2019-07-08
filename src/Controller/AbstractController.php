@@ -33,20 +33,4 @@ abstract class AbstractController implements ControllerInterface
     {
         return $this->input;
     }
-
-    public function serialize()
-    {
-        return serialize($this->getInput());
-    }
-
-    public function unserialize($input): void
-    {
-        $input = unserialize($input);
-
-        if (!($input instanceof Input)) {
-            throw new \UnexpectedValueException(sprintf('%s would not accept a `%s`.', __METHOD__, \gettype($this->input)));
-        }
-
-        $this->input = $input;
-    }
 }

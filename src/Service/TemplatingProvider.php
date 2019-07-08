@@ -90,8 +90,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 return new NullCache();
             },
             true
-        )
-            ->alias(\Twig_CacheInterface::class, CacheInterface::class);
+        );
 
         $container->share(
             Environment::class,
@@ -117,8 +116,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 return $environment;
             },
             true
-        )
-            ->alias(\Twig_Environment::class, Environment::class);
+        );
 
         $container->share(
             TwigExtension::class,
@@ -148,9 +146,7 @@ final class TemplatingProvider implements ServiceProviderInterface
             },
             true
         )
-            ->alias(\Twig_Loader_Filesystem::class, LoaderInterface::class)
-            ->alias(FilesystemLoader::class, LoaderInterface::class)
-            ->alias(\Twig_LoaderInterface::class, LoaderInterface::class);
+            ->alias(FilesystemLoader::class, LoaderInterface::class);
 
         $container->share(
             Profile::class,
@@ -158,8 +154,7 @@ final class TemplatingProvider implements ServiceProviderInterface
                 return new Profile();
             },
             true
-        )
-            ->alias(\Twig_Profiler_Profile::class, Profile::class);
+        );
 
         $container->share(
             TwigRuntime::class,
