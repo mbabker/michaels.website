@@ -8,5 +8,5 @@ require('bootstrap/js/dist/collapse');
 require('cookieconsent');
 
 // Import template components
-require('startbootstrap-clean-blog/js/clean-blog')
+require('startbootstrap-clean-blog/js/clean-blog');
 require('./components/cookieconsent');
