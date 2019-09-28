@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 // Application constants
-define('APP_START', microtime(true));
-define('JPATH_ROOT', dirname(__DIR__));
-define('JPATH_TEMPLATES', JPATH_ROOT . '/templates');
+\define('APP_START', microtime(true));
+\define('JPATH_ROOT', \dirname(__DIR__));
+\define('JPATH_TEMPLATES', JPATH_ROOT . '/templates');
 
 // Ensure we've initialized Composer
 if (!file_exists(JPATH_ROOT . '/vendor/autoload.php')) {
@@ -15,7 +15,7 @@ if (!file_exists(JPATH_ROOT . '/vendor/autoload.php')) {
 
 require JPATH_ROOT . '/vendor/autoload.php';
 
-(function () {
+(function (): void {
     // Wrap in a try/catch so we can display an error if need be
     try {
         $container = (new Joomla\DI\Container())
