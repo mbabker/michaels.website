@@ -19,6 +19,7 @@ use Joomla\Input\Input;
 use Joomla\Registry\Registry;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Router;
+use Joomla\Router\RouterInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class WebApplicationProvider implements ServiceProviderInterface
@@ -33,7 +34,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
 
                 $application = new WebApplication(
                     $container->get(ControllerResolverInterface::class),
-                    $container->get(Router::class),
+                    $container->get(RouterInterface::class),
                     $container->get(Input::class),
                     $config
                 );
@@ -65,8 +66,8 @@ final class WebApplicationProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            Router::class,
-            function (Container $container): Router {
+	        RouterInterface::class,
+            function (Container $container): RouterInterface {
                 return (new Router())
                     ->get('/', HomepageController::class)
                     ->get('/blog', BlogController::class)
@@ -75,7 +76,8 @@ final class WebApplicationProvider implements ServiceProviderInterface
                     ->get('/:view', PageController::class);
             },
             true
-        );
+        )
+            ->alias(Router::class, RouterInterface::class);
 
         $container->share(
             BlogController::class,
