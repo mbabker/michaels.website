@@ -37,6 +37,9 @@ final class DebugSubscriber implements SubscriberInterface
         /** @var WebApplication $application */
         $application = $event->getApplication();
 
+	    // Ensure responses are not cached
+	    $application->allowCache(false);
+
         $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
 
         // Fetch the body
