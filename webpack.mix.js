@@ -15,7 +15,14 @@ mix
         postCss: [
             require('autoprefixer')({ browsers: 'last 2 versions' })
         ]
-    });
+    })
+    .purgeCss({
+        globs: [
+            path.join(__dirname, 'templates/**/*.twig'),
+        ],
+        extensions: ['twig'],
+    })
+;
 
 // Copy third party resources
 mix.copy('node_modules/cookieconsent/build/cookieconsent.min.css', 'www/media/css/cookieconsent.min.css');
