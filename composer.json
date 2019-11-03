@@ -36,12 +36,12 @@
         "symfony/web-link": "4.3.*",
         "symfony/yaml": "4.3.*",
         "twig/extensions": "^1.5.4",
-        "twig/twig": "^2.12",
+        "twig/twig": "^2.12.1",
         "zendframework/zend-diactoros": "^2.1.5"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15.3",
-        "maximebf/debugbar": "^1.15"
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "maximebf/debugbar": "^1.15.1"
     },
     "replace": {
         "paragonie/random_compat": "*",
