@@ -2,7 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800");
 
 // Font Awesome
-@import "~font-awesome/scss/font-awesome";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 // Clean Blog, overrides for Bootstrap core
 @import "~startbootstrap-clean-blog/scss/variables";
@@ -49,10 +51,13 @@
 //@import "~bootstrap/scss/print";
 
 // Clean Blog
-@import "clean-blog/global";
-@import "clean-blog/navbar";
-@import "~startbootstrap-clean-blog/scss/masthead";
-@import "~startbootstrap-clean-blog/scss/post";
-//@import "~startbootstrap-clean-blog/scss/contact";
-@import "clean-blog/footer";
-@import "clean-blog/bootstrap-overrides";
+@import "~startbootstrap-clean-blog/scss/clean-blog";
+
+// Fix navbar position
+#mainNav {
+  @media only screen and (min-width: 992px) {
+    &.is-fixed {
+      top: -74px;
+    }
+  }
+}

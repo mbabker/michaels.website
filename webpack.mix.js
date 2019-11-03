@@ -1,4 +1,5 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 // Configure base path for mix stuff going to web
 mix.setPublicPath('www/media/');
@@ -13,14 +14,16 @@ mix
     .sass('assets/scss/template.scss', 'css')
     .options({
         postCss: [
-            require('autoprefixer')({ browsers: 'last 2 versions' })
-        ]
+            require('autoprefixer')(),
+        ],
     })
     .purgeCss({
-        globs: [
-            path.join(__dirname, 'templates/**/*.twig'),
-        ],
+        folders: ['templates'],
         extensions: ['twig'],
+        whitelistPatterns: [
+            // JavaScript menu enhancement
+            /is-fixed.*/, /is-visible.*/,
+        ],
     })
 ;
 
