@@ -382,12 +382,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/joomla-framework/preload.git",
-                "reference": "dddf2f348d495c521967b0845861a0ce9c1bd55c"
+                "reference": "ac1a1422baa34c764db75596125086328305684c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/preload/zipball/dddf2f348d495c521967b0845861a0ce9c1bd55c",
-                "reference": "dddf2f348d495c521967b0845861a0ce9c1bd55c",
+                "url": "https://api.github.com/repos/joomla-framework/preload/zipball/ac1a1422baa34c764db75596125086328305684c",
+                "reference": "ac1a1422baa34c764db75596125086328305684c",
                 "shasum": ""
             },
             "require": {
@@ -402,13 +402,13 @@
                 "joomla/event": "~2.0",
                 "joomla/uri": "~2.0",
                 "phpunit/phpunit": "~8.2",
-                "symfony/web-link": "~3.4|~4.0"
+                "symfony/web-link": "~3.4|~4.0|~5.0"
             },
             "suggest": {
                 "joomla/application": "To use the PreloadSubscriber event listener, install `~2.0`",
                 "joomla/di": "To use the PreloadProvider service provider, install `~1.5|~2.0`",
                 "joomla/event": "To use the PreloadSubscriber event listener, install `~2.0`",
-                "symfony/web-link": "To use the PreloadSubscriber event listener, install `~3.4|~4.0`"
+                "symfony/web-link": "To use the PreloadSubscriber event listener, install `~3.4|~4.0|~5.0`"
             },
             "type": "joomla-package",
             "extra": {
@@ -432,7 +432,7 @@
                 "framework",
                 "joomla"
             ],
-            "time": "2019-08-02T02:00:25+00:00"
+            "time": "2019-11-17T23:25:11+00:00"
         },
         {
             "name": "joomla/registry",
@@ -2075,16 +2075,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa"
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/66eded992a75bfe75a829005a2884aae5ca86daa",
-                "reference": "66eded992a75bfe75a829005a2884aae5ca86daa",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/de5847b068362a88684a55b0dbb40d85986cfa52",
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52",
                 "shasum": ""
             },
             "require": {
@@ -2138,7 +2138,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-11-12T17:26:16+00:00"
+            "time": "2019-11-13T19:16:13+00:00"
         }
     ],
     "packages-dev": [
