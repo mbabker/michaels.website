@@ -21,6 +21,8 @@ mix
         folders: ['templates'],
         extensions: ['twig'],
         whitelistPatterns: [
+            // Bootstrap Pagination
+            /pagination.*/, /page-item.*/, /page-link.*/,
             // JavaScript menu enhancement
             /is-fixed.*/, /is-visible.*/,
         ],
