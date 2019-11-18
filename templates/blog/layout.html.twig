@@ -43,7 +43,7 @@
     {%- if post.image is empty -%}
         {{ parent() }}
     {%- else -%}
-        {{ asset('img/' ~ post.image, 'url') }}
+        {{ preload(asset('img/' ~ post.image, 'url'), 'preload', {'as': 'image'}) }}
     {%- endif -%}
 {%- endblock -%}
 

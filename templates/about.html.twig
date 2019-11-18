@@ -14,7 +14,7 @@
     <meta property="og:profile:gender" content="male" />
 {% endblock %}
 
-{% block headerBackground %}{{ asset('img/castle.jpg') }}{% endblock %}
+{% block headerBackground %}{{ preload(asset('img/castle.jpg'), 'preload', {'as': 'image'}) }}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">

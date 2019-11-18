@@ -2,7 +2,7 @@
 
 {% block title %}Speaking Engagements | {{ parent() }}{% endblock %}
 
-{% block headerBackground %}{{ asset('img/jwc14-stage.jpg') }}{% endblock %}
+{% block headerBackground %}{{ preload(asset('img/jwc14-stage.jpg'), 'preload', {'as': 'image'}) }}{% endblock %}
 
 {% block pageHeadingText %}
     <div class="page-heading">

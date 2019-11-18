@@ -65,7 +65,7 @@
                 </div>
             </div>
         </nav>
-        <header class="masthead" style="background-image: url('{% block headerBackground %}{{ asset('img/home-bg.jpg', 'url') }}{% endblock %}')">
+        <header class="masthead" style="background-image: url('{% block headerBackground %}{{ preload(asset('img/home-bg.jpg', 'url'), 'preload', {'as': 'image'}) }}{% endblock %}')">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
