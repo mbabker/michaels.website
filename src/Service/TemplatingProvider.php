@@ -22,7 +22,6 @@ use Twig\Cache\FilesystemCache;
 use Twig\Cache\NullCache;
 use Twig\Environment;
 use Twig\Extension\DebugExtension;
-use Twig\Extensions\TextExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\Loader\LoaderInterface;
 use Twig\Profiler\Profile;
@@ -126,13 +125,6 @@ final class TemplatingProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            TextExtension::class,
-            function (): TextExtension {
-                return new TextExtension();
-            }
-        );
-
-        $container->share(
             DebugExtension::class,
             function (): DebugExtension {
                 return new DebugExtension();
@@ -169,7 +161,6 @@ final class TemplatingProvider implements ServiceProviderInterface
 
         $twigExtensions = [
             TwigExtension::class,
-            TextExtension::class,
         ];
 
         if ($templateDebug) {

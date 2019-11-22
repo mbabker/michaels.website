@@ -35,7 +35,6 @@
         "symfony/serializer": "4.4.*",
         "symfony/web-link": "4.4.*",
         "symfony/yaml": "4.4.*",
-        "twig/extensions": "^1.5.4",
         "twig/twig": "^2.12.2",
         "zendframework/zend-diactoros": "^2.2.1"
     },
