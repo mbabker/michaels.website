@@ -28,18 +28,18 @@
         "phpdocumentor/reflection-docblock": "^4.3.2",
         "psr/link": "^1.0",
         "spatie/yaml-front-matter": "^2.0.4",
-        "symfony/asset": "4.4.*",
-        "symfony/finder": "4.4.*",
-        "symfony/property-access": "4.4.*",
-        "symfony/property-info": "4.4.*",
-        "symfony/serializer": "4.4.*",
-        "symfony/web-link": "4.4.*",
-        "symfony/yaml": "4.4.*",
+        "symfony/asset": "^5.0",
+        "symfony/finder": "^5.0",
+        "symfony/property-access": "^5.0",
+        "symfony/property-info": "^5.0",
+        "symfony/serializer": "^5.0",
+        "symfony/web-link": "^5.0",
+        "symfony/yaml": "^4.4",
         "twig/twig": "^2.12.2",
         "zendframework/zend-diactoros": "^2.2.1"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
+        "friendsofphp/php-cs-fixer": "^2.16.1",
         "maximebf/debugbar": "^1.16"
     },
     "replace": {
