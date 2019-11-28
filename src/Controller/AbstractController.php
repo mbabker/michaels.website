@@ -8,15 +8,9 @@ use Joomla\Input\Input;
 
 abstract class AbstractController implements ControllerInterface
 {
-    /**
-     * @var WebApplication
-     */
-    private $app;
+    private WebApplication $app;
 
-    /**
-     * @var Input
-     */
-    private $input;
+    private Input $input;
 
     public function __construct(WebApplication $app, Input $input = null)
     {

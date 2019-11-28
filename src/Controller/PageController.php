@@ -17,10 +17,7 @@ final class PageController extends AbstractController
      */
     private const EXCLUDED_LAYOUTS = ['base', 'exception', 'homepage'];
 
-    /**
-     * @var RendererInterface
-     */
-    private $renderer;
+    private RendererInterface $renderer;
 
     public function __construct(RendererInterface $renderer, WebApplication $app, Input $input = null)
     {

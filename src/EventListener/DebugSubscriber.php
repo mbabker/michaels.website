@@ -12,10 +12,7 @@ use Joomla\Event\SubscriberInterface;
 
 final class DebugSubscriber implements SubscriberInterface
 {
-    /**
-     * @var DebugBar
-     */
-    private $debugBar;
+    private DebugBar $debugBar;
 
     public function __construct(DebugBar $debugBar)
     {

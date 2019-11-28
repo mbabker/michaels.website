@@ -10,15 +10,9 @@ use Zend\Diactoros\Response\HtmlResponse;
 
 final class BlogPostController extends AbstractController
 {
-    /**
-     * @var BlogPostModel
-     */
-    private $blogModel;
+    private BlogPostModel $blogModel;
 
-    /**
-     * @var RendererInterface
-     */
-    private $renderer;
+    private RendererInterface $renderer;
 
     public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app, Input $input = null)
     {

@@ -7,10 +7,7 @@ use Symfony\Component\Asset\Context\ContextInterface;
 
 final class ApplicationContext implements ContextInterface
 {
-    /**
-     * @var AbstractWebApplication
-     */
-    private $app;
+    private AbstractWebApplication $app;
 
     public function __construct(AbstractWebApplication $app)
     {

@@ -11,10 +11,7 @@ use Zend\Diactoros\Response\HtmlResponse;
 
 final class ErrorSubscriber implements SubscriberInterface
 {
-    /**
-     * @var RendererInterface
-     */
-    private $renderer;
+    private RendererInterface $renderer;
 
     public function __construct(RendererInterface $renderer)
     {

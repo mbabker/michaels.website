@@ -7,57 +7,57 @@ final class BlogPost
     /**
      * @var string
      */
-    private $author = '';
+    private string $author = '';
 
     /**
      * @var string
      */
-    private $category = '';
+    private string $category = '';
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface|null
      */
-    private $publish_up;
+    private ?\DateTimeInterface $publish_up;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeInterface|null
      */
-    private $date_modified;
-
-    /**
-     * @var string
-     */
-    private $title = '';
+    private ?\DateTimeInterface $date_modified;
 
     /**
      * @var string
      */
-    private $alias = '';
+    private string $title = '';
 
     /**
      * @var string
      */
-    private $text = '';
+    private string $alias = '';
 
     /**
      * @var string
      */
-    private $preview = '';
+    private string $text = '';
+
+    /**
+     * @var string
+     */
+    private string $preview = '';
 
     /**
      * @var string|null
      */
-    private $image;
+    private ?string $image;
 
     /**
      * @var string|null
      */
-    private $previous;
+    private ?string $previous;
 
     /**
      * @var string|null
      */
-    private $next;
+    private ?string $next;
 
     public function getAuthor(): string
     {
@@ -79,22 +79,22 @@ final class BlogPost
         $this->category = $category;
     }
 
-    public function getPublishUp(): ?\DateTime
+    public function getPublishUp(): ?\DateTimeInterface
     {
         return $this->publish_up;
     }
 
-    public function setPublishUp(\DateTime $publish_up): void
+    public function setPublishUp(?\DateTimeInterface $publish_up): void
     {
         $this->publish_up = $publish_up;
     }
 
-    public function getDateModified(): ?\DateTime
+    public function getDateModified(): ?\DateTimeInterface
     {
         return $this->date_modified;
     }
 
-    public function setDateModified(\DateTime $date_modified): void
+    public function setDateModified(?\DateTimeInterface $date_modified): void
     {
         $this->date_modified = $date_modified;
     }
