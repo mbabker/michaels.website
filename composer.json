@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "fig/link-util": "^1.0",
         "joomla/application": "^2.0@dev",
         "joomla/controller": "^2.0@dev",
@@ -46,7 +46,8 @@
         "paragonie/random_compat": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*"
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*"
     },
     "autoload": {
         "psr-4": {
@@ -58,7 +59,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.3.8"
+            "php": "7.4.0"
         }
     }
 }
