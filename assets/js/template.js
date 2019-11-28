@@ -1,12 +1,12 @@
 window.$ = window.jQuery = require('jquery');
 
 // Import Bootstrap components individually
-require('bootstrap/js/dist/util');
-require('bootstrap/js/dist/collapse');
+import 'bootstrap/js/src/util';
+import 'bootstrap/js/src/collapse';
 
 // Import Cookie Consent library
-require('cookieconsent');
+import 'cookieconsent';
 
 // Import template components
-require('startbootstrap-clean-blog/js/clean-blog');
-require('./components/cookieconsent');
+import 'startbootstrap-clean-blog/js/clean-blog';
+import './components/cookieconsent';
