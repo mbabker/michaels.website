@@ -38,30 +38,30 @@ final class DebugDispatcher implements DispatcherInterface
         $collector->startMeasure($label);
 
         try {
-	        $event = $this->dispatcher->dispatch($name, $event);
+            $event = $this->dispatcher->dispatch($name, $event);
         } finally {
-	        // Needed because the application's before respond event may be cut short
-	        if ($collector->hasStartedMeasure($label)) {
-		        $collector->stopMeasure($label);
-	        }
+            // Needed because the application's before respond event may be cut short
+            if ($collector->hasStartedMeasure($label)) {
+                $collector->stopMeasure($label);
+            }
         }
 
         return $event;
     }
 
-	public function clearListeners($event = null)
-	{
-		$this->dispatcher->clearListeners($event);
+    public function clearListeners($event = null)
+    {
+        $this->dispatcher->clearListeners($event);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function countListeners($event)
-	{
-		return $this->dispatcher->countListeners($event);
-	}
+    public function countListeners($event)
+    {
+        return $this->dispatcher->countListeners($event);
+    }
 
-	public function getListeners(?string $event = null)
+    public function getListeners(?string $event = null)
     {
         return $this->dispatcher->getListeners($event);
     }
