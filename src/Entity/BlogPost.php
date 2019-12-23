@@ -4,60 +4,27 @@ namespace BabDev\Website\Entity;
 
 final class BlogPost
 {
-    /**
-     * @var string
-     */
     private string $author = '';
 
-    /**
-     * @var string
-     */
     private string $category = '';
 
-    /**
-     * @var \DateTimeInterface|null
-     */
-    private ?\DateTimeInterface $publish_up;
+    private ?\DateTimeInterface $publish_up = null;
 
-    /**
-     * @var \DateTimeInterface|null
-     */
-    private ?\DateTimeInterface $date_modified;
+    private ?\DateTimeInterface $date_modified = null;
 
-    /**
-     * @var string
-     */
     private string $title = '';
 
-    /**
-     * @var string
-     */
     private string $alias = '';
 
-    /**
-     * @var string
-     */
     private string $text = '';
 
-    /**
-     * @var string
-     */
     private string $preview = '';
 
-    /**
-     * @var string|null
-     */
-    private ?string $image;
+    private ?string $image = null;
 
-    /**
-     * @var string|null
-     */
-    private ?string $previous;
+    private ?string $previous = null;
 
-    /**
-     * @var string|null
-     */
-    private ?string $next;
+    private ?string $next = null;
 
     public function getAuthor(): string
     {
