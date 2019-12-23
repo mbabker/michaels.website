@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "fig/link-util": "^1.0",
         "joomla/application": "^2.0@dev",
         "joomla/controller": "^2.0@dev",
@@ -25,7 +25,6 @@
         "joomla/router": "^2.0@dev",
         "joomla/uri": "^2.0@dev",
         "pagerfanta/pagerfanta": "^2.1.3",
-        "phpdocumentor/reflection-docblock": "^4.3.2",
         "psr/link": "^1.0",
         "spatie/yaml-front-matter": "^2.0.5",
         "symfony/asset": "^5.0.2",
@@ -46,7 +45,8 @@
         "paragonie/random_compat": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*"
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-php74": "*"
     },
     "autoload": {
         "psr-4": {
@@ -58,7 +58,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "7.3.13"
+            "php": "7.4.1"
         }
     }
 }

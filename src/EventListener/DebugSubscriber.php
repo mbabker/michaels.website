@@ -12,10 +12,7 @@ use Joomla\Event\SubscriberInterface;
 
 final class DebugSubscriber implements SubscriberInterface
 {
-    /**
-     * @var DebugBar
-     */
-    private $debugBar;
+    private DebugBar $debugBar;
 
     public function __construct(DebugBar $debugBar)
     {
@@ -37,8 +34,8 @@ final class DebugSubscriber implements SubscriberInterface
         /** @var WebApplication $application */
         $application = $event->getApplication();
 
-	    // Ensure responses are not cached
-	    $application->allowCache(false);
+        // Ensure responses are not cached
+        $application->allowCache(false);
 
         $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
 

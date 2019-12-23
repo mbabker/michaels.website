@@ -8,10 +8,7 @@ use Joomla\Registry\Registry;
 
 final class ConfigurationProvider implements ServiceProviderInterface
 {
-    /**
-     * @var Registry
-     */
-    private $config;
+    private Registry $config;
 
     public function __construct()
     {

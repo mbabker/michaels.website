@@ -6,13 +6,13 @@
         </div>
     </div>
     <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{ route(section ~ '/' ~ article.alias) }}">
-    <meta itemprop="image" content="{{ post.image ? asset('img/' ~ post.image, 'url') : asset('img/home-bg.jpg', 'url') }}">
-    <meta itemprop="dateModified" content="{{ post.dateModified|date('c') }}">
+    <meta itemprop="image" content="{{ article.image ? asset('img/' ~ article.image, 'url') : asset('img/home-bg.jpg', 'url') }}">
+    <meta itemprop="dateModified" content="{{ article.date_modified|date('c') }}">
     <a href="{{ route(section ~ '/' ~ article.alias) }}">
         <h2 class="post-title" itemprop="headline">
             {{ article.title }}
         </h2>
     </a>
-    <p class="post-meta">Posted by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ article.author }}</span></span> on <time datetime="{{ article.publishUp|date('c') }}" itemprop="datePublished">{{ article.publishUp|date('l, F j, Y') }}</time></p>
+    <p class="post-meta">Posted by <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">{{ article.author }}</span></span> on <time datetime="{{ article.publish_up|date('c') }}" itemprop="datePublished">{{ article.publish_up|date('l, F j, Y') }}</time></p>
     <p itemprop="description">{{ article.preview ?: first_paragraph(article.text) }}</p>
 </div>

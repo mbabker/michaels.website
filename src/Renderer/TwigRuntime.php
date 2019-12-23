@@ -9,15 +9,9 @@ use Pagerfanta\View\TwitterBootstrap4View;
 
 final class TwigRuntime
 {
-    /**
-     * @var AbstractApplication
-     */
-    private $app;
+    private AbstractApplication $app;
 
-    /**
-     * @var PreloadManager
-     */
-    private $preloadManager;
+    private PreloadManager $preloadManager;
 
     public function __construct(AbstractApplication $app, PreloadManager $preloadManager)
     {

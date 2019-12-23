@@ -66,7 +66,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
         );
 
         $container->share(
-	        RouterInterface::class,
+            RouterInterface::class,
             function (Container $container): RouterInterface {
                 return (new Router())
                     ->get('/', HomepageController::class)

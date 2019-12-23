@@ -9,10 +9,7 @@ use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 
 final class MixPathPackage extends BasePathPackage
 {
-    /**
-     * @var Package
-     */
-    private $decoratedPackage;
+    private Package $decoratedPackage;
 
     public function __construct(
         Package $decoratedPackage,

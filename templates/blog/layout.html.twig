@@ -5,8 +5,8 @@
 {% block metaOgType %}article{% endblock %}
 
 {% block metadata %}
-    <meta property="og:article:published_time" content="{{ post.publishUp|date('c') }}" />
-    <meta property="og:article:modified_time" content="{{ post.dateModified|date('c') }}" />
+    <meta property="og:article:published_time" content="{{ post.publish_up|date('c') }}" />
+    <meta property="og:article:modified_time" content="{{ post.date_modified|date('c') }}" />
     <meta property="og:article:author" content="{{ post.author }}" />
     <script type="application/ld+json">
     {
@@ -20,8 +20,8 @@
       "image": [
         "{{ block('headerBackground') }}"
       ],
-      "datePublished": "{{ post.publishUp|date('c') }}",
-      "dateModified": "{{ post.dateModified|date('c') }}",
+      "datePublished": "{{ post.publish_up|date('c') }}",
+      "dateModified": "{{ post.date_modified|date('c') }}",
       "author": {
         "@type": "Person",
         "name": "{{ post.author }}"
@@ -50,7 +50,7 @@
 {% block pageHeadingText %}
     <div class="site-heading">
         <h1>{{ post.title }}</h1>
-        <span class="meta">Posted by {{ post.author }} on <time datetime="{{ post.publishUp|date('c') }}">{{ post.publishUp|date('l, F j, Y') }}</time></span>
+        <span class="meta">Posted by {{ post.author }} on <time datetime="{{ post.publish_up|date('c') }}">{{ post.publish_up|date('l, F j, Y') }}</time></span>
     </div>
 {% endblock %}
 

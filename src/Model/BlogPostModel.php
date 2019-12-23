@@ -12,10 +12,7 @@ final class BlogPostModel
 {
     private const BLOG_PATH = JPATH_ROOT . '/pages/blog';
 
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
+    private SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
     {
