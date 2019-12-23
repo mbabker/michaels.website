@@ -7,6 +7,8 @@ use Joomla\Application\AbstractWebApplication;
 
 final class JoomlaHttpDriver implements HttpDriverInterface
 {
+	private AbstractWebApplication $application;
+
     public function __construct(AbstractWebApplication $application)
     {
         $this->application = $application;
