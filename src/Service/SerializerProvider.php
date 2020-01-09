@@ -4,13 +4,14 @@ namespace BabDev\Website\Service;
 
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\JsonDecode;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -27,7 +28,7 @@ final class SerializerProvider implements ServiceProviderInterface
 
                 $normalizers = [
                     new DateTimeNormalizer(),
-                    new PropertyNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
+	                new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new PropertyAccessor(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
                 ];
 
                 return new Serializer($normalizers, $encoders);
