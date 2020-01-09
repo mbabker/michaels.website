@@ -26,20 +26,20 @@ final class BlogPost
 
     public ?string $next = null;
 
-	/**
-	 * @note This setter is necessary to have the entity be properly deserialized
-	 */
+    /**
+     * @note This setter is necessary to have the entity be properly deserialized
+     */
     public function setPublishUp(?\DateTimeInterface $publishUp): void
     {
-    	$this->publish_up = $publishUp;
+        $this->publish_up = $publishUp;
     }
 
-	/**
-	 * @note This setter is necessary to have the entity be properly deserialized
-	 */
+    /**
+     * @note This setter is necessary to have the entity be properly deserialized
+     */
     public function setDateModified(?\DateTimeInterface $dateModified): void
     {
-    	$this->date_modified = $dateModified;
+        $this->date_modified = $dateModified;
     }
 
     public function hasPrevious(): bool

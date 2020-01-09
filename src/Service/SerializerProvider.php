@@ -28,7 +28,7 @@ final class SerializerProvider implements ServiceProviderInterface
 
                 $normalizers = [
                     new DateTimeNormalizer(),
-	                new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new PropertyAccessor(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
+                    new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new PropertyAccessor(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
                 ];
 
                 return new Serializer($normalizers, $encoders);
