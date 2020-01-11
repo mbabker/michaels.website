@@ -6,7 +6,7 @@ use Joomla\Application\WebApplication;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Router\Exception\RouteNotFoundException;
-use Zend\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\HtmlResponse;
 
 final class PageController extends AbstractController
 {

@@ -6,8 +6,8 @@ use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\WebApplication;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Pagerfanta\Pagerfanta;
-use Zend\Diactoros\Response\HtmlResponse;
 
 final class BlogController extends AbstractController
 {

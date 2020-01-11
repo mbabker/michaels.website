@@ -7,7 +7,7 @@ use Joomla\Application\Event\ApplicationErrorEvent;
 use Joomla\Application\WebApplication;
 use Joomla\Event\SubscriberInterface;
 use Joomla\Renderer\RendererInterface;
-use Zend\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\HtmlResponse;
 
 final class ErrorSubscriber implements SubscriberInterface
 {

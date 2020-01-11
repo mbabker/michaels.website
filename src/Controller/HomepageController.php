@@ -6,7 +6,7 @@ use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\WebApplication;
 use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
-use Zend\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\HtmlResponse;
 
 final class HomepageController extends AbstractController
 {
