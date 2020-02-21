@@ -6,6 +6,7 @@ use BabDev\Website\Controller\BlogController;
 use BabDev\Website\Controller\BlogPostController;
 use BabDev\Website\Controller\HomepageController;
 use BabDev\Website\Controller\PageController;
+use BabDev\Website\Controller\SitemapController;
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\AbstractApplication;
 use Joomla\Application\AbstractWebApplication;
@@ -73,6 +74,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                     ->get('/blog', BlogController::class)
                     ->get('/blog/page/:page', BlogController::class, ['page' => '(\d+)'])
                     ->get('/blog/:alias', BlogPostController::class)
+                    ->get('/sitemap.xml', SitemapController::class)
                     ->get('/:view', PageController::class);
             },
             true
@@ -123,6 +125,19 @@ final class WebApplicationProvider implements ServiceProviderInterface
             function (Container $container): PageController {
                 return new PageController(
                     $container->get(RendererInterface::class),
+                    $container->get(AbstractApplication::class),
+                    $container->get(Input::class)
+                );
+            },
+            true
+        );
+
+        $container->share(
+            SitemapController::class,
+            function (Container $container): SitemapController {
+                return new SitemapController(
+                    $container->get(RendererInterface::class),
+                    $container->get(BlogPostModel::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
