@@ -9,6 +9,9 @@ use Joomla\Application\Event\ApplicationEvent;
 use Joomla\Application\WebApplication;
 use Joomla\Event\Priority;
 use Joomla\Event\SubscriberInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\RedirectResponse;
+use Laminas\Diactoros\Response\XmlResponse;
 
 final class DebugSubscriber implements SubscriberInterface
 {
@@ -37,25 +40,31 @@ final class DebugSubscriber implements SubscriberInterface
         // Ensure responses are not cached
         $application->allowCache(false);
 
-        $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
+        if ($application->getResponse() instanceof HtmlResponse) {
+            $debugBarOutput = $this->debugBar->getJavascriptRenderer()->render();
 
-        // Fetch the body
-        $body = $application->getBody();
+            // Fetch the body
+            $body = $application->getBody();
 
-        // If for whatever reason we're missing the closing body tag, just append the scripts
-        if (!stristr($body, '</body>')) {
-            $body .= $debugBarOutput;
-        } else {
-            // Find the closing tag and put the scripts in
-            $pos = strripos($body, '</body>');
+            // If for whatever reason we're missing the closing body tag, just append the scripts
+            if (!stristr($body, '</body>')) {
+                $body .= $debugBarOutput;
+            } else {
+                // Find the closing tag and put the scripts in
+                $pos = strripos($body, '</body>');
 
-            if ($pos !== false) {
-                $body = substr_replace($body, $debugBarOutput . '</body>', $pos, \strlen('</body>'));
+                if ($pos !== false) {
+                    $body = substr_replace($body, $debugBarOutput . '</body>', $pos, \strlen('</body>'));
+                }
             }
-        }
 
-        // Reset the body
-        $application->setBody($body);
+            // Reset the body
+            $application->setBody($body);
+        } elseif ($application instanceof RedirectResponse) {
+            $this->debugBar->stackData();
+        } else {
+            $this->debugBar->sendDataInHeaders();
+        }
     }
 
     public function handleError(ApplicationErrorEvent $event): void
