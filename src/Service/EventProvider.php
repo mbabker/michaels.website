@@ -13,7 +13,6 @@ final class EventProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        // This service cannot be protected as it is decorated when the debug bar is available
         $container->alias(Dispatcher::class, DispatcherInterface::class)
             ->share(
                 DispatcherInterface::class,

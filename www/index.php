@@ -21,6 +21,7 @@ require JPATH_ROOT . '/vendor/autoload.php';
         $container = (new Joomla\DI\Container())
             ->registerServiceProvider(new BabDev\Website\Service\ConfigurationProvider())
             ->registerServiceProvider(new BabDev\Website\Service\EventProvider())
+            ->registerServiceProvider(new BabDev\Website\Service\PaginationProvider())
             ->registerServiceProvider(new BabDev\Website\Service\SerializerProvider())
             ->registerServiceProvider(new BabDev\Website\Service\TemplatingProvider())
             ->registerServiceProvider(new BabDev\Website\Service\WebApplicationProvider())

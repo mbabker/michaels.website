@@ -1,23 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace BabDev\Website\Renderer;
+namespace BabDev\Website\Twig;
 
-use Symfony\Component\Asset\Packages;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
-final class TwigExtension extends AbstractExtension
+final class AppExtension extends AbstractExtension
 {
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('asset', [Packages::class, 'getUrl']),
             new TwigFunction('first_paragraph', [$this, 'getFirstParagraph']),
-            new TwigFunction('preload', [TwigRuntime::class, 'preloadAsset']),
-            new TwigFunction('request_uri', [TwigRuntime::class, 'getRequestUri']),
-            new TwigFunction('route', [TwigRuntime::class, 'getRouteUri']),
-            new TwigFunction('render_pagination', [TwigRuntime::class, 'renderPagination'], ['is_safe' => ['html']]),
         ];
     }
 

@@ -4,14 +4,20 @@ namespace BabDev\Website\Service;
 
 use BabDev\Website\Asset\Context\ApplicationContext;
 use BabDev\Website\Asset\MixPathPackage;
-use BabDev\Website\Renderer\TwigExtension;
-use BabDev\Website\Renderer\TwigRuntime;
+use BabDev\Website\Twig\AppExtension;
+use BabDev\Website\Twig\AssetExtension;
+use BabDev\Website\Twig\PaginationExtension;
+use BabDev\Website\Twig\RoutingExtension;
+use BabDev\Website\Twig\Service\AssetService;
+use BabDev\Website\Twig\Service\PaginationService;
+use BabDev\Website\Twig\Service\RoutingService;
 use Joomla\Application\WebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Preload\PreloadManager;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
+use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
 use Symfony\Component\Asset\UrlPackage;
@@ -115,9 +121,30 @@ final class TemplatingProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            TwigExtension::class,
-            static function (): TwigExtension {
-                return new TwigExtension();
+            AssetExtension::class,
+            static function (): AssetExtension {
+                return new AssetExtension();
+            }
+        );
+
+        $container->share(
+            PaginationExtension::class,
+            static function (): PaginationExtension {
+                return new PaginationExtension();
+            }
+        );
+
+        $container->share(
+            RoutingExtension::class,
+            static function (): RoutingExtension {
+                return new RoutingExtension();
+            }
+        );
+
+        $container->share(
+            AppExtension::class,
+            static function (): AppExtension {
+                return new AppExtension();
             }
         );
 
@@ -140,24 +167,48 @@ final class TemplatingProvider implements ServiceProviderInterface
 
         $container->share(
             Profile::class,
-            static function (Container $container): Profile {
+            static function (): Profile {
                 return new Profile();
             }
         );
 
         $container->share(
-            TwigRuntime::class,
-            static function (Container $container): TwigRuntime {
-                return new TwigRuntime(
-                    $container->get(WebApplication::class),
+            AssetService::class,
+            static function (Container $container): AssetService {
+                return new AssetService(
+                    $container->get(Packages::class),
                     $container->get(PreloadManager::class)
                 );
             },
             true
         );
 
+        $container->share(
+            PaginationService::class,
+            static function (Container $container): PaginationService {
+                return new PaginationService(
+                    $container->get(ViewFactoryInterface::class),
+                    $container->get(RoutingService::class)
+                );
+            },
+            true
+        );
+
+        $container->share(
+            RoutingService::class,
+            static function (Container $container): RoutingService {
+                return new RoutingService(
+                    $container->get(WebApplication::class)
+                );
+            },
+            true
+        );
+
         $twigExtensions = [
-            TwigExtension::class,
+            AppExtension::class,
+            AssetExtension::class,
+            PaginationExtension::class,
+            RoutingExtension::class,
         ];
 
         if ($templateDebug) {
