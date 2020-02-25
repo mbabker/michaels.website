@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<problem xmlns="urn:ietf:rfc:7807">
+    <title>{{ appDebug ? title : exception|get_class }}</title>
+    <status>{{ status }}</status>
+    <detail>{{ exception.message|strip_root_path }}</detail>
+</problem>

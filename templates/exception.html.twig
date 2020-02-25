@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ exception.code ? exception.code ~ ' - ' : '' }}Error{% endblock %}
+{% block title %}{{ status }} - Error{% endblock %}
 
 {% block content %}
     {% if exception.code == 404 %}
@@ -8,7 +8,7 @@
         <p>I tried my best, but I just couldn't find it. Sorry about that.</p>
     {% else %}
         <div class="alert alert-danger">
-            <h4>{{ exception.code ? : "0" }} - {{ exception|get_class }}</h4>
+            <h4>{{ status }} - {{ appDebug ? title : exception|get_class }}</h4>
             <p>{{ exception.message|strip_root_path }}</p>
         </div>
     {% endif %}
