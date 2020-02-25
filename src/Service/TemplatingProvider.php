@@ -2,11 +2,11 @@
 
 namespace BabDev\Website\Service;
 
+use BabDev\Website\Asset\Context\ApplicationContext;
 use BabDev\Website\Asset\MixPathPackage;
-use BabDev\Website\Renderer\ApplicationContext;
 use BabDev\Website\Renderer\TwigExtension;
 use BabDev\Website\Renderer\TwigRuntime;
-use Joomla\Application\AbstractApplication;
+use Joomla\Application\WebApplication;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Preload\PreloadManager;
@@ -39,8 +39,8 @@ final class TemplatingProvider implements ServiceProviderInterface
         $container->share(
             Packages::class,
             function (Container $container): Packages {
-                /** @var AbstractApplication $app */
-                $app = $container->get(AbstractApplication::class);
+                /** @var WebApplication $app */
+                $app = $container->get(WebApplication::class);
 
                 $context = new ApplicationContext($app);
 
@@ -152,7 +152,7 @@ final class TemplatingProvider implements ServiceProviderInterface
             TwigRuntime::class,
             function (Container $container): TwigRuntime {
                 return new TwigRuntime(
-                    $container->get(AbstractApplication::class),
+                    $container->get(WebApplication::class),
                     $container->get(PreloadManager::class)
                 );
             },
