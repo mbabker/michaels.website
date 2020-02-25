@@ -10,9 +10,11 @@ use BabDev\Website\Controller\SitemapController;
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\AbstractApplication;
 use Joomla\Application\AbstractWebApplication;
+use Joomla\Application\ApplicationInterface;
 use Joomla\Application\Controller\ContainerControllerResolver;
 use Joomla\Application\Controller\ControllerResolverInterface;
 use Joomla\Application\WebApplication;
+use Joomla\Application\WebApplicationInterface;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Joomla\Event\DispatcherInterface;
@@ -27,127 +29,124 @@ final class WebApplicationProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $container->share(
-            WebApplication::class,
-            function (Container $container): WebApplication {
-                /** @var Registry $config */
-                $config = $container->get('config');
+        $container->alias(WebApplication::class, WebApplicationInterface::class)
+            ->alias(AbstractWebApplication::class, WebApplicationInterface::class)
+            ->alias(AbstractApplication::class, WebApplicationInterface::class)
+            ->alias(ApplicationInterface::class, WebApplicationInterface::class)
+            ->share(
+                WebApplicationInterface::class,
+                static function (Container $container): WebApplicationInterface {
+                    /** @var Registry $config */
+                    $config = $container->get('config');
 
-                $application = new WebApplication(
-                    $container->get(ControllerResolverInterface::class),
-                    $container->get(RouterInterface::class),
-                    $container->get(Input::class),
-                    $config
-                );
+                    $application = new WebApplication(
+                        $container->get(ControllerResolverInterface::class),
+                        $container->get(RouterInterface::class),
+                        $container->get(Input::class),
+                        $config
+                    );
 
-                // Inject extra services
-                $application->setDispatcher($container->get(DispatcherInterface::class));
+                    // Inject extra services
+                    $application->setDispatcher($container->get(DispatcherInterface::class));
 
-                return $application;
-            },
-            true
-        )
-            ->alias(AbstractWebApplication::class, WebApplication::class)
-            ->alias(AbstractApplication::class, WebApplication::class);
+                    return $application;
+                }
+            )
+        ;
 
-        $container->share(
-            ControllerResolverInterface::class,
-            function (Container $container): ControllerResolverInterface {
-                return new ContainerControllerResolver($container);
-            }
-        )
-            ->alias(ContainerControllerResolver::class, ControllerResolverInterface::class);
+        $container->alias(ContainerControllerResolver::class, ControllerResolverInterface::class)
+            ->share(
+                ControllerResolverInterface::class,
+                static function (Container $container): ControllerResolverInterface {
+                    return new ContainerControllerResolver($container);
+                }
+            )
+        ;
 
         $container->share(
             Input::class,
-            function (): Input {
+            static function (): Input {
                 return new Input($_REQUEST);
-            },
-            true
+            }
         );
 
-        $container->share(
-            RouterInterface::class,
-            function (Container $container): RouterInterface {
-                return (new Router())
-                    ->get('/', HomepageController::class)
-                    ->get('/blog', BlogController::class)
-                    ->get('/blog/page/:page', BlogController::class, ['page' => '(\d+)'])
-                    ->get('/blog/:alias', BlogPostController::class)
-                    ->get('/sitemap.xml', SitemapController::class)
-                    ->get('/:view', PageController::class);
-            },
-            true
-        )
-            ->alias(Router::class, RouterInterface::class);
+        $container->alias(Router::class, RouterInterface::class)
+            ->share(
+                RouterInterface::class,
+                static function (): RouterInterface {
+                    return (new Router())
+                        ->get('/', HomepageController::class)
+                        ->get('/blog', BlogController::class)
+                        ->get('/blog/page/:page', BlogController::class, ['page' => '(\d+)'])
+                        ->get('/blog/:alias', BlogPostController::class)
+                        ->get('/sitemap.xml', SitemapController::class, [], ['_format' => 'xml'])
+                        ->get('/:view', PageController::class);
+                }
+            )
+        ;
 
         $container->share(
             BlogController::class,
-            function (Container $container): BlogController {
+            static function (Container $container): BlogController {
                 return new BlogController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
-            },
-            true
+            }
         );
 
         $container->share(
             BlogPostController::class,
-            function (Container $container): BlogPostController {
+            static function (Container $container): BlogPostController {
                 return new BlogPostController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
-            },
-            true
+            }
         );
 
         $container->share(
             HomepageController::class,
-            function (Container $container): HomepageController {
+            static function (Container $container): HomepageController {
                 return new HomepageController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
-            },
-            true
+            }
         );
 
         $container->share(
             PageController::class,
-            function (Container $container): PageController {
+            static function (Container $container): PageController {
                 return new PageController(
                     $container->get(RendererInterface::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
-            },
-            true
+            }
         );
 
         $container->share(
             SitemapController::class,
-            function (Container $container): SitemapController {
+            static function (Container $container): SitemapController {
                 return new SitemapController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
                     $container->get(AbstractApplication::class),
                     $container->get(Input::class)
                 );
-            },
-            true
+            }
         );
 
         $container->share(
             BlogPostModel::class,
-            function (Container $container): BlogPostModel {
+            static function (Container $container): BlogPostModel {
                 return new BlogPostModel($container->get(SerializerInterface::class));
             }
         );

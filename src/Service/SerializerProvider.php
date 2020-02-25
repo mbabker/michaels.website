@@ -19,22 +19,22 @@ final class SerializerProvider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $container->share(
-            SerializerInterface::class,
-            function (): Serializer {
-                $encoders = [
-                    new JsonEncoder(new JsonEncode(), new JsonDecode()),
-                ];
+        $container->alias(Serializer::class, SerializerInterface::class)
+            ->share(
+                SerializerInterface::class,
+                static function (): Serializer {
+                    $encoders = [
+                        new JsonEncoder(new JsonEncode(), new JsonDecode()),
+                    ];
 
-                $normalizers = [
-                    new DateTimeNormalizer(),
-                    new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new PropertyAccessor(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
-                ];
+                    $normalizers = [
+                        new DateTimeNormalizer(),
+                        new ObjectNormalizer(null, new CamelCaseToSnakeCaseNameConverter(), new PropertyAccessor(), new ReflectionExtractor(null, ['is', 'can', 'get'])),
+                    ];
 
-                return new Serializer($normalizers, $encoders);
-            },
-            true
-        )
-            ->alias(Serializer::class, SerializerInterface::class);
+                    return new Serializer($normalizers, $encoders);
+                }
+            )
+        ;
     }
 }

@@ -14,29 +14,30 @@ final class EventProvider implements ServiceProviderInterface
     public function register(Container $container): void
     {
         // This service cannot be protected as it is decorated when the debug bar is available
-        $container->share(
-            DispatcherInterface::class,
-            function (Container $container): DispatcherInterface {
-                $dispatcher = new Dispatcher;
+        $container->alias(Dispatcher::class, DispatcherInterface::class)
+            ->share(
+                DispatcherInterface::class,
+                static function (Container $container): DispatcherInterface {
+                    $dispatcher = new Dispatcher;
 
-                foreach ($container->getTagged('event.subscriber') as $subscriber) {
-                    $dispatcher->addSubscriber($subscriber);
+                    foreach ($container->getTagged('event.subscriber') as $subscriber) {
+                        $dispatcher->addSubscriber($subscriber);
+                    }
+
+                    return $dispatcher;
                 }
-
-                return $dispatcher;
-            }
-        )
-            ->alias(Dispatcher::class, DispatcherInterface::class);
+            )
+        ;
 
         $container->share(
             ErrorSubscriber::class,
-            function (Container $container): ErrorSubscriber {
+            static function (Container $container): ErrorSubscriber {
                 return new ErrorSubscriber(
                     $container->get(RendererInterface::class)
                 );
-            },
-            true
-        )
-            ->tag('event.subscriber', [ErrorSubscriber::class]);
+            }
+        );
+
+        $container->tag('event.subscriber', [ErrorSubscriber::class]);
     }
 }

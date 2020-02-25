@@ -64,22 +64,21 @@ final class TemplatingProvider implements ServiceProviderInterface
                         ),
                     ]
                 );
-            },
-            true
+            }
         );
 
-        $container->share(
-            RendererInterface::class,
-            function (Container $container): RendererInterface {
-                return new TwigRenderer($container->get(Environment::class));
-            },
-            true
-        )
-            ->alias(TwigRenderer::class, RendererInterface::class);
+        $container->alias(TwigRenderer::class, RendererInterface::class)
+            ->share(
+                RendererInterface::class,
+                static function (Container $container): RendererInterface {
+                    return new TwigRenderer($container->get(Environment::class));
+                }
+            )
+        ;
 
         $container->share(
             CacheInterface::class,
-            function (Container $container) use ($config, $templateDebug): CacheInterface {
+            static function () use ($config, $templateDebug): CacheInterface {
                 $templateCache = (bool) $config->get('template.cache', false);
 
                 if ($templateDebug === false && $templateCache === true) {
@@ -87,13 +86,12 @@ final class TemplatingProvider implements ServiceProviderInterface
                 }
 
                 return new NullCache();
-            },
-            true
+            }
         );
 
         $container->share(
             Environment::class,
-            function (Container $container) use ($config, $templateDebug): Environment {
+            static function (Container $container) use ($config, $templateDebug): Environment {
                 $environment = new Environment(
                     $container->get(LoaderInterface::class),
                     ['debug' => $templateDebug]
@@ -113,44 +111,43 @@ final class TemplatingProvider implements ServiceProviderInterface
                 $environment->addGlobal('layoutDebug', $templateDebug);
 
                 return $environment;
-            },
-            true
+            }
         );
 
         $container->share(
             TwigExtension::class,
-            function (): TwigExtension {
+            static function (): TwigExtension {
                 return new TwigExtension();
             }
         );
 
         $container->share(
             DebugExtension::class,
-            function (): DebugExtension {
+            static function (): DebugExtension {
                 return new DebugExtension();
             }
         );
 
-        $container->share(
-            LoaderInterface::class,
-            function (Container $container): LoaderInterface {
-                return new FilesystemLoader([JPATH_TEMPLATES]);
-            },
-            true
-        )
-            ->alias(FilesystemLoader::class, LoaderInterface::class);
+        $container->alias(FilesystemLoader::class, LoaderInterface::class)
+            ->share(
+                LoaderInterface::class,
+                static function (): LoaderInterface {
+                    return new FilesystemLoader([JPATH_TEMPLATES]);
+                },
+                true
+            )
+        ;
 
         $container->share(
             Profile::class,
-            function (Container $container): Profile {
+            static function (Container $container): Profile {
                 return new Profile();
-            },
-            true
+            }
         );
 
         $container->share(
             TwigRuntime::class,
-            function (Container $container): TwigRuntime {
+            static function (Container $container): TwigRuntime {
                 return new TwigRuntime(
                     $container->get(WebApplication::class),
                     $container->get(PreloadManager::class)

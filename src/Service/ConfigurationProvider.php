@@ -25,12 +25,6 @@ final class ConfigurationProvider implements ServiceProviderInterface
 
     public function register(Container $container): void
     {
-        $container->share(
-            'config',
-            function (): Registry {
-                return $this->config;
-            },
-            true
-        );
+        $container->share('config', $this->config);
     }
 }

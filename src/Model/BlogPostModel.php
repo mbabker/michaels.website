@@ -6,6 +6,7 @@ use BabDev\Website\Entity\BlogPost;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class BlogPostModel
@@ -43,6 +44,7 @@ final class BlogPostModel
             throw new \InvalidArgumentException('Non-unique blog post alias given.', 404);
         }
 
+        /** @var SplFileInfo $file */
         foreach ($finder as $file) {
             return $this->deserializePost($file->getPathname());
         }
