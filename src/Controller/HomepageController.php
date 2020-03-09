@@ -4,19 +4,17 @@ namespace BabDev\Website\Controller;
 
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\WebApplication;
-use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 
 final class HomepageController extends AbstractController
 {
     private BlogPostModel $blogModel;
-
     private RendererInterface $renderer;
 
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app, Input $input = null)
+    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app)
     {
-        parent::__construct($app, $input);
+        parent::__construct($app);
 
         $this->blogModel = $blogModel;
         $this->renderer  = $renderer;

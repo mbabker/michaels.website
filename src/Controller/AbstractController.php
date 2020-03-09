@@ -10,12 +10,9 @@ abstract class AbstractController implements ControllerInterface
 {
     private WebApplication $app;
 
-    private Input $input;
-
-    public function __construct(WebApplication $app, Input $input = null)
+    public function __construct(WebApplication $app)
     {
-        $this->app   = $app;
-        $this->input = $input ?: $app->input;
+        $this->app = $app;
     }
 
     protected function getApplication(): WebApplication
@@ -25,6 +22,6 @@ abstract class AbstractController implements ControllerInterface
 
     protected function getInput(): Input
     {
-        return $this->input;
+        return $this->app->getInput();
     }
 }

@@ -11,7 +11,6 @@ use Joomla\Event\Priority;
 use Joomla\Event\SubscriberInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
-use Laminas\Diactoros\Response\XmlResponse;
 
 final class DebugSubscriber implements SubscriberInterface
 {

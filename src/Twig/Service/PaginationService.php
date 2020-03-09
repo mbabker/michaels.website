@@ -8,7 +8,6 @@ use Pagerfanta\View\ViewFactoryInterface;
 final class PaginationService
 {
     private ViewFactoryInterface $viewFactory;
-
     private RoutingService $routing;
 
     public function __construct(ViewFactoryInterface $viewFactory, RoutingService $routing)
@@ -17,7 +16,7 @@ final class PaginationService
         $this->routing     = $routing;
     }
 
-    public function renderPagination(Pagerfanta $pagerfanta): string
+    public function renderPagination(Pagerfanta $pagerfanta, string $view = 'bootstrap_4'): string
     {
         $routeGenerator = function ($page): string {
             if ($page === 1) {
@@ -27,6 +26,6 @@ final class PaginationService
             return $this->routing->getRouteUri("blog/page/$page");
         };
 
-        return $this->viewFactory->get('bootstrap_4')->render($pagerfanta, $routeGenerator);
+        return $this->viewFactory->get($view)->render($pagerfanta, $routeGenerator);
     }
 }

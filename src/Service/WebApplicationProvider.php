@@ -91,8 +91,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new BlogController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(AbstractApplication::class),
-                    $container->get(Input::class)
+                    $container->get(WebApplicationInterface::class)
                 );
             }
         );
@@ -103,8 +102,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new BlogPostController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(AbstractApplication::class),
-                    $container->get(Input::class)
+                    $container->get(WebApplicationInterface::class)
                 );
             }
         );
@@ -115,8 +113,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new HomepageController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(AbstractApplication::class),
-                    $container->get(Input::class)
+                    $container->get(WebApplicationInterface::class)
                 );
             }
         );
@@ -126,8 +123,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
             static function (Container $container): PageController {
                 return new PageController(
                     $container->get(RendererInterface::class),
-                    $container->get(AbstractApplication::class),
-                    $container->get(Input::class)
+                    $container->get(WebApplicationInterface::class)
                 );
             }
         );
@@ -138,8 +134,7 @@ final class WebApplicationProvider implements ServiceProviderInterface
                 return new SitemapController(
                     $container->get(RendererInterface::class),
                     $container->get(BlogPostModel::class),
-                    $container->get(AbstractApplication::class),
-                    $container->get(Input::class)
+                    $container->get(WebApplicationInterface::class)
                 );
             }
         );

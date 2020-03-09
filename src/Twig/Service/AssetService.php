@@ -8,7 +8,6 @@ use Symfony\Component\Asset\Packages;
 final class AssetService
 {
     private Packages $packages;
-
     private PreloadManager $preloadManager;
 
     public function __construct(Packages $packages, PreloadManager $preloadManager)

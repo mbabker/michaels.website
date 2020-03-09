@@ -4,7 +4,6 @@ namespace BabDev\Website\Controller;
 
 use BabDev\Website\Model\BlogPostModel;
 use Joomla\Application\WebApplication;
-use Joomla\Input\Input;
 use Joomla\Renderer\RendererInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Pagerfanta\Pagerfanta;
@@ -12,12 +11,11 @@ use Pagerfanta\Pagerfanta;
 final class BlogController extends AbstractController
 {
     private BlogPostModel $blogModel;
-
     private RendererInterface $renderer;
 
-    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app, Input $input = null)
+    public function __construct(RendererInterface $renderer, BlogPostModel $blogModel, WebApplication $app)
     {
-        parent::__construct($app, $input);
+        parent::__construct($app);
 
         $this->blogModel = $blogModel;
         $this->renderer  = $renderer;

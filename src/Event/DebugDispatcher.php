@@ -10,7 +10,6 @@ use Joomla\Event\SubscriberInterface;
 final class DebugDispatcher implements DispatcherInterface
 {
     private DebugBar $debugBar;
-
     private DispatcherInterface $dispatcher;
 
     public function __construct(DispatcherInterface $dispatcher, DebugBar $debugBar)
