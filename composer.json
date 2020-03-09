@@ -31,7 +31,7 @@
         "symfony/asset": "^5.0.5",
         "symfony/finder": "^5.0.5",
         "symfony/property-access": "^5.0.5",
-        "symfony/property-info": "^5.0.5",
+        "symfony/property-info": "^5.1@dev",
         "symfony/serializer": "^5.0.5",
         "symfony/web-link": "^5.0.5",
         "symfony/yaml": "^5.0.5",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1267ea61ee754e183b3f8ad805550f2a",
+    "content-hash": "5f3bb8fc3a28573d8dcad39b81271aa8",
     "packages": [
         {
             "name": "fig/link-util",
@@ -1628,16 +1628,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v5.0.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "8c2e9d22806acd5522691074e215bb0b04926877"
+                "reference": "4058cccd99268c130a40593b36d7e2427b444be0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/8c2e9d22806acd5522691074e215bb0b04926877",
-                "reference": "8c2e9d22806acd5522691074e215bb0b04926877",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/4058cccd99268c130a40593b36d7e2427b444be0",
+                "reference": "4058cccd99268c130a40593b36d7e2427b444be0",
                 "shasum": ""
             },
             "require": {
@@ -1665,7 +1665,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -1700,7 +1700,7 @@
                 "type",
                 "validator"
             ],
-            "time": "2020-01-04T14:08:26+00:00"
+            "time": "2020-01-28T09:54:57+00:00"
         },
         {
             "name": "symfony/serializer",
@@ -3020,7 +3020,8 @@
         "joomla/registry": 20,
         "joomla/renderer": 20,
         "joomla/router": 20,
-        "joomla/uri": 20
+        "joomla/uri": 20,
+        "symfony/property-info": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
