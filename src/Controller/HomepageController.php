@@ -22,6 +22,8 @@ final class HomepageController extends AbstractController
 
     public function execute(): bool
     {
+        $this->getApplication()->allowCache(true);
+
         $this->getApplication()->setResponse(
             new HtmlResponse(
                 $this->renderer->render('homepage.html.twig', ['latest' => $this->blogModel->getLatestPost()])

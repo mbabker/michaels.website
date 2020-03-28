@@ -23,6 +23,8 @@ final class BlogController extends AbstractController
 
     public function execute(): bool
     {
+        $this->getApplication()->allowCache(true);
+
         $page    = $this->getInput()->getUint('page', 1);
         $adapter = $this->blogModel->getPaginatorAdapter();
 

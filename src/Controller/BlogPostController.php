@@ -22,6 +22,8 @@ final class BlogPostController extends AbstractController
 
     public function execute(): bool
     {
+        $this->getApplication()->allowCache(true);
+
         $alias = $this->getInput()->getPath('alias', '');
 
         $this->getApplication()->setResponse(

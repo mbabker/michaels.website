@@ -27,6 +27,8 @@ final class PageController extends AbstractController
 
     public function execute(): bool
     {
+        $this->getApplication()->allowCache(true);
+
         $view   = strtolower($this->getInput()->getString('view', ''));
         $layout = "$view.html.twig";
 

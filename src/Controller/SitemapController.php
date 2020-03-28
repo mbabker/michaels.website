@@ -22,6 +22,8 @@ final class SitemapController extends AbstractController
 
     public function execute(): bool
     {
+        $this->getApplication()->allowCache(true);
+
         $this->getApplication()->setResponse(
             new XmlResponse(
                 $this->renderer->render(

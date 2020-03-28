@@ -98,6 +98,9 @@ final class ErrorSubscriber implements SubscriberInterface
         /** @var WebApplication $app */
         $app = $event->getApplication();
 
+        // Ensure responses are not cached
+        $app->allowCache(false);
+
         $isHttpErrorCode = $event->getError()->getCode() >= 400 && $event->getError()->getCode() <= 599;
 
         switch ($app->getInput()->getString('_format', 'html')) {
