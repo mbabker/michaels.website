@@ -16,7 +16,7 @@
         <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="{{ request_uri() }}">
         {% include 'partials/blog_list.html.twig' with {'articles': posts, 'section': 'blog'} %}
         {% if paginator.haveToPaginate %}
-            {{ render_pagination(paginator) }}
+            {{ render_pagination(paginator, 'bootstrap_4', {'prev_message': 'Previous', 'next_message': 'Next'}) }}
         {% endif %}
     </div>
 {% endblock %}

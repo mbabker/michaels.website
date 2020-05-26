@@ -16,9 +16,9 @@ final class PaginationService
         $this->routing     = $routing;
     }
 
-    public function renderPagination(Pagerfanta $pagerfanta, string $view = 'bootstrap_4'): string
+    public function renderPagination(Pagerfanta $pagerfanta, string $view = 'bootstrap_4', array $options = []): string
     {
-        $routeGenerator = function ($page): string {
+        $routeGenerator = function (int $page): string {
             if ($page === 1) {
                 return $this->routing->getRouteUri('blog');
             }
@@ -26,6 +26,6 @@ final class PaginationService
             return $this->routing->getRouteUri("blog/page/$page");
         };
 
-        return $this->viewFactory->get($view)->render($pagerfanta, $routeGenerator);
+        return $this->viewFactory->get($view)->render($pagerfanta, $routeGenerator, $options);
     }
 }
