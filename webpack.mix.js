@@ -30,8 +30,5 @@ mix
     })
 ;
 
-// Copy third party resources
-mix.copy('node_modules/cookieconsent/build/cookieconsent.min.css', 'www/media/css/cookieconsent.min.css');
-
 // Version assets
 mix.version();

@@ -33,7 +33,6 @@
         {% block headJavaScript %}{% endblock %}
         {% block headCSS %}
             <link href="{{ preload(asset('css/template.css', 'mix'), 'preload', {'as': 'style'}) }}" rel="stylesheet">
-            <link href="{{ preload(asset('css/cookieconsent.min.css'), 'preload', {'as': 'style'}) }}" rel="stylesheet">
         {% endblock %}
         {% if appDebug %}
             <link href="{{ asset('css/debugbar.css') }}" rel="stylesheet">
