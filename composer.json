@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": "^7.4",
+        "babdev/pagerfanta": "^2.2.1",
         "fig/link-util": "^1.1.1",
         "joomla/application": "^2.0@beta",
         "joomla/controller": "^2.0@beta",
@@ -25,7 +26,6 @@
         "joomla/router": "^2.0@beta",
         "joomla/uri": "^2.0@beta",
         "laminas/laminas-diactoros": "^2.3",
-        "pagerfanta/pagerfanta": "^2.1.3",
         "psr/link": "^1.0",
         "spatie/yaml-front-matter": "^2.0.5",
         "symfony/asset": "^5.1",
