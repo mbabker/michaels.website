@@ -22,9 +22,13 @@ mix
             content: ['templates/**/*.twig'],
             whitelistPatterns: [
                 // Bootstrap Pagination
-                /pagination.*/, /page-item.*/, /page-link.*/,
+                /pagination*/, /page-item*/, /page-link*/,
                 // JavaScript menu enhancement
                 /is-fixed.*/, /is-visible.*/,
+            ],
+            whitelistPatternsChildren: [
+                // Bootstrap Pagination
+                /page-item*/, /page-link*/,
             ],
         }
     })
