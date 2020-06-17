@@ -19,16 +19,13 @@ mix
     })
     .purgeCss({
         extend: {
-            content: ['templates/**/*.twig'],
+            content: [
+                'templates/**/*.twig',
+                'vendor/pagerfanta/pagerfanta/templates/**/*.twig',
+            ],
             whitelistPatterns: [
-                // Bootstrap Pagination
-                /pagination*/, /page-item*/, /page-link*/,
                 // JavaScript menu enhancement
                 /is-fixed.*/, /is-visible.*/,
-            ],
-            whitelistPatternsChildren: [
-                // Bootstrap Pagination
-                /page-item*/, /page-link*/,
             ],
         }
     })

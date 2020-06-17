@@ -6,10 +6,8 @@ use BabDev\Website\Asset\Context\ApplicationContext;
 use BabDev\Website\Asset\MixPathPackage;
 use BabDev\Website\Twig\AppExtension;
 use BabDev\Website\Twig\AssetExtension;
-use BabDev\Website\Twig\PaginationExtension;
 use BabDev\Website\Twig\RoutingExtension;
 use BabDev\Website\Twig\Service\AssetService;
-use BabDev\Website\Twig\Service\PaginationService;
 use BabDev\Website\Twig\Service\RoutingService;
 use Joomla\Application\WebApplication;
 use Joomla\DI\Container;
@@ -17,6 +15,9 @@ use Joomla\DI\ServiceProviderInterface;
 use Joomla\Preload\PreloadManager;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
+use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
+use Pagerfanta\Twig\PagerfantaExtension;
+use Pagerfanta\Twig\PagerfantaRuntime;
 use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
@@ -128,9 +129,9 @@ final class TemplatingProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            PaginationExtension::class,
-            static function (): PaginationExtension {
-                return new PaginationExtension();
+            PagerfantaExtension::class,
+            static function (): PagerfantaExtension {
+                return new PagerfantaExtension();
             }
         );
 
@@ -159,9 +160,11 @@ final class TemplatingProvider implements ServiceProviderInterface
             ->share(
                 LoaderInterface::class,
                 static function (): LoaderInterface {
-                    return new FilesystemLoader([JPATH_TEMPLATES]);
-                },
-                true
+                    $loader = new FilesystemLoader([JPATH_TEMPLATES]);
+                    $loader->addPath(JPATH_ROOT . '/vendor/pagerfanta/pagerfanta/templates', 'Pagerfanta');
+
+                    return $loader;
+                }
             )
         ;
 
@@ -184,11 +187,12 @@ final class TemplatingProvider implements ServiceProviderInterface
         );
 
         $container->share(
-            PaginationService::class,
-            static function (Container $container): PaginationService {
-                return new PaginationService(
+            PagerfantaRuntime::class,
+            static function (Container $container): PagerfantaRuntime {
+                return new PagerfantaRuntime(
+                    'twig',
                     $container->get(ViewFactoryInterface::class),
-                    $container->get(RoutingService::class)
+                    $container->get(RouteGeneratorFactoryInterface::class)
                 );
             },
             true
@@ -207,7 +211,7 @@ final class TemplatingProvider implements ServiceProviderInterface
         $twigExtensions = [
             AppExtension::class,
             AssetExtension::class,
-            PaginationExtension::class,
+            PagerfantaExtension::class,
             RoutingExtension::class,
         ];
 
