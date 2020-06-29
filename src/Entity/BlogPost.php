@@ -4,17 +4,17 @@ namespace BabDev\Website\Entity;
 
 final class BlogPost
 {
-    public string $author = '';
-    public string $category = '';
-    public ?\DateTimeInterface $publish_up = null;
+    public string $author                     = '';
+    public string $category                   = '';
+    public ?\DateTimeInterface $publish_up    = null;
     public ?\DateTimeInterface $date_modified = null;
-    public string $title = '';
-    public string $alias = '';
-    public string $text = '';
-    public string $preview = '';
-    public ?string $image = null;
-    public ?string $previous = null;
-    public ?string $next = null;
+    public string $title                      = '';
+    public string $alias                      = '';
+    public string $text                       = '';
+    public string $preview                    = '';
+    public ?string $image                     = null;
+    public ?string $previous                  = null;
+    public ?string $next                      = null;
 
     /**
      * @note This setter is necessary to have the entity be properly deserialized
