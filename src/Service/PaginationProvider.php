@@ -9,7 +9,7 @@ use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
-use Pagerfanta\View\TwigView;
+use Pagerfanta\Twig\View\TwigView;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
 use Twig\Environment;

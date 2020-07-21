@@ -16,8 +16,8 @@ use Joomla\Preload\PreloadManager;
 use Joomla\Renderer\RendererInterface;
 use Joomla\Renderer\TwigRenderer;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
-use Pagerfanta\Twig\PagerfantaExtension;
-use Pagerfanta\Twig\PagerfantaRuntime;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
+use Pagerfanta\Twig\Extension\PagerfantaRuntime;
 use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Asset\PathPackage;
@@ -160,8 +160,11 @@ final class TemplatingProvider implements ServiceProviderInterface
             ->share(
                 LoaderInterface::class,
                 static function (): LoaderInterface {
+                    $refl = new \ReflectionClass(PagerfantaExtension::class);
+                    $path = \dirname($refl->getFileName(), 2) . '/templates';
+
                     $loader = new FilesystemLoader([JPATH_TEMPLATES]);
-                    $loader->addPath(JPATH_ROOT . '/vendor/pagerfanta/pagerfanta/templates', 'Pagerfanta');
+                    $loader->addPath($path, 'Pagerfanta');
 
                     return $loader;
                 }
