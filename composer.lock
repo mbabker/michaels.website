@@ -936,12 +936,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pagerfanta-packages/core.git",
-                "reference": "6038a66ea283bb70e57e98d0c02811d77bd9d716"
+                "reference": "9fa44cc61251a0746a0354c42eb9ba389cf5bd3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pagerfanta-packages/core/zipball/6038a66ea283bb70e57e98d0c02811d77bd9d716",
-                "reference": "6038a66ea283bb70e57e98d0c02811d77bd9d716",
+                "url": "https://api.github.com/repos/pagerfanta-packages/core/zipball/9fa44cc61251a0746a0354c42eb9ba389cf5bd3b",
+                "reference": "9fa44cc61251a0746a0354c42eb9ba389cf5bd3b",
                 "shasum": ""
             },
             "require": {
@@ -963,7 +963,7 @@
             "keywords": [
                 "pagerfanta"
             ],
-            "time": "2020-07-21T03:00:15+00:00"
+            "time": "2020-07-22T02:57:21+00:00"
         },
         {
             "name": "pagerfanta/twig",
@@ -971,15 +971,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pagerfanta-packages/twig.git",
-                "reference": "772f7850b71c1627dbbf8f8803f7f3cb77fbd296"
+                "reference": "7a661d041b3501787e9726772017d0539d078bc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pagerfanta-packages/twig/zipball/772f7850b71c1627dbbf8f8803f7f3cb77fbd296",
-                "reference": "772f7850b71c1627dbbf8f8803f7f3cb77fbd296",
+                "url": "https://api.github.com/repos/pagerfanta-packages/twig/zipball/7a661d041b3501787e9726772017d0539d078bc1",
+                "reference": "7a661d041b3501787e9726772017d0539d078bc1",
                 "shasum": ""
             },
             "require": {
+                "pagerfanta/core": "^2.4",
                 "php": "^7.2",
                 "twig/twig": "^1.35 || ^2.5 || ^3.0"
             },
@@ -997,7 +998,7 @@
             "keywords": [
                 "pagerfanta"
             ],
-            "time": "2020-07-21T03:00:15+00:00"
+            "time": "2020-07-22T02:57:21+00:00"
         },
         {
             "name": "psr/container",
