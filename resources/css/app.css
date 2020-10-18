@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Karla:400,700&display=swap);
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.font-family-karla {
+    font-family: karla;
+}
+
+.blog-contents h2 {
+    @apply text-2xl font-bold pb-3;
+}
+
+.blog-contents p {
+    @apply pb-3;
+}
+
+.blog-contents blockquote {
+    @apply relative p-4 text-xl italic border-l-4 text-gray-600 border-gray-500 mb-4;
+}
+
+.blog-contents a {
+    @apply text-blue-500;
+}
+
+.blog-contents a:hover {
+    @apply text-blue-800;
+}
