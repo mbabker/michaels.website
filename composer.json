@@ -7,14 +7,14 @@
         "php": "^7.4",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^1.5",
-        "laravel/framework": "^8.9",
+        "laravel/framework": "^8.10",
         "spatie/laravel-sitemap": "^5.8",
         "spatie/sheets": "^1.7.1",
         "spatie/yaml-front-matter": "^2.0.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.8.1",
-        "facade/ignition": "^2.3.8",
+        "facade/ignition": "^2.4.1",
         "friendsofphp/php-cs-fixer": "^2.16.4"
     },
     "replace": {
