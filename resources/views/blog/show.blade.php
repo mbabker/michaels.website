@@ -28,12 +28,8 @@
         "name": "{{ $post->author }}"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "{{ $post->author }}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ asset('images/about-michael.jpg') }}"
-        }
+        "@type": "Person",
+        "name": "{{ $post->author }}"
       },
       "description": "{{ $post->teaser }}"
     }
