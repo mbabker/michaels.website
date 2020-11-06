@@ -9,26 +9,24 @@ use Spatie\Sheets\Sheet;
 /**
  * @property string      $slug
  * @property string      $author
- * @property string      $publish_up
- * @property string      $date_modified
+ * @property Carbon      $published_date
+ * @property Carbon      $modified_date
  * @property string      $title
  * @property string|null $image
  * @property string      $teaser
  * @property HtmlString  $contents
- * @property Carbon      $published_date
- * @property Carbon      $modified_date
  * @property string      $url
  */
 class BlogPost extends Sheet
 {
-    public function getPublishedDateAttribute(): Carbon
+    public function getPublishedDateAttribute(string $value): Carbon
     {
-        return Carbon::parse($this->publish_up);
+        return Carbon::parse($value);
     }
 
-    public function getModifiedDateAttribute(): Carbon
+    public function getModifiedDateAttribute(string $value): Carbon
     {
-        return Carbon::parse($this->date_modified);
+        return Carbon::parse($value);
     }
 
     public function getUrlAttribute(): string
