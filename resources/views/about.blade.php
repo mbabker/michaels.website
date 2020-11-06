@@ -10,6 +10,7 @@
     <meta property="og:profile:last_name" content="Babker" />
     <meta property="og:profile:username" content="mbabker" />
     <meta property="og:profile:gender" content="male" />
+    {!! about_page_schema() !!}
 @endsection
 
 @section('content')

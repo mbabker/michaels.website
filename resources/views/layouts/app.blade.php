@@ -18,20 +18,9 @@
         <meta name="twitter:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
         <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config('app.name', "Michael's Website") }}">
         @yield('meta')
+        {!! site_owner_schema() !!}
         <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
         <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style']) }}" rel="stylesheet">
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "Person",
-                "name": "Michael Babker",
-                "url": "https://michaels.website",
-                "sameAs": [
-                    "https://www.linkedin.com/in/mbabker",
-                    "https://twitter.com/mbabker"
-                ]
-            }
-        </script>
     </head>
     <body class="bg-gray-100 font-family-karla">
         <nav class="w-full py-4 bg-babdev-blue shadow">
