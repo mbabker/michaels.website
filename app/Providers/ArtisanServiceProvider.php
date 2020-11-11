@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Console\Scheduling\ScheduleFinishCommand;
 use Illuminate\Console\Scheduling\ScheduleRunCommand;
+use Illuminate\Console\Scheduling\ScheduleWorkCommand;
 use Illuminate\Foundation\Providers\ArtisanServiceProvider as BaseArtisanServiceProvider;
 
 class ArtisanServiceProvider extends BaseArtisanServiceProvider
@@ -30,6 +31,7 @@ class ArtisanServiceProvider extends BaseArtisanServiceProvider
         'RouteList' => 'command.route.list',
         'ScheduleFinish' => ScheduleFinishCommand::class,
         'ScheduleRun' => ScheduleRunCommand::class,
+        'ScheduleWork' => ScheduleWorkCommand::class,
         'StorageLink' => 'command.storage.link',
         'Up' => 'command.up',
         'ViewCache' => 'command.view.cache',
