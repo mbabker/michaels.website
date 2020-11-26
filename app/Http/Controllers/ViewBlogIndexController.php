@@ -29,6 +29,8 @@ class ViewBlogIndexController
             ]
         );
 
+        abort_if($paginator->currentPage() > $paginator->lastPage(), 404);
+
         return view(
             'blog.index',
             [
