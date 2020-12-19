@@ -18,6 +18,9 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl
           coverage: none
 
+      - name: Install Composer Dependencies
+        run: composer install --no-interaction
+
       - name: Install NPM Dependencies
         run: npm ci
 
