@@ -1,0 +1,37 @@
+name: Test & Deploy
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: composer:v2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl
+          coverage: none
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Compile Assets
+        run: npm run production
+
+      - name: Execute Tests
+        run: vendor/bin/phpunit --verbose
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/production'
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Envoyer
+        run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
