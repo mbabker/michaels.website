@@ -2,7 +2,7 @@
 
 <article class="flex flex-col shadow my-4">
     <a href="{{ $post->url }}" class="hover:opacity-75">
-        <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')) }}">
+        <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')) }}" loading="lazy">
     </a>
 
     <div class="bg-white flex flex-col justify-start p-6">

@@ -30,7 +30,7 @@
                 <p class="pb-3">Michael holds an Associate of Arts in Information Technology with a concentration in Web Design and is currently the Lead Developer for <a class="text-blue-500 hover:text-blue-800" href="https://hdwebpros.com" rel="nofollow noopener">Happy Dog Web Productions</a>. When not actively coding, Michael can often be found engaged with the open source community as an advocate and evangelist for the continued growth and use of open software and the open web.</p>
             </div>
 
-            <img class="mx-auto" src="{{ asset('images/mil-sig.png') }}" alt="militarysignatures.com">
+            <img class="mx-auto" src="{{ asset('images/mil-sig.png') }}" alt="militarysignatures.com" loading="lazy">
         </div>
     </article>
 @endsection
