@@ -18,6 +18,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl
           coverage: none
 
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Install Composer Dependencies
         run: composer install --no-interaction
 
