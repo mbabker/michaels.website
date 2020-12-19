@@ -6,7 +6,7 @@ use App\Sheets\BlogPost;
 use Illuminate\Contracts\View\View;
 use Spatie\Sheets\Sheets;
 
-class ViewBlogPostController
+final class ViewBlogPostController
 {
     public function __invoke(Sheets $repository, string $slug): View
     {

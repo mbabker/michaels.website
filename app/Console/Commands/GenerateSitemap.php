@@ -6,10 +6,16 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
-class GenerateSitemap extends Command
+final class GenerateSitemap extends Command
 {
-    protected $signature = 'sitemap:generate';
+    /**
+     * @var string
+     */
+    protected $name = 'sitemap:generate';
 
+    /**
+     * @var string
+     */
     protected $description = 'Generate the sitemap.';
 
     public function handle(): void

@@ -17,7 +17,7 @@ use Spatie\Sheets\Sheet;
  * @property HtmlString  $contents
  * @property string      $url
  */
-class BlogPost extends Sheet
+final class BlogPost extends Sheet
 {
     public function getPublishedDateAttribute(string $value): Carbon
     {

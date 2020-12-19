@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\AbstractPaginator;
 use Spatie\Sheets\Sheets;
 
-class ViewBlogIndexController
+final class ViewBlogIndexController
 {
     public function __invoke(Sheets $repository, int $page = 1): View
     {

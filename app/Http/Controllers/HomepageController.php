@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use Spatie\Sheets\Sheets;
 
-class HomepageController
+final class HomepageController
 {
     public function __invoke(Sheets $repository): View
     {
