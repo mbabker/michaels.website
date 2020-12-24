@@ -18,6 +18,16 @@ final class BlogTest extends TestCase
     /** @test */
     public function users_can_view_pages_from_the_blog_list()
     {
+        $repository = $this->app->make(Sheets::class);
+
+        $blogRepository = $repository->collection('blog');
+
+        $postCount = $blogRepository->all()->count();
+
+        if ($postCount < 5) {
+            $this->markTestSkipped('Blog does not have multiple pages');
+        }
+
         $this->get('/blog/page/2')
             ->assertViewIs('blog.index');
     }
