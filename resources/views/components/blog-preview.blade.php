@@ -6,7 +6,7 @@
     </a>
 
     <div class="bg-white flex flex-col justify-start p-6">
-        <a href="{{ $post->url }}" class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $post->title }}</a>
+        <a href="{{ $post->url }}" class="text-3xl font-bold hover:text-gray-600 pb-4">{{ $post->title }}</a>
         <p class="text-sm pb-3">
             By {{ $post->author }}, Published on <time datetime="{{ $post->published_date->format('c') }}">{{ $post->published_date->format('F j, Y') }}</time>
         </p>

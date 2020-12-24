@@ -17,7 +17,7 @@
         <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')) }}">
 
         <div class="bg-white flex flex-col justify-start p-6">
-            <h1 class="text-3xl font-bold hover:text-gray-700 pb-4">{{ $post->title }}</h1>
+            <h1 class="text-3xl font-bold pb-4">{{ $post->title }}</h1>
             <p class="text-sm pb-3">
                 By {{ $post->author }}, Published on <time datetime="{{ $post->published_date->format('c') }}">{{ $post->published_date->format('F j, Y') }}</time>
             </p>

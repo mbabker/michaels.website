@@ -16,9 +16,9 @@
 @section('content')
     <article class="flex flex-col shadow my-4">
         <div class="bg-white flex flex-col justify-start p-6">
-            <h1 class="text-3xl font-bold hover:text-gray-700 pb-4">About Me</h1>
+            <h1 class="text-3xl font-bold pb-4">About Me</h1>
 
-            <p class="text-lg text-gray-600 pb-6">
+            <p class="text-lg text-gray-500 pb-6">
                 Army vet, IT geek, Open Source aficionado. Holds a prejudice against crap code and openly shares it.
             </p>
 

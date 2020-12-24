@@ -5,7 +5,7 @@
 @section('content')
     <article class="flex flex-col shadow my-4">
         <div class="bg-white flex flex-col justify-start p-6">
-            <h1 class="text-3xl font-bold hover:text-gray-700 pb-4">Privacy Policy</h1>
+            <h1 class="text-3xl font-bold pb-4">Privacy Policy</h1>
 
             <p class="text-sm pb-3">Last Updated: May 25, 2020</p>
 
