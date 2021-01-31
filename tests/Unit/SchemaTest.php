@@ -7,6 +7,7 @@ use App\Sheets\BlogPost;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\HtmlString;
 use Spatie\SchemaOrg\BlogPosting;
+use Spatie\SchemaOrg\Person;
 use Spatie\Sheets\Sheets;
 use Tests\TestCase;
 
@@ -71,8 +72,14 @@ final class SchemaTest extends TestCase
     }
 
     /** @test */
+    public function the_schema_object_for_the_site_owner_is_generated()
+    {
+        $this->assertInstanceOf(Person::class, site_owner_schema());
+    }
+
+    /** @test */
     public function the_page_schema_for_the_site_owner_is_generated()
     {
-        $this->assertInstanceOf(HtmlString::class, site_owner_schema());
+        $this->assertInstanceOf(HtmlString::class, site_owner_schema_as_script());
     }
 }
