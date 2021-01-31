@@ -4,8 +4,8 @@ use App\Sheets\BlogPost;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\HtmlString;
 use Spatie\SchemaOrg\BlogPosting;
+use Spatie\SchemaOrg\Person;
 use Spatie\SchemaOrg\Schema;
-use Spatie\SchemaOrg\Type;
 
 function about_page_schema(): HtmlString
 {
@@ -38,23 +38,14 @@ function blog_schema(LengthAwarePaginator $posts): HtmlString
                 ->url(route('blog.index'))
         )
         ->headline("Michael Babker's Blog")
-        ->author(
-            Schema::person()
-                ->name('Michael Babker')
-                ->url(route('homepage'))
-                ->sameAs([
-                    'https://github.com/mbabker',
-                    'https://www.linkedin.com/in/mbabker',
-                    'https://twitter.com/mbabker',
-                ])
-        )
+        ->author(site_owner_schema())
         ->blogPost($postSchemas)
     ;
 
     return new HtmlString($schema->toScript());
 }
 
-function blog_post_schema(BlogPost $post): Type
+function blog_post_schema(BlogPost $post): BlogPosting
 {
     return Schema::blogPosting()
         ->mainEntityOfPage(
@@ -78,9 +69,9 @@ function blog_post_schema_as_script(BlogPost $post): HtmlString
     return new HtmlString(blog_post_schema($post)->toScript());
 }
 
-function site_owner_schema(): HtmlString
+function site_owner_schema(): Person
 {
-    $schema = Schema::person()
+    return Schema::person()
         ->name('Michael Babker')
         ->url(route('homepage'))
         ->sameAs([
@@ -89,6 +80,9 @@ function site_owner_schema(): HtmlString
             'https://twitter.com/mbabker',
         ])
     ;
+}
 
-    return new HtmlString($schema->toScript());
+function site_owner_schema_as_script(): HtmlString
+{
+    return new HtmlString(site_owner_schema());
 }

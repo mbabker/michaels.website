@@ -18,7 +18,7 @@
         <meta name="twitter:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
         <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config('app.name', "Michael's Website") }}">
         @yield('meta')
-        {!! site_owner_schema() !!}
+        {!! site_owner_schema_as_script() !!}
         <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
         <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style']) }}" rel="stylesheet">
     </head>
