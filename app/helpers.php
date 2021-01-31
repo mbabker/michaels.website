@@ -84,5 +84,5 @@ function site_owner_schema(): Person
 
 function site_owner_schema_as_script(): HtmlString
 {
-    return new HtmlString(site_owner_schema());
+    return new HtmlString(site_owner_schema()->toScript());
 }
