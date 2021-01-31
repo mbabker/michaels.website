@@ -16,19 +16,7 @@ mix.postCss('resources/css/app.css', 'public/css')
     .options({
         postCss: [require('tailwindcss')]
     })
-    .purgeCss({
-        extend: {
-            whitelist: [
-                'blockquote',
-            ],
-            whitelistPatterns: [
-                // Images in content
-                /img-thumbnail.*/,
-                // Utilities in content
-                /float-right.*/,
-            ],
-        }
-    });
+    .purgeCss();
 
 mix.copy('node_modules/@fortawesome/fontawesome-free/js/all.min.js', 'public/js/fontawesome.min.js');
 
