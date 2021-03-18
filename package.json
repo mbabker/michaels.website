@@ -14,14 +14,14 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
-    "tailwindcss": "^2.0.3"
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "tailwindcss": "^2.0.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
     "laravel-mix": "^6.0.13",
     "laravel-mix-purgecss": "^6.0.0",
-    "postcss": "^8.2.7",
+    "postcss": "^8.2.8",
     "postcss-import": "^14.0.0",
     "resolve-url-loader": "^3.1.2"
   },
