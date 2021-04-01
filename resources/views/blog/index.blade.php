@@ -6,8 +6,12 @@
 ])
 
 @section('meta')
-    @if($posts->currentPage() > 1)
-        <link rel="canonical" href="{{ route('blog.index') }}" />
+    @unless($posts->onFirstPage())
+        <link rel="canonical" href="{!! route('blog.index') !!}" />
+        <link rel="prev" href="{!! $posts->currentPage() - 1 === 1 ? route('blog.index') : $posts->previousPageUrl() !!}" />
+    @endunless
+    @if($posts->hasMorePages())
+        <link rel="next" href="{!! $posts->nextPageUrl() !!}" />
     @endif
     {!! blog_schema($posts) !!}
 @endsection

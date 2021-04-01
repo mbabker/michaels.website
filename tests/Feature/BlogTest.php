@@ -33,7 +33,14 @@ final class BlogTest extends TestCase
     }
 
     /** @test */
-    public function an_invalid_blog_index_page_triggers_a_404()
+    public function users_are_redirected_to_the_canonical_first_page_of_the_blog_list()
+    {
+        $this->get('/blog/page/1')
+            ->assertRedirect('/blog');
+    }
+
+    /** @test */
+    public function the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range()
     {
         $this->get('/blog/page/1000000')
             ->assertNotFound();

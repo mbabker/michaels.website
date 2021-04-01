@@ -24,7 +24,9 @@ $router->get(
 $router->get(
     '/blog/page/{page}',
     ViewBlogIndexController::class
-)->name('blog.index.paginated');
+)
+    ->name('blog.index.paginated')
+    ->whereNumber('page');
 
 $router->get(
     '/blog/{slug}',
