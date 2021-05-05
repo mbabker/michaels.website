@@ -7,7 +7,7 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
-        "laravel/framework": "^8.38",
+        "laravel/framework": "^8.40",
         "spatie/laravel-sitemap": "^6.0.2",
         "spatie/schema-org": "^3.3",
         "spatie/sheets": "^1.7.2",
@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.8.3",
+        "facade/ignition": "^2.8.4",
         "mockery/mockery": "^1.4.3",
         "phpunit/phpunit": "^9.5.4"
     },
