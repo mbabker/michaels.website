@@ -12,7 +12,7 @@ final class SitemapTest extends TestCase
     {
         Storage::fake('local');
 
-        Storage::put('sitemap.xml', \file_get_contents(__DIR__ . '/../fixtures/sitemap.xml'));
+        Storage::put('sitemap.xml', file_get_contents(__DIR__ . '/../fixtures/sitemap.xml'));
 
         $this->get('/sitemap.xml')
             ->assertOk();

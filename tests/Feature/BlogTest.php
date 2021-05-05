@@ -56,7 +56,7 @@ final class BlogTest extends TestCase
         /** @var BlogPost $post */
         $post = $blogRepository->all()->first();
 
-        $this->get(\sprintf('/blog/%s', $post->slug))
+        $this->get(sprintf('/blog/%s', $post->slug))
             ->assertViewIs('blog.show');
     }
 

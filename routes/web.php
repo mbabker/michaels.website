@@ -7,7 +7,6 @@ use App\Http\Controllers\ViewSitemapController;
 use Illuminate\Routing\Router;
 
 /** @var Router $router */
-
 $router->get(
     '/',
     HomepageController::class

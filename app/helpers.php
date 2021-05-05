@@ -53,7 +53,7 @@ function blog_post_schema(BlogPost $post): BlogPosting
                 ->url($post->url)
         )
         ->headline($post->title)
-        ->image(asset(\sprintf('images/%s', $post->image ?: 'home-bg.jpg')))
+        ->image(asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')))
         ->datePublished($post->published_date)
         ->dateModified($post->modified_date)
         ->author(

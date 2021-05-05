@@ -74,7 +74,7 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
             $this->registerCommands($this->commands);
         } else {
             $this->registerCommands(
-                \array_merge(
+                array_merge(
                     $this->commands,
                     $this->devCommands
                 )
