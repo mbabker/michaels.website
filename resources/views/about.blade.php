@@ -23,7 +23,7 @@
             </p>
 
             <div>
-                <img class="float-right ml-4 my-2" src="{{ asset('images/about-michael.jpg') }}" alt="Michael">
+                <img class="float-right ml-4 my-2" src="{{ asset('images/michael-2021.jpg') }}" alt="Michael">
 
                 <p class="pb-3">Michael Babker is a veteran of the Information Technology industry who brings over 15 years of knowledge and experience to the table. After finding a passion for building with and contributing to open source, he has transitioned to and works primarily in a web developer role. He is a past contributor to Joomla where he has served as the release coordinator for four of Joomla's feature releases, a member of the Board of Directors of Open Source Matters, Inc. (the not-for-profit organization supporting the Joomla project), and as a member of its security team.</p>
                 <p class="pb-3">Before transitioning into web development as a full time career, he served for nine years in the United States Army as an Information Technology Specialist and served in several roles including Help Desk Team Leader, Senior Information Systems Support Specialist, and Information Assurance Security Officer. As a Sergeant in the Army, he was directly responsible for the morale, welfare, and professional development of a team of junior Soldiers.</p>
