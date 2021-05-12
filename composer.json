@@ -7,15 +7,15 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
-        "laravel/framework": "^8.40",
+        "laravel/framework": "^8.41",
         "spatie/laravel-sitemap": "^6.0.2",
-        "spatie/schema-org": "^3.3",
+        "spatie/schema-org": "^3.4",
         "spatie/sheets": "^1.7.2",
         "spatie/yaml-front-matter": "^2.0.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.8.4",
+        "facade/ignition": "^2.9",
         "mockery/mockery": "^1.4.3",
         "phpunit/phpunit": "^9.5.4"
     },
@@ -32,7 +32,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.0.2"
+            "php": "8.0.5"
         }
     },
     "extra": {
