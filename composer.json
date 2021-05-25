@@ -7,7 +7,7 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
-        "laravel/framework": "^8.41",
+        "laravel/framework": "^8.43",
         "spatie/laravel-sitemap": "^6.0.2",
         "spatie/schema-org": "^3.4",
         "spatie/sheets": "^1.7.2",
@@ -32,7 +32,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.0.5"
+            "php": "8.0.6"
         }
     },
     "extra": {
