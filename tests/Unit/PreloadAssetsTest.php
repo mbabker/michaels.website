@@ -32,11 +32,9 @@ final class PreloadAssetsTest extends TestCase
     }
 
     /** @test */
-    public function the_push_manager_is_not_called_if_the_response_is_a_redirect()
+    public function the_push_manager_is_not_called_if_the_response_is_a_redirect(): void
     {
-        $next = static function (): RedirectResponse {
-            return new RedirectResponse('/');
-        };
+        $next = static fn (): RedirectResponse => new RedirectResponse('/');
 
         $this->pushManager->expects($this->never())
             ->method('dnsPrefetch');
@@ -45,11 +43,9 @@ final class PreloadAssetsTest extends TestCase
     }
 
     /** @test */
-    public function the_push_manager_is_not_called_if_the_response_is_json()
+    public function the_push_manager_is_not_called_if_the_response_is_json(): void
     {
-        $next = static function (): JsonResponse {
-            return new JsonResponse(['success' => true]);
-        };
+        $next = static fn (): JsonResponse => new JsonResponse(['success' => true]);
 
         $this->pushManager->expects($this->never())
             ->method('dnsPrefetch');
@@ -58,11 +54,9 @@ final class PreloadAssetsTest extends TestCase
     }
 
     /** @test */
-    public function the_push_manager_is_not_called_if_the_response_is_not_a_laravel_response()
+    public function the_push_manager_is_not_called_if_the_response_is_not_a_laravel_response(): void
     {
-        $next = static function (): BinaryFileResponse {
-            return new BinaryFileResponse(__FILE__);
-        };
+        $next = static fn (): BinaryFileResponse => new BinaryFileResponse(__FILE__);
 
         $this->pushManager->expects($this->never())
             ->method('dnsPrefetch');
@@ -71,11 +65,9 @@ final class PreloadAssetsTest extends TestCase
     }
 
     /** @test */
-    public function the_push_manager_is_called_if_the_response_is_a_laravel_response()
+    public function the_push_manager_is_called_if_the_response_is_a_laravel_response(): void
     {
-        $next = static function (): Response {
-            return new Response('Hello!');
-        };
+        $next = static fn (): Response => new Response('Hello!');
 
         $this->pushManager->expects($this->exactly(2))
             ->method('dnsPrefetch');

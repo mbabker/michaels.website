@@ -8,7 +8,7 @@ use Tests\TestCase;
 final class SitemapTest extends TestCase
 {
     /** @test */
-    public function the_sitemap_can_be_returned()
+    public function the_sitemap_can_be_returned(): void
     {
         Storage::fake('local');
 
@@ -19,7 +19,7 @@ final class SitemapTest extends TestCase
     }
 
     /** @test */
-    public function the_sitemap_returns_a_404_if_it_was_not_generated()
+    public function the_sitemap_returns_a_404_if_it_was_not_generated(): void
     {
         Storage::fake('local');
 

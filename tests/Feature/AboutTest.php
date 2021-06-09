@@ -7,7 +7,7 @@ use Tests\TestCase;
 final class AboutTest extends TestCase
 {
     /** @test */
-    public function users_can_view_the_about_page()
+    public function users_can_view_the_about_page(): void
     {
         $this->get('/about')
             ->assertViewIs('about');

@@ -9,14 +9,14 @@ use Tests\TestCase;
 final class BlogTest extends TestCase
 {
     /** @test */
-    public function users_can_view_the_blog_list()
+    public function users_can_view_the_blog_list(): void
     {
         $this->get('/blog')
             ->assertViewIs('blog.index');
     }
 
     /** @test */
-    public function users_can_view_pages_from_the_blog_list()
+    public function users_can_view_pages_from_the_blog_list(): void
     {
         $repository = $this->app->make(Sheets::class);
 
@@ -33,21 +33,21 @@ final class BlogTest extends TestCase
     }
 
     /** @test */
-    public function users_are_redirected_to_the_canonical_first_page_of_the_blog_list()
+    public function users_are_redirected_to_the_canonical_first_page_of_the_blog_list(): void
     {
         $this->get('/blog/page/1')
             ->assertRedirect('/blog');
     }
 
     /** @test */
-    public function the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range()
+    public function the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range(): void
     {
         $this->get('/blog/page/1000000')
             ->assertNotFound();
     }
 
     /** @test */
-    public function users_can_view_blog_posts()
+    public function users_can_view_blog_posts(): void
     {
         $repository = $this->app->make(Sheets::class);
 
@@ -61,7 +61,7 @@ final class BlogTest extends TestCase
     }
 
     /** @test */
-    public function an_invalid_blog_post_triggers_a_404()
+    public function an_invalid_blog_post_triggers_a_404(): void
     {
         $this->get('/blog/does-not-exist')
             ->assertNotFound();

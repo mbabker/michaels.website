@@ -14,13 +14,13 @@ use Tests\TestCase;
 final class SchemaTest extends TestCase
 {
     /** @test */
-    public function the_page_schema_for_the_about_page_is_generated()
+    public function the_page_schema_for_the_about_page_is_generated(): void
     {
         $this->assertInstanceOf(HtmlString::class, about_page_schema());
     }
 
     /** @test */
-    public function the_page_schema_for_the_blog_list_is_generated()
+    public function the_page_schema_for_the_blog_list_is_generated(): void
     {
         $repository = $this->app->make(Sheets::class);
 
@@ -46,7 +46,7 @@ final class SchemaTest extends TestCase
     }
 
     /** @test */
-    public function the_schema_object_for_a_blog_post_is_generated()
+    public function the_schema_object_for_a_blog_post_is_generated(): void
     {
         $repository = $this->app->make(Sheets::class);
 
@@ -59,7 +59,7 @@ final class SchemaTest extends TestCase
     }
 
     /** @test */
-    public function the_page_schema_for_a_blog_post_is_generated()
+    public function the_page_schema_for_a_blog_post_is_generated(): void
     {
         $repository = $this->app->make(Sheets::class);
 
@@ -72,13 +72,13 @@ final class SchemaTest extends TestCase
     }
 
     /** @test */
-    public function the_schema_object_for_the_site_owner_is_generated()
+    public function the_schema_object_for_the_site_owner_is_generated(): void
     {
         $this->assertInstanceOf(Person::class, site_owner_schema());
     }
 
     /** @test */
-    public function the_page_schema_for_the_site_owner_is_generated()
+    public function the_page_schema_for_the_site_owner_is_generated(): void
     {
         $this->assertInstanceOf(HtmlString::class, site_owner_schema_as_script());
     }
