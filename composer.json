@@ -7,17 +7,17 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
-        "laravel/framework": "^8.43",
-        "spatie/laravel-sitemap": "^6.0.2",
+        "laravel/framework": "^8.46",
+        "spatie/laravel-sitemap": "^6.0.4",
         "spatie/schema-org": "^3.4",
         "spatie/sheets": "^1.7.2",
         "spatie/yaml-front-matter": "^2.0.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.9",
+        "facade/ignition": "^2.10.1",
         "mockery/mockery": "^1.4.3",
-        "phpunit/phpunit": "^9.5.4"
+        "phpunit/phpunit": "^9.5.5"
     },
     "replace": {
         "paragonie/random_compat": "*",
