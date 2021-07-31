@@ -2,11 +2,12 @@
 
 namespace App\Console\Commands;
 
+use GuzzleHttp\Psr7\Uri;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
-final class GenerateSitemap extends Command
+class GenerateSitemap extends Command
 {
     /**
      * @var string
@@ -23,10 +24,21 @@ final class GenerateSitemap extends Command
         $this->info('Generating sitemap...');
 
         SitemapGenerator::create(config('app.url'))
-            ->hasCrawled(static function (Url $url): ?Url {
+            ->shouldCrawl(static function (Uri $uri): bool {
                 // Don't include the homepage without a trailing slash
-                if ($url->path() === '') {
-                    return null;
+                if ($uri->getPath() === '') {
+                    return false;
+                }
+
+                return true;
+            })
+            ->hasCrawled(static function (Url $url): Url {
+                if ($url->path() === '/') {
+                    $url->setPriority(1.0);
+                }
+
+                if (str_starts_with($url->path(), '/blog/')) {
+                    $url->setPriority(0.5);
                 }
 
                 return $url;
