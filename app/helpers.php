@@ -21,7 +21,7 @@ function about_page_schema(): HtmlString
 }
 
 /**
- * @param LengthAwarePaginator<BlogPost> $posts
+ * @param LengthAwarePaginator|<BlogPost> $posts
  */
 function blog_schema(LengthAwarePaginator $posts): HtmlString
 {

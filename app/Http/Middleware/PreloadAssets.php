@@ -15,7 +15,7 @@ final class PreloadAssets
         $this->pushManager = $pushManager;
     }
 
-    public function handle(Request $request, \Closure $next)
+    public function handle(Request $request, \Closure $next): mixed
     {
         $response = $next($request);
 
