@@ -1,12 +1,12 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Argument of an invalid type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Argument of an invalid type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: app/helpers.php
 
 		-
-			message: "#^PHPDoc tag @param has invalid value \\(LengthAwarePaginator\\|\\<BlogPost\\> \\$posts\\)\\: Unexpected token \"\\<\", expected type at offset 35$#"
+			message: "#^PHPDoc tag @param for parameter \\$posts contains generic type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> but class Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator is not generic\\.$#"
 			count: 1
 			path: app/helpers.php
 
