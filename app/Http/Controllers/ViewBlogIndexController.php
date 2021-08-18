@@ -26,7 +26,7 @@ final class ViewBlogIndexController
 
         $posts = $blogRepository->all()->sortByDesc('date');
 
-        $paginator = app()->make(
+        $paginator = app(
             RoutableLengthAwarePaginator::class,
             [
                 'items' => $posts->slice((($page - 1) * 5), 5),
