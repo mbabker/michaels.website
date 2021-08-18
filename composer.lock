@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23a42fc938b124fdb649116ee0c0106b",
+    "content-hash": "d97ba8982f3566af0451c2d9e140ec35",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -432,6 +432,66 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "elhebert/laravel-sri",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Elhebert/laravel-sri.git",
+                "reference": "9f872fb09f443ca1d1b79b2aa8bac4f8db962345"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Elhebert/laravel-sri/zipball/9f872fb09f443ca1d1b79b2aa8bac4f8db962345",
+                "reference": "9f872fb09f443ca1d1b79b2aa8bac4f8db962345",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0",
+                "php": "^7.3 | ^7.4 | ^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.2",
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Elhebert\\SubresourceIntegrity\\SriServiceProvider"
+                    ],
+                    "aliases": {
+                        "Sri": "Elhebert\\SubresourceIntegrity\\SriFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Elhebert\\SubresourceIntegrity\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dieter Stinglhamber"
+                }
+            ],
+            "description": "Subresource Integrity hash generator for laravel",
+            "keywords": [
+                "laravel-sri",
+                "sri",
+                "subresource integrity"
+            ],
+            "support": {
+                "issues": "https://github.com/Elhebert/laravel-sri/issues",
+                "source": "https://github.com/Elhebert/laravel-sri/tree/3.0.1"
+            },
+            "time": "2021-04-19T06:20:09+00:00"
         },
         {
             "name": "fig/link-util",

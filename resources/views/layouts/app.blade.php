@@ -20,7 +20,7 @@
         @yield('meta')
         {!! site_owner_schema_as_script() !!}
         <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
-        <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style']) }}" rel="stylesheet">
+        <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style', 'integrity' => Sri::hash('css/app.css'), 'crossorigin' => 'anonymous']) }}" rel="stylesheet" {{ Sri::html('css/app.css') }}>
     </head>
     <body class="bg-gray-100 font-family-karla">
         <nav class="w-full py-4 bg-babdev-blue shadow">
@@ -80,7 +80,7 @@
             </div>
         </footer>
 
-        <script src="{{ PushManager::preload(mix('js/fontawesome.min.js'), ['as' => 'script']) }}"></script>
+        <script src="{{ PushManager::preload(mix('js/fontawesome.min.js'), ['as' => 'script', 'integrity' => Sri::hash('js/fontawesome.min.js'), 'crossorigin' => 'anonymous']) }}" {{ Sri::html('js/fontawesome.min.js') }}></script>
         @yield('bodyScripts')
     </body>
 </html>

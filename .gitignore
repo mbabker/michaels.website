@@ -5,6 +5,7 @@
 /public/js/fontawesome.min.js
 /public/storage
 /public/mix-manifest.json
+/public/mix-sri.json
 /storage/*.key
 /vendor
 .env

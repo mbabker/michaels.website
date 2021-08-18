@@ -7,6 +7,7 @@
         "php": "^8.0",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
+        "elhebert/laravel-sri": "^3.0.1",
         "laravel/framework": "^8.55",
         "spatie/laravel-sitemap": "^6.0.5",
         "spatie/schema-org": "^3.4",

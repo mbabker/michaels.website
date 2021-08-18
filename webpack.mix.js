@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 require('laravel-mix-purgecss');
+require('laravel-mix-sri');
 
 /*
  |--------------------------------------------------------------------------
@@ -17,6 +18,11 @@ mix.postCss('resources/css/app.css', 'public/css')
         postCss: [require('tailwindcss')]
     })
     .purgeCss();
+
+mix.generateIntegrityHash({
+    algorithm: 'sha384',
+    enabled: true,
+});
 
 mix.copy('node_modules/@fortawesome/fontawesome-free/js/all.min.js', 'public/js/fontawesome.min.js');
 
