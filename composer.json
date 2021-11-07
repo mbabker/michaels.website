@@ -8,22 +8,22 @@
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "^2.0",
         "elhebert/laravel-sri": "^3.0.1",
-        "laravel/framework": "^8.55",
+        "laravel/framework": "^8.69",
         "spatie/laravel-sitemap": "^6.0.5",
-        "spatie/schema-org": "^3.4",
+        "spatie/schema-org": "^3.8",
         "spatie/sheets": "^1.7.2",
         "spatie/yaml-front-matter": "^2.0.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.11.4",
-        "mockery/mockery": "^1.4.3",
-        "nunomaduro/larastan": "^0.7.12",
+        "facade/ignition": "^2.16",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/larastan": "^0.7.15",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^0.12.94",
+        "phpstan/phpstan": "^0.12.99",
         "phpstan/phpstan-mockery": "^0.12.14",
         "phpstan/phpstan-phpunit": "^0.12.22",
-        "phpunit/phpunit": "^9.5.8"
+        "phpunit/phpunit": "^9.5.10"
     },
     "replace": {
         "paragonie/random_compat": "*",
@@ -38,7 +38,7 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.0.9"
+            "php": "8.0.12"
         }
     },
     "extra": {
