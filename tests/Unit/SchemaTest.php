@@ -22,12 +22,14 @@ final class SchemaTest extends TestCase
     /** @test */
     public function the_page_schema_for_the_blog_list_is_generated(): void
     {
+        /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
 
         $blogRepository = $repository->collection('blog');
 
         $posts = $blogRepository->all()->sortByDesc('date');
 
+        /** @var RoutableLengthAwarePaginator<BlogPost> $paginator */
         $paginator = $this->app->make(
             RoutableLengthAwarePaginator::class,
             [
@@ -48,6 +50,7 @@ final class SchemaTest extends TestCase
     /** @test */
     public function the_schema_object_for_a_blog_post_is_generated(): void
     {
+        /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
 
         $blogRepository = $repository->collection('blog');
@@ -61,6 +64,7 @@ final class SchemaTest extends TestCase
     /** @test */
     public function the_page_schema_for_a_blog_post_is_generated(): void
     {
+        /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
 
         $blogRepository = $repository->collection('blog');

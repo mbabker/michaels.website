@@ -18,6 +18,7 @@ final class BlogTest extends TestCase
     /** @test */
     public function users_can_view_pages_from_the_blog_list(): void
     {
+        /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
 
         $blogRepository = $repository->collection('blog');
@@ -49,6 +50,7 @@ final class BlogTest extends TestCase
     /** @test */
     public function users_can_view_blog_posts(): void
     {
+        /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
 
         $blogRepository = $repository->collection('blog');
