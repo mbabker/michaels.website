@@ -10,10 +10,8 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - php: 8.0
-            can-fail: false
           - php: 8.1
-            can-fail: true
+            can-fail: false
 
     name: "Test Application - PHP ${{ matrix.php }}"
 
@@ -32,7 +30,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
           cache: npm
 
       - name: Get Composer Cache Directory

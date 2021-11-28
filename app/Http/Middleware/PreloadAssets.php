@@ -8,11 +8,8 @@ use Illuminate\Http\Response;
 
 final class PreloadAssets
 {
-    private PushManager $pushManager;
-
-    public function __construct(PushManager $pushManager)
+    public function __construct(private PushManager $pushManager)
     {
-        $this->pushManager = $pushManager;
     }
 
     public function handle(Request $request, \Closure $next): mixed
