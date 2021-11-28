@@ -1,8 +1,8 @@
 {
   "private": true,
   "engines": {
-    "node": ">=14.15.0",
-    "npm": ">=6.14.8"
+    "node": ">=16.0.0",
+    "npm": ">=7.10.0"
   },
   "scripts": {
     "dev": "npm run development",
@@ -19,10 +19,10 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
-    "laravel-mix": "^6.0.37",
+    "laravel-mix": "^6.0.39",
     "laravel-mix-purgecss": "^6.0.0",
-    "laravel-mix-sri": "1.0.5",
-    "postcss": "^8.3.11",
+    "laravel-mix-sri": "^1.0.7",
+    "postcss": "^8.4.4",
     "postcss-import": "^14.0.2",
     "resolve-url-loader": "^4.0.0"
   },
