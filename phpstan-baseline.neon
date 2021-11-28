@@ -6,11 +6,6 @@ parameters:
 			path: app/Console/Commands/GenerateSitemap.php
 
 		-
-			message: "#^Method App\\\\Pagination\\\\RoutableLengthAwarePaginator\\:\\:resolveCurrentRoute\\(\\) should return Illuminate\\\\Routing\\\\Route\\|null but returns mixed\\.$#"
-			count: 1
-			path: app/Pagination/RoutableLengthAwarePaginator.php
-
-		-
 			message: "#^Cannot access offset 'request' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
 			count: 1
 			path: app/Providers/AppServiceProvider.php
