@@ -8,11 +8,8 @@ use Illuminate\View\Component;
 
 final class BlogPreview extends Component
 {
-    public BlogPost $post;
-
-    public function __construct(BlogPost $post)
+    public function __construct(public readonly BlogPost $post)
     {
-        $this->post = $post;
     }
 
     public function render(): View
