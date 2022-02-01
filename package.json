@@ -24,7 +24,7 @@
     "laravel-mix-sri": "1.0.7",
     "postcss": "8.4.6",
     "postcss-import": "14.0.2",
-    "resolve-url-loader": "4.0.0"
+    "resolve-url-loader": "5.0.0"
   },
   "browserslist": [
     "> 1%",
