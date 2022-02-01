@@ -11,16 +11,16 @@
         "laravel/framework": "8.82.0",
         "spatie/laravel-sitemap": "6.1.0",
         "spatie/schema-org": "3.8.0",
-        "spatie/sheets": "1.7.2",
-        "spatie/yaml-front-matter": "2.0.5"
+        "spatie/sheets": "1.8.1",
+        "spatie/yaml-front-matter": "2.0.6"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "2.10.0",
+        "barryvdh/laravel-ide-helper": "2.12.1",
         "facade/ignition": "2.17.4",
-        "mockery/mockery": "1.4.4",
+        "mockery/mockery": "1.5.0",
         "nunomaduro/larastan": "1.0.3",
         "phpstan/extension-installer": "1.1.0",
-        "phpstan/phpstan": "1.2.0",
+        "phpstan/phpstan": "1.4.4",
         "phpstan/phpstan-mockery": "1.0.0",
         "phpstan/phpstan-phpunit": "1.0.0",
         "phpunit/phpunit": "9.5.13"
