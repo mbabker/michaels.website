@@ -9,7 +9,7 @@
         "babdev/laravel-server-push-manager": "2.0.0",
         "elhebert/laravel-sri": "3.0.1",
         "laravel/framework": "8.82.0",
-        "spatie/laravel-sitemap": "6.0.5",
+        "spatie/laravel-sitemap": "6.1.0",
         "spatie/schema-org": "3.8.0",
         "spatie/sheets": "1.7.2",
         "spatie/yaml-front-matter": "2.0.5"
