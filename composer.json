@@ -6,24 +6,24 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.0",
-        "babdev/laravel-server-push-manager": "^2.0",
-        "elhebert/laravel-sri": "^3.0.1",
-        "laravel/framework": "^8.75",
-        "spatie/laravel-sitemap": "^6.0.5",
-        "spatie/schema-org": "^3.8",
-        "spatie/sheets": "^1.7.2",
-        "spatie/yaml-front-matter": "^2.0.5"
+        "babdev/laravel-server-push-manager": "2.0.0",
+        "elhebert/laravel-sri": "3.0.1",
+        "laravel/framework": "8.75.0",
+        "spatie/laravel-sitemap": "6.0.5",
+        "spatie/schema-org": "3.8.0",
+        "spatie/sheets": "1.7.2",
+        "spatie/yaml-front-matter": "2.0.5"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.17.2",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/larastan": "^1.0.2",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^1.2",
-        "phpstan/phpstan-mockery": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5.10"
+        "barryvdh/laravel-ide-helper": "2.10.0",
+        "facade/ignition": "2.17.2",
+        "mockery/mockery": "1.4.4",
+        "nunomaduro/larastan": "1.0.2",
+        "phpstan/extension-installer": "1.1.0",
+        "phpstan/phpstan": "1.2.0",
+        "phpstan/phpstan-mockery": "1.0.0",
+        "phpstan/phpstan-phpunit": "1.0.0",
+        "phpunit/phpunit": "9.5.10"
     },
     "replace": {
         "paragonie/random_compat": "*",
