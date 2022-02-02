@@ -35,11 +35,15 @@
         "symfony/polyfill-php81": "*"
     },
     "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpstan/extension-installer": true
+        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
         "platform": {
-            "php": "8.1.0"
+            "php": "8.1.2"
         }
     },
     "extra": {

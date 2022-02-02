@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e6318fd3ac463cf20c56d4882608ebc",
+    "content-hash": "4585b88c259c5bde776036330be4ece0",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -9635,7 +9635,7 @@
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "8.1.0"
+        "php": "8.1.2"
     },
     "plugin-api-version": "2.2.0"
 }
