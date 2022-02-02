@@ -2,8 +2,10 @@ name: Deploy Application
 
 on:
   workflow_run:
+    branches: ['production']
     workflows: ['Test Application']
-    types: [completed]
+    types:
+      - completed
 
 jobs:
   deploy:
