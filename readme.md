@@ -4,9 +4,10 @@ This is the source code for the michaels.website application
 
 ## Requirements
 
-- PHP 8.0 or newer
+- PHP 8.1 or newer
 - [Composer](https://getcomposer.org/download/) 2.0 or newer
-- [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js](https://nodejs.org/en/) 16 or newer
+- [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 7.10 or newer
 
 ## Installation
 
