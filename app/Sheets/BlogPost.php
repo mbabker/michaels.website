@@ -2,7 +2,8 @@
 
 namespace App\Sheets;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\HtmlString;
 use Spatie\Sheets\Sheet;
 
@@ -21,12 +22,12 @@ final class BlogPost extends Sheet
 {
     public function getPublishedDateAttribute(string $value): Carbon
     {
-        return Carbon::parse($value);
+        return Date::parse($value);
     }
 
     public function getModifiedDateAttribute(string $value): Carbon
     {
-        return Carbon::parse($value);
+        return Date::parse($value);
     }
 
     public function getUrlAttribute(): string

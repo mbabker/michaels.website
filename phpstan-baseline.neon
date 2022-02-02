@@ -16,7 +16,7 @@ parameters:
 			path: app/helpers.php
 
 		-
-			message: "#^PHPDoc tag @param for parameter \\$posts contains generic type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> but class Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator is not generic\\.$#"
+			message: "#^PHPDoc tag @param for parameter \\$posts contains generic type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> but interface Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator is not generic\\.$#"
 			count: 1
 			path: app/helpers.php
 
