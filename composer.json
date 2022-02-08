@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.1",
         "composer-runtime-api": "^2.0",
-        "babdev/laravel-server-push-manager": "2.0.0",
+        "babdev/laravel-server-push-manager": "2.1.0",
         "elhebert/laravel-sri": "3.0.1",
         "laravel/framework": "8.83.0",
         "spatie/laravel-sitemap": "6.1.0",
