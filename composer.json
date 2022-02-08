@@ -16,14 +16,14 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.12.2",
-        "facade/ignition": "2.17.4",
         "mockery/mockery": "1.5.0",
         "nunomaduro/larastan": "1.0.3",
         "phpstan/extension-installer": "1.1.0",
         "phpstan/phpstan": "1.4.6",
         "phpstan/phpstan-mockery": "1.0.0",
         "phpstan/phpstan-phpunit": "1.0.0",
-        "phpunit/phpunit": "9.5.13"
+        "phpunit/phpunit": "9.5.13",
+        "spatie/laravel-ignition": "1.0.3"
     },
     "replace": {
         "paragonie/random_compat": "*",
