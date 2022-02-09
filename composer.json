@@ -7,11 +7,11 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "2.1.0",
-        "elhebert/laravel-sri": "3.0.1",
+        "elhebert/laravel-sri": "3.1.0",
         "laravel/framework": "8.83.0",
         "spatie/laravel-sitemap": "6.1.0",
         "spatie/schema-org": "3.8.0",
-        "spatie/sheets": "1.8.1",
+        "spatie/sheets": "1.9.1",
         "spatie/yaml-front-matter": "2.0.6"
     },
     "require-dev": {
