@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15c4d6e135064a5bea2b8bb808e4e2a3",
+    "content-hash": "a86ac9076af323ef20cd8f7ef5aba793",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -3280,16 +3280,16 @@
         },
         {
             "name": "spatie/schema-org",
-            "version": "3.8.0",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/schema-org.git",
-                "reference": "ce9c9ed51b0c0f9cee682e5a8823bddcc1ceae04"
+                "reference": "7f07f79475388ebc62c0aac7f29bc3de7427a906"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/schema-org/zipball/ce9c9ed51b0c0f9cee682e5a8823bddcc1ceae04",
-                "reference": "ce9c9ed51b0c0f9cee682e5a8823bddcc1ceae04",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/7f07f79475388ebc62c0aac7f29bc3de7427a906",
+                "reference": "7f07f79475388ebc62c0aac7f29bc3de7427a906",
                 "shasum": ""
             },
             "require": {
@@ -3297,11 +3297,12 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.6",
                 "graham-campbell/analyzer": "^3.0.5",
                 "illuminate/collections": "^8.62.0",
-                "league/flysystem": "^2.3.0",
+                "league/flysystem": "^2.3.0 || ^3.0",
                 "phpunit/phpunit": "^9.4.3",
-                "symfony/console": "^5.3.7",
+                "symfony/console": "^5.3.7 || 6.0",
                 "twig/twig": "^3.3.3"
             },
             "type": "library",
@@ -3336,7 +3337,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/schema-org/issues",
-                "source": "https://github.com/spatie/schema-org/tree/3.8.0"
+                "source": "https://github.com/spatie/schema-org/tree/3.9.0"
             },
             "funding": [
                 {
@@ -3348,7 +3349,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-20T16:40:49+00:00"
+            "time": "2022-02-10T12:36:47+00:00"
         },
         {
             "name": "spatie/sheets",
