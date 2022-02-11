@@ -26,6 +26,6 @@ mix.generateIntegrityHash({
 
 mix.copy('node_modules/@fortawesome/fontawesome-free/js/all.min.js', 'public/js/fontawesome.min.js');
 
-if (Mix.inProduction()) {
+if (mix.inProduction()) {
     mix.version();
 }
