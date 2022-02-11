@@ -26,40 +26,46 @@
     <body class="bg-gray-100 font-family-karla">
         <nav class="w-full py-4 bg-babdev-blue shadow">
             <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
-                <nav>
-                    <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                <nav class="w-full sm:w-auto">
+                    <ul class="flex items-center justify-center sm:justify-between font-bold text-sm text-white uppercase no-underline">
                         <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('about') }}">About</a></li>
                         <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('blog.index') }}">Blog</a></li>
                     </ul>
                 </nav>
 
-                <div class="flex items-center text-lg no-underline text-white pr-6">
-                    <a href="https://github.com/mbabker" rel="nofollow noopener">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        <span class="sr-only">GitHub</span>
-                    </a>
-                    <a class="pl-6" href="https://www.linkedin.com/in/mbabker" rel="nofollow noopener">
-                        <i class="fab fa-linkedin" aria-hidden="true"></i>
-                        <span class="sr-only">LinkedIn</span>
-                    </a>
-                    <a class="pl-6" href="https://www.reddit.com/user/mbabker" rel="nofollow noopener">
-                        <i class="fab fa-reddit-alien" aria-hidden="true"></i>
-                        <span class="sr-only">Reddit</span>
-                    </a>
-                    <a class="pl-6" href="https://stackoverflow.com/users/498353/michael" rel="nofollow noopener">
-                        <i class="fab fa-stack-overflow" aria-hidden="true"></i>
-                        <span class="sr-only">Stack Overflow</span>
-                    </a>
-                    <a class="pl-6" href="https://twitter.com/mbabker" rel="nofollow noopener">
-                        <i class="fab fa-twitter" aria-hidden="true"></i>
-                        <span class="sr-only">Twitter</span>
-                    </a>
+                <div class="w-full sm:w-auto pt-4 sm:pt-0">
+                    <div class="flex items-center justify-center sm:justify-between text-lg no-underline text-white">
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://github.com/mbabker" rel="nofollow noopener">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            <span class="sr-only">GitHub</span>
+                        </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://www.instagram.com/michael.babker/" rel="nofollow noopener">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://www.linkedin.com/in/mbabker" rel="nofollow noopener">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://www.reddit.com/user/mbabker" rel="nofollow noopener">
+                            <i class="fab fa-reddit-alien" aria-hidden="true"></i>
+                            <span class="sr-only">Reddit</span>
+                        </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://stackoverflow.com/users/498353/michael" rel="nofollow noopener">
+                            <i class="fab fa-stack-overflow" aria-hidden="true"></i>
+                            <span class="sr-only">Stack Overflow</span>
+                        </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://twitter.com/mbabker" rel="nofollow noopener">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <header class="w-full container mx-auto">
-            <div class="flex flex-col items-center py-12">
+            <div class="flex flex-col items-center text-center py-12">
                 <a class="font-bold text-gray-800 uppercase hover:text-gray-600 text-5xl" href="{{ route('homepage') }}">
                     Michael's Website
                 </a>
