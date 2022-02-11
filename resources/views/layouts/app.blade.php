@@ -20,6 +20,7 @@
         @yield('meta')
         {!! site_owner_schema_as_script() !!}
         <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
+        @googlefonts
         <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style', 'integrity' => Sri::hash('css/app.css'), 'crossorigin' => 'anonymous']) }}" rel="stylesheet" {{ Sri::html('css/app.css') }}>
     </head>
     <body class="bg-gray-100 font-family-karla">

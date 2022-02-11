@@ -7,7 +7,7 @@
         <div class="bg-white flex flex-col justify-start p-6">
             <h1 class="text-3xl font-bold pb-4">Privacy Policy</h1>
 
-            <p class="text-sm pb-3">Last Updated: May 25, 2020</p>
+            <p class="text-sm pb-3">Last Updated: February 10, 2022</p>
 
             <p class="pb-3">Your privacy is important to me, therefore this site is designed to collect as little information about my visitors as possible, with the information being gathered strictly for informational/analytical purposes only.</p>
 
@@ -15,15 +15,6 @@
             <p class="pb-3">Some potentially identifying information is collected as a result of visiting this website. This information, and the purpose of its collection, includes:</p>
             <ul class="list-disc list-inside pb-3">
                 <li><strong>IP Address</strong> &mdash; Your IP address is collected and stored in the web server's logs and security tools as a means of ensuring the security of this website and preventing abuse.</li>
-            </ul>
-
-            <h2 class="text-2xl font-bold pb-3">External Services</h2>
-            <p class="pb-3">There are some integrations with third party services to improve the capabilities of this site.</p>
-
-            <h3 class="text-xl font-bold pb-3">Google</h3>
-            <p class="pb-3">This site uses the below services provided by Google LLC:</p>
-            <ul class="list-disc list-inside pb-3">
-                <li><strong>Google Fonts</strong> &mdash; To provide extended typography for the website's template</li>
             </ul>
         </div>
     </article>
