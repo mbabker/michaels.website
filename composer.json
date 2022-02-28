@@ -9,7 +9,7 @@
         "babdev/laravel-server-push-manager": "2.1.0",
         "elhebert/laravel-sri": "3.1.0",
         "laravel/framework": "9.2.0",
-        "spatie/laravel-google-fonts": "1.1.0",
+        "spatie/laravel-google-fonts": "1.2.0",
         "spatie/laravel-sitemap": "6.1.0",
         "spatie/schema-org": "3.9.0",
         "spatie/sheets": "1.9.1",

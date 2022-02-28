@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46b10ff03610d6ecde4d10899acb7e76",
+    "content-hash": "7f80f1d617955920c9b629ab500993af",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -3154,16 +3154,16 @@
         },
         {
             "name": "spatie/laravel-google-fonts",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-google-fonts.git",
-                "reference": "a4ea5a8ec62f9e1046f1a71667ce218ddc599e6c"
+                "reference": "c079eab6d1bc6fbadbb80590eb9324b114850c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-google-fonts/zipball/a4ea5a8ec62f9e1046f1a71667ce218ddc599e6c",
-                "reference": "a4ea5a8ec62f9e1046f1a71667ce218ddc599e6c",
+                "url": "https://api.github.com/repos/spatie/laravel-google-fonts/zipball/c079eab6d1bc6fbadbb80590eb9324b114850c0a",
+                "reference": "c079eab6d1bc6fbadbb80590eb9324b114850c0a",
                 "shasum": ""
             },
             "require": {
@@ -3222,7 +3222,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-google-fonts/tree/1.1.0"
+                "source": "https://github.com/spatie/laravel-google-fonts/tree/1.2.0"
             },
             "funding": [
                 {
@@ -3230,7 +3230,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-13T10:16:16+00:00"
+            "time": "2022-02-28T14:22:39+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
