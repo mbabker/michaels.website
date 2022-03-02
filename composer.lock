@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f80f1d617955920c9b629ab500993af",
+    "content-hash": "d4aead6eea66f1a03da53e9af61e56f6",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -1163,16 +1163,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.2.0",
+            "version": "v9.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "13372872bed31ae75df8709b9de5cde01d50646e"
+                "reference": "d442195be0c1a95324522d733e2369e406db51d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/13372872bed31ae75df8709b9de5cde01d50646e",
-                "reference": "13372872bed31ae75df8709b9de5cde01d50646e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d442195be0c1a95324522d733e2369e406db51d1",
+                "reference": "d442195be0c1a95324522d733e2369e406db51d1",
                 "shasum": ""
             },
             "require": {
@@ -1338,7 +1338,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-02-22T15:30:23+00:00"
+            "time": "2022-03-02T14:37:13+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -7314,16 +7314,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.4.6",
+            "version": "1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8a7761f1c520e0dad6e04d862fdc697445457cfe"
+                "reference": "15087679960d72ae56bfcbf0d728d19941d3f7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8a7761f1c520e0dad6e04d862fdc697445457cfe",
-                "reference": "8a7761f1c520e0dad6e04d862fdc697445457cfe",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/15087679960d72ae56bfcbf0d728d19941d3f7c2",
+                "reference": "15087679960d72ae56bfcbf0d728d19941d3f7c2",
                 "shasum": ""
             },
             "require": {
@@ -7354,7 +7354,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.4.6"
+                "source": "https://github.com/phpstan/phpstan/tree/1.4.7"
             },
             "funding": [
                 {
@@ -7374,7 +7374,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-06T12:56:13+00:00"
+            "time": "2022-03-02T16:04:01+00:00"
         },
         {
             "name": "phpstan/phpstan-mockery",
