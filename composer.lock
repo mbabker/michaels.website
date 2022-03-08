@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b49a7f179517e1dd43e4e07816b9daf",
+    "content-hash": "1441cc0b19845443acb934770fe48f25",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -6839,16 +6839,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "658bcd94662ce66e4f6cbbea385d3272f89accff"
+                "reference": "fa598dbc2b319673857ee17f6afe1aed6564b505"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/658bcd94662ce66e4f6cbbea385d3272f89accff",
-                "reference": "658bcd94662ce66e4f6cbbea385d3272f89accff",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/fa598dbc2b319673857ee17f6afe1aed6564b505",
+                "reference": "fa598dbc2b319673857ee17f6afe1aed6564b505",
                 "shasum": ""
             },
             "require": {
@@ -6913,7 +6913,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.1"
+                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.2"
             },
             "funding": [
                 {
@@ -6933,7 +6933,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-03-05T11:23:57+00:00"
+            "time": "2022-03-08T10:00:28+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7883,16 +7883,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.17",
+            "version": "9.5.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f"
+                "reference": "1b5856028273bfd855e60a887278857d872ec67a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f",
-                "reference": "5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1b5856028273bfd855e60a887278857d872ec67a",
+                "reference": "1b5856028273bfd855e60a887278857d872ec67a",
                 "shasum": ""
             },
             "require": {
@@ -7970,7 +7970,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.17"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.18"
             },
             "funding": [
                 {
@@ -7982,7 +7982,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-05T16:54:31+00:00"
+            "time": "2022-03-08T06:52:28+00:00"
         },
         {
             "name": "psr/cache",
