@@ -19,7 +19,6 @@ final class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             \BabDev\ServerPushManager\Http\Middleware\ServerPush::class,
-            \App\Http\Middleware\PreloadAssets::class,
         ],
     ];
 }
