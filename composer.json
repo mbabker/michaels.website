@@ -24,7 +24,7 @@
         "phpstan/phpstan-mockery": "1.0.0",
         "phpstan/phpstan-phpunit": "1.0.0",
         "phpunit/phpunit": "9.5.19",
-        "spatie/laravel-ignition": "1.1.0"
+        "spatie/laravel-ignition": "1.1.1"
     },
     "replace": {
         "paragonie/random_compat": "*",
