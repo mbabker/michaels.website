@@ -2894,16 +2894,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.52.4",
+            "version": "3.52.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "50eae920a25d3c5a7b771077d9c3469d56f22495"
+                "reference": "00ca5128fd791be9f5ae94969361c05ed78a530e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/50eae920a25d3c5a7b771077d9c3469d56f22495",
-                "reference": "50eae920a25d3c5a7b771077d9c3469d56f22495",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/00ca5128fd791be9f5ae94969361c05ed78a530e",
+                "reference": "00ca5128fd791be9f5ae94969361c05ed78a530e",
                 "shasum": ""
             },
             "require": {
@@ -2948,7 +2948,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/browsershot/issues",
-                "source": "https://github.com/spatie/browsershot/tree/3.52.4"
+                "source": "https://github.com/spatie/browsershot/tree/3.52.5"
             },
             "funding": [
                 {
@@ -2956,7 +2956,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-01T19:21:54+00:00"
+            "time": "2022-04-04T07:55:13+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -8387,16 +8387,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "5.1.3",
+            "version": "5.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "388b6ced16caa751030f6a69e588299fa09200ac"
+                "reference": "1b5dff7bb151a4db11d49d90e5408e4e938270f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/388b6ced16caa751030f6a69e588299fa09200ac",
-                "reference": "388b6ced16caa751030f6a69e588299fa09200ac",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/1b5dff7bb151a4db11d49d90e5408e4e938270f7",
+                "reference": "1b5dff7bb151a4db11d49d90e5408e4e938270f7",
                 "shasum": ""
             },
             "require": {
@@ -8438,7 +8438,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
-                "source": "https://github.com/sebastianbergmann/environment/tree/5.1.3"
+                "source": "https://github.com/sebastianbergmann/environment/tree/5.1.4"
             },
             "funding": [
                 {
@@ -8446,7 +8446,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:52:38+00:00"
+            "time": "2022-04-03T09:37:03+00:00"
         },
         {
             "name": "sebastian/exporter",
