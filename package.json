@@ -22,7 +22,7 @@
     "laravel-mix": "6.0.43",
     "laravel-mix-purgecss": "6.0.0",
     "laravel-mix-sri": "1.0.7",
-    "postcss": "8.4.13",
+    "postcss": "8.4.14",
     "postcss-import": "14.1.0",
     "resolve-url-loader": "5.0.0"
   },
