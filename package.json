@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "autoprefixer": "10.4.7",
-    "laravel-mix": "6.0.47",
+    "laravel-mix": "6.0.48",
     "laravel-mix-purgecss": "6.0.0",
     "laravel-mix-sri": "1.0.7",
     "postcss": "8.4.14",
