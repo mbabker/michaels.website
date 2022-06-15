@@ -12,8 +12,6 @@
         <meta property="og:type" content="{{ $ogType ?? 'website' }}">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@mbabker">
-        <meta name="twitter:creator" content="@mbabker">
         <meta name="twitter:url" content="{{ url()->current() }}">
         <meta name="twitter:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
         <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config('app.name', "Michael's Website") }}">
@@ -54,10 +52,6 @@
                         <a class="hover:text-gray-200 hover:underline px-3" href="https://stackoverflow.com/users/498353/michael" rel="nofollow noopener">
                             <i class="fab fa-stack-overflow" aria-hidden="true"></i>
                             <span class="sr-only">Stack Overflow</span>
-                        </a>
-                        <a class="hover:text-gray-200 hover:underline px-3" href="https://twitter.com/mbabker" rel="nofollow noopener">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                            <span class="sr-only">Twitter</span>
                         </a>
                     </div>
                 </div>

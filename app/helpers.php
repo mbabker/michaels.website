@@ -77,7 +77,6 @@ function site_owner_schema(): Person
         ->sameAs([
             'https://github.com/mbabker',
             'https://www.linkedin.com/in/mbabker',
-            'https://twitter.com/mbabker',
         ])
     ;
 }
