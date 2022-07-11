@@ -1,8 +1,7 @@
 /node_modules
-/public/css/app.css
+/public/build
 /public/fonts
 /public/hot
-/public/js/fontawesome.min.js
 /public/storage
 /public/mix-manifest.json
 /public/mix-sri.json

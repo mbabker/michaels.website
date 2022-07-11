@@ -19,7 +19,7 @@
         {!! site_owner_schema_as_script() !!}
         <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
         @googlefonts
-        <link href="{{ PushManager::preload(mix('css/app.css'), ['as' => 'style', 'integrity' => Sri::hash('css/app.css'), 'crossorigin' => 'anonymous']) }}" rel="stylesheet" {{ Sri::html('css/app.css') }}>
+        @vite(['resources/css/app.css'])
     </head>
     <body class="bg-gray-100 font-family-karla">
         <nav class="w-full py-4 bg-babdev-blue shadow">
@@ -81,7 +81,7 @@
             </div>
         </footer>
 
-        <script src="{{ PushManager::preload(mix('js/fontawesome.min.js'), ['as' => 'script', 'integrity' => Sri::hash('js/fontawesome.min.js'), 'crossorigin' => 'anonymous']) }}" {{ Sri::html('js/fontawesome.min.js') }}></script>
+        <script src="{{ PushManager::preload(asset('build/js/fontawesome.min.js'), ['as' => 'script']) }}"></script>
         @yield('bodyScripts')
     </body>
 </html>
