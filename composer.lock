@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b9ec5f7e82a59e90635e8aa1a19f1a6",
+    "content-hash": "24bc90b9c2375bc809237c4b1fa5af5e",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -1103,16 +1103,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.19.0",
+            "version": "v9.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df"
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bbce25bd823133f6a5a724f2d62680b711f1d0df",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c99868f1c9bf2f5d250993121838db905591864f",
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f",
                 "shasum": ""
             },
             "require": {
@@ -1278,7 +1278,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-28T14:33:19+00:00"
+            "time": "2022-07-13T13:26:22+00:00"
         },
         {
             "name": "laravel/serializable-closure",
