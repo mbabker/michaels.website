@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use Illuminate\Cache\Console\ClearCommand as CacheClearCommand;
 use Illuminate\Cache\Console\ForgetCommand as CacheForgetCommand;
+use Illuminate\Console\Scheduling\ScheduleClearCacheCommand;
 use Illuminate\Console\Scheduling\ScheduleFinishCommand;
 use Illuminate\Console\Scheduling\ScheduleListCommand;
 use Illuminate\Console\Scheduling\ScheduleRunCommand;
 use Illuminate\Console\Scheduling\ScheduleTestCommand;
 use Illuminate\Console\Scheduling\ScheduleWorkCommand;
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Console\ClearCompiledCommand;
 use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Foundation\Console\ConfigCacheCommand;
@@ -48,6 +50,7 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
      * @var array<string, string|class-string>
      */
     protected $commands = [
+        'About' => AboutCommand::class,
         'CacheClear' => CacheClearCommand::class,
         'CacheForget' => CacheForgetCommand::class,
         'ClearCompiled' => ClearCompiledCommand::class,
@@ -65,6 +68,7 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
         'ScheduleFinish' => ScheduleFinishCommand::class,
         'ScheduleList' => ScheduleListCommand::class,
         'ScheduleRun' => ScheduleRunCommand::class,
+        'ScheduleClearCache' => ScheduleClearCacheCommand::class,
         'ScheduleTest' => ScheduleTestCommand::class,
         'ScheduleWork' => ScheduleWorkCommand::class,
         'StorageLink' => StorageLinkCommand::class,
