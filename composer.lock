@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9af1779a4738f0cc7e4782b1d6e371e2",
+    "content-hash": "e5c3f0243b6c7ca64c0d0ee8ea8f0461",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -1099,16 +1099,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.25.1",
+            "version": "v9.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e8af8c2212e3717757ea7f459a655a2e9e771109"
+                "reference": "1ccfb91afee7a351b09ba1f1b97739096a3ad1cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e8af8c2212e3717757ea7f459a655a2e9e771109",
-                "reference": "e8af8c2212e3717757ea7f459a655a2e9e771109",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1ccfb91afee7a351b09ba1f1b97739096a3ad1cf",
+                "reference": "1ccfb91afee7a351b09ba1f1b97739096a3ad1cf",
                 "shasum": ""
             },
             "require": {
@@ -1275,7 +1275,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-08-16T16:36:05+00:00"
+            "time": "2022-08-23T19:00:07+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -3395,16 +3395,16 @@
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "6.2.0",
+            "version": "6.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "0da6e85eda6e044ed67132d3232c9bbf2f2eb73d"
+                "reference": "72af4b688705dfabdc5f24ed00d79325cff57d0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/0da6e85eda6e044ed67132d3232c9bbf2f2eb73d",
-                "reference": "0da6e85eda6e044ed67132d3232c9bbf2f2eb73d",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/72af4b688705dfabdc5f24ed00d79325cff57d0c",
+                "reference": "72af4b688705dfabdc5f24ed00d79325cff57d0c",
                 "shasum": ""
             },
             "require": {
@@ -3455,8 +3455,7 @@
                 "spatie"
             ],
             "support": {
-                "issues": "https://github.com/spatie/laravel-sitemap/issues",
-                "source": "https://github.com/spatie/laravel-sitemap/tree/6.2.0"
+                "source": "https://github.com/spatie/laravel-sitemap/tree/6.2.1"
             },
             "funding": [
                 {
@@ -3464,7 +3463,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-06-13T09:54:14+00:00"
+            "time": "2022-08-23T12:41:34+00:00"
         },
         {
             "name": "spatie/robots-txt",
