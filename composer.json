@@ -7,7 +7,7 @@
         "php": "^8.1",
         "composer-runtime-api": "^2.0",
         "babdev/laravel-server-push-manager": "2.1.0",
-        "laravel/framework": "9.34.0",
+        "laravel/framework": "9.35.1",
         "spatie/laravel-google-fonts": "1.2.1",
         "spatie/laravel-sitemap": "6.2.2",
         "spatie/schema-org": "3.11.0",
