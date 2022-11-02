@@ -45,6 +45,10 @@
                             <i class="fab fa-linkedin" aria-hidden="true"></i>
                             <span class="sr-only">LinkedIn</span>
                         </a>
+                        <a class="hover:text-gray-200 hover:underline px-3" href="https://fosstodon.org/@mbabker" rel="nofollow noopener me">
+                            <i class="fab fa-mastodon" aria-hidden="true"></i>
+                            <span class="sr-only">Mastodon</span>
+                        </a>
                         <a class="hover:text-gray-200 hover:underline px-3" href="https://www.reddit.com/user/mbabker" rel="nofollow noopener">
                             <i class="fab fa-reddit-alien" aria-hidden="true"></i>
                             <span class="sr-only">Reddit</span>
