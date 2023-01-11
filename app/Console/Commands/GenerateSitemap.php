@@ -9,7 +9,7 @@ use Spatie\Sitemap\Tags\Url;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'sitemap:generate', description: 'Generate the sitemap.')]
-class GenerateSitemap extends Command
+final class GenerateSitemap extends Command
 {
     /**
      * @var string
@@ -26,14 +26,7 @@ class GenerateSitemap extends Command
         $this->info('Generating sitemap...');
 
         SitemapGenerator::create(config('app.url'))
-            ->shouldCrawl(static function (Uri $uri): bool {
-                // Don't include the homepage without a trailing slash
-                if ($uri->getPath() === '') {
-                    return false;
-                }
-
-                return true;
-            })
+            ->shouldCrawl(static fn (Uri $uri): bool => $uri->getPath() !== '')
             ->hasCrawled(static function (Url $url): Url {
                 if ($url->path() === '/') {
                     $url->setPriority(1.0);

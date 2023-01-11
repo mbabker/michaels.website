@@ -16,11 +16,6 @@ parameters:
 			path: app/helpers.php
 
 		-
-			message: "#^PHPDoc tag @param for parameter \\$posts contains generic type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> but interface Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator is not generic\\.$#"
-			count: 1
-			path: app/helpers.php
-
-		-
 			message: "#^Parameter \\#2 \\$contents of static method Illuminate\\\\Contracts\\\\Filesystem\\\\Filesystem\\:\\:put\\(\\) expects resource\\|string, string\\|false given\\.$#"
 			count: 1
 			path: tests/Feature/SitemapTest.php

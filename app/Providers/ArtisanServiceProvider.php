@@ -100,8 +100,6 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -109,10 +107,7 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
             $this->registerCommands($this->commands);
         } else {
             $this->registerCommands(
-                array_merge(
-                    $this->commands,
-                    $this->devCommands
-                )
+                [...$this->commands, ...$this->devCommands]
             );
         }
     }

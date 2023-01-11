@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Pagination\RoutableLengthAwarePaginator;
+use App\Sheets\BlogPost;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Collection;
 use Spatie\Sheets\Sheets;
 
 final class ViewBlogIndexController
@@ -24,29 +26,24 @@ final class ViewBlogIndexController
 
         $blogRepository = $repository->collection('blog');
 
+        /** @var Collection<array-key, BlogPost> $posts */
         $posts = $blogRepository->all()->sortByDesc('date');
 
-        $paginator = app(
-            RoutableLengthAwarePaginator::class,
-            [
-                'items' => $posts->slice((($page - 1) * 5), 5),
-                'total' => $posts->count(),
-                'perPage' => 5,
-                'currentPage' => $page,
-                'options' => [
-                    'path' => AbstractPaginator::resolveCurrentPath(),
-                    'pageName' => 'page',
-                ],
-            ]
-        );
+        $paginator = app(RoutableLengthAwarePaginator::class, [
+            'items' => $posts->slice((($page - 1) * 5), 5),
+            'total' => $posts->count(),
+            'perPage' => 5,
+            'currentPage' => $page,
+            'options' => [
+                'path' => AbstractPaginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ],
+        ]);
 
         abort_if($paginator->currentPage() > $paginator->lastPage(), 404);
 
-        return view(
-            'blog.index',
-            [
-                'posts' => $paginator,
-            ]
-        );
+        return view('blog.index', [
+            'posts' => $paginator,
+        ]);
     }
 }

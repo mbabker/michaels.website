@@ -11,11 +11,8 @@ final class HomepageController
     {
         $blogRepository = $repository->collection('blog');
 
-        return view(
-            'homepage',
-            [
-                'latestPost' => $blogRepository->all()->last(),
-            ]
-        );
+        return view('homepage', [
+            'latestPost' => $blogRepository->all()->last(),
+        ]);
     }
 }

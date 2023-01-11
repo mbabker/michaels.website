@@ -12,16 +12,12 @@ final class ViewBlogPostController
     {
         $blogRepository = $repository->collection('blog');
 
-        /** @var BlogPost|null $post */
         $post = $blogRepository->all()->firstWhere('slug', '=', $slug);
 
-        abort_if($post === null, 404);
+        abort_unless($post instanceof BlogPost, 404);
 
-        return view(
-            'blog.show',
-            [
-                'post' => $post,
-            ]
-        );
+        return view('blog.show', [
+            'post' => $post,
+        ]);
     }
 }
