@@ -6,6 +6,7 @@
 ])
 
 @section('meta')
+    <link rel="alternate" type="application/atom+xml" title="Michael's Blog" href="{{ route('feeds.blog') }}">
     @unless($posts->onFirstPage())
         <link rel="canonical" href="{!! route('blog.index') !!}" />
         <link rel="prev" href="{!! $posts->currentPage() - 1 === 1 ? route('blog.index') : $posts->previousPageUrl() !!}" />

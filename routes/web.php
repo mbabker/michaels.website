@@ -20,3 +20,5 @@ $router->get('/blog/page/{page}', ViewBlogIndexController::class)->name('blog.in
 $router->get('/blog/{slug}', ViewBlogPostController::class)->name('blog.show');
 
 $router->get('/sitemap.xml', ViewSitemapController::class);
+
+$router->feeds('feeds');

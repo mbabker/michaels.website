@@ -3,11 +3,16 @@
 namespace App\Sheets;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\HtmlString;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Spatie\Sheets\Sheet;
+use Spatie\Sheets\Sheets;
 
 /**
+ * @property string      $guid
  * @property string      $slug
  * @property string      $author
  * @property Carbon      $published_date
@@ -18,8 +23,27 @@ use Spatie\Sheets\Sheet;
  * @property HtmlString  $contents
  * @property string      $url
  */
-final class BlogPost extends Sheet
+final class BlogPost extends Sheet implements Feedable
 {
+    /**
+     * @return Collection<array-key, self>
+     */
+    public static function getFeedItems(): Collection
+    {
+        return app(Sheets::class)->collection('blog')->all();
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id($this->guid)
+            ->title($this->title)
+            ->summary($this->teaser)
+            ->updated($this->modified_date)
+            ->link($this->url)
+            ->authorName($this->author);
+    }
+
     public function getPublishedDateAttribute(string $value): Carbon
     {
         return Date::parse($value);
