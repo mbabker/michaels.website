@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3886a5b5ff0bf58c189abbea2b99fe3",
+    "content-hash": "a17788849fcc1f0d33723f4d7a5769c4",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -1106,16 +1106,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.49.0",
+            "version": "v9.50.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e02d9453442ad0a6a2f5dc9df96ea0319d218026"
+                "reference": "3b400f76619cd5257a69fdd6b897043b6522a89a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e02d9453442ad0a6a2f5dc9df96ea0319d218026",
-                "reference": "e02d9453442ad0a6a2f5dc9df96ea0319d218026",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3b400f76619cd5257a69fdd6b897043b6522a89a",
+                "reference": "3b400f76619cd5257a69fdd6b897043b6522a89a",
                 "shasum": ""
             },
             "require": {
@@ -1290,7 +1290,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-01-31T14:36:47+00:00"
+            "time": "2023-02-01T17:36:26+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -3727,16 +3727,16 @@
         },
         {
             "name": "spatie/sheets",
-            "version": "1.9.1",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/sheets.git",
-                "reference": "01880ae4ed0b6797c8ab4c41f61d5be4632c71da"
+                "reference": "5584845955c7aeb2e9145111a8cda574e0ff83e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/sheets/zipball/01880ae4ed0b6797c8ab4c41f61d5be4632c71da",
-                "reference": "01880ae4ed0b6797c8ab4c41f61d5be4632c71da",
+                "url": "https://api.github.com/repos/spatie/sheets/zipball/5584845955c7aeb2e9145111a8cda574e0ff83e1",
+                "reference": "5584845955c7aeb2e9145111a8cda574e0ff83e1",
                 "shasum": ""
             },
             "require": {
@@ -3794,7 +3794,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/sheets/issues",
-                "source": "https://github.com/spatie/sheets/tree/1.9.1"
+                "source": "https://github.com/spatie/sheets/tree/1.9.2"
             },
             "funding": [
                 {
@@ -3802,7 +3802,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-02-09T08:02:31+00:00"
+            "time": "2023-02-01T08:42:42+00:00"
         },
         {
             "name": "spatie/temporary-directory",
