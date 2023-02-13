@@ -1,5 +1,6 @@
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
+import manifestSRI from 'vite-plugin-manifest-sri';
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        manifestSRI(),
         viteStaticCopy({
             targets: [
                 {
