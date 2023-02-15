@@ -4,33 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "985fb9ea7d84d5caae2f2ad8c2f08a7d",
+    "content-hash": "f14f6232e82d6d42e84d95a2362da04c",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
-            "version": "2.1.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BabDev/laravel-server-push-manager.git",
-                "reference": "42edfd3889f51b29bccf7f9d34b7c0c13526556a"
+                "reference": "b922a345176bac6f591537de78f1e1cc239b7b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BabDev/laravel-server-push-manager/zipball/42edfd3889f51b29bccf7f9d34b7c0c13526556a",
-                "reference": "42edfd3889f51b29bccf7f9d34b7c0c13526556a",
+                "url": "https://api.github.com/repos/BabDev/laravel-server-push-manager/zipball/b922a345176bac6f591537de78f1e1cc239b7b85",
+                "reference": "b922a345176bac6f591537de78f1e1cc239b7b85",
                 "shasum": ""
             },
             "require": {
                 "fig/link-util": "^1.2",
-                "illuminate/http": "^8.12 || ^9.0",
-                "illuminate/support": "^8.12 || ^9.0",
-                "php": "^8.0",
+                "illuminate/http": "^9.0 || ^10.0",
+                "illuminate/support": "^9.0 || ^10.0",
+                "php": "^8.1",
                 "psr/link": "^1.1.1 || ^2.0.1"
             },
             "require-dev": {
-                "laravel/framework": "^8.12 || ^9.0",
-                "orchestra/testbench": "^6.13 || ^7.0",
-                "phpunit/phpunit": "^9.5"
+                "laravel/framework": "^9.0 || ^10.0",
+                "orchestra/testbench": "^7.0 || ^8.0",
+                "phpunit/phpunit": "^9.6 || ^10.0"
             },
             "type": "library",
             "extra": {
@@ -59,7 +59,7 @@
             ],
             "support": {
                 "issues": "https://github.com/BabDev/laravel-server-push-manager/issues",
-                "source": "https://github.com/BabDev/laravel-server-push-manager/tree/2.1.0"
+                "source": "https://github.com/BabDev/laravel-server-push-manager/tree/2.2.0"
             },
             "funding": [
                 {
@@ -67,7 +67,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-08T23:15:09+00:00"
+            "time": "2023-02-15T01:02:28+00:00"
         },
         {
             "name": "brick/math",
@@ -1190,16 +1190,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.51.0",
+            "version": "v9.52.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b81123134349a013a738a9f7f715c6ce99d5a414"
+                "reference": "eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b81123134349a013a738a9f7f715c6ce99d5a414",
-                "reference": "b81123134349a013a738a9f7f715c6ce99d5a414",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e",
+                "reference": "eb85cd9d72e5bfa54b4d0d9040786f26d6184a9e",
                 "shasum": ""
             },
             "require": {
@@ -1384,7 +1384,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-02-07T15:37:18+00:00"
+            "time": "2023-02-14T14:51:14+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -3749,16 +3749,16 @@
         },
         {
             "name": "spatie/schema-org",
-            "version": "3.13.0",
+            "version": "3.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/schema-org.git",
-                "reference": "54399c090aa14f875f0551be6ed688a2d7ea151e"
+                "reference": "ada9f696ae958236d6707caced77b2630185bb76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/schema-org/zipball/54399c090aa14f875f0551be6ed688a2d7ea151e",
-                "reference": "54399c090aa14f875f0551be6ed688a2d7ea151e",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/ada9f696ae958236d6707caced77b2630185bb76",
+                "reference": "ada9f696ae958236d6707caced77b2630185bb76",
                 "shasum": ""
             },
             "require": {
@@ -3806,7 +3806,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/schema-org/issues",
-                "source": "https://github.com/spatie/schema-org/tree/3.13.0"
+                "source": "https://github.com/spatie/schema-org/tree/3.14.0"
             },
             "funding": [
                 {
@@ -3818,7 +3818,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-14T16:02:16+00:00"
+            "time": "2023-02-14T16:46:30+00:00"
         },
         {
             "name": "spatie/sheets",
@@ -7910,16 +7910,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.13",
+            "version": "0.15.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "05df336f8e29873ed14c0790fbea68fa5de14f50"
+                "reference": "826539a991aa22590e91f8add06ca99f76e21ccd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/05df336f8e29873ed14c0790fbea68fa5de14f50",
-                "reference": "05df336f8e29873ed14c0790fbea68fa5de14f50",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/826539a991aa22590e91f8add06ca99f76e21ccd",
+                "reference": "826539a991aa22590e91f8add06ca99f76e21ccd",
                 "shasum": ""
             },
             "require": {
@@ -7929,7 +7929,6 @@
             "conflict": {
                 "rector/rector-doctrine": "*",
                 "rector/rector-downgrade-php": "*",
-                "rector/rector-php-parser": "*",
                 "rector/rector-phpunit": "*",
                 "rector/rector-symfony": "*"
             },
@@ -7954,7 +7953,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.13"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.16"
             },
             "funding": [
                 {
@@ -7962,7 +7961,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-07T01:46:29+00:00"
+            "time": "2023-02-14T22:22:09+00:00"
         },
         {
             "name": "sebastian/cli-parser",
