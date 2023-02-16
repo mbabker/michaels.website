@@ -18,7 +18,7 @@ return (new PhpCsFixer\Config())
         [
             '@PHP82Migration'                             => true,
             '@PHP80Migration:risky'                       => true,
-            '@PHPUnit84Migration:risky'                   => true,
+            '@PHPUnit100Migration:risky'                  => true,
             '@PSR12'                                      => true,
             'align_multiline_comment'                     => true,
             'array_indentation'                           => true,
@@ -77,6 +77,10 @@ return (new PhpCsFixer\Config())
             'no_unused_imports'                           => true,
             'no_useless_else'                             => true,
             'no_useless_return'                           => true,
+            'ordered_imports'                             => [
+                'imports_order'  => ['class', 'function', 'const'],
+                'sort_algorithm' => 'alpha',
+            ],
             'phpdoc_align'                                => true,
             'phpdoc_scalar'                               => true,
             'protected_to_private'                        => true,

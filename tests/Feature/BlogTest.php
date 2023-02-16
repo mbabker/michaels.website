@@ -3,19 +3,20 @@
 namespace Tests\Feature;
 
 use App\Sheets\BlogPost;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\Sheets;
 use Tests\TestCase;
 
 final class BlogTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function users_can_view_the_blog_list(): void
     {
         $this->get('/blog')
             ->assertViewIs('blog.index');
     }
 
-    /** @test */
+    #[Test]
     public function users_can_view_pages_from_the_blog_list(): void
     {
         /** @var Sheets $repository */
@@ -33,21 +34,21 @@ final class BlogTest extends TestCase
             ->assertViewIs('blog.index');
     }
 
-    /** @test */
+    #[Test]
     public function users_are_redirected_to_the_canonical_first_page_of_the_blog_list(): void
     {
         $this->get('/blog/page/1')
             ->assertRedirect('/blog');
     }
 
-    /** @test */
+    #[Test]
     public function the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range(): void
     {
         $this->get('/blog/page/1000000')
             ->assertNotFound();
     }
 
-    /** @test */
+    #[Test]
     public function users_can_view_blog_posts(): void
     {
         /** @var Sheets $repository */
@@ -62,7 +63,7 @@ final class BlogTest extends TestCase
             ->assertViewIs('blog.show');
     }
 
-    /** @test */
+    #[Test]
     public function an_invalid_blog_post_triggers_a_404(): void
     {
         $this->get('/blog/does-not-exist')
