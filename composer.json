@@ -19,7 +19,7 @@
         "driftingly/rector-laravel": "0.15.0",
         "mockery/mockery": "1.5.1",
         "nunomaduro/collision": "7.0.3",
-        "nunomaduro/larastan": "2.4.0",
+        "nunomaduro/larastan": "2.4.1",
         "phpstan/extension-installer": "1.2.0",
         "phpstan/phpstan": "1.9.17",
         "phpstan/phpstan-mockery": "1.1.0",
