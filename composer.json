@@ -18,7 +18,7 @@
     "require-dev": {
         "driftingly/rector-laravel": "0.17.0",
         "mockery/mockery": "1.5.1",
-        "nunomaduro/collision": "7.1.2",
+        "nunomaduro/collision": "7.2.0",
         "nunomaduro/larastan": "2.5.1",
         "phpstan/extension-installer": "1.2.0",
         "phpstan/phpstan": "1.10.7",
