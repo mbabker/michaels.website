@@ -8,6 +8,12 @@ use Tests\TestCase;
 
 final class BlogTest extends TestCase
 {
+    public function test_users_can_pull_the_blog_feed(): void
+    {
+        $this->get('/feeds/blog')
+            ->assertOk();
+    }
+
     public function test_users_can_view_the_blog_list(): void
     {
         $this->get('/blog')
