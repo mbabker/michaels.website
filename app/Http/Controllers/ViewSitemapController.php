@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Filesystem\FilesystemAdapter;
-use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 final class ViewSitemapController
 {
-    public function __invoke(FilesystemManager $filesystem): BinaryFileResponse
+    public function __invoke(): BinaryFileResponse
     {
-        /** @var FilesystemAdapter $disk */
-        $disk = $filesystem->disk('local');
+        $disk = Storage::disk('local');
 
         abort_unless($disk->has('sitemap.xml'), 404);
 

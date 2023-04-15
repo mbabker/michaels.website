@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\HtmlString;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Spatie\Sheets\Facades\Sheets;
 use Spatie\Sheets\Sheet;
-use Spatie\Sheets\Sheets;
 
 /**
  * @property string      $guid
@@ -30,7 +30,7 @@ final class BlogPost extends Sheet implements Feedable
      */
     public static function getFeedItems(): Collection
     {
-        return app(Sheets::class)->collection('blog')->all();
+        return Sheets::collection('blog')->all();
     }
 
     public function toFeedItem(): FeedItem

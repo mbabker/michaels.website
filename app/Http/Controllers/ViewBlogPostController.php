@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Sheets\BlogPost;
 use Illuminate\Contracts\View\View;
-use Spatie\Sheets\Sheets;
+use Spatie\Sheets\Facades\Sheets;
 
 final class ViewBlogPostController
 {
-    public function __invoke(Sheets $repository, string $slug): View
+    public function __invoke(string $slug): View
     {
-        $blogRepository = $repository->collection('blog');
+        $blogRepository = Sheets::collection('blog');
 
         $post = $blogRepository->all()->firstWhere('slug', '=', $slug);
 

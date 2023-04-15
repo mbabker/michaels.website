@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
-use Spatie\Sheets\Sheets;
+use Spatie\Sheets\Facades\Sheets;
 
 final class ViewBlogIndexController
 {
-    public function __invoke(Request $request, Sheets $repository, int $page = 1): View | RedirectResponse
+    public function __invoke(Request $request, int $page = 1): View | RedirectResponse
     {
         abort_if($page < 1, 404);
 
@@ -24,7 +24,7 @@ final class ViewBlogIndexController
             return redirect()->route('blog.index');
         }
 
-        $blogRepository = $repository->collection('blog');
+        $blogRepository = Sheets::collection('blog');
 
         /** @var Collection<array-key, BlogPost> $posts */
         $posts = $blogRepository->all()->sortByDesc('date');
