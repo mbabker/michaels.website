@@ -114,10 +114,6 @@ final class ArtisanServiceProvider extends BaseArtisanServiceProvider
             );
         }
 
-        Signals::resolveAvailabilityUsing(function () {
-            return $this->app->runningInConsole()
-                && ! $this->app->runningUnitTests()
-                && extension_loaded('pcntl');
-        });
+        Signals::resolveAvailabilityUsing(fn () => $this->app->runningInConsole() && !$this->app->runningUnitTests() && \extension_loaded('pcntl'));
     }
 }
