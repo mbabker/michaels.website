@@ -2,15 +2,14 @@
 
 namespace Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 final class HomepageTest extends TestCase
 {
-    #[Test]
-    public function users_can_visit_the_homepage(): void
+    public function test_users_can_visit_the_homepage(): void
     {
         $this->get('/')
+            ->assertOk()
             ->assertViewIs('homepage');
     }
 }

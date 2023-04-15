@@ -3,21 +3,19 @@
 namespace Tests\Feature;
 
 use App\Sheets\BlogPost;
-use PHPUnit\Framework\Attributes\Test;
 use Spatie\Sheets\Sheets;
 use Tests\TestCase;
 
 final class BlogTest extends TestCase
 {
-    #[Test]
-    public function users_can_view_the_blog_list(): void
+    public function test_users_can_view_the_blog_list(): void
     {
         $this->get('/blog')
+            ->assertOk()
             ->assertViewIs('blog.index');
     }
 
-    #[Test]
-    public function users_can_view_pages_from_the_blog_list(): void
+    public function test_users_can_view_pages_from_the_blog_list(): void
     {
         /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
@@ -31,25 +29,23 @@ final class BlogTest extends TestCase
         }
 
         $this->get('/blog/page/2')
+            ->assertOk()
             ->assertViewIs('blog.index');
     }
 
-    #[Test]
-    public function users_are_redirected_to_the_canonical_first_page_of_the_blog_list(): void
+    public function test_users_are_redirected_to_the_canonical_first_page_of_the_blog_list(): void
     {
         $this->get('/blog/page/1')
             ->assertRedirect('/blog');
     }
 
-    #[Test]
-    public function the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range(): void
+    public function test_the_blog_list_returns_a_404_if_navigating_outside_the_pagination_range(): void
     {
         $this->get('/blog/page/1000000')
             ->assertNotFound();
     }
 
-    #[Test]
-    public function users_can_view_blog_posts(): void
+    public function test_users_can_view_blog_posts(): void
     {
         /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
@@ -60,11 +56,11 @@ final class BlogTest extends TestCase
         $post = $blogRepository->all()->first();
 
         $this->get(sprintf('/blog/%s', $post->slug))
+            ->assertOk()
             ->assertViewIs('blog.show');
     }
 
-    #[Test]
-    public function an_invalid_blog_post_triggers_a_404(): void
+    public function test_an_invalid_blog_post_triggers_a_404(): void
     {
         $this->get('/blog/does-not-exist')
             ->assertNotFound();

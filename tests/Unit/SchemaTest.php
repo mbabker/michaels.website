@@ -6,7 +6,6 @@ use App\Pagination\RoutableLengthAwarePaginator;
 use App\Sheets\BlogPost;
 use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\HtmlString;
-use PHPUnit\Framework\Attributes\Test;
 use Spatie\SchemaOrg\BlogPosting;
 use Spatie\SchemaOrg\Person;
 use Spatie\Sheets\Sheets;
@@ -14,14 +13,12 @@ use Tests\TestCase;
 
 final class SchemaTest extends TestCase
 {
-    #[Test]
-    public function the_page_schema_for_the_about_page_is_generated(): void
+    public function test_the_page_schema_for_the_about_page_is_generated(): void
     {
         $this->assertInstanceOf(HtmlString::class, about_page_schema());
     }
 
-    #[Test]
-    public function the_page_schema_for_the_blog_list_is_generated(): void
+    public function test_the_page_schema_for_the_blog_list_is_generated(): void
     {
         /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
@@ -48,8 +45,7 @@ final class SchemaTest extends TestCase
         $this->assertInstanceOf(HtmlString::class, blog_schema($paginator));
     }
 
-    #[Test]
-    public function the_schema_object_for_a_blog_post_is_generated(): void
+    public function test_the_schema_object_for_a_blog_post_is_generated(): void
     {
         /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
@@ -62,8 +58,7 @@ final class SchemaTest extends TestCase
         $this->assertInstanceOf(BlogPosting::class, blog_post_schema($post));
     }
 
-    #[Test]
-    public function the_page_schema_for_a_blog_post_is_generated(): void
+    public function test_the_page_schema_for_a_blog_post_is_generated(): void
     {
         /** @var Sheets $repository */
         $repository = $this->app->make(Sheets::class);
@@ -76,14 +71,12 @@ final class SchemaTest extends TestCase
         $this->assertInstanceOf(HtmlString::class, blog_post_schema_as_script($post));
     }
 
-    #[Test]
-    public function the_schema_object_for_the_site_owner_is_generated(): void
+    public function test_the_schema_object_for_the_site_owner_is_generated(): void
     {
         $this->assertInstanceOf(Person::class, site_owner_schema());
     }
 
-    #[Test]
-    public function the_page_schema_for_the_site_owner_is_generated(): void
+    public function test_the_page_schema_for_the_site_owner_is_generated(): void
     {
         $this->assertInstanceOf(HtmlString::class, site_owner_schema_as_script());
     }
