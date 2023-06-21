@@ -49,10 +49,6 @@
                             <i class="fab fa-mastodon" aria-hidden="true"></i>
                             <span class="sr-only">Mastodon</span>
                         </a>
-                        <a class="hover:text-gray-200 hover:underline px-3" href="https://www.reddit.com/user/mbabker" rel="nofollow noopener">
-                            <i class="fab fa-reddit-alien" aria-hidden="true"></i>
-                            <span class="sr-only">Reddit</span>
-                        </a>
                         <a class="hover:text-gray-200 hover:underline px-3" href="https://stackoverflow.com/users/498353/michael" rel="nofollow noopener">
                             <i class="fab fa-stack-overflow" aria-hidden="true"></i>
                             <span class="sr-only">Stack Overflow</span>
