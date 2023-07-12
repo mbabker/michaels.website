@@ -21,7 +21,7 @@
         @googlefonts
         @vite(['resources/css/app.css'])
     </head>
-    <body class="bg-gray-100 font-family-karla">
+    <body class="bg-gray-100">
         <nav class="w-full py-4 bg-babdev-blue shadow">
             <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
                 <nav class="w-full sm:w-auto">

@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.font-family-karla {
-    font-family: 'Karla', sans-serif;
-}
-
 .blog-contents h2 {
     @apply text-2xl font-bold pb-3;
 }
