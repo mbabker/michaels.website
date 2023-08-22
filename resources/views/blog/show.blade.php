@@ -14,7 +14,7 @@
 
 @section('content')
     <article class="flex flex-col shadow my-4">
-        <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')) }}">
+        <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')) }}" class="w-full" alt="">
 
         <div class="bg-white flex flex-col justify-start p-6">
             <h1 class="text-3xl font-bold pb-4">{{ $post->title }}</h1>
