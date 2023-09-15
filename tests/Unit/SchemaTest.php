@@ -39,7 +39,7 @@ final class SchemaTest extends TestCase
                     'path' => AbstractPaginator::resolveCurrentPath(),
                     'pageName' => 'page',
                 ],
-            ]
+            ],
         );
 
         $this->assertInstanceOf(HtmlString::class, blog_schema($paginator));

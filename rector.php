@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
+use Rector\Php80\Rector\Switch_\ChangeSwitchToMatchRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\PostRector\Rector\NameImportingPostRector;
@@ -30,6 +31,9 @@ return static function (RectorConfig $rectorConfig): void {
         /*
          * Skip rules for select files
          */
+        ChangeSwitchToMatchRector::class => [
+            // For readability, we don't want switch statements in these classes automatically being changed to match
+        ],
         NameImportingPostRector::class              => [
             __DIR__ . '/app/Http/Kernel.php',
             __DIR__ . '/config/*.php',
@@ -49,8 +53,5 @@ return static function (RectorConfig $rectorConfig): void {
         LaravelSetList::LARAVEL_100,
         PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        PHPUnitSetList::PHPUNIT_EXCEPTION,
-        PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER,
-        PHPUnitSetList::REMOVE_MOCKS,
     ]);
 };

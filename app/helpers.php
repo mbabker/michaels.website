@@ -12,7 +12,7 @@ function about_page_schema(): HtmlString
     $schema = Schema::aboutPage()
         ->mainEntityOfPage(
             Schema::webPage()
-                ->url(route('about'))
+                ->url(route('about')),
         )
         ->headline('About Michael Babker')
     ;
@@ -35,7 +35,7 @@ function blog_schema(LengthAwarePaginator $posts): HtmlString
     $schema = Schema::blog()
         ->mainEntityOfPage(
             Schema::webPage()
-                ->url(route('blog.index'))
+                ->url(route('blog.index')),
         )
         ->headline("Michael Babker's Blog")
         ->author(site_owner_schema())
@@ -50,7 +50,7 @@ function blog_post_schema(BlogPost $post): BlogPosting
     return Schema::blogPosting()
         ->mainEntityOfPage(
             Schema::webPage()
-                ->url($post->url)
+                ->url($post->url),
         )
         ->headline($post->title)
         ->image(asset(sprintf('images/%s', $post->image ?: 'home-bg.jpg')))
@@ -58,7 +58,7 @@ function blog_post_schema(BlogPost $post): BlogPosting
         ->dateModified($post->modified_date)
         ->author(
             Schema::person()
-                ->name($post->author)
+                ->name($post->author),
         )
         ->description($post->teaser)
     ;
