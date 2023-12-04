@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c01e76d56000e0745d4f9a6d379b86a7",
+    "content-hash": "4ba9f0ba3a314caffb164193f88b2801",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -7217,16 +7217,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v2.6.5",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "51028c0aba0d8756f7d9e9972ed74e7d34976958"
+                "url": "https://github.com/larastan/larastan.git",
+                "reference": "a2610d46b9999cf558d9900ccb641962d1442f55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/51028c0aba0d8756f7d9e9972ed74e7d34976958",
-                "reference": "51028c0aba0d8756f7d9e9972ed74e7d34976958",
+                "url": "https://api.github.com/repos/larastan/larastan/zipball/a2610d46b9999cf558d9900ccb641962d1442f55",
+                "reference": "a2610d46b9999cf558d9900ccb641962d1442f55",
                 "shasum": ""
             },
             "require": {
@@ -7264,7 +7264,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "NunoMaduro\\Larastan\\": "src/"
+                    "Larastan\\Larastan\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -7272,6 +7272,10 @@
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Can Vural",
+                    "email": "can9119@gmail.com"
+                },
                 {
                     "name": "Nuno Maduro",
                     "email": "enunomaduro@gmail.com"
@@ -7289,8 +7293,8 @@
                 "static analysis"
             ],
             "support": {
-                "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v2.6.5"
+                "issues": "https://github.com/larastan/larastan/issues",
+                "source": "https://github.com/larastan/larastan/tree/v2.7.0"
             },
             "funding": [
                 {
@@ -7310,7 +7314,8 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-11-17T10:17:33+00:00"
+            "abandoned": "larastan/larastan",
+            "time": "2023-12-04T19:21:38+00:00"
         },
         {
             "name": "phar-io/manifest",
