@@ -21,7 +21,8 @@ use Spatie\Sheets\Sheet;
  * @property string|null $image
  * @property string      $teaser
  * @property HtmlString  $contents
- * @property string      $url
+ *
+ * @property-read string $url
  */
 final class BlogPost extends Sheet implements Feedable
 {

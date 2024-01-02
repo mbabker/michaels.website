@@ -11,7 +11,7 @@ final class ViewSitemapController
     {
         $disk = Storage::disk('local');
 
-        abort_unless($disk->has('sitemap.xml'), 404);
+        abort_unless($disk->exists('sitemap.xml'), 404);
 
         return response()->file($disk->path('sitemap.xml'), [
             'Content-Type' => 'text/xml',

@@ -11,19 +11,9 @@ use Symfony\Component\Console\Attribute\AsCommand;
 #[AsCommand(name: 'sitemap:generate', description: 'Generate the sitemap.')]
 final class GenerateSitemap extends Command
 {
-    /**
-     * @var string
-     */
-    protected $name = 'sitemap:generate';
-
-    /**
-     * @var string
-     */
-    protected $description = 'Generate the sitemap.';
-
     public function handle(): void
     {
-        $this->info('Generating sitemap...');
+        $this->components->info('Generating sitemap...');
 
         SitemapGenerator::create(config('app.url'))
             ->shouldCrawl(static fn (Uri $uri): bool => $uri->getPath() !== '')
@@ -41,6 +31,6 @@ final class GenerateSitemap extends Command
             ->getSitemap()
             ->writeToDisk('local', 'sitemap.xml');
 
-        $this->info('Sitemap generated!');
+        $this->components->info('Sitemap generated!');
     }
 }
