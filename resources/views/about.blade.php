@@ -24,7 +24,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-4">
                 <div class="lg:col-start-2 place-self-center">
-                    <img src="{{ asset('images/michael-2021.jpg') }}" alt="Michael">
+                    <img src="{{ asset('images/michael-2021.webp') }}" alt="Michael">
                 </div>
                 <div class="col-start-1 lg:row-start-1">
                     <p class="pb-3">Michael Babker is a veteran of the Information Technology industry who brings over 15 years of knowledge and experience to the table. After finding a passion for building with and contributing to open source, he has transitioned to and works primarily in a web developer role. He is a past contributor to Joomla where he has served as the release coordinator for four of Joomla's feature releases, a member of the Board of Directors of Open Source Matters, Inc. (the not-for-profit organization supporting the Joomla project), and as a member of its security team.</p>
@@ -32,7 +32,7 @@
                     <p class="pb-3">Michael holds an Associate of Arts in Information Technology with a concentration in Web Design and is currently the Lead Data Architect for <a class="text-blue-500 hover:text-blue-800" href="https://happydog.digital" rel="nofollow noopener">Happy Dog</a>. When not actively coding, Michael can often be found engaged with the open source community as an advocate and evangelist for the continued growth and use of open software and the open web.</p>
                 </div>
                 <div class="lg:col-span-2 place-self-center">
-                    <img src="{{ asset('images/mil-sig.png') }}" alt="militarysignatures.com" loading="lazy">
+                    <img src="{{ asset('images/mil-sig.webp') }}" alt="militarysignatures.com" loading="lazy">
                 </div>
             </div>
         </div>
