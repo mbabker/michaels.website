@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a28e8293bc1712ba7ad221bd5c40868d",
+    "content-hash": "34086289b0896c234c3e54ea7549c558",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -3713,16 +3713,16 @@
         },
         {
             "name": "spatie/schema-org",
-            "version": "3.14.0",
+            "version": "3.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/schema-org.git",
-                "reference": "ada9f696ae958236d6707caced77b2630185bb76"
+                "reference": "c95abf7da59f16570aec18ca11d861255e645c39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/schema-org/zipball/ada9f696ae958236d6707caced77b2630185bb76",
-                "reference": "ada9f696ae958236d6707caced77b2630185bb76",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/c95abf7da59f16570aec18ca11d861255e645c39",
+                "reference": "c95abf7da59f16570aec18ca11d861255e645c39",
                 "shasum": ""
             },
             "require": {
@@ -3770,7 +3770,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/schema-org/issues",
-                "source": "https://github.com/spatie/schema-org/tree/3.14.0"
+                "source": "https://github.com/spatie/schema-org/tree/3.23.0"
             },
             "funding": [
                 {
@@ -3782,7 +3782,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-14T16:46:30+00:00"
+            "time": "2024-01-11T14:58:44+00:00"
         },
         {
             "name": "spatie/sheets",
@@ -6495,21 +6495,21 @@
     "packages-dev": [
         {
             "name": "driftingly/rector-laravel",
-            "version": "0.29.0",
+            "version": "0.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/driftingly/rector-laravel.git",
-                "reference": "524f7ae302aa52e343d10630969cb1e36774d6d2"
+                "reference": "871a5921177be5f493646d4a22998c8aa3eedebc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/524f7ae302aa52e343d10630969cb1e36774d6d2",
-                "reference": "524f7ae302aa52e343d10630969cb1e36774d6d2",
+                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/871a5921177be5f493646d4a22998c8aa3eedebc",
+                "reference": "871a5921177be5f493646d4a22998c8aa3eedebc",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
-                "rector/rector": "^0.18.5"
+                "rector/rector": "^0.19.0"
             },
             "type": "rector-extension",
             "autoload": {
@@ -6524,9 +6524,9 @@
             "description": "Rector upgrades rules for Laravel Framework",
             "support": {
                 "issues": "https://github.com/driftingly/rector-laravel/issues",
-                "source": "https://github.com/driftingly/rector-laravel/tree/0.29.0"
+                "source": "https://github.com/driftingly/rector-laravel/tree/0.30.0"
             },
-            "time": "2024-01-04T21:45:25+00:00"
+            "time": "2024-01-11T18:11:35+00:00"
         },
         {
             "name": "filp/whoops",
@@ -7877,21 +7877,21 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.18.13",
+            "version": "0.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "f8011a76d36aa4f839f60f3b4f97707d97176618"
+                "reference": "503f4ead06b3892bd106f67f3c86d4e36c94423d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f8011a76d36aa4f839f60f3b4f97707d97176618",
-                "reference": "f8011a76d36aa4f839f60f3b4f97707d97176618",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/503f4ead06b3892bd106f67f3c86d4e36c94423d",
+                "reference": "503f4ead06b3892bd106f67f3c86d4e36c94423d",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2|^8.0",
-                "phpstan/phpstan": "^1.10.35"
+                "phpstan/phpstan": "^1.10.52"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
@@ -7921,7 +7921,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.18.13"
+                "source": "https://github.com/rectorphp/rector/tree/0.19.0"
             },
             "funding": [
                 {
@@ -7929,7 +7929,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-20T16:08:01+00:00"
+            "time": "2024-01-09T00:49:06+00:00"
         },
         {
             "name": "sebastian/cli-parser",
