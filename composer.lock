@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
-            "version": "2.x-dev",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BabDev/laravel-server-push-manager.git",
-                "reference": "2cc1823debc64da3c807161fbb6dc6b57bc57315"
+                "reference": "0baeb8d7704ae8ba5ccd81c2f21f12bcbba0bec3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BabDev/laravel-server-push-manager/zipball/2cc1823debc64da3c807161fbb6dc6b57bc57315",
-                "reference": "2cc1823debc64da3c807161fbb6dc6b57bc57315",
+                "url": "https://api.github.com/repos/BabDev/laravel-server-push-manager/zipball/0baeb8d7704ae8ba5ccd81c2f21f12bcbba0bec3",
+                "reference": "0baeb8d7704ae8ba5ccd81c2f21f12bcbba0bec3",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,6 @@
                 "orchestra/testbench": "^8.0 || ^9.0",
                 "phpunit/phpunit": "^9.6 || ^10.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -60,7 +59,7 @@
             ],
             "support": {
                 "issues": "https://github.com/BabDev/laravel-server-push-manager/issues",
-                "source": "https://github.com/BabDev/laravel-server-push-manager/tree/2.x"
+                "source": "https://github.com/BabDev/laravel-server-push-manager/tree/2.3.0"
             },
             "funding": [
                 {
@@ -68,7 +67,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-07T00:34:16+00:00"
+            "time": "2024-04-09T23:27:46+00:00"
         },
         {
             "name": "brick/math",
