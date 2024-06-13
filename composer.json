@@ -13,7 +13,7 @@
         "spatie/laravel-sitemap": "7.2.1",
         "spatie/schema-org": "3.23.0",
         "spatie/sheets": "1.12.0",
-        "spatie/yaml-front-matter": "2.0.8"
+        "spatie/yaml-front-matter": "2.0.9"
     },
     "require-dev": {
         "driftingly/rector-laravel": "1.2.0",
