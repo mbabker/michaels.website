@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03e012b22e6bdc8878a4b73c0952a437",
+    "content-hash": "dc0eb2a4595369d1ed0b44528ca8a5bc",
     "packages": [
         {
             "name": "babdev/laravel-server-push-manager",
@@ -1176,16 +1176,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.18.1",
+            "version": "v11.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b19ba518c56852567e99fbae9321bc436c2cc5a8"
+                "reference": "5e103d499e9ee5bcfc184412d034c4e516b87085"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b19ba518c56852567e99fbae9321bc436c2cc5a8",
-                "reference": "b19ba518c56852567e99fbae9321bc436c2cc5a8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5e103d499e9ee5bcfc184412d034c4e516b87085",
+                "reference": "5e103d499e9ee5bcfc184412d034c4e516b87085",
                 "shasum": ""
             },
             "require": {
@@ -1378,7 +1378,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-07-26T10:39:29+00:00"
+            "time": "2024-07-30T15:22:41+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -6541,16 +6541,16 @@
     "packages-dev": [
         {
             "name": "driftingly/rector-laravel",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/driftingly/rector-laravel.git",
-                "reference": "ac4831aebc8cf4285be83c8aa538ae816004d071"
+                "reference": "849fe4e86ee6fc841a704a81393b59702108740e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/ac4831aebc8cf4285be83c8aa538ae816004d071",
-                "reference": "ac4831aebc8cf4285be83c8aa538ae816004d071",
+                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/849fe4e86ee6fc841a704a81393b59702108740e",
+                "reference": "849fe4e86ee6fc841a704a81393b59702108740e",
                 "shasum": ""
             },
             "require": {
@@ -6570,9 +6570,9 @@
             "description": "Rector upgrades rules for Laravel Framework",
             "support": {
                 "issues": "https://github.com/driftingly/rector-laravel/issues",
-                "source": "https://github.com/driftingly/rector-laravel/tree/1.2.0"
+                "source": "https://github.com/driftingly/rector-laravel/tree/1.2.1"
             },
-            "time": "2024-05-03T16:09:54+00:00"
+            "time": "2024-07-30T17:02:47+00:00"
         },
         {
             "name": "filp/whoops",
@@ -7831,16 +7831,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.2.8",
+            "version": "11.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a7a29e8d3113806f18f99d670f580a30e8ffff39"
+                "reference": "c197bbaaca360efda351369bf1fd9cc1ca6bcbf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a7a29e8d3113806f18f99d670f580a30e8ffff39",
-                "reference": "a7a29e8d3113806f18f99d670f580a30e8ffff39",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c197bbaaca360efda351369bf1fd9cc1ca6bcbf7",
+                "reference": "c197bbaaca360efda351369bf1fd9cc1ca6bcbf7",
                 "shasum": ""
             },
             "require": {
@@ -7911,7 +7911,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.2.8"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.2.9"
             },
             "funding": [
                 {
@@ -7927,7 +7927,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-18T14:56:37+00:00"
+            "time": "2024-07-30T11:09:23+00:00"
         },
         {
             "name": "rector/rector",
