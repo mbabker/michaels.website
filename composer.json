@@ -16,7 +16,7 @@
         "spatie/yaml-front-matter": "2.0.9"
     },
     "require-dev": {
-        "driftingly/rector-laravel": "1.2.1",
+        "driftingly/rector-laravel": "1.2.2",
         "larastan/larastan": "2.9.8",
         "mockery/mockery": "1.6.12",
         "nunomaduro/collision": "8.4.0",
