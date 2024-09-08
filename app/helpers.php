@@ -12,7 +12,7 @@ function about_page_schema(): HtmlString
     $schema = Schema::aboutPage()
         ->mainEntityOfPage(
             Schema::webPage()
-                ->url(route('about')),
+                ->url(route('homepage')),
         )
         ->headline('About Michael Babker')
     ;

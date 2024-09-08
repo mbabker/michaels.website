@@ -10,6 +10,6 @@ final class HomepageTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertViewIs('homepage');
+            ->assertViewIs('about');
     }
 }

@@ -5,7 +5,6 @@
 ])
 
 @section('meta')
-    <link rel="canonical" href="{{ route('about') }}" />
     <meta property="og:profile:first_name" content="Michael" />
     <meta property="og:profile:last_name" content="Babker" />
     <meta property="og:profile:username" content="mbabker" />

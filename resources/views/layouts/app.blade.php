@@ -26,7 +26,6 @@
             <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
                 <nav class="w-full sm:w-auto">
                     <ul class="flex items-center justify-center sm:justify-between font-bold text-sm text-white uppercase no-underline">
-                        <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('about') }}">About</a></li>
                         <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ route('blog.index') }}">Blog</a></li>
                     </ul>
                 </nav>
