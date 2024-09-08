@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => sprintf('About Me | %s', config('app.name', "Michael's Website")),
+    'title' => sprintf('About Me | %s', config()->string('app.name', "Michael's Website")),
     'description' => 'About Michael Babker',
     'ogType' => 'profile',
 ])

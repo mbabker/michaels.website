@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#1 \\$urlToBeCrawled of static method Spatie\\\\Sitemap\\\\SitemapGenerator\\:\\:create\\(\\) expects string, mixed given\\.$#"
-			count: 1
-			path: app/Console/Commands/GenerateSitemap.php
-
-		-
-			message: "#^Cannot access offset 'request' on Illuminate\\\\Contracts\\\\Foundation\\\\Application\\.$#"
-			count: 1
-			path: app/Providers/AppServiceProvider.php
-
-		-
 			message: "#^Argument of an invalid type Illuminate\\\\Contracts\\\\Pagination\\\\LengthAwarePaginator\\<App\\\\Sheets\\\\BlogPost\\> supplied for foreach, only iterables are supported\\.$#"
 			count: 1
 			path: app/helpers.php

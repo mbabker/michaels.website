@@ -25,7 +25,7 @@ function about_page_schema(): HtmlString
  */
 function blog_schema(LengthAwarePaginator $posts): HtmlString
 {
-    /** @var BlogPosting[] $postSchemas */
+    /** @var list<BlogPosting> $postSchemas */
     $postSchemas = [];
 
     foreach ($posts as $post) {

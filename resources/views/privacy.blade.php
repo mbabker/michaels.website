@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => sprintf('Privacy | %s', config('app.name', "Michael's Website")),
+    'title' => sprintf('Privacy | %s', config()->string('app.name', "Michael's Website")),
 ])
 
 @section('content')

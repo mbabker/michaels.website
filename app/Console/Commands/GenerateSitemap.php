@@ -15,7 +15,7 @@ final class GenerateSitemap extends Command
     {
         $this->components->info('Generating sitemap...');
 
-        SitemapGenerator::create(config('app.url'))
+        SitemapGenerator::create(config()->string('app.url'))
             ->shouldCrawl(static fn (Uri $uri): bool => $uri->getPath() !== '')
             ->hasCrawled(static function (Url $url): Url {
                 if ($url->path() === '/') {

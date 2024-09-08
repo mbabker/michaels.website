@@ -1,7 +1,7 @@
 @php /** @var \App\Sheets\BlogPost $post */ @endphp
 
 @extends('layouts.app', [
-    'title' => sprintf('%s | %s', $post->title, config('app.name', "Michael's Website")),
+    'title' => sprintf('%s | %s', $post->title, config()->string('app.name', "Michael's Website")),
     'ogType' => 'article',
 ])
 

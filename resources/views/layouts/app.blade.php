@@ -8,16 +8,16 @@
         <meta property="og:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Michael's Website" />
-        <meta property="og:title" content="{{ $ogTitle ?? $title ?? config('app.name', "Michael's Website") }}">
+        <meta property="og:title" content="{{ $ogTitle ?? $title ?? config()->string('app.name', "Michael's Website") }}">
         <meta property="og:type" content="{{ $ogType ?? 'website' }}">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta name="twitter:card" content="summary">
         <meta name="twitter:url" content="{{ url()->current() }}">
         <meta name="twitter:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
-        <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config('app.name', "Michael's Website") }}">
+        <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config()->string('app.name', "Michael's Website") }}">
         @yield('meta')
         {!! site_owner_schema_as_script() !!}
-        <title>{{ $title ?? config('app.name', "Michael's Website") }}</title>
+        <title>{{ $title ?? config()->string('app.name', "Michael's Website") }}</title>
         @googlefonts
         @vite(['resources/css/app.css'])
     </head>

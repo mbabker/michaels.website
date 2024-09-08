@@ -19,6 +19,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->app->bind(LengthAwarePaginator::class, RoutableLengthAwarePaginator::class);
 
         // Add the route resolver
-        RoutableLengthAwarePaginator::currentRouteResolver(fn () => $this->app['request']->route());
+        RoutableLengthAwarePaginator::currentRouteResolver(fn () => request()->route());
     }
 }
