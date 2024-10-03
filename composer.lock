@@ -9361,7 +9361,7 @@
         "php": "^8.2",
         "composer-runtime-api": "^2.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "8.2.3"
     },
