@@ -19,6 +19,7 @@ use Spatie\Sheets\Sheet;
  * @property Carbon      $modified_date
  * @property string      $title
  * @property string|null $image
+ * @property string|null $image_credit
  * @property string      $teaser
  * @property HtmlString  $contents
  *

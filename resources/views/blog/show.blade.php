@@ -16,6 +16,10 @@
     <article class="flex flex-col shadow my-4">
         <img src="{{ asset(sprintf('images/%s', $post->image ?: 'home-bg.webp')) }}" class="w-full" alt="">
 
+        @if($post->image_credit)
+            <div class="bg-gray p-1 text-center text-sm">{{ $post->image_credit }}</div>
+        @endif
+
         <div class="bg-white flex flex-col justify-start p-6">
             <h1 class="text-3xl font-bold pb-4">{{ $post->title }}</h1>
             <p class="text-sm pb-3">
