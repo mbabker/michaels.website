@@ -15,6 +15,10 @@
         <meta name="twitter:url" content="{{ url()->current() }}">
         <meta name="twitter:description" content="{{ $description ?? "Michael Babker's Personal Website" }}" />
         <meta name="twitter:title" content="{{ $ogTitle ?? $title ?? config()->string('app.name', "Michael's Website") }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ url('/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ url('/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ url('/site.webmanifest') }}">
         @yield('meta')
         {!! site_owner_schema_as_script() !!}
         <title>{{ $title ?? config()->string('app.name', "Michael's Website") }}</title>
