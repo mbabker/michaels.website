@@ -1,0 +1,80 @@
+==================================================================
+https://keybase.io/mbabker
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://michaels.website
+  * I am mbabker (https://keybase.io/mbabker) on keybase.
+  * I have a public key with fingerprint EED9 6707 E398 8018 9C02  A87D 00E1 51E3 933D B00B
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010172cc8f18b84e399d0d8a6d053b076ceb6380ccb446b4ff9ba210b6a27b4985430a",
+            "fingerprint": "eed96707e39880189c02a87d00e151e3933db00b",
+            "host": "keybase.io",
+            "key_id": "00e151e3933db00b",
+            "kid": "010172cc8f18b84e399d0d8a6d053b076ceb6380ccb446b4ff9ba210b6a27b4985430a",
+            "uid": "2a95bcc9560dc69b809b0381035e3d19",
+            "username": "mbabker"
+        },
+        "revoke": {
+            "sig_ids": [
+                "5bc5b9f1614eff078955bd8ef55f5a6b2c63400a5469ff9c14bdf0294c0930150f"
+            ]
+        },
+        "service": {
+            "hostname": "michaels.website",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1488044275,
+    "expire_in": 157680000,
+    "prev": "5d2ceefe54e306c0a43b4c1e8f6ea4ad4f4fc5ead53348aacb491dd5cb47631f",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.64
+Comment: https://keybase.io/crypto
+
+yMOHAnicrZJtUFRVGMcXNnF4Sz9QMtpOdK2giZxz995zXxCUmFBoeFFGJxxW13vu
+PZe9LOyuuwvIrAjGW6CGRSghkeOIjlGDWohKKm8xjlQy2UQJDhEMZVESMMmAYGcp
+P/W18+XMec7/+T3/8zynJ1ivC/DRjWwdrYk5F+jT1/kgV5d+vmPaQyG7UkBFeSgr
+XtpwtoJdbrNVU6goCtCA5o2yLKi0gAQWM6KoAEWQOAVABgGekzHiGAHIMmJZDrGq
+KiLJSAPESUYesaIAWQZIVCSlarZM7HQ4NZubYDFWRI4HPOEJAqAFUQZGSeAVADAN
+aRJlGAUBgEiixe7yZhBzSHLhdZqdxMjB/I+9/+r/Z9+5SzijJEIkyyLkgCJzIhKA
+iAAj0ICBmFFo0St0YadNysFEnYMkZMVOqjCScuI8uxV72+rSMolnFxWVQREURKJK
+czSLVRXwggghUgSsQqhCiUNGmWNYACTIciIxJtMsUlRgFFkZiAygIVCpnYRNCuZp
+8hLc26THxTXZIuFs17p8jFyaGxNrDqfdbZft2eTW4nY7XFFeZ+4Ch1dOVOZ/QWak
+2RQyJpKRh50uzW6jomiilN2al0yzZFQsa+RhJIX3OjQnNmteBeQ5AZDlrYPzCBIq
+RhljFUPSdsDJQGIZxMo0FlQOS6yksCqryhBLCmQYVpAkMgKRVhRIdp5jaJXyPm2P
+zU7YBOqWMgmTdM8muXOdmCrs6jQ9ofMJ0Pkt8/X+X12A/8rHv/q54BWLYujCydCB
+5n7BZOxAAcumWuThLTEp941Bs4GGtO56/4nrCZf4B0dKiyYyu2KAT9oFPV80XNFb
+/Nbh2tbCz189+nNNfIipv7+9tupy6Hxi+4GaVH3xCsvLf85n3Ejpd/Q9mfvK3WpR
+n/h+6Jg9ejFifLHEMx82NfCwpv2jD359Zv3g/cZrfT0On6Q5zxfvGfxim25tv7qx
+zm/3ueIRfvn2Y1MP6/eXvVhXNGyc/Eq8ODTgVxw263t85noKzv5y9YYd2HZlhTV3
+8cSd9lXODYfurflmNiBHrHrpTnLpnpBjwbUl5XOBv+yMGYm80TloPhUUZmpeJXmY
+BU9v22RvZbVed5wenUy13q4p+8O/onlH0vTFK5vczt825Rj0nrTy4egDcVxlHjI/
+/Xbid2O2+N8tszMJceOWoZmSnO7WiL27rn0SvuXjI01H951d89n49ELvC/v6zic/
+ujBmy7fU5+rrtRq/1uVXz3TdHC/Qn8liY2++EeL+4Z2uioMbX9tq2B+9dg59O1F1
+eWw0vfFEVnoD9+OpJj/fkuEs35Zt8HT4wb8md8HMhk9TEubXzprsj6Dhp8Q3TR3d
+veXvtoQXBKW2zyltxYeqlc2Gzc93BZ2lny3Mrm+MWL2tLPbruoqJpCENf2+K7fyw
+8CmYkby7reFe593bfNDJ9Zb8jNddWXHhlZcGT/sOxa/sKb2V+jeXQOJi
+=JRqA
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mbabker
+
+==================================================================
