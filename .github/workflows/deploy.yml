@@ -1,17 +1,49 @@
-name: Deploy Application
-
+name: Deploy to GitHub Pages
 on:
-  workflow_run:
-    branches: ['production']
-    workflows: ['Test Application']
-    types:
-      - completed
+  workflow_dispatch:
+  push:
+    branches:
+      - production
 
 jobs:
-  deploy:
-    name: Deploy Application
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  build:
+    name: Build Website
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Envoyer
-        run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Run Nuxt Build
+        run: npx nuxt build --preset github_pages
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.output/public
+
+  deploy:
+    name: Deploy Website
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github_pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
