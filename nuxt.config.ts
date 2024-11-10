@@ -1,7 +1,10 @@
 export default defineNuxtConfig({
   extends: '@nuxt-themes/alpine',
-  modules: ['@nuxt/devtools'],
+  modules: ['@nuxt/devtools', '@nuxt/eslint'],
   compatibilityDate: '2024-10-30',
+  future: {
+    compatibilityVersion: 4,
+  },
   app: {
     head: {
       link: [
