@@ -17,6 +17,11 @@ export default defineAppConfig({
       message: 'Follow me on'
     },
     socials: {
+      bluesky: {
+        icon: 'fa6-brands:bluesky',
+        label: 'Bluesky',
+        href: 'https://bsky.app/profile/mbabker.bsky.social',
+      },
       github: {
         icon: 'fa6-brands:github',
         label: 'GitHub',
