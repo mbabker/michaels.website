@@ -1,5 +1,9 @@
 {
   "private": true,
+  "engines": {
+    "node": ">=22.11.0",
+    "npm": ">=10.9.0"
+  },
   "name": "michaels.website",
   "scripts": {
     "dev": "nuxi dev",
