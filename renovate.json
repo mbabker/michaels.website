@@ -1,4 +1,5 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>nuxt/renovate-config-nuxt",
     ":dependencyDashboard",
@@ -18,6 +19,15 @@
     "enabled": true,
     "extends": ["schedule:daily"]
   },
+  "packageRules": [
+    {
+      "description": "Don't bump engines",
+      "matchPackageNames": ["node"],
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "auto"
+    },
+  ],
   "platformAutomerge": true,
   "rollbackPrs": true
 }
