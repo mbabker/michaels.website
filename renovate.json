@@ -22,7 +22,7 @@
   "packageRules": [
     {
       "description": "Don't bump engines",
-      "matchPackageNames": ["node"],
+      "matchPackageNames": ["node", "npm"],
       "matchManagers": ["npm"],
       "matchDepTypes": ["engines"],
       "rangeStrategy": "auto"
