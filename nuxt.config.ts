@@ -26,23 +26,8 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
-  content: {
-    documentDriven: true,
-    navigation: {
-      fields: ['navTitle']
-    },
-    highlight: {
-      theme: {
-        default: 'github-light',
-        dark: 'github-dark'
-      },
-      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp']
-    }
-  },
-
   tailwindcss: {
     cssPath: './app/assets/css/main.css',
-    configPath: 'tailwind.config.ts',
   },
 
   app: {

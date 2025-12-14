@@ -1,6 +1,47 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@source '../../components/**/*.vue';
+@source '../../layouts/**/*.vue';
+@source '../../pages/**/*.vue';
+@source '../../app.vue';
+@source '../../../content/**/*.md';
+
+@theme {
+  /* Custom breakpoints */
+  --breakpoint-xs: 475px;
+
+  /* Primary color palette (Alpine lightblue) */
+  --color-primary-50: #d9f8ff;
+  --color-primary-100: #b3f1ff;
+  --color-primary-200: #8deaff;
+  --color-primary-300: #66e4ff;
+  --color-primary-400: #40ddff;
+  --color-primary-500: #1ad6ff;
+  --color-primary-600: #00b9e1;
+  --color-primary-700: #008aa9;
+  --color-primary-800: #005c70;
+  --color-primary-900: #002e38;
+
+  /* Gray color palette */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+
+  /* Custom max widths */
+  --max-width-container: 64rem;
+
+  /* Typography */
+  --typography-maxWidth: 68ch;
+}
 
 @layer base {
   html {

@@ -39,43 +39,41 @@ const onBackToTop = () => {
 </script>
 
 <template>
-  <main v-if="page">
-    <article ref="article" class="max-w-[68ch] mx-auto py-4 sm:py-12">
-      <NuxtLink
-        :to="parentPath"
-        class="inline-flex items-center text-lg border-b border-gray-200 dark:border-gray-800"
+  <article v-if="page" ref="article" class="max-w-[68ch] mx-auto py-4 sm:py-12">
+    <NuxtLink
+      :to="parentPath"
+      class="inline-flex items-center text-lg border-b border-gray-200 dark:border-gray-800"
+    >
+      <Icon name="ph:arrow-left" class="w-4 h-4 mr-2" />
+      <span>Back</span>
+    </NuxtLink>
+
+    <header class="mt-16 mb-12">
+      <h1
+        v-if="page?.title"
+        class="text-5xl font-semibold mb-4"
       >
-        <Icon name="ph:arrow-left" class="w-4 h-4 mr-2" />
-        <span>Back</span>
-      </NuxtLink>
+        {{ page.title }}
+      </h1>
+      <time
+        v-if="page?.date"
+        :datetime="page.date"
+        class="text-gray-500 dark:text-gray-400"
+      >
+        {{ formatDate(page.date) }}
+      </time>
+    </header>
 
-      <header class="mt-16 mb-12">
-        <h1
-          v-if="page?.title"
-          class="text-5xl font-semibold mb-4"
-        >
-          {{ page.title }}
-        </h1>
-        <time
-          v-if="page?.date"
-          :datetime="page.date"
-          class="text-gray-500 dark:text-gray-400"
-        >
-          {{ formatDate(page.date) }}
-        </time>
-      </header>
-
-      <div class="blog-post prose prose-lg prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-8 prose-a:no-underline dark:prose-invert max-w-none">
-        <ContentRenderer :value="page" />
-        <div class="flex justify-end items-center w-full">
-          <ProseA class="cursor-pointer text-lg" @click.prevent.stop="onBackToTop">
-            Back to top
-            <Icon name="material-symbols:arrow-upward" />
-          </ProseA>
-        </div>
+    <div class="blog-post prose prose-lg prose-h2:text-4xl prose-h2:mt-12 prose-h2:mb-8 prose-a:no-underline dark:prose-invert max-w-none">
+      <ContentRenderer :value="page" />
+      <div class="flex justify-end items-center w-full">
+        <ProseA class="cursor-pointer text-lg" @click.prevent.stop="onBackToTop">
+          Back to top
+          <Icon name="material-symbols:arrow-upward" />
+        </ProseA>
       </div>
-    </article>
-  </main>
+    </div>
+  </article>
 </template>
 
 <style scoped>

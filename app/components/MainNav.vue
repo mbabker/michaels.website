@@ -17,7 +17,7 @@ const {data: navigation} = await useAsyncData(
           :to="link.path"
           class="relative [&.router-link-active]:text-primary-500"
         >
-          <span class="absolute bottom-[-4px] w-0 hover:w-full h-px bg-current transition-all duration-200 ease-in-out"/>
+          <span class="absolute -bottom-1 w-0 hover:w-full h-px bg-current transition-all duration-200 ease-in-out"/>
           {{ link.title }}
         </NuxtLink>
       </li>

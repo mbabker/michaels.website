@@ -44,7 +44,7 @@ const socials: Record<string, SocialItem> = {
     :href="social.href"
     rel="noopener noreferrer"
     target="_blank"
-    class="flex w-6 h-6 hover:text-primary-500 transition-colors"
+    class="flex text-2xl w-6 h-6 hover:text-primary-500 transition-colors"
   >
     <Icon v-if="social.icon" :name="social.icon" class="w-full h-full" />
   </NuxtLink>
