@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-white text-gray-800 dark:bg-black dark:text-gray-200;
+  }
+}
+
+@layer utilities {
+  /* Dark mode image visibility */
+  .light-img {
+    @apply block;
+  }
+  .dark-img {
+    @apply hidden;
+  }
+  .dark .dark-img {
+    @apply block;
+  }
+  .dark .light-img {
+    @apply hidden;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2];
+  }
+  .line-clamp-3 {
+    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3];
+  }
+  .line-clamp-4 {
+    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4];
+  }
+}

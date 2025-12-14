@@ -1,10 +1,50 @@
 export default defineNuxtConfig({
-  extends: '@nuxt-themes/alpine',
-  modules: ['@nuxt/devtools', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/tailwindcss',
+  ],
+
   compatibilityDate: '2024-10-30',
+
+  devtools: {
+    enabled: true,
+  },
+
   future: {
     compatibilityVersion: 4,
   },
+
+  css: [
+    './app/assets/css/main.css'
+  ],
+
+  colorMode: {
+    classSuffix: '',
+  },
+
+  content: {
+    documentDriven: true,
+    navigation: {
+      fields: ['navTitle']
+    },
+    highlight: {
+      theme: {
+        default: 'github-light',
+        dark: 'github-dark'
+      },
+      preload: ['json', 'js', 'ts', 'html', 'css', 'vue', 'diff', 'shell', 'markdown', 'yaml', 'bash', 'ini', 'c', 'cpp']
+    }
+  },
+
+  tailwindcss: {
+    cssPath: './app/assets/css/main.css',
+    configPath: 'tailwind.config.ts',
+  },
+
   app: {
     head: {
       link: [
