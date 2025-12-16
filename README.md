@@ -1,57 +1,79 @@
-# Alpine Starter
+# Michael's Website
 
-Starter template for [Alpine](https://alpine.nuxt.space).
+This Nuxt application powers [Michael's Website](https://michaels.website).
 
-## Clone
+The theme is forked from the [Alpine theme](https://github.com/clemcode/alpine-theme).
 
-Clone the repository (using `nuxi`):
-
-```bash
-npx nuxi init -t themes/alpine
-```
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
-Install dependencies:
+Make sure to install dependencies:
 
 ```bash
+# npm
+npm install
+
+# pnpm
 pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
 ```
 
-## Development
+## Development Server
+
+Start the development server on `http://localhost:3000`:
 
 ```bash
+# npm
+npm run dev
+
+# pnpm
 pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
 ```
 
-## Edge Side Rendering
+## Production
 
-Can be deployed to Vercel Functions, Netlify Functions, AWS, and most Node-compatible environments.
-
-Look at all the available presets [here](https://v3.nuxtjs.org/guide/deploy/presets).
+Build the application for production:
 
 ```bash
+# npm
+npm run build
+
+# pnpm
 pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
 ```
 
-## Static Generation
-
-Use the `generate` command to build your application.
-
-The HTML files will be generated in the .output/public directory and ready to be deployed to any static compatible hosting.
+Locally preview production build:
 
 ```bash
-pnpm generate
-```
+# npm
+npm run preview
 
-## Preview build
-
-You might want to preview the result of your build locally, to do so, run the following command:
-
-```bash
+# pnpm
 pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
 ```
 
----
-
-For a detailed explanation of how things work, check out [Alpine](https://alpine.nuxt.space).
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
