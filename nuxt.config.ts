@@ -1,3 +1,5 @@
+import tailwindcss from '@tailwindcss/vite'
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
@@ -5,7 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxtjs/color-mode',
-    '@nuxtjs/tailwindcss',
   ],
 
   compatibilityDate: '2024-10-30',
@@ -14,8 +15,10 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  future: {
-    compatibilityVersion: 4,
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
   },
 
   css: [
@@ -24,10 +27,6 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: '',
-  },
-
-  tailwindcss: {
-    cssPath: './app/assets/css/main.css',
   },
 
   app: {

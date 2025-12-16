@@ -3,32 +3,32 @@ type SocialItem = {icon: string, label: string, href: string}
 
 const socials: Record<string, SocialItem> = {
   bluesky: {
-    icon: 'fa6-brands:bluesky',
+    icon: 'fa7-brands:bluesky',
     label: 'Bluesky',
     href: 'https://bsky.app/profile/mbabker.bsky.social',
   },
   github: {
-    icon: 'fa6-brands:github',
+    icon: 'fa7-brands:github',
     label: 'GitHub',
     href: 'https://github.com/mbabker',
   },
   instagram: {
-    icon: 'fa6-brands:instagram',
+    icon: 'fa7-brands:instagram',
     label: 'Instagram',
     href: 'https://www.instagram.com/michael.babker/',
   },
   linkedin: {
-    icon: 'fa6-brands:linkedin',
+    icon: 'fa7-brands:linkedin',
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/mbabker',
   },
   mastodon: {
-    icon: 'fa6-brands:mastodon',
+    icon: 'fa7-brands:mastodon',
     label: 'Mastodon',
     href: 'https://mastodon.social/@mbabker',
   },
   twitter: {
-    icon: 'fa6-brands:x-twitter',
+    icon: 'fa7-brands:x-twitter',
     label: 'X (Formerly Twitter)',
     href: 'https://x.com/mbabker',
   },
