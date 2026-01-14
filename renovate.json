@@ -26,7 +26,7 @@
       "matchManagers": ["npm"],
       "matchDepTypes": ["engines"],
       "rangeStrategy": "auto"
-    },
+    }
   ],
   "platformAutomerge": true,
   "rollbackPrs": true
