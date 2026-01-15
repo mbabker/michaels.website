@@ -33,7 +33,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^24.10.8",
     "better-sqlite3": "^12.6.0",
-    "commander": "^11.1.0",
+    "commander": "^14.0.2",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3"
   }
