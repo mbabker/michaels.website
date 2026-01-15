@@ -31,9 +31,8 @@
     "@iconify-json/uil": "^1.2.3",
     "@nuxt/eslint": "^1.12.1",
     "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^24.10.8",
+    "@types/node": "^24.10.9",
     "better-sqlite3": "^12.6.0",
-    "commander": "^11.1.0",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3"
   }
