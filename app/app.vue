@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useSeoMeta({
-  twitterCard: 'summary_large_image',
+    twitterCard: 'summary_large_image',
 })
 </script>
 
 <template>
-  <AppLayout>
-    <NuxtPage />
-  </AppLayout>
+    <AppLayout>
+        <NuxtPage />
+    </AppLayout>
 </template>

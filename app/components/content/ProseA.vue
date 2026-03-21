@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import type { NuxtLinkProps } from '#app'
 
-const props = defineProps({
-  href: {
-    type: String,
-    default: ''
-  },
-  target: {
-    type: String as PropType<'_blank' | '_parent' | '_self' | '_top' | (string & object) | null | undefined>,
-    default: undefined,
-    required: false
-  }
+withDefaults(defineProps<{ href?: NuxtLinkProps['to']; target?: NuxtLinkProps['target'] }>(), {
+    href: '',
+    target: undefined,
 })
 </script>
 
 <template>
-  <NuxtLink
-    :href="props.href"
-    :target="props.target"
-    class="font-medium border-b border-dashed border-current pb-0.5 hover:border-solid hover:text-primary-400 has-[img]:border-0"
-  >
-    <slot />
-  </NuxtLink>
+    <NuxtLink
+        :href="href"
+        :target="target"
+        class="hover:text-primary-400 border-b border-dashed border-current pb-0.5 font-medium hover:border-solid has-[img]:border-0"
+    >
+        <slot />
+    </NuxtLink>
 </template>

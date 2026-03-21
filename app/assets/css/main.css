@@ -9,73 +9,73 @@
 @source '../../../content/**/*.md';
 
 @theme {
-  /* Custom breakpoints */
-  --breakpoint-xs: 475px;
+    /* Custom breakpoints */
+    --breakpoint-xs: 475px;
 
-  /* Primary color palette (Alpine lightblue) */
-  --color-primary-50: #d9f8ff;
-  --color-primary-100: #b3f1ff;
-  --color-primary-200: #8deaff;
-  --color-primary-300: #66e4ff;
-  --color-primary-400: #40ddff;
-  --color-primary-500: #1ad6ff;
-  --color-primary-600: #00b9e1;
-  --color-primary-700: #008aa9;
-  --color-primary-800: #005c70;
-  --color-primary-900: #002e38;
+    /* Primary color palette (Alpine lightblue) */
+    --color-primary-50: #d9f8ff;
+    --color-primary-100: #b3f1ff;
+    --color-primary-200: #8deaff;
+    --color-primary-300: #66e4ff;
+    --color-primary-400: #40ddff;
+    --color-primary-500: #1ad6ff;
+    --color-primary-600: #00b9e1;
+    --color-primary-700: #008aa9;
+    --color-primary-800: #005c70;
+    --color-primary-900: #002e38;
 
-  /* Gray color palette */
-  --color-gray-50: #fafafa;
-  --color-gray-100: #f4f4f5;
-  --color-gray-200: #e4e4e7;
-  --color-gray-300: #d4d4d8;
-  --color-gray-400: #a1a1aa;
-  --color-gray-500: #71717a;
-  --color-gray-600: #52525b;
-  --color-gray-700: #3f3f46;
-  --color-gray-800: #27272a;
-  --color-gray-900: #18181b;
+    /* Gray color palette */
+    --color-gray-50: #fafafa;
+    --color-gray-100: #f4f4f5;
+    --color-gray-200: #e4e4e7;
+    --color-gray-300: #d4d4d8;
+    --color-gray-400: #a1a1aa;
+    --color-gray-500: #71717a;
+    --color-gray-600: #52525b;
+    --color-gray-700: #3f3f46;
+    --color-gray-800: #27272a;
+    --color-gray-900: #18181b;
 
-  /* Custom max widths */
-  --max-width-container: 64rem;
+    /* Custom max widths */
+    --max-width-container: 64rem;
 
-  /* Typography */
-  --typography-maxWidth: 68ch;
+    /* Typography */
+    --typography-maxWidth: 68ch;
 }
 
 @layer base {
-  html {
-    @apply antialiased;
-  }
+    html {
+        @apply antialiased;
+    }
 
-  body {
-    @apply bg-white text-gray-800 dark:bg-black dark:text-gray-200;
-  }
+    body {
+        @apply bg-white text-gray-800 dark:bg-black dark:text-gray-200;
+    }
 }
 
 @layer utilities {
-  /* Dark mode image visibility */
-  .light-img {
-    @apply block;
-  }
-  .dark-img {
-    @apply hidden;
-  }
-  .dark .dark-img {
-    @apply block;
-  }
-  .dark .light-img {
-    @apply hidden;
-  }
+    /* Dark mode image visibility */
+    .light-img {
+        @apply block;
+    }
+    .dark-img {
+        @apply hidden;
+    }
+    .dark .dark-img {
+        @apply block;
+    }
+    .dark .light-img {
+        @apply hidden;
+    }
 
-  /* Line clamp utilities */
-  .line-clamp-2 {
-    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2];
-  }
-  .line-clamp-3 {
-    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3];
-  }
-  .line-clamp-4 {
-    @apply overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:4];
-  }
+    /* Line clamp utilities */
+    .line-clamp-2 {
+        @apply [display:-webkit-box] overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:2];
+    }
+    .line-clamp-3 {
+        @apply [display:-webkit-box] overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:3];
+    }
+    .line-clamp-4 {
+        @apply [display:-webkit-box] overflow-hidden [-webkit-box-orient:vertical] [-webkit-line-clamp:4];
+    }
 }

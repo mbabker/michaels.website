@@ -17,6 +17,8 @@ logs
 .DS_Store
 .fleet
 .idea
+.claude/settings.local.json
+CLAUDE.local.md
 
 # Local env files
 .env

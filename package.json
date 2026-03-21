@@ -1,39 +1,46 @@
 {
-  "private": true,
-  "engines": {
-    "node": ">=24.11.0",
-    "npm": ">=11.6.1"
-  },
-  "name": "michaels.website",
-  "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi build",
-    "generate": "nuxi generate",
-    "preview": "nuxi preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
-  "dependencies": {
-    "@nuxt/content": "^3.11.0",
-    "@nuxt/icon": "^2.2.1",
-    "@nuxt/image": "^2.0.0",
-    "@nuxtjs/color-mode": "^4.0.0",
-    "@tailwindcss/typography": "^0.5.19",
-    "nuxt": "^4.2.2",
-    "tailwindcss": "^4.1.18",
-    "vue": "^3.5.27",
-    "vue-router": "^4.6.4"
-  },
-  "devDependencies": {
-    "@iconify-json/fa7-brands": "^1.2.1",
-    "@iconify-json/material-symbols": "^1.2.52",
-    "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/uil": "^1.2.3",
-    "@nuxt/eslint": "^1.12.1",
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^24.10.9",
-    "better-sqlite3": "^12.6.2",
-    "eslint": "^9.39.2",
-    "typescript": "^5.9.3"
-  }
+    "private": true,
+    "engines": {
+        "node": ">=24.11.0",
+        "npm": ">=11.6.1"
+    },
+    "name": "michaels.website",
+    "scripts": {
+        "dev": "nuxi dev",
+        "build": "nuxi build",
+        "generate": "nuxi generate",
+        "preview": "nuxi preview",
+        "postinstall": "nuxt prepare",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "dependencies": {
+        "@nuxt/content": "^3.12.0",
+        "@nuxt/icon": "^2.2.1",
+        "@nuxt/image": "^2.0.0",
+        "@nuxtjs/color-mode": "^4.0.0",
+        "@tailwindcss/typography": "^0.5.19",
+        "nuxt": "^4.4.2",
+        "tailwindcss": "^4.2.2",
+        "vue": "^3.5.30",
+        "vue-router": "^5.0.4"
+    },
+    "devDependencies": {
+        "@iconify-json/fa7-brands": "^1.2.2",
+        "@iconify-json/material-symbols": "^1.2.63",
+        "@iconify-json/ph": "^1.2.2",
+        "@iconify-json/uil": "^1.2.3",
+        "@nuxt/eslint": "^1.15.2",
+        "@tailwindcss/vite": "^4.2.2",
+        "@types/node": "^24.12.0",
+        "better-sqlite3": "^12.8.0",
+        "eslint": "^10.1.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "prettier": "^3.8.1",
+        "prettier-plugin-tailwindcss": "^0.7.2",
+        "typescript": "^5.9.3"
+    }
 }
