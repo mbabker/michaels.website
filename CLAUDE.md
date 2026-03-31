@@ -8,13 +8,13 @@ Personal website at [michaels.website](https://michaels.website), built with Nux
 
 ## Commands
 
-- `npm run dev` — start dev server on http://localhost:3000
-- `npm run build` — production build
-- `npm run generate` — static site generation
-- `npm run lint` — ESLint check
-- `npm run lint:fix` — ESLint auto-fix
-- `npm run format` — Prettier format all files
-- `npm run format:check` — Prettier check formatting
+- `pnpm dev` — start dev server on http://localhost:3000
+- `pnpm build` — production build
+- `pnpm generate` — static site generation
+- `pnpm lint` — ESLint check
+- `pnpm lint:fix` — ESLint auto-fix
+- `pnpm format` — Prettier format all files
+- `pnpm format:check` — Prettier check formatting
 
 No test framework is configured.
 
@@ -47,4 +47,4 @@ Content files live in `content/` with numeric prefixes for ordering.
 
 ## Requirements
 
-Node >= 24.11.0, npm >= 11.6.1
+Node >= 24.11.0, pnpm >= 10.33.0
