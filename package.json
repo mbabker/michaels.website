@@ -2,9 +2,9 @@
     "private": true,
     "engines": {
         "node": ">=24.11.0",
-        "pnpm": ">=10.33.0"
+        "pnpm": ">=11.1.1"
     },
-    "packageManager": "pnpm@10.33.0",
+    "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
     "name": "michaels.website",
     "scripts": {
         "dev": "nuxi dev",
@@ -19,34 +19,25 @@
     },
     "dependencies": {
         "@nuxt/content": "3.13.0",
-        "@nuxt/icon": "2.2.1",
+        "@nuxt/icon": "2.2.2",
         "@nuxt/image": "2.0.0",
         "@nuxtjs/color-mode": "4.0.0",
         "@tailwindcss/typography": "0.5.19",
-        "nuxt": "4.4.2",
-        "tailwindcss": "4.2.4",
-        "vue": "3.5.33",
+        "nuxt": "4.4.5",
+        "tailwindcss": "4.3.0",
+        "vue": "3.5.34",
         "vue-router": "5.0.6"
-    },
-    "pnpm": {
-        "onlyBuiltDependencies": [
-            "@parcel/watcher",
-            "better-sqlite3",
-            "esbuild",
-            "sharp",
-            "unrs-resolver"
-        ]
     },
     "devDependencies": {
         "@iconify-json/fa7-brands": "1.2.2",
-        "@iconify-json/material-symbols": "1.2.69",
+        "@iconify-json/material-symbols": "1.2.71",
         "@iconify-json/ph": "1.2.2",
         "@iconify-json/uil": "1.2.3",
         "@nuxt/eslint": "1.15.2",
-        "@tailwindcss/vite": "4.2.4",
-        "@types/node": "24.12.0",
+        "@tailwindcss/vite": "4.3.0",
+        "@types/node": "24.12.4",
         "better-sqlite3": "12.9.0",
-        "eslint": "10.2.1",
+        "eslint": "10.3.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-prettier": "5.5.5",
         "prettier": "3.8.3",
