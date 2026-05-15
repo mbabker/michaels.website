@@ -3,9 +3,12 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
+    cooldown:
+      default-days: 7
     labels:
       - dependencies
+      - javascript
     groups:
       minor-and-patch:
         applies-to: version-updates
@@ -22,8 +25,11 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     labels:
       - dependencies
+      - CI
     groups:
       actions:
         applies-to: version-updates
