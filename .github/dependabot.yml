@@ -10,6 +10,11 @@ updates:
       - dependencies
       - javascript
     versioning-strategy: increase
+    ignore:
+      # We build and deploy with Node 24, so a major bump of the types package shouldn't be proposed.
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
     groups:
       minor-and-patch:
         applies-to: version-updates
