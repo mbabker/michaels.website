@@ -22,11 +22,6 @@ const socials: Record<string, SocialItem> = {
         label: 'LinkedIn',
         href: 'https://www.linkedin.com/in/mbabker',
     },
-    mastodon: {
-        icon: 'fa7-brands:mastodon',
-        label: 'Mastodon',
-        href: 'https://mastodon.social/@mbabker',
-    },
     twitter: {
         icon: 'fa7-brands:x-twitter',
         label: 'X (Formerly Twitter)',
