@@ -47,4 +47,4 @@ Content files live in `content/` with numeric prefixes for ordering.
 
 ## Requirements
 
-Node >= 24.11.0, pnpm >= 10.33.0
+Node >= 24.11.0, pnpm >= 11.17.0

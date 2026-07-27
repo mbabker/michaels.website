@@ -4,3 +4,11 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+# Nuxt 4.5.1 ships security fixes we want immediately, so it is exempted from pnpm's
+# default 24 hour minimumReleaseAge cooldown. Safe to drop once the next Nuxt release lands.
+minimumReleaseAgeExclude:
+  - '@nuxt/kit@4.5.1'
+  - '@nuxt/nitro-server@4.5.1'
+  - '@nuxt/schema@4.5.1'
+  - '@nuxt/vite-builder@4.5.1'
+  - nuxt@4.5.1

@@ -2,9 +2,9 @@
     "private": true,
     "engines": {
         "node": ">=24.11.0",
-        "pnpm": ">=11.1.1"
+        "pnpm": ">=11.17.0"
     },
-    "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
+    "packageManager": "pnpm@11.17.0+sha512.cca3cea332ad254bb84145f966d19f4879615210346fc92c79a047f23a0d7b3cca3c3792f0076ba1f1831d277efbcf0a9119b31a9a60eca7fb3d6231f331ef72",
     "name": "michaels.website",
     "scripts": {
         "dev": "nuxi dev",
@@ -18,30 +18,30 @@
         "format:check": "prettier --check ."
     },
     "dependencies": {
-        "@nuxt/content": "3.14.0",
-        "@nuxt/icon": "2.2.4",
+        "@nuxt/content": "3.15.2",
+        "@nuxt/icon": "2.3.1",
         "@nuxt/image": "2.0.0",
         "@nuxtjs/color-mode": "4.0.1",
         "@tailwindcss/typography": "0.5.20",
-        "nuxt": "4.4.8",
-        "tailwindcss": "4.3.1",
-        "vue": "3.5.39",
-        "vue-router": "5.1.0"
+        "nuxt": "4.5.1",
+        "tailwindcss": "4.3.3",
+        "vue": "3.5.40",
+        "vue-router": "5.2.0"
     },
     "devDependencies": {
-        "@iconify-json/fa7-brands": "1.2.3",
-        "@iconify-json/material-symbols": "1.2.81",
+        "@iconify-json/fa7-brands": "1.2.4",
+        "@iconify-json/material-symbols": "1.2.87",
         "@iconify-json/ph": "1.2.2",
         "@iconify-json/uil": "1.2.3",
         "@nuxt/eslint": "1.16.0",
-        "@tailwindcss/vite": "4.3.1",
-        "@types/node": "24.13.2",
+        "@tailwindcss/vite": "4.3.3",
+        "@types/node": "24.13.3",
         "better-sqlite3": "12.11.1",
-        "eslint": "10.6.0",
+        "eslint": "10.8.0",
         "eslint-config-prettier": "10.1.8",
         "eslint-plugin-prettier": "5.5.6",
-        "prettier": "3.9.0",
-        "prettier-plugin-tailwindcss": "0.8.0",
-        "typescript": "5.9.3"
+        "prettier": "3.9.6",
+        "prettier-plugin-tailwindcss": "0.8.1",
+        "typescript": "6.0.3"
     }
 }
