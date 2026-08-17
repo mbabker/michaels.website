@@ -15,11 +15,16 @@ updates:
       - dependency-name: "@types/node"
         update-types:
           - version-update:semver-major
-      # 2.4.1 and 2.5.0 fail to load every locally-installed Iconify collection during
-      # prerender, which ships the site without icons. Drop this once upstream is fixed.
+      # 2.4.1 and 2.5.0 leave `_api.setFetch` undefined during SSR, so icons are missing
+      # from the prerendered markup until hydration. See nuxt/icon#518.
       - dependency-name: "@nuxt/icon"
         versions:
           - ">=2.4.1"
+      # 2.1.0 emits .output/public with no _nuxt directory at all under the github_pages
+      # preset, so the deployed site has no CSS or JS. The build still exits 0.
+      - dependency-name: "@nuxt/image"
+        versions:
+          - ">=2.1.0"
     groups:
       minor-and-patch:
         applies-to: version-updates
