@@ -20,11 +20,6 @@ updates:
       - dependency-name: "@nuxt/icon"
         versions:
           - ">=2.4.1"
-      # 2.1.0 emits .output/public with no _nuxt directory at all under the github_pages
-      # preset, so the deployed site has no CSS or JS. The build still exits 0.
-      - dependency-name: "@nuxt/image"
-        versions:
-          - ">=2.1.0"
     groups:
       minor-and-patch:
         applies-to: version-updates
