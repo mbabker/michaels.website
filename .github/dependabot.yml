@@ -15,11 +15,6 @@ updates:
       - dependency-name: "@types/node"
         update-types:
           - version-update:semver-major
-      # 2.4.1 and 2.5.0 leave `_api.setFetch` undefined during SSR, so icons are missing
-      # from the prerendered markup until hydration. See nuxt/icon#518.
-      - dependency-name: "@nuxt/icon"
-        versions:
-          - ">=2.4.1"
     groups:
       minor-and-patch:
         applies-to: version-updates

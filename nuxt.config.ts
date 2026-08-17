@@ -26,6 +26,15 @@ export default defineNuxtConfig({
         },
     },
 
+    // Bundle every icon referenced in the source into the client build. The site is
+    // statically hosted, so /api/_nuxt_icon does not exist at runtime and any icon not
+    // already in the prerendered markup — the ColorScheme-wrapped ones — cannot load.
+    icon: {
+        clientBundle: {
+            scan: true,
+        },
+    },
+
     colorMode: {
         classSuffix: '',
     },
