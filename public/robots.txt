@@ -1,0 +1,4 @@
+# Default to allowing web crawlers access
+User-agent: *
+
+Sitemap: https://michaels.website/sitemap.xml

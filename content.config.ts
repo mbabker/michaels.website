@@ -5,7 +5,7 @@ export default defineContentConfig({
     collections: {
         pages: defineCollection({
             type: 'page',
-            source: [{ include: '1.index.md' }, { include: '2.blog.md' }],
+            source: [{ include: '1.index.md' }],
         }),
         blog: defineCollection({
             type: 'page',

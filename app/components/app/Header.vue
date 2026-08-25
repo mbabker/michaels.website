@@ -44,7 +44,7 @@ const show = ref(false)
 
         <!-- Logo -->
         <div class="col-span-12 flex h-8 justify-end sm:order-2 sm:col-span-4">
-            <NuxtLink to="/" class="text-2xl font-semibold">Michael's Website</NuxtLink>
+            <NuxtLink to="/" class="text-2xl font-semibold">Michael Babker</NuxtLink>
         </div>
 
         <!-- Desktop nav -->

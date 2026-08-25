@@ -22,21 +22,24 @@ No test framework is configured.
 
 **Nuxt 4 with app/ directory structure.** All application code lives under `app/`:
 
-- `app/pages/` — file-based routing (`index.vue`, `blog/index.vue`, `blog/[...slug].vue`)
+- `app/pages/` — file-based routing (`index.vue`, `blog/[...slug].vue`)
 - `app/components/` — auto-imported Vue components
   - `app/` subfolder: layout shell (`Header`, `Footer`, `Layout`)
-  - `content/` subfolder: content rendering (`Hero`, `BlogList`, `BlogListItem`, `ProseA`, `ProseP`)
+  - `content/` subfolder: content rendering (`Hero`, `BlogList`, `BlogListItem`, `ProseA`, `ProseP`) — `BlogList`/`BlogListItem` are unreferenced since the blog index was retired, kept for a future writing surface
   - Root level: shared UI (`Container`, `MainNav`, `ColorModeSwitch`, `SocialIcons`)
-- `app/layouts/default.vue` — minimal layout (just a `<slot />`)
 - `app/assets/css/main.css` — Tailwind CSS v4 with custom theme (primary color palette, gray palette, breakpoints)
 
 **Content collections** defined in `content.config.ts`:
-- `pages` collection: sources `1.index.md` and `2.blog.md`
+- `pages` collection: sources `1.index.md`
 - `blog` collection: sources `blog/*.md`, schema has `date` (required), `cover` and `description` (optional)
 
 Content files live in `content/` with numeric prefixes for ordering.
 
-**Key modules:** `@nuxt/content`, `@nuxt/eslint`, `@nuxt/icon`, `@nuxt/image`, `@nuxtjs/color-mode`
+**Key modules:** `@nuxt/content`, `@nuxt/eslint`, `@nuxt/icon`, `@nuxt/image`, `@nuxtjs/color-mode`, `@nuxtjs/sitemap`
+
+**SEO and metadata.** `site.url` and `site.name` in `nuxt.config.ts` are the single source of truth, read in app code via `useSiteConfig()`. `app.vue` sets the route-derived canonical, `og:url`, and default `og:image` for every page; individual pages override `og:*` as needed. `app/pages/index.vue` carries the `Person` + `ProfilePage` JSON-LD and the `og:profile:*` tags.
+
+Page titles and descriptions come from Nuxt Content v3 frontmatter — a top-level `description` plus an optional `seo: { title, description }` block. **Not** a `head:` block: that is Content v2 syntax and v3 silently discards it into `meta`.
 
 ## Code Style
 

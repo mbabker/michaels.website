@@ -15,9 +15,9 @@ defineSlots<{
     <section class="hero">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div class="content">
-                <div class="text-4xl leading-tight font-bold">
+                <h1 class="text-4xl leading-tight font-bold">
                     <slot name="title" mdc-unwrap="p"> Hero title </slot>
-                </div>
+                </h1>
                 <div class="mt-3 text-xl leading-7">
                     <slot name="description" mdc-unwrap="p"> Hero description </slot>
                 </div>

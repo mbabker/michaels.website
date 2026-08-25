@@ -17,14 +17,11 @@ withDefaults(defineProps<{ post: BlogCollectionItem; featured?: boolean }>(), { 
         </div>
 
         <div class="flex flex-1 flex-col">
-            <NuxtLink
-                :to="post.path"
-                :class="['mb-2 line-clamp-2 text-2xl font-semibold', featured && 'line-clamp-3 text-4xl']"
-            >
-                <h1>
+            <h2 :class="['mb-2 line-clamp-2 text-2xl font-semibold', featured && 'line-clamp-3 text-4xl']">
+                <NuxtLink :to="post.path">
                     {{ post.title }}
-                </h1>
-            </NuxtLink>
+                </NuxtLink>
+            </h2>
 
             <p :class="['mb-4 line-clamp-2', featured && 'line-clamp-4']">
                 {{ post.description }}
