@@ -2,6 +2,12 @@
 
 @plugin '@tailwindcss/typography';
 
+/* Drive dark mode from the class @nuxtjs/color-mode puts on <html>, not the OS preference.
+   Tailwind v4 dropped the v3 `darkMode: 'class'` option, and its default `dark:` variant compiles
+   to a prefers-color-scheme media query — which ignores the class entirely and leaves the color
+   mode switch with nothing to do. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../../components/**/*.vue';
 @source '../../pages/**/*.vue';
 @source '../../app.vue';
