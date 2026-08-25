@@ -20,6 +20,9 @@ logs
 .claude/settings.local.json
 CLAUDE.local.md
 
+# Local planning docs, deliberately not tracked
+site-structure.md
+
 # Local env files
 .env
 .env.*
