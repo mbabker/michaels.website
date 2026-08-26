@@ -70,6 +70,44 @@
     }
 }
 
+@layer components {
+    /*
+     * Section rhythm for long content pages. A rule and real space above each h2 gives eight
+     * capability sections some structure to scan; font size alone was doing all the work.
+     */
+    .content-sections :is(h2) {
+        @apply mt-16 border-t border-gray-200 pt-11 dark:border-gray-700;
+    }
+
+    .content-sections :is(h2):first-child {
+        @apply mt-0 border-t-0 pt-0;
+    }
+
+    /*
+     * Opt-in via `numberedSections: true` in frontmatter. /work is a sequence of capability areas
+     * and reads well numbered; /open-source is a set of packages and projects that is not an
+     * ordered list, so it does not get this.
+     */
+    .content-sections-numbered {
+        counter-reset: content-section;
+    }
+
+    .content-sections-numbered :is(h2) {
+        counter-increment: content-section;
+        @apply relative;
+    }
+
+    .content-sections-numbered :is(h2)::before {
+        content: counter(content-section, decimal-leading-zero);
+        @apply font-mono text-xs font-normal tracking-[0.1em] text-gray-400;
+        @apply mb-2 block lg:absolute lg:top-12 lg:-left-16 lg:mb-0;
+    }
+
+    .content-sections-numbered :is(h2):first-child::before {
+        @apply lg:top-1;
+    }
+}
+
 @layer utilities {
     /* Dark mode image visibility */
     .light-img {

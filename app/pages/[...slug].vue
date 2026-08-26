@@ -26,7 +26,11 @@ usePageSeo(page.value.seo)
 <template>
     <main v-if="page">
         <div
-            class="prose prose-lg prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-a:no-underline dark:prose-invert mx-auto max-w-[68ch] py-4 sm:py-12"
+            :class="[
+                'prose prose-lg prose-h2:text-2xl prose-h2:mb-5 prose-a:no-underline dark:prose-invert mx-auto max-w-[68ch] py-4 sm:py-12',
+                'content-sections',
+                page.meta?.numberedSections && 'content-sections-numbered',
+            ]"
         >
             <ContentRenderer :value="page" />
         </div>
