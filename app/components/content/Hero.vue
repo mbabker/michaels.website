@@ -1,7 +1,9 @@
 <script setup lang="ts">
 withDefaults(defineProps<{ image?: string; imageAlt?: string; imagePosition?: string }>(), {
     image: undefined,
-    imageAlt: 'Hero Image',
+    // An empty alt marks the image decorative, which is the right default: injecting a generic
+    // string like "Hero Image" tells a screen reader nothing and cannot be silenced.
+    imageAlt: '',
     imagePosition: 'right',
 })
 
@@ -34,6 +36,9 @@ defineSlots<{
                 :class="['aspect-video w-full rounded-md object-cover', imagePosition === 'left' && 'order-first']"
                 :src="image"
                 :alt="imageAlt"
+                width="1024"
+                height="576"
+                sizes="md:100vw lg:512px"
             />
         </div>
     </section>
