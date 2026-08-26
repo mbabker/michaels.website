@@ -66,6 +66,24 @@ export default defineNuxtConfig({
         classSuffix: '',
     },
 
+    // MDC registers rehype-external-links with no options, so every external link inherits its
+    // rel="nofollow" default. This site authors its own links — nothing here is untrusted — and
+    // nofollow on the babdev.com links would undercut the whole point of cross-linking the two
+    // sites as one identity. Keep the window-safety hints, drop nofollow.
+    content: {
+        build: {
+            markdown: {
+                rehypePlugins: {
+                    'rehype-external-links': {
+                        options: {
+                            rel: ['noopener', 'noreferrer'],
+                        },
+                    },
+                },
+            },
+        },
+    },
+
     // The output is fully static, so there is no runtime to serve the sitemap endpoint;
     // emit it at build time instead.
     sitemap: {

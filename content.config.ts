@@ -3,9 +3,10 @@ import { z } from 'zod'
 
 export default defineContentConfig({
     collections: {
+        // Top-level markdown only — `blog/*.md` belongs to the blog collection below.
         pages: defineCollection({
             type: 'page',
-            source: [{ include: '1.index.md' }],
+            source: '*.md',
         }),
         blog: defineCollection({
             type: 'page',
