@@ -60,6 +60,14 @@ export default defineNuxtConfig({
         clientBundle: {
             scan: true,
         },
+
+        // Put the generated per-icon CSS in a cascade layer. By default @nuxt/icon injects it
+        // unlayered, and unlayered rules beat every layered rule regardless of specificity — so
+        // the `width: 1em; height: 1em` it emits silently overrode any Tailwind size utility on an
+        // icon, no matter how specific. Sizing only responded to font-size, which is not obvious to
+        // anyone reading the markup. Tailwind orders `components` before `utilities`, so naming that
+        // layer here lets `size-*` on an icon do what it looks like it does.
+        cssLayer: 'components',
     },
 
     colorMode: {

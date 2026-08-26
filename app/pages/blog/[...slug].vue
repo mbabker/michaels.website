@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { withLeadingSlash, joinURL } from 'ufo'
+import { joinURL, withLeadingSlash } from 'ufo'
 
 const route = useRoute()
 const siteConfig = useSiteConfig()
@@ -59,7 +59,7 @@ const onBackToTop = () => {
                 :to="parentPath"
                 class="inline-flex items-center border-b border-gray-200 text-lg dark:border-gray-800"
             >
-                <Icon name="ph:arrow-left" class="mr-2 h-4 w-4" />
+                <Icon name="ph:arrow-left" class="mr-2" />
                 <span>Back</span>
             </NuxtLink>
 
