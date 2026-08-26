@@ -5,7 +5,7 @@ const show = ref(false)
 <template>
     <header class="right relative grid grid-cols-12 items-center gap-4 py-16">
         <!-- Mobile menu button -->
-        <div class="hover:text-primary-500 absolute flex sm:hidden">
+        <div class="hover:text-primary-700 dark:hover:text-primary-500 absolute flex sm:hidden">
             <button aria-label="Navigation Menu" @click="show = !show">
                 <svg width="24" height="24" viewBox="0 0 68 68" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path

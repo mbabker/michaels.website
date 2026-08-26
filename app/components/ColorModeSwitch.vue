@@ -11,7 +11,11 @@ const onClick = () => {
 </script>
 
 <template>
-    <button aria-label="Color Mode" class="hover:text-primary-500 flex size-6 transition-colors" @click="onClick">
+    <button
+        aria-label="Color Mode"
+        class="hover:text-primary-700 dark:hover:text-primary-500 flex size-6 transition-colors"
+        @click="onClick"
+    >
         <ColorScheme>
             <template v-if="colorMode.preference === 'dark'">
                 <Icon name="uil:moon" class="size-6 shrink-0" />

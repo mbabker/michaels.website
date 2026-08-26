@@ -39,7 +39,7 @@ const socials: Record<string, SocialItem> = {
         :href="social.href"
         rel="noopener noreferrer"
         target="_blank"
-        class="hover:text-primary-500 flex size-6 transition-colors"
+        class="hover:text-primary-700 dark:hover:text-primary-500 flex size-6 transition-colors"
     >
         <Icon v-if="social.icon" :name="social.icon" class="size-6 shrink-0" />
     </NuxtLink>

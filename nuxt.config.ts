@@ -1,7 +1,15 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-    modules: ['@nuxt/content', '@nuxt/eslint', '@nuxt/icon', '@nuxt/image', '@nuxtjs/color-mode', '@nuxtjs/sitemap'],
+    modules: [
+        '@nuxt/content',
+        '@nuxt/eslint',
+        '@nuxt/fonts',
+        '@nuxt/icon',
+        '@nuxt/image',
+        '@nuxtjs/color-mode',
+        '@nuxtjs/sitemap',
+    ],
 
     compatibilityDate: '2025-07-15',
 
@@ -72,6 +80,24 @@ export default defineNuxtConfig({
 
     colorMode: {
         classSuffix: '',
+    },
+
+    // IBM Plex Sans for reading, IBM Plex Mono for the labels, section numbering and figures.
+    // @nuxt/fonts downloads and self-hosts these at build time, so the static output carries no
+    // request to a font CDN. Only the Google provider is left enabled, as on babdev.com.
+    fonts: {
+        families: [
+            { name: 'IBM Plex Sans', provider: 'google' },
+            { name: 'IBM Plex Mono', provider: 'google' },
+        ],
+        providers: {
+            adobe: false,
+            bunny: false,
+            fontshare: false,
+            fontsource: false,
+            googleicons: false,
+            npm: false,
+        },
     },
 
     // MDC registers rehype-external-links with no options, so every external link inherits its

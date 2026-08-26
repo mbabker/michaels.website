@@ -17,29 +17,41 @@
     /* Custom breakpoints */
     --breakpoint-xs: 475px;
 
-    /* Primary color palette (Alpine lightblue) */
-    --color-primary-50: #d9f8ff;
-    --color-primary-100: #b3f1ff;
-    --color-primary-200: #8deaff;
-    --color-primary-300: #66e4ff;
-    --color-primary-400: #40ddff;
-    --color-primary-500: #1ad6ff;
-    --color-primary-600: #00b9e1;
-    --color-primary-700: #008aa9;
-    --color-primary-800: #005c70;
-    --color-primary-900: #002e38;
+    /* Typefaces. IBM Plex Sans reads, IBM Plex Mono carries labels, section numbers and figures. */
+    --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-    /* Gray color palette */
-    --color-gray-50: #fafafa;
-    --color-gray-100: #f4f4f5;
-    --color-gray-200: #e4e4e7;
-    --color-gray-300: #d4d4d8;
-    --color-gray-400: #a1a1aa;
-    --color-gray-500: #71717a;
-    --color-gray-600: #52525b;
-    --color-gray-700: #3f3f46;
-    --color-gray-800: #27272a;
-    --color-gray-900: #18181b;
+    /*
+     * Accent: BabDev blue. The 500 stop is the literal brand hex and is the value dark mode uses,
+     * where it measures 8.42:1 against the page background. On the light background it is only
+     * 2.07:1 — under even the 3:1 floor for non-text elements — so light mode uses the 700 stop,
+     * the same 189deg hue darkened to 5.21:1. Both read as the same colour; one is the real hex.
+     *
+     * The palette this forked theme shipped with (Alpine's #1ad6ff) was never visible: every use
+     * was a hover: variant, so the site rendered achromatic until you moused over something.
+     */
+    --color-primary-50: #ecf9fc;
+    --color-primary-100: #d3f1f7;
+    --color-primary-200: #a8ccd4;
+    --color-primary-300: #7fd8e7;
+    --color-primary-400: #55cce0;
+    --color-primary-500: #34c1d9;
+    --color-primary-600: #2a9cb3;
+    --color-primary-700: #217483;
+    --color-primary-800: #185a66;
+    --color-primary-900: #123f49;
+
+    /* Neutrals, warmed slightly off pure white and pure black at both ends. */
+    --color-gray-50: #fbfbfa;
+    --color-gray-100: #f4f4f2;
+    --color-gray-200: #e2e2df;
+    --color-gray-300: #c9c9c4;
+    --color-gray-400: #a3a3a9;
+    --color-gray-500: #74747c;
+    --color-gray-600: #4a4a52;
+    --color-gray-700: #2c2e35;
+    --color-gray-800: #26262b;
+    --color-gray-900: #15161a;
 
     /* Custom max widths */
     --max-width-container: 64rem;
@@ -54,7 +66,7 @@
     }
 
     body {
-        @apply bg-white text-gray-800 dark:bg-black dark:text-gray-200;
+        @apply bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200;
     }
 }
 
