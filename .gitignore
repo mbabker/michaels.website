@@ -22,6 +22,7 @@ CLAUDE.local.md
 
 # Local planning docs, deliberately not tracked
 site-structure.md
+evidence-inventory.md
 
 # Local env files
 .env
