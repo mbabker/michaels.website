@@ -10,12 +10,8 @@ allowBuilds:
 # not dragged across a breaking boundary. Drop an entry once every dependent has moved
 # past it on its own.
 overrides:
-  brace-expansion@2: '>=2.1.4' # GHSA-3jxr-9vmj-r5cp, GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895
-  brace-expansion@5: '>=5.0.9' # GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895
-  js-yaml@4: '>=4.3.1' # GHSA-52cp-r559-cp3m, GHSA-5p4m-2wfm-xmqj
-  nanoid@3: '>=3.3.18' # GHSA-2v37-7h3g-55p8
-  postcss@8: '>=8.5.23' # GHSA-r28c-9q8g-f849, GHSA-fxqj-rqcc-2cmp
-  socket.io-parser@4: '>=4.2.7' # GHSA-2m8v-j782-fhvr
-  svgo@4: '>=4.0.2' # GHSA-2p49-hgcm-8545
-  tar@7: '>=7.5.21' # GHSA-r292-9mhp-454m
+  # fontless asks for ^0.27.0 and the fix only exists in 0.28.1, so this one does cross a
+  # breaking boundary. The rest of the tree is already on 0.28, so the override dedupes to
+  # the version vite and rolldown are building against rather than introducing a new one.
+  esbuild@0.27: '>=0.28.1' # GHSA-g7r4-m6w7-qqqr
   ws@8: '>=8.21.0' # GHSA-96hv-2xvq-fx4p
