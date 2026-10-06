@@ -4,6 +4,16 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+# Added by pnpm when Nuxt 4.6 was installed the day after release. Each entry is pinned to one
+# exact version, so it lets nothing else through; drop the block once these age past the window.
+minimumReleaseAgeExclude:
+  - '@nuxt/cli@4.0.0'
+  - '@nuxt/kit@4.6.0'
+  - '@nuxt/nitro-server@4.6.0'
+  - '@nuxt/schema@4.6.0'
+  - '@nuxt/vite-builder@4.6.0'
+  - '@nuxt/vite-server@4.6.0'
+  - nuxt@4.6.0
 # Security patches for transitive dependencies. Dependabot cannot raise these itself on a
 # pnpm project, so each entry pins the lowest patched release for an open advisory. The
 # selectors are scoped per major so packages that legitimately sit on an older major are

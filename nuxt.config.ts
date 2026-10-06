@@ -53,12 +53,16 @@ export default defineNuxtConfig({
         '/blog': { redirect: { to: '/', statusCode: 301 } },
     },
 
-    nitro: {
-        prerender: {
-            // Nothing links to the surviving post any more, so the crawler cannot discover it.
-            // Name it explicitly, or retiring the blog index would turn the post into a 404.
-            routes: ['/blog/a-fresh-start'],
-        },
+    prerender: {
+        // Nothing links to the surviving post any more, so the crawler cannot discover it.
+        // Name it explicitly, or retiring the blog index would turn the post into a 404.
+        routes: ['/blog/a-fresh-start'],
+    },
+
+    experimental: {
+        // GitHub Pages serves 404.html for every missing path. Without this it is an empty SPA
+        // shell that has to boot Vue before anything shows; with it, the 404 is real HTML.
+        prerenderErrorPages: true,
     },
 
     // Bundle every icon referenced in the source into the client build. The site is
