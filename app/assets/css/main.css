@@ -11,6 +11,7 @@
 @source '../../components/**/*.vue';
 @source '../../pages/**/*.vue';
 @source '../../app.vue';
+@source '../../error.vue';
 @source '../../../content/**/*.md';
 
 @theme {

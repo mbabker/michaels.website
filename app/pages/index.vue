@@ -4,7 +4,7 @@ const siteConfig = useSiteConfig()
 const { data: page } = await useAsyncData('page-home', async () => await queryCollection('pages').path('/').first())
 
 if (!page.value) {
-    throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+    throw createError({ status: 404, statusText: 'Page not found', fatal: true })
 }
 
 const siteUrl = siteConfig.url
