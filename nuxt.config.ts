@@ -92,7 +92,10 @@ export default defineNuxtConfig({
     fonts: {
         families: [
             { name: 'IBM Plex Sans', provider: 'google' },
-            { name: 'IBM Plex Mono', provider: 'google' },
+            // Plex Mono is static on Google Fonts, so the default '400 700' range resolves to
+            // discrete 400 and 700 faces and font-medium silently falls back to 400. The proof
+            // point figures are set in medium; nothing uses Mono bold.
+            { name: 'IBM Plex Mono', provider: 'google', weights: [400, 500] },
         ],
         providers: {
             adobe: false,
