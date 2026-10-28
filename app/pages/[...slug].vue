@@ -2,8 +2,9 @@
 import { withLeadingSlash, joinURL } from 'ufo'
 
 // Serves every top-level content page from the `pages` collection. `/` has its own component for the
-// identity graph it carries, and `/blog/**` is matched by the more specific route, so this handles
-// the rest and 404s anything with no matching content.
+// identity graph it carries, and `/blog/**` and `/writing/<post>` are matched by the more specific
+// routes, so this handles the rest (including the `/writing` index) and 404s anything with no
+// matching content.
 const route = useRoute()
 
 const slug = computed(() =>

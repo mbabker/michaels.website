@@ -22,16 +22,17 @@ No test framework is configured.
 
 **Nuxt 4 with app/ directory structure.** All application code lives under `app/`:
 
-- `app/pages/` — file-based routing (`index.vue` for `/`, `[...slug].vue` for the other top-level pages such as `/work` and `/open-source`, `blog/[...slug].vue`)
+- `app/pages/` — file-based routing (`index.vue` for `/`, `[...slug].vue` for the other top-level pages such as `/work`, `/open-source` and the `/writing` index, `writing/[slug].vue` for posts, `blog/[...slug].vue` for the retired blog's one post)
 - `app/components/` — auto-imported Vue components
   - `app/` subfolder: layout shell (`Header`, `Footer`, `Layout`)
-  - `content/` subfolder: content rendering (`Hero`, `ProofPoints`, `CapabilityIndex`, `ProseA`, `ProseP`, `BlogList`, `BlogListItem`) — `BlogList`/`BlogListItem` are unreferenced since the blog index was retired, kept for a future writing surface
-  - Root level: shared UI (`Container`, `MainNav`, `ColorModeSwitch`, `SocialIcons`)
+  - `content/` subfolder: content rendering (`Hero`, `ProofPoints`, `CapabilityIndex`, `ProseA`, `ProseP`, `WritingList`)
+  - Root level: shared UI (`Container`, `MainNav`, `ColorModeSwitch`, `SocialIcons`, `ArticleView` — the post layout and article metadata shared by `writing` and `blog`)
 - `app/assets/css/main.css` — Tailwind CSS v4 with custom theme (primary color palette, gray palette, breakpoints)
 
 **Content collections** defined in `content.config.ts`:
-- `pages` collection: sources every top-level `*.md` (`1.index.md`, `2.work.md`, `3.open-source.md`)
-- `blog` collection: sources `blog/*.md`, schema has `date` (required), `cover` and `description` (optional)
+- `pages` collection: sources every top-level `*.md` (`1.index.md`, `2.work.md`, `3.open-source.md`, `4.writing.md`); the main nav is built from it
+- `writing` collection: sources `writing/*.md`, schema has `date` (required), `cover` and `description` (optional). New posts go here; `4.writing.md` lists them via `::writing-list`, so they need no prerender entry
+- `blog` collection: same schema, retired. Holds only the 2020 post, kept reachable at `/blog/a-fresh-start` (named in `prerender.routes`) while `/blog` redirects to `/`. Don't add to it — the site plan rules out relaunching a "blog"
 
 Content files live in `content/` with numeric prefixes for ordering.
 
