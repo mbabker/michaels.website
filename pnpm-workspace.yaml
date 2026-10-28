@@ -4,6 +4,12 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+# pnpm 12 otherwise records its own pinned version in pnpm-lock.yaml as a leading second YAML
+# document, and Dependabot's dependency graph cannot read a two-document lockfile yet, so alerts
+# and security updates for every dependency would stop. With the check ignored, the lockfile stays
+# a single document; CI still runs exactly the pinned version, because Corepack provides it from
+# `packageManager`. Revisit once Dependabot reads the two-document form.
+pmOnFail: ignore
 # Security patches for transitive dependencies. Dependabot cannot raise these itself on a
 # pnpm project, so each entry pins the lowest patched release for an open advisory. The
 # selectors are scoped per major so packages that legitimately sit on an older major are

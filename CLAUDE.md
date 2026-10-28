@@ -51,4 +51,4 @@ Page titles and descriptions come from Nuxt Content v3 frontmatter — a top-lev
 
 ## Requirements
 
-Node >= 24.15.0, pnpm >= 11.17.0
+Node >= 24.15.0, pnpm >= 12.16.1
