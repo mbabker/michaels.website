@@ -4,6 +4,9 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+# pnpm already defaults to a one-day release age, but Dependabot only reads an explicit
+# value here when deciding how far to gate the transitive dependencies it re-resolves.
+minimumReleaseAge: 1440
 # pnpm 12 otherwise records its own pinned version in pnpm-lock.yaml as a leading second YAML
 # document, and Dependabot's dependency graph cannot read a two-document lockfile yet, so alerts
 # and security updates for every dependency would stop. With the check ignored, the lockfile stays
